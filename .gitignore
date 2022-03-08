@@ -1,6 +1,30 @@
-/out
-/.idea
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Eclipse
+*.launch
+
+# IntelliJ IDEA
+.idea/
 *.iml
+*.ipr
+*.iws
+
+# Visual Studio Code
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# macOS
+*.DS_Store
+
+# BlueJ
+doc/
+*.bluej
 *.class
 *.ctxt
-*.DS_Store

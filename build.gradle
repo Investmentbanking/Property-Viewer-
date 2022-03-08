@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id "application"
+    id "com.williambl.bluej_jar.bluej-jar" version "0.1"
+    id "org.openjfx.javafxplugin" version "0.0.10"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+mainClassName = "Test"
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = project.javafx_version
+    modules = ["javafx.controls"]
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation "org.apache.commons:commons-lang3:${project.apache_commons_lang_version}"
+    implementation "org.apache.commons:commons-text:${project.apache_commons_text_version}"
+    implementation "com.opencsv:opencsv:${project.opencsv_version}"
+}
+
+blueJJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+compileJava {
+    options.release = 11
+}
+
+test {
+    useJUnitPlatform()
+}
