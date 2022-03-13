@@ -1,4 +1,5 @@
- 
+import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Represents one listing of a property for rental on Airbnb.
@@ -7,82 +8,71 @@
  */ 
 
 public class AirbnbListing {
-    /**
-     * The id and name of the individual property
-     */
-    private String id;
-    private String name;
-    /**
-     * The id and name of the host for this listing.
-     * Each listing has only one host, but one host may
-     * list many properties.
-     */
-    private String host_id;
-    private String host_name;
 
-    /**
-     * The grouped location to where the listed property is situated.
-     * For this data set, it is a london borough.
-     */
-    private String neighbourhood;
+    private final String id;                        // the id of the property
+    private final String name;                      // the name of the property
+    private final String neighbourhoodOverview;     // A description of the neighborhood
+    private final URL pictureURL;                   // A picture of the property
+    private final String hostID;                    // the id of the host
+    private final String hostName;                  // the name of the host
+    private final String hostResponseTime;          // the host's response time
+    private final URL hostPictureURL;               // the host's picture
+    private final int hostListings;                 // the number of the host's listings
+    private final String neighbourhoodCleansed;     // the borough of london
+    private final double latitude;                  // the latitude of the property
+    private final double longitude;                 // the longitude of the property
+    private final String propertyType;              // The type of property, either "Private room" or "Entire Home/apt".
+    private final int accommodates;                 // the number of people allowed in the property
+    private final double bathrooms;                    // the number of bathrooms
+    private final int bedrooms;                     // the number of bedrooms
+    private final int beds;                         // the number of beds
+    private final ArrayList<String> amenities;      // A list of all the amenities in the property
+    private final double price;                        // The price per night's stay
+    private final int minimumNights;                // The minimum number of nights the listed property must be booked for
+    private final int maximumNights;                // the maximum number of nights the listed property can be booked for
+    private final int numberOfReviews;              // The number of reviews for this property
+    private final int availability365;              // The total number of days in the year that the property is available for
+    private final int reviewScoresRating;           // The review score rating
+    private final int reviewScoresCleanliness;      // The cleanliness score
+    private final int reviewScoresCommunication;    // The communication score
+    private final int reviewScoresLocation;         // the location score
+    private final double reviewScoresValue;         // the value score
 
-    /**
-     * The location on a map where the property is situated.
-     */
-    private double latitude;
-    private double longitude;
 
-    /**
-     * The type of property, either "Private room" or "Entire Home/apt".
-     */
-    private String room_type;
-
-    /**
-     * The price per night's stay
-     */
-    private int price;
-
-    /**
-     * The minimum number of nights the listed property must be booked for.
-     */
-    private int minimumNights;
-    private int numberOfReviews;
-
-    /**
-     * The date of the last review, but as a String
-     */
-    private String lastReview;
-    private double reviewsPerMonth;
-
-    /**
-     * The total number of listings the host holds across AirBnB
-     */
-    private int calculatedHostListingsCount;
-    /**
-     * The total number of days in the year that the property is available for
-     */
-    private int availability365;
-
-    public AirbnbListing(String id, String name, String host_id,
-                         String host_name, String neighbourhood, double latitude,
-                         double longitude, String room_type, int price,
-                         int minimumNights, int numberOfReviews, String lastReview,
-                         double reviewsPerMonth, int calculatedHostListingsCount, int availability365) {
+    public AirbnbListing(String id, String name, String neighborhood_overview,
+                         URL picture_url, String host_id, String host_name, String host_response_time, URL host_picture_url,
+                         int host_listings, String neighbourhood_cleansed, double latitude, double longitude, String property_type,
+                         int accommodates, double bathrooms, int bedrooms, int beds, ArrayList<String> amenities, double price, int minimumNights,
+                         int maximumNights, int availability365, int numberOfReviews, int review_scores_rating, int review_scores_cleanliness,
+                         int review_scores_communication, int review_scores_location, double review_scores_value) {
         this.id = id;
         this.name = name;
-        this.host_id = host_id;
-        this.host_name = host_name;
-        this.neighbourhood = neighbourhood;
+        this.neighbourhoodOverview = neighborhood_overview;
+        this.pictureURL = picture_url;
+        this.hostID = host_id;
+        this.hostName = host_name;
+        this.hostResponseTime = host_response_time;
+        this.hostPictureURL = host_picture_url;
+        this.hostListings = host_listings;
+        this.neighbourhoodCleansed = neighbourhood_cleansed;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.room_type = room_type;
+        this.propertyType = property_type;
+        this.accommodates = accommodates;
+        this.bathrooms = bathrooms;
+        this.bedrooms = bedrooms;
+        this.beds = beds;
+        this.amenities = amenities;
         this.price = price;
         this.minimumNights = minimumNights;
-        this.numberOfReviews = numberOfReviews;
-        this.lastReview = lastReview;
-        this.reviewsPerMonth = reviewsPerMonth;
-        this.calculatedHostListingsCount = calculatedHostListingsCount;
+        this.maximumNights = maximumNights;
         this.availability365 = availability365;
+        this.numberOfReviews = numberOfReviews;
+        this.reviewScoresRating = review_scores_rating;
+        this.reviewScoresCleanliness = review_scores_cleanliness;
+        this.reviewScoresCommunication = review_scores_communication;
+        this.reviewScoresLocation = review_scores_location;
+        this.reviewScoresValue = review_scores_value;
     }
 
     public String getId() {
@@ -93,16 +83,16 @@ public class AirbnbListing {
         return name;
     }
 
-    public String getHost_id() {
-        return host_id;
+    public String getHostID() {
+        return hostID;
     }
 
-    public String getHost_name() {
-        return host_name;
+    public String getHostName() {
+        return hostName;
     }
 
-    public String getNeighbourhood() {
-        return neighbourhood;
+    public String getNeighbourhoodCleansed() {
+        return neighbourhoodCleansed;
     }
 
     public double getLatitude() {
@@ -113,11 +103,11 @@ public class AirbnbListing {
         return longitude;
     }
 
-    public String getRoom_type() {
-        return room_type;
+    public String getPropertyType() {
+        return propertyType;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -129,20 +119,72 @@ public class AirbnbListing {
         return numberOfReviews;
     }
 
-    public String getLastReview() {
-        return lastReview;
-    }
-
-    public double getReviewsPerMonth() {
-        return reviewsPerMonth;
-    }
-
-    public int getCalculatedHostListingsCount() {
-        return calculatedHostListingsCount;
-    }
-
     public int getAvailability365() {
         return availability365;
+    }
+
+    public String getNeighbourhoodOverview() {
+        return neighbourhoodOverview;
+    }
+
+    public URL getPictureURL() {
+        return pictureURL;
+    }
+
+    public String getHostResponseTime() {
+        return hostResponseTime;
+    }
+
+    public URL getHostPictureURL() {
+        return hostPictureURL;
+    }
+
+    public int getHostListings() {
+        return hostListings;
+    }
+
+    public int getAccommodates() {
+        return accommodates;
+    }
+
+    public double getBathrooms() {
+        return bathrooms;
+    }
+
+    public int getBedrooms() {
+        return bedrooms;
+    }
+
+    public int getBeds() {
+        return beds;
+    }
+
+    public ArrayList<String> getAmenities() {
+        return amenities;
+    }
+
+    public int getMaximumNights() {
+        return maximumNights;
+    }
+
+    public int getReviewScoresRating() {
+        return reviewScoresRating;
+    }
+
+    public int getReviewScoresCleanliness() {
+        return reviewScoresCleanliness;
+    }
+
+    public int getReviewScoresCommunication() {
+        return reviewScoresCommunication;
+    }
+
+    public int getReviewScoresLocation() {
+        return reviewScoresLocation;
+    }
+
+    public double getReviewScoresValue() {
+        return reviewScoresValue;
     }
 
     @Override
@@ -150,18 +192,15 @@ public class AirbnbListing {
         return "AirbnbListing{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", host_id='" + host_id + '\'' +
-                ", host_name='" + host_name + '\'' +
-                ", neighbourhood='" + neighbourhood + '\'' +
+                ", host_id='" + hostID + '\'' +
+                ", host_name='" + hostName + '\'' +
+                ", neighbourhood='" + neighbourhoodCleansed + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", room_type='" + room_type + '\'' +
+                ", room_type='" + propertyType + '\'' +
                 ", price=" + price +
                 ", minimumNights=" + minimumNights +
                 ", numberOfReviews=" + numberOfReviews +
-                ", lastReview='" + lastReview + '\'' +
-                ", reviewsPerMonth=" + reviewsPerMonth +
-                ", calculatedHostListingsCount=" + calculatedHostListingsCount +
                 ", availability365=" + availability365 +
                 '}';
     }
