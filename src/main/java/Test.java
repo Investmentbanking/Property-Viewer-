@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 /**
  * Write a description of JavaFX class Test here.
  *
@@ -51,6 +53,11 @@ public class Test extends Application
         stage.setTitle("JavaFX Example");
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         stage.setScene(scene);
+
+        // Test for AirbnbDataLoader class works
+        ArrayList<AirbnbListing> listings = AirbnbDataLoader.load();
+        System.out.println(listings.size());
+
 
         // Show the Stage (window)
         stage.show();
