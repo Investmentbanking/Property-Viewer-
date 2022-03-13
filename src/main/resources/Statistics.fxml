@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button mnemonicParsing="false" text="&lt;" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="533.0">
+               <children>
+                  <Button mnemonicParsing="false" text="&gt;" />
+               </children>
+            </HBox>
+        </items>
+      </ToolBar>
+   </bottom>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="47.0" prefWidth="578.0">
+               <children>
+                  <Label prefHeight="29.0" prefWidth="316.0" text="Statistics" />
+               </children>
+            </HBox>
+            <HBox prefHeight="173.0" prefWidth="578.0">
+               <children>
+                  <BorderPane prefHeight="161.0" prefWidth="310.0">
+                     <left>
+                        <Button mnemonicParsing="false" prefHeight="201.0" prefWidth="52.0" text="&lt;" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="52.0" text="&gt;" BorderPane.alignment="CENTER_RIGHT" />
+                     </right>
+                     <center>
+                        <Label text="Enter text here" BorderPane.alignment="CENTER" />
+                     </center>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </BorderPane>
+                  <BorderPane prefHeight="133.0" prefWidth="304.0">
+                     <left>
+                        <Button mnemonicParsing="false" prefHeight="192.0" prefWidth="52.0" text="&lt;" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="52.0" text="&gt;" BorderPane.alignment="CENTER" />
+                     </right>
+                     <center>
+                        <Label text="Enter text here" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin></Label>
+                     </center>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </BorderPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="189.0" prefWidth="578.0">
+               <children>
+                  <BorderPane prefHeight="177.0" prefWidth="316.0">
+                     <left>
+                        <Button mnemonicParsing="false" prefHeight="207.0" prefWidth="52.0" text="&lt;" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button mnemonicParsing="false" prefHeight="172.0" prefWidth="51.0" text="&gt;" BorderPane.alignment="CENTER" />
+                     </right>
+                     <center>
+                        <Label text="Enter text here" BorderPane.alignment="CENTER" />
+                     </center>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </BorderPane>
+                  <BorderPane prefHeight="177.0" prefWidth="309.0">
+                     <left>
+                        <Button mnemonicParsing="false" prefHeight="220.0" prefWidth="52.0" text="&lt;" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button mnemonicParsing="false" prefHeight="212.0" prefWidth="52.0" text="&gt;" BorderPane.alignment="CENTER" />
+                     </right>
+                     <center>
+                        <Label text="Enter text here" BorderPane.alignment="CENTER" />
+                     </center>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </BorderPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
