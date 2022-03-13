@@ -37,6 +37,9 @@
                         <font>
                            <Font size="14.0" />
                         </font>
+                        <padding>
+                           <Insets top="4.0" />
+                        </padding>
                      </Label>
                      <Region HBox.hgrow="ALWAYS" />
                      <Button mnemonicParsing="false" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE">
@@ -71,8 +74,8 @@
                                  <Insets />
                               </VBox.margin>
                               <children>
-                                 <Region HBox.hgrow="NEVER" />
-                                 <TextArea editable="false" prefColumnCount="20" style="-fx-background-color: #2f3136;" text="How to use:&#10;&#10;A&#10;&#10;B&#10;&#10;C&#10;&#10;D&#10;&#10;E&#10;&#10;F&#10;&#10;G&#10;&#10;&#10;">
+                                 <Region minWidth="17.0" HBox.hgrow="NEVER" />
+                                 <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136;" text="How to use:&#10;&#10;A&#10;&#10;B&#10;&#10;C&#10;&#10;D&#10;&#10;E&#10;&#10;F&#10;&#10;G&#10;&#10;&#10;">
                                     <font>
                                        <Font name="Arial" size="12.0" />
                                     </font>
@@ -81,6 +84,29 @@
                                     </padding>
                                  </TextArea>
                                  <Region HBox.hgrow="ALWAYS" />
+                              </children>
+                           </HBox>
+                           <HBox>
+                              <children>
+                                 <Region minWidth="17.0" HBox.hgrow="NEVER" />
+                                 <Label text="Selected price range:" textFill="WHITE">
+                                    <padding>
+                                       <Insets right="5.0" />
+                                    </padding>
+                                 </Label>
+                                 <Label text="None Selected" textFill="WHITE">
+                                    <HBox.margin>
+                                       <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                       <Insets left="5.0" />
+                                    </padding>
+                                 </Label>
+                                 <Region HBox.hgrow="ALWAYS">
+                                    <padding>
+                                       <Insets right="10.0" />
+                                    </padding>
+                                 </Region>
                               </children>
                            </HBox>
                            <Region VBox.vgrow="ALWAYS" />
@@ -100,7 +126,7 @@
                                  <Region HBox.hgrow="ALWAYS" />
                                  <Label alignment="CENTER" text="Settings" textAlignment="CENTER" textFill="WHITE">
                                     <font>
-                                       <Font size="14.0" />
+                                       <Font name="System Bold" size="18.0" />
                                     </font>
                                  </Label>
                                  <Region HBox.hgrow="ALWAYS" />
@@ -109,47 +135,11 @@
                            <HBox VBox.vgrow="ALWAYS">
                               <children>
                                  <Region HBox.hgrow="ALWAYS" />
-                                 <TextArea editable="false" prefColumnCount="20" prefRowCount="4" style="-fx-background-color: #2f3136;" text="Enter the price range and dates of &#10;properties you are looking for">
+                                 <TextArea editable="false" prefColumnCount="20" prefRowCount="1" style="-fx-background-color: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
                                     <font>
                                        <Font name="Arial" size="12.0" />
                                     </font>
                                  </TextArea>
-                                 <Region HBox.hgrow="ALWAYS" />
-                              </children>
-                           </HBox>
-                           <HBox VBox.vgrow="ALWAYS">
-                              <VBox.margin>
-                                 <Insets />
-                              </VBox.margin>
-                              <children>
-                                 <Region HBox.hgrow="ALWAYS" />
-                                 <GridPane hgap="10.0" style="-fx-background-color: #2f3136;" vgap="10.0" HBox.hgrow="ALWAYS">
-                                   <columnConstraints>
-                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                   </columnConstraints>
-                                   <rowConstraints>
-                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                   </rowConstraints>
-                                    <children>
-                                       <Label text="Maximum Price:" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
-                                          <font>
-                                             <Font size="14.0" />
-                                          </font>
-                                       </Label>
-                                       <Label text="Minimum Price:" textAlignment="CENTER" textFill="WHITE">
-                                          <font>
-                                             <Font size="14.0" />
-                                          </font>
-                                       </Label>
-                                       <ChoiceBox prefWidth="150.0" style="-fx-background-color: #40444b;" GridPane.columnIndex="1" />
-                                       <ChoiceBox prefWidth="150.0" style="-fx-background-color: #40444b;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    </children>
-                                    <padding>
-                                       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                    </padding>
-                                 </GridPane>
                                  <Region HBox.hgrow="ALWAYS" />
                               </children>
                            </HBox>
