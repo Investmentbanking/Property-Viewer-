@@ -55,9 +55,11 @@ public class Test extends Application
         stage.setScene(scene);
 
         // Test for AirbnbDataLoader class works
-        ArrayList<AirbnbListing> listings = AirbnbDataLoader.load();
-        System.out.println(listings.size());
+        ArrayList<OldAirbnbListing> oldListings = AirbnbDataLoader.loadOldDataSet();
+        System.out.println(oldListings.size());
 
+        ArrayList<NewAirbnbListing> newListings = AirbnbDataLoader.loadNewDataSet();
+        System.out.println(newListings.size());
 
         // Show the Stage (window)
         stage.show();
