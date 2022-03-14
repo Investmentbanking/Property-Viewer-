@@ -9,13 +9,13 @@ import java.util.Arrays;
 
 public class AirbnbDataLoader {
 
-    private final ArrayList<AirbnbListing> listings;
+    private static final ArrayList<AirbnbListing> NewListings = new ArrayList<>();
+    private static final ArrayList<AirbnbListing> OldListings = new ArrayList<>();
 
     private static int minPrice;
     private static int maxPrice;
 
     public AirbnbDataLoader() {
-        this.listings = new ArrayList<>();
     }
 
     /**
@@ -23,7 +23,7 @@ public class AirbnbDataLoader {
      * @return the new ArrayList with the specific AirbnbListings.
      */
     public static ArrayList<AirbnbListing> loadRange() {
-        ArrayList<AirbnbListing> list = load();
+        ArrayList<AirbnbListing> list = loadNewDataSet();
         list.removeIf(n -> (n.getPrice() < minPrice));
         list.removeIf(n -> (n.getPrice() > maxPrice));
         return list;
@@ -80,6 +80,7 @@ public class AirbnbDataLoader {
                     availability365, numberOfReviews, review_scores_rating, review_scores_cleanliness,
                     review_scores_communication, review_scores_location, review_scores_value
             );
+            NewListings.add(listing);
             return listing;
     }
 
@@ -87,8 +88,8 @@ public class AirbnbDataLoader {
      * Return an ArrayList containing the rows in the AirBnB London data set csv file.
      * @return
      */
-    public static ArrayList<AirbnbListing> load() {
-        System.out.print("Begin loading Airbnb london dataset...");
+    public static ArrayList<AirbnbListing> loadNewDataSet() {
+        System.out.print("Begin loading NEW Airbnb london dataset...");
             ArrayList<AirbnbListing> listings = new ArrayList<>();
         try{
             URL url = AirbnbDataLoader.class.getResource("listings.csv");
@@ -107,6 +108,31 @@ public class AirbnbDataLoader {
         return listings;
     }
 
+    /**
+     * THIS IS THE OLD DATA SET LOADING
+     * @return
+     */
+    public static ArrayList<AirbnbListing> loadOldDataSet() {
+        System.out.print("Begin loading OLD Airbnb london dataset...");
+        ArrayList<AirbnbListing> listings = new ArrayList<>();
+        try{
+            URL url = AirbnbDataLoader.class.getResource("airbnb-london.csv");
+            CSVReader reader = new CSVReader(new FileReader(new File(url.toURI()).getAbsolutePath()));
+            String [] line;
+            //skip the first row (column headers)
+            reader.readNext();
+
+            // CODE GOES HERE TO MAKE THE OLD DATA SET
+
+        } catch(IOException | URISyntaxException e){
+            System.out.println("Failure! Something went wrong");
+            e.printStackTrace();
+        }
+        System.out.println("Success! Number of loaded records: " + listings.size());
+        return listings;
+    }
+
+
     private static double convertMoney(String money) {
         money = money.substring(1, money.indexOf("."));
         money = money.replace(",", "");
@@ -114,12 +140,16 @@ public class AirbnbDataLoader {
     }
 
 
-    public ArrayList<AirbnbListing> getListings() {
-        return listings;
+    public ArrayList<AirbnbListing> getNewListings() {
+        return NewListings;
+    }
+
+    public ArrayList<AirbnbListing> getOldListings() {
+        return OldListings;
     }
 
     public String getListingById(String id){
-        for(AirbnbListing listing : listings){
+        for(AirbnbListing listing : NewListings){
             if(id.equals(listing.getId())){
                 return listing.toString();
             }
