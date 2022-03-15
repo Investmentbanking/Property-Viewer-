@@ -5,14 +5,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #36393f; -fx-font-family: serif;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
-      <Label prefHeight="17.0" prefWidth="157.0" text="Login " textFill="#cdcaca" />
+      <HBox>
+         <children>
+            <Label style="-fx-alignment: left;" text="Login " textFill="#cdcaca" />
+         </children>
+      </HBox>
       <TextField fx:id="username" promptText="username" style="-fx-background-radius: 10;" />
       <PasswordField fx:id="password" promptText="password" style="-fx-background-radius: 10;" />
       <Button fx:id="submit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#checkDetails" style="-fx-background-radius: 6;" text="Login" />
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="don't have an account? try to " textFill="#cdcaca" />
+            <Button fx:id="submit1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signupPage" style="-fx-background-radius: 6;" text="sign up!" />
+         </children>
+      </HBox>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

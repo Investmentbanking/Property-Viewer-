@@ -40,7 +40,7 @@ public class Login {
         }
     }
 
-    public boolean makeLogin(String username, String password){
+    public boolean makeLogin(){
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
             System.out.println(file);
@@ -55,12 +55,12 @@ public class Login {
                 lastID = convertID(line[0]);
                 String usernameInDB = line[1];
                 System.out.println(usernameInDB);
-                if(usernameInDB.equals(username)){
+                if(usernameInDB.equals(this.username)){
                     return false;
                 }
             }
 
-            String newUser = (lastID+1) + "," + username + "," + hash(password) + '\n';
+            String newUser = (lastID+1) + "," + this.username + "," + hash(this.password) + '\n';
 
             writer.write(newUser);
             writer.close();
@@ -109,7 +109,7 @@ public class Login {
 
     public static void main(String[] args) throws URISyntaxException, NoSuchAlgorithmException {
         Login log = new Login("mac", "passwor");
-        System.out.println(log.makeLogin(log.username, log.password));
+        System.out.println(log.makeLogin());
         System.out.println(log.checkLogin());
         System.out.println(log.hash("root"));
     }
