@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,20 +13,38 @@ import java.net.URL;
 public class initialController extends Application {
 
     @FXML
-    Button login;
+    private Button login;
     @FXML
-    Button register;
+    private Button register;
     @FXML
-    Button guest;
+    private Button guest;
 
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("pane0FXML.fxml");
+        URL url = getClass().getResource("pane0.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         stage.setTitle("test");
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    public void loginClicked(ActionEvent event)
+    {
+        System.out.println("login");
+    }
+
+    @FXML
+    public void registerClicked(ActionEvent event)
+    {
+        System.out.println("register");
+    }
+
+    @FXML
+    public void guestClicked(ActionEvent event)
+    {
+        System.out.println("guest");
     }
 }
