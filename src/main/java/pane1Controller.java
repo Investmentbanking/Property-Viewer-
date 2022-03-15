@@ -12,10 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Date;
+import java.time.temporal.ChronoUnit;
 
 public class pane1Controller extends Application {
 
@@ -56,11 +54,13 @@ public class pane1Controller extends Application {
         sDate = startDate.getValue();
         if(sDate != null && eDate != null && !sDate.isBefore(eDate))
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Date Error");
-            alert.setHeaderText(null);
-            alert.setContentText("The start date cannot be after or equal to the end date");
-            alert.showAndWait();
+            Alerts alert = new Alerts(Alert.AlertType.ERROR,"Date Error", null, "The start date cannot be after or equal to the end date");
+            startDate.setValue(null);
+        }
+        if(sDate != null && (sDate.isBefore(LocalDate.now()) || sDate.isEqual(LocalDate.now())))
+        {
+            Alerts alert = new Alerts(Alert.AlertType.ERROR, "Time Error", null, "The start date cannot be before the current date");
+            startDate.setValue(null);
         }
         validateDates();
     }
@@ -72,11 +72,8 @@ public class pane1Controller extends Application {
         eDate = endDate.getValue();
         if(eDate != null && sDate != null && !sDate.isBefore(eDate))
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Date Error");
-            alert.setHeaderText(null);
-            alert.setContentText("The end date cannot be before or equal to the start date");
-            alert.showAndWait();
+            Alerts alert = new Alerts(Alert.AlertType.ERROR,"Date Error", null, "The start date cannot be before or equal to the start date");
+            endDate.setValue(null);
         }
         validateDates();
     }
@@ -109,8 +106,7 @@ public class pane1Controller extends Application {
     {
         if(sDate != null && eDate != null)
         {
-            Duration duration = Duration.between(sDate, eDate);
-            totalNights = duration.toDays();
+            totalNights = sDate.until(eDate, ChronoUnit.DAYS);
             System.out.println(totalNights);
         }
     }
