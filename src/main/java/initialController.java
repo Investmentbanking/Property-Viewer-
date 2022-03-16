@@ -20,6 +20,7 @@ public class initialController extends Application {
     private Button guest;
 
     private static Scene scene;
+
     @Override
     public void start(Stage stage) throws IOException {
         URL url = getClass().getResource("pane0.fxml");
@@ -40,14 +41,15 @@ public class initialController extends Application {
     }
 
     @FXML
-    public void registerClicked(ActionEvent event)
-    {
+    public void registerClicked(ActionEvent event) throws IOException {
         System.out.println("register");
+        URL url = getClass().getResource("signup.fxml");
+        assert url != null;
+        scene.setRoot(FXMLLoader.load(url));
     }
 
     @FXML
-    public void guestClicked(ActionEvent event) throws IOException
-    {
+    public void guestClicked(ActionEvent event) throws IOException {
         System.out.println("guest");
         URL url = getClass().getResource("pane1.fxml");
         assert url != null;

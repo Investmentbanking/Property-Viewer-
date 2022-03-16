@@ -1,6 +1,5 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -18,7 +17,7 @@ public class SignupController {
 
     @FXML
     public void loginPage(ActionEvent event) throws IOException {
-        LoginController.setRoot("login.fxml");
+        initialController.setRoot("login.fxml");
     }
 
     @FXML
