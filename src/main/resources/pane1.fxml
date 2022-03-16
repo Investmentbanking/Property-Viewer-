@@ -89,7 +89,7 @@
                               <Insets right="5.0" />
                            </padding>
                         </Label>
-                        <Label text="None Selected" textFill="WHITE">
+                        <Label fx:id="priceRange" text="None Selected" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -186,13 +186,18 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="minimumPrice" style="-fx-background-color: #40444b;" />
+            <ChoiceBox fx:id="minimumPriceBox" style="-fx-background-color: #40444b;" />
             <Label text="Max:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="maximumPrice" style="-fx-background-color: #40444b;" />
+            <ChoiceBox fx:id="maximumPriceBox" style="-fx-background-color: #40444b;" />
+            <Button fx:id="confirmPrice" minHeight="25.6" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />

@@ -19,21 +19,24 @@ public class initialController extends Application {
     @FXML
     private Button guest;
 
+    private static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
         URL url = getClass().getResource("pane0.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         stage.setTitle("test");
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    public void loginClicked(ActionEvent event)
-    {
+    public void loginClicked(ActionEvent event) throws IOException {
         System.out.println("login");
+        URL url = getClass().getResource("login.fxml");
+        assert url != null;
+        scene.setRoot(FXMLLoader.load(url));
     }
 
     @FXML
@@ -43,8 +46,17 @@ public class initialController extends Application {
     }
 
     @FXML
-    public void guestClicked(ActionEvent event)
+    public void guestClicked(ActionEvent event) throws IOException
     {
         System.out.println("guest");
+        URL url = getClass().getResource("pane1.fxml");
+        assert url != null;
+        scene.setRoot(FXMLLoader.load(url));
+    }
+
+    static void setRoot(String fxml) throws IOException {
+        URL url = LoginController.class.getResource(fxml);
+        assert url != null;
+        scene.setRoot(FXMLLoader.load(url));
     }
 }
