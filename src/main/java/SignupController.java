@@ -16,11 +16,6 @@ public class SignupController {
     PasswordField repeatedPassword;
 
     @FXML
-    public void loginPage(ActionEvent event) throws IOException {
-        initialController.setRoot("login.fxml");
-    }
-
-    @FXML
     public boolean signup(ActionEvent event) {
         if(password.getText().equals(repeatedPassword.getText())){
             try {
@@ -41,5 +36,15 @@ public class SignupController {
             return false;
         }
         return false;
+    }
+
+    @FXML
+    public void loginPage(ActionEvent event) throws IOException {
+        initialController.setRoot("login.fxml");
+    }
+
+    @FXML
+    public void startPage(ActionEvent event) throws IOException {
+        initialController.setRoot("pane0.fxml");
     }
 }

@@ -21,7 +21,13 @@
       <HBox alignment="CENTER">
          <children>
             <Label text="don't have an account? try to " textFill="#cdcaca" />
-            <Button fx:id="submit1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signupPage" style="-fx-background-radius: 6;" text="sign up!" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signupPage" style="-fx-background-radius: 6;" text="sign up!" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="changed your mind? go to the " textFill="#cdcaca" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startPage" style="-fx-background-radius: 6;" text="start page" />
          </children>
       </HBox>
    </children>
