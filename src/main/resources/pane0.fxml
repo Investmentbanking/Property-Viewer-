@@ -18,7 +18,7 @@
             <Region style="-fx-background-color: #202225;" HBox.hgrow="ALWAYS" />
             <Label text="Pane 0" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Calibri" size="14.0" />
                </font>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
@@ -39,7 +39,7 @@
          <children>
             <Label text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Calibri" size="14.0" />
                </font>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
@@ -70,14 +70,20 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label text="To make a booking:" textFill="WHITE" />
+                  <Label text="To make a booking:" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font></Label>
                   <Region HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="login" mnemonicParsing="false" onAction="#loginClicked" prefWidth="150.0" text="Sign In" />
+                  <Button fx:id="login" mnemonicParsing="false" onAction="#loginClicked" prefWidth="150.0" text="Sign In">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font></Button>
                   <Region HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
@@ -91,14 +97,20 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label text="If you do not have an account:" textFill="WHITE" />
+                  <Label text="If you do not have an account:" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font></Label>
                   <Region HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="register" mnemonicParsing="false" onAction="#registerClicked" prefWidth="150.0" text="Register" />
+                  <Button fx:id="register" mnemonicParsing="false" onAction="#registerClicked" prefWidth="150.0" text="Register">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font></Button>
                   <Region HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
@@ -112,7 +124,10 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label text="Or:" textFill="WHITE" />
+                  <Label text="Or:" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font></Label>
                   <Region HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
@@ -126,7 +141,10 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="guest" mnemonicParsing="false" onAction="#guestClicked" prefWidth="150.0" text="Continue as Guest" />
+                  <Button fx:id="guest" mnemonicParsing="false" onAction="#guestClicked" prefWidth="150.0" text="Continue as Guest">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font></Button>
                   <Region HBox.hgrow="ALWAYS" />
                </children>
                <VBox.margin>
