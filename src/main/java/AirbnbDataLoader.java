@@ -96,9 +96,9 @@ public class AirbnbDataLoader {
             int minimumNights = convertInt(line[19]);
             int maximumNights = convertInt(line[20]);
             int availability365 = convertInt(line[21]);
-            int numberOfReviews = convertInt(line[22]);
-            int review_scores_rating = convertInt(line[23]);
-            int review_scores_cleanliness = convertInt(line[24]);
+            int review_scores_rating = convertInt(line[22]);
+            int review_scores_cleanliness = convertInt(line[23]);
+            int review_scores_checkin = convertInt(line[24]);
             int review_scores_communication = convertInt(line[25]);
             int review_scores_location = convertInt(line[26]);
             double review_scores_value = convertDouble(line[27]);
@@ -107,10 +107,10 @@ public class AirbnbDataLoader {
                     picture_url, host_id, host_name, host_response_time, host_picture_url,
                     host_listings, neighbourhood_cleansed, latitude, longitude, property_type,
                     accommodates, bathrooms, bedrooms, beds, amenities, price, minimumNights, maximumNights,
-                    availability365, numberOfReviews, review_scores_rating, review_scores_cleanliness,
+                    availability365, review_scores_rating, review_scores_cleanliness, review_scores_checkin,
                     review_scores_communication, review_scores_location, review_scores_value
             );
-            NewListings.add(listing);
+        NewListings.add(listing);
             return listing;
     }
 
@@ -182,14 +182,14 @@ public class AirbnbDataLoader {
         return OldListings;
     }
 
-    //public String getListingById(String id){
-        //for(AirbnbListing listing : NewListings){
-            //if(id.equals(listing.getId())){
-           //     return listing.toString();
-         //   }
-       // }
-      //  return "this listing was not found";
-    //}
+    public String getListingById(String id){
+        for(NewAirbnbListing listing : NewListings){
+            if(id.equals(listing.getId())){
+                return listing.toString();
+            }
+        }
+        return "this listing was not found";
+    }
 
     /**
      *
@@ -240,11 +240,11 @@ public class AirbnbDataLoader {
         return null;
     }
 
-    //public static void main(String[] args) {
-       // AirbnbDataLoader a = new AirbnbDataLoader();
-       // a.load();
-       // System.out.println(a.getListings().size());
-//        System.out.println(a.getListingById("13712199"));
-//        System.out.println("test works");
-    //}
+    public static void main(String[] args) {
+        AirbnbDataLoader a = new AirbnbDataLoader();
+        a.loadNewDataSet();
+        System.out.println(a.getNewListings().size());
+        System.out.println(a.getListingById("13712199"));
+        System.out.println("test works");
+    }
 }

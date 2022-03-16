@@ -30,10 +30,10 @@ public class NewAirbnbListing {
     private final double price;                        // The price per night's stay
     private final int minimumNights;                // The minimum number of nights the listed property must be booked for
     private final int maximumNights;                // the maximum number of nights the listed property can be booked for
-    private final int numberOfReviews;              // The number of reviews for this property
     private final int availability365;              // The total number of days in the year that the property is available for
     private final int reviewScoresRating;           // The review score rating
     private final int reviewScoresCleanliness;      // The cleanliness score
+    private final int reviewScoresCheckin;          // The checkin score
     private final int reviewScoresCommunication;    // The communication score
     private final int reviewScoresLocation;         // the location score
     private final double reviewScoresValue;         // the value score
@@ -43,7 +43,7 @@ public class NewAirbnbListing {
                          URL picture_url, String host_id, String host_name, String host_response_time, URL host_picture_url,
                          int host_listings, String neighbourhood_cleansed, double latitude, double longitude, String property_type,
                          int accommodates, double bathrooms, int bedrooms, int beds, ArrayList<String> amenities, double price, int minimumNights,
-                         int maximumNights, int availability365, int numberOfReviews, int review_scores_rating, int review_scores_cleanliness,
+                         int maximumNights, int availability365, int review_scores_rating, int review_scores_cleanliness, int review_scores_checkin,
                          int review_scores_communication, int review_scores_location, double review_scores_value) {
         this.id = id;
         this.name = name;
@@ -67,9 +67,9 @@ public class NewAirbnbListing {
         this.minimumNights = minimumNights;
         this.maximumNights = maximumNights;
         this.availability365 = availability365;
-        this.numberOfReviews = numberOfReviews;
         this.reviewScoresRating = review_scores_rating;
         this.reviewScoresCleanliness = review_scores_cleanliness;
+        this.reviewScoresCheckin = review_scores_checkin;
         this.reviewScoresCommunication = review_scores_communication;
         this.reviewScoresLocation = review_scores_location;
         this.reviewScoresValue = review_scores_value;
@@ -113,10 +113,6 @@ public class NewAirbnbListing {
 
     public int getMinimumNights() {
         return minimumNights;
-    }
-
-    public int getNumberOfReviews() {
-        return numberOfReviews;
     }
 
     public int getAvailability365() {
@@ -175,6 +171,10 @@ public class NewAirbnbListing {
         return reviewScoresCleanliness;
     }
 
+    public int getReviewScoresCheckin() {
+        return reviewScoresCheckin;
+    }
+
     public int getReviewScoresCommunication() {
         return reviewScoresCommunication;
     }
@@ -200,7 +200,6 @@ public class NewAirbnbListing {
                 ", room_type='" + propertyType + '\'' +
                 ", price=" + price +
                 ", minimumNights=" + minimumNights +
-                ", numberOfReviews=" + numberOfReviews +
                 ", availability365=" + availability365 +
                 '}';
     }
