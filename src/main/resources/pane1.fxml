@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pane1Controller">
+<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pane1Controller">
    <bottom>
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
@@ -106,7 +106,7 @@
                               <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
-                        <Region HBox.hgrow="ALWAYS">
+                        <Region style="-fx-font-family: Calibri;" HBox.hgrow="ALWAYS">
                            <padding>
                               <Insets right="10.0" />
                            </padding>
@@ -150,7 +150,7 @@
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <GridPane hgap="10.0" style="-fx-background-color: #2f3136;" vgap="10.0" HBox.hgrow="ALWAYS">
+                        <GridPane hgap="10.0" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" vgap="10.0" HBox.hgrow="ALWAYS">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -188,7 +188,7 @@
       </AnchorPane>
    </center>
    <top>
-      <HBox spacing="10.0" style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
+      <HBox spacing="10.0" style="-fx-background-color: #202225; -fx-font-family: serif;" BorderPane.alignment="CENTER">
          <children>
             <Label style="-fx-font-family: calibri;" text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
                <font>
