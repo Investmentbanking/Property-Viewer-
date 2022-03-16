@@ -31,7 +31,7 @@
                </font>
             </Button>
             <Region style="-fx-background-color: #202225;" HBox.hgrow="ALWAYS" />
-            <Label text="Pane 1" textAlignment="CENTER" textFill="WHITE">
+            <Label style="-fx-font-family: calibri;" text="Pane 1" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -73,7 +73,7 @@
                      </VBox.margin>
                      <children>
                         <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                        <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136;" text="How to use:&#10;&#10;A&#10;&#10;B&#10;&#10;C&#10;&#10;D&#10;&#10;E&#10;&#10;F&#10;&#10;G&#10;&#10;&#10;">
+                        <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" text="How to use:&#10;&#10;A&#10;&#10;B&#10;&#10;C&#10;&#10;D&#10;&#10;E&#10;&#10;F&#10;&#10;G&#10;&#10;&#10;">
                            <font>
                               <Font name="Calibri" size="12.0" />
                            </font>
@@ -87,7 +87,7 @@
                   <HBox>
                      <children>
                         <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                        <Label text="Selected price range:" textFill="WHITE">
+                        <Label style="-fx-font-family: calibri;" text="Selected price range:" textFill="WHITE">
                            <padding>
                               <Insets right="5.0" />
                            </padding>
@@ -95,7 +95,7 @@
                               <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="priceRange" text="None Selected" textFill="WHITE">
+                        <Label fx:id="priceRange" style="-fx-font-family: calibri;" text="None Selected" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -128,7 +128,7 @@
                      </VBox.margin>
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label alignment="CENTER" text="Settings" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" style="-fx-font-family: Calibri;" text="Settings" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
@@ -139,7 +139,7 @@
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <TextArea editable="false" prefColumnCount="20" prefRowCount="1" style="-fx-background-color: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
+                        <TextArea editable="false" prefColumnCount="20" prefRowCount="1" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
                            <font>
                               <Font name="Calibri" size="12.0" />
                            </font>
@@ -160,11 +160,11 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="From:" textFill="WHITE">
+                              <Label style="-fx-font-family: calibri;" text="From:" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri" size="12.0" />
                                  </font></Label>
-                              <Label text="To:" textFill="WHITE" GridPane.rowIndex="1">
+                              <Label style="-fx-font-family: calibri;" text="To:" textFill="WHITE" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Calibri" size="12.0" />
                                  </font></Label>
@@ -190,7 +190,7 @@
    <top>
       <HBox spacing="10.0" style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
+            <Label style="-fx-font-family: calibri;" text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -199,7 +199,7 @@
                </padding>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <Label text="Min:" textAlignment="CENTER" textFill="WHITE">
+            <Label style="-fx-font-family: calibri;" text="Min:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -208,7 +208,7 @@
                </padding>
             </Label>
             <ChoiceBox fx:id="minimumPriceBox" style="-fx-background-color: #40444b;" />
-            <Label text="Max:" textAlignment="CENTER" textFill="WHITE">
+            <Label style="-fx-font-family: calibri;" text="Max:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -217,7 +217,7 @@
                </padding>
             </Label>
             <ChoiceBox fx:id="maximumPriceBox" style="-fx-background-color: #40444b;" />
-            <Button fx:id="confirmPrice" minHeight="25.6" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="confirmPrice" minHeight="25.6" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-font-family: calibri; -fx-background-color: #40444b;" text="Confirm" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Calibri" size="10.0" />
                </font>
