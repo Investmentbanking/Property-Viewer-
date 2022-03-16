@@ -47,8 +47,7 @@ public class pane1Controller extends Application {
     private boolean validDates;
 
     @FXML
-    private void initialize()
-    {
+    private void initialize() {
         minimumPriceBox.setItems(availablePrices);
         maximumPriceBox.setItems(availablePrices);
         minimumPriceBox.setValue(0);
@@ -72,16 +71,14 @@ public class pane1Controller extends Application {
     {
         System.out.println("start selected");
         sDate = startDate.getValue();
-        if(sDate != null && eDate != null && !sDate.isBefore(eDate))
-        {
-            Alerts alert = new Alerts(Alert.AlertType.ERROR,"Date Error", null, "The start date cannot be after or equal to the end date");
+        if(sDate != null && eDate != null && !sDate.isBefore(eDate)) {
+            new Alerts(Alert.AlertType.ERROR,"Date Error", null, "The start date cannot be after or equal to the end date");
             startDate.setValue(null);
             validDates = false;
             checkValidDetails();
         }
-        else if(sDate != null && (sDate.isBefore(LocalDate.now()) || sDate.isEqual(LocalDate.now())))
-        {
-            Alerts alert = new Alerts(Alert.AlertType.ERROR, "Time Error", null, "The start date cannot be before the current date");
+        else if(sDate != null && (sDate.isBefore(LocalDate.now()) || sDate.isEqual(LocalDate.now()))) {
+            new Alerts(Alert.AlertType.ERROR, "Time Error", null, "The start date cannot be before the current date");
             startDate.setValue(null);
             validDates = false;
             checkValidDetails();
@@ -92,20 +89,17 @@ public class pane1Controller extends Application {
     }
 
     @FXML
-    public void selectEndDate(ActionEvent event)
-    {
+    public void selectEndDate(ActionEvent event) {
         System.out.println("end selected");
         eDate = endDate.getValue();
-        if(eDate != null && sDate != null && !sDate.isBefore(eDate))
-        {
-            Alerts alert = new Alerts(Alert.AlertType.ERROR,"Date Error", null, "The start date cannot be before or equal to the start date");
+        if(eDate != null && sDate != null && !sDate.isBefore(eDate)) {
+            new Alerts(Alert.AlertType.ERROR,"Date Error", null, "The start date cannot be before or equal to the start date");
             endDate.setValue(null);
             validDates = false;
             checkValidDetails();
         }
-        else if(eDate != null && (eDate.isBefore(LocalDate.now()) || eDate.isEqual(LocalDate.now())))
-        {
-            Alerts alert = new Alerts(Alert.AlertType.ERROR, "Time Error", null, "The end date cannot be before the current date");
+        else if(eDate != null && (eDate.isBefore(LocalDate.now()) || eDate.isEqual(LocalDate.now()))) {
+            new Alerts(Alert.AlertType.ERROR, "Time Error", null, "The end date cannot be before the current date");
             endDate.setValue(null);
             validDates = false;
             checkValidDetails();
@@ -131,15 +125,14 @@ public class pane1Controller extends Application {
         System.out.println("Price confirmed");
         Integer minPriceInput = minimumPriceBox.getSelectionModel().getSelectedItem();
         Integer maxPriceInput = maximumPriceBox.getSelectionModel().getSelectedItem();
-        if(minPriceInput == null || maxPriceInput == null)
-        {
-            Alerts alert = new Alerts(Alert.AlertType.ERROR, "Price range not selected", null, "The price range is not selected");
+        if(minPriceInput == null || maxPriceInput == null) {
+            new Alerts(Alert.AlertType.ERROR, "Price range not selected", null, "The price range is not selected");
             priceRange.textProperty().set("None Selected");
             validPrices = false;
             checkValidDetails();
         }
         else if(minPriceInput >= maxPriceInput) {
-            Alerts alert = new Alerts(Alert.AlertType.ERROR, "Invalid range", null, "The price range selected is invalid");
+            new Alerts(Alert.AlertType.ERROR, "Invalid range", null, "The price range selected is invalid");
             minimumPriceBox.setValue(null);
             maximumPriceBox.setValue(null);
             validPrices = false;
