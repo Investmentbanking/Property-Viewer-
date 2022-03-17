@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -70,7 +71,10 @@
                   <Insets top="5.0" />
                </padding>
             </Label>
-            <ChoiceBox fx:id="minimumPriceBox" style="-fx-background-color: #40444b;" />
+            <ChoiceBox fx:id="minimumPriceBox" style="-fx-background-color: #40444b;">
+               <HBox.margin>
+                  <Insets bottom="2.0" top="2.0" />
+               </HBox.margin></ChoiceBox>
             <Label style="-fx-font-family: calibri;" text="Max:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
@@ -79,11 +83,20 @@
                   <Insets top="5.0" />
                </padding>
             </Label>
-            <ChoiceBox fx:id="maximumPriceBox" style="-fx-background-color: #40444b;" />
-            <Button fx:id="confirmPrice" minHeight="25.6" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-font-family: calibri; -fx-background-color: #40444b;" text="Confirm" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <ChoiceBox fx:id="maximumPriceBox" style="-fx-background-color: #40444b;">
+               <HBox.margin>
+                  <Insets bottom="2.0" top="2.0" />
+               </HBox.margin></ChoiceBox>
+            <Button fx:id="confirmPrice" minHeight="22.0" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-font-family: calibri; -fx-background-color: #40444b;" text="Confirm" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="10.0" />
                </font>
+               <HBox.margin>
+                  <Insets top="2.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
             </Button>
          </children>
          <padding>
@@ -97,7 +110,7 @@
    <center>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="600.0" style="-fx-background-color: #40444b;" HBox.hgrow="ALWAYS">
                <content>
                   <ListView style="-fx-background-color: #40444b;" />
                </content>
@@ -191,7 +204,7 @@
                         <VBox>
                            <children>
                               <Region VBox.vgrow="ALWAYS" />
-                              <Button minHeight="30.0" minWidth="90.0" mnemonicParsing="false" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE">
+                              <Button contentDisplay="CENTER" defaultButton="true" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font>
