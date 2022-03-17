@@ -29,7 +29,3 @@ KCL Informatics, PPA
 4. If the JAR opens in BlueJ but doesn't compile, you will need to delete all `.class` files in the BlueJ project's root directory, and if that still doesn't work, delete all `.class` files in the whole project.
 
 (Taken and modified from the FabricMC discord: https://discord.gg/v6v4pMv)
-
-
-hthfhjytjycjygj
-
