@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,6 +47,11 @@ public class pane1Controller extends Application {
     private long totalNights;
     private boolean validPrices;
     private boolean validDates;
+
+    @FXML
+    private AnchorPane centrePane;
+    @FXML
+    private BorderPane mainPane;
 
     @FXML
     private void initialize() {
@@ -108,9 +115,12 @@ public class pane1Controller extends Application {
     }
 
     @FXML
-    public void leftArrowClicked(ActionEvent event)
-    {
+    public void leftArrowClicked(ActionEvent event) throws IOException {
         System.out.println("left pressed");
+        Parent pane1 = FXMLLoader.load(getClass().getResource("pane0.fxml"));
+        mainPane.getChildren().remove(centrePane);
+        mainPane.getChildren().add(pane1);
+
     }
 
     @FXML

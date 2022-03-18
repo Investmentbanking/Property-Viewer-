@@ -6,10 +6,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="initialController">
+<BorderPane fx:id="mainBorderPane" minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainPanelController">
    <bottom>
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
@@ -53,13 +54,13 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="minimumPrice" style="-fx-background-color: #40444b;" />
+            <ChoiceBox fx:id="minimumPriceBox" style="-fx-background-color: #40444b;" />
             <Label text="Max:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="maximumPrice" style="-fx-background-color: #40444b;" />
+            <ChoiceBox fx:id="maximumPriceBox" style="-fx-background-color: #40444b;" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
@@ -69,4 +70,7 @@
          </BorderPane.margin>
       </HBox>
    </top>
+   <center>
+      <Pane fx:id="mainPane" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

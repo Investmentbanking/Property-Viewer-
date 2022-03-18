@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pane1Controller">
+<BorderPane fx:id="mainPane" minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pane1Controller">
    <bottom>
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
@@ -52,7 +52,7 @@
       </HBox>
    </bottom>
    <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="centrePane" BorderPane.alignment="CENTER">
          <children>
             <VBox layoutY="113.0" spacing="10.0" style="-fx-background-color: #2f3136;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="10.0">
                <children>
