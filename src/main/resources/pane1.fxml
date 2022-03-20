@@ -52,140 +52,146 @@
       </HBox>
    </bottom>
    <center>
-      <AnchorPane fx:id="centrePane" BorderPane.alignment="CENTER">
-         <children>
-            <VBox layoutY="113.0" spacing="10.0" style="-fx-background-color: #2f3136;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="10.0">
+      <BorderPane fx:id="centrePane" BorderPane.alignment="CENTER">
+         <center>
+            <AnchorPane>
                <children>
-                  <HBox prefHeight="6.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
+                  <VBox layoutY="113.0" spacing="10.0" style="-fx-background-color: #2f3136;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="10.0">
                      <children>
-                        <Region HBox.hgrow="NEVER" />
-                        <ImageView>
-                           <image>
-                              <Image url="@pvLogo.png" />
-                           </image>
-                        </ImageView>
-                        <Region HBox.hgrow="ALWAYS" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                        <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" text="How to use:&#10;&#10;A&#10;&#10;B&#10;&#10;C&#10;&#10;D&#10;&#10;E&#10;&#10;F&#10;&#10;G&#10;&#10;&#10;">
-                           <font>
-                              <Font name="Calibri" size="12.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="10.0" right="10.0" />
-                           </padding>
-                        </TextArea>
-                        <Region HBox.hgrow="ALWAYS" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                        <Label style="-fx-font-family: calibri;" text="Selected price range:" textFill="WHITE">
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                           <font>
-                              <Font name="Calibri" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="priceRange" style="-fx-font-family: calibri;" text="None Selected" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                           <font>
-                              <Font name="Calibri" size="12.0" />
-                           </font>
-                        </Label>
-                        <Region style="-fx-font-family: Calibri;" HBox.hgrow="ALWAYS">
-                           <padding>
-                              <Insets right="10.0" />
-                           </padding>
-                        </Region>
-                     </children>
-                  </HBox>
-                  <Region VBox.vgrow="ALWAYS" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-               </padding>
-            </VBox>
-            <VBox layoutX="470.0" spacing="40.0" style="-fx-background-color: #36393f;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-               <children>
-                  <Region VBox.vgrow="ALWAYS" />
-                  <HBox VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label alignment="CENTER" style="-fx-font-family: Calibri;" text="Settings" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Region HBox.hgrow="ALWAYS" />
-                     </children>
-                  </HBox>
-                  <HBox VBox.vgrow="ALWAYS">
-                     <children>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <TextArea editable="false" prefColumnCount="20" prefRowCount="1" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
-                           <font>
-                              <Font name="Calibri" size="12.0" />
-                           </font>
-                        </TextArea>
-                        <Region HBox.hgrow="ALWAYS" />
-                     </children>
-                  </HBox>
-                  <HBox VBox.vgrow="ALWAYS">
-                     <children>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <GridPane hgap="10.0" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" vgap="10.0" HBox.hgrow="ALWAYS">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
+                        <HBox prefHeight="6.0" prefWidth="360.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label style="-fx-font-family: calibri;" text="From:" textFill="WHITE">
-                                 <font>
-                                    <Font name="Calibri" size="12.0" />
-                                 </font></Label>
-                              <Label style="-fx-font-family: calibri;" text="To:" textFill="WHITE" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="Calibri" size="12.0" />
-                                 </font></Label>
-                              <DatePicker fx:id="startDate" onAction="#selectStartDate" style="-fx-background-color: #40444b;" GridPane.columnIndex="1" />
-                              <DatePicker fx:id="endDate" onAction="#selectEndDate" style="-fx-background-color: #40444b;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Region HBox.hgrow="NEVER" />
+                              <ImageView>
+                                 <image>
+                                    <Image url="@pvLogo.png" />
+                                 </image>
+                              </ImageView>
+                              <Region HBox.hgrow="ALWAYS" />
                            </children>
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </GridPane>
-                        <Region HBox.hgrow="ALWAYS" />
+                        </HBox>
+                        <HBox>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Region minWidth="17.0" HBox.hgrow="NEVER" />
+                              <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" text="How to use:&#10;&#10;A&#10;&#10;B&#10;&#10;C&#10;&#10;D&#10;&#10;E&#10;&#10;F&#10;&#10;G&#10;&#10;&#10;">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="10.0" right="10.0" />
+                                 </padding>
+                              </TextArea>
+                              <Region HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Region minWidth="17.0" HBox.hgrow="NEVER" />
+                              <Label style="-fx-font-family: calibri;" text="Selected price range:" textFill="WHITE">
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="priceRange" style="-fx-font-family: calibri;" text="None Selected" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Region style="-fx-font-family: Calibri;" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Region>
+                           </children>
+                        </HBox>
+                        <Region VBox.vgrow="ALWAYS" />
                      </children>
-                  </HBox>
-                  <Region VBox.vgrow="ALWAYS" />
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="470.0" spacing="40.0" style="-fx-background-color: #36393f;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <Region VBox.vgrow="ALWAYS" />
+                        <HBox VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Label alignment="CENTER" style="-fx-font-family: Calibri;" text="Settings" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox VBox.vgrow="ALWAYS">
+                           <children>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <TextArea editable="false" prefColumnCount="20" prefRowCount="1" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
+                                 <font>
+                                    <Font name="Calibri" size="12.0" />
+                                 </font>
+                              </TextArea>
+                              <Region HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox VBox.vgrow="ALWAYS">
+                           <children>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <GridPane hgap="10.0" style="-fx-background-color: #2f3136; -fx-font-family: Calibri;" vgap="10.0" HBox.hgrow="ALWAYS">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label style="-fx-font-family: calibri;" text="From:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Calibri" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label style="-fx-font-family: calibri;" text="To:" textFill="WHITE" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Calibri" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="startDate" onAction="#selectStartDate" style="-fx-background-color: #40444b;" GridPane.columnIndex="1" />
+                                    <DatePicker fx:id="endDate" onAction="#selectEndDate" style="-fx-background-color: #40444b;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </GridPane>
+                              <Region HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Region VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-         </children>
-      </AnchorPane>
+            </AnchorPane>
+         </center>
+      </BorderPane>
    </center>
    <top>
       <HBox spacing="10.0" style="-fx-background-color: #202225; -fx-font-family: serif;" BorderPane.alignment="CENTER">
