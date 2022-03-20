@@ -4,49 +4,70 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import jnr.constants.platform.Local;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class pane1Controller extends Application {
+/**
+ * Main controller for pane 1
+ * allows for selection of prices, dates
+ * welcomes and shows instructions on how to use program
+ * controls top bar and arrows
+ * handles pane switching
+ *
+ * @author Burhan Tekcan K21013451
+ * @version 1.0
+ */
+public class Pane1Controller extends Application {
 
-    @FXML
+    @FXML // minimum price selection
     private ChoiceBox<Integer> minimumPriceBox;
-    @FXML
+    @FXML // maximum price selection
     private ChoiceBox<Integer> maximumPriceBox;
-    @FXML
+    @FXML // confirmation box
     private Button confirmPrice;
-    @FXML
+    @FXML // button to go back one pane
     private Button leftArrow;
-    @FXML
+    @FXML // button to go forward one pane
     private Button rightArrow;
-    @FXML
+    @FXML // pane number label at bottom
+    private Label paneLabel;
+
+    @FXML // start date for properties to be shown -> booking...
     private DatePicker startDate;
-    @FXML
+    @FXML // end date for properties to be shown -> booking
     private DatePicker endDate;
-    @FXML
+    @FXML // output of currently selected price range
     private Label priceRange;
-    @FXML
+    @FXML // the central pane where content is displayed
     private BorderPane centrePane;
-    @FXML
+    @FXML // the root pane
     private BorderPane mainPane;
 
-    private ArrayList<String> fxmlFiles = new ArrayList<>();
+    // the first pane; stored to then show again if user wants to go back
+    private Node pane1;
+    // all available panes for the main scene
+    private final ArrayList<Node> sceneNodes = new ArrayList<>();
+    // pointer to the current pane
     private int pointer;
+    // the prices available to choose from
     private final ObservableList<Integer> availablePrices = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
 
+    /**
+     * Initialise the settings for the scene
+     * sets the available prices and initial conditions for pane 1
+     */
     @FXML
-    private void initialize() {
+    private void initialize()
+    {
         minimumPriceBox.setItems(availablePrices);
         maximumPriceBox.setItems(availablePrices);
         minimumPriceBox.setValue(0);
@@ -57,29 +78,47 @@ public class pane1Controller extends Application {
         checkValidDetails();
     }
 
-    public pane1Controller()
+    /**
+     * Sets pointer to 0 (which is pane 1)
+     * adds all panes to arraylist to be accessed
+     */
+    public Pane1Controller() throws IOException
     {
-        fxmlFiles.add("pane1.fxml");
-        fxmlFiles.add("login.fxml");
-        fxmlFiles.add("signup.fxml");
+        Node pane2 = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Node pane3 = FXMLLoader.load(getClass().getResource("signup.fxml"));
+        sceneNodes.add(null);
+        sceneNodes.add(pane2);
+        sceneNodes.add(pane3);
         pointer = 0;
     }
 
+    /**
+     * creates scene with pane 1
+     * adds the scene to the stage
+     * @param stage for the scene to be placed in
+     */
     @Override
-    public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("general.fxml");
+    public void start(Stage stage) throws IOException
+    {
+        URL url = getClass().getResource("pane1.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
-        stage.setTitle("test");
+        stage.setTitle("Scene Viewer 1.0");
         stage.setScene(scene);
         stage.show();
     }
 
+    /**
+     * takes in start date, checks if valid
+     * if not it produces an appropriate error
+     * if both dates are valid, flag is set to true
+     * total nights are set
+     * @param event ActionEvent selection of start date
+     */
     @FXML
     public void selectStartDate(ActionEvent event)
     {
-        System.out.println("start selected");
         RuntimeDetails.setStartDate(startDate.getValue());
         LocalDate sDate = RuntimeDetails.getStartDate();
         LocalDate eDate = RuntimeDetails.getEndDate();
@@ -101,19 +140,28 @@ public class pane1Controller extends Application {
         }
     }
 
+    /**
+     * takes in end date, checks if valid
+     * if not it produces an appropriate error
+     * if both dates are valid, flag is set to true
+     * total nights are set
+     * @param event ActionEvent selection of end date
+     */
     @FXML
-    public void selectEndDate(ActionEvent event) {
-        System.out.println("end selected");
+    public void selectEndDate(ActionEvent event)
+    {
         RuntimeDetails.setEndDate(endDate.getValue());
         LocalDate sDate = RuntimeDetails.getStartDate();
         LocalDate eDate = RuntimeDetails.getEndDate();
-        if(eDate != null && sDate != null && !sDate.isBefore(eDate)) {
+        if(eDate != null && sDate != null && !sDate.isBefore(eDate))
+        {
             new Alerts(Alert.AlertType.ERROR,"Date Error", null, "The end date cannot be before or equal to the start date");
             endDate.setValue(null);
             RuntimeDetails.setValidDates(false);
             checkValidDetails();
         }
-        else if(eDate != null && (eDate.isBefore(LocalDate.now()) || eDate.isEqual(LocalDate.now()))) {
+        else if(eDate != null && (eDate.isBefore(LocalDate.now()) || eDate.isEqual(LocalDate.now())))
+        {
             new Alerts(Alert.AlertType.ERROR, "Time Error", null, "The end date cannot be before the current date");
             endDate.setValue(null);
             RuntimeDetails.setValidDates(false);
@@ -122,32 +170,65 @@ public class pane1Controller extends Application {
         else if(eDate != null && sDate != null) {
             RuntimeDetails.setValidDates(true);
             setTotalNights();
+            pane1 = centrePane.getCenter();
         }
     }
 
+    /**
+     * Goes back one pane
+     * decrements pointer, removes current centre
+     * adds pane from arraylist sceneNodes with index pointer
+     * @param event ActionEvent of left arrow being clicked
+     */
     @FXML
-    public void leftArrowClicked(ActionEvent event) throws IOException {
-        System.out.println("left pressed");
+    public void leftArrowClicked(ActionEvent event) throws IOException
+    {
         pointerDecrement();
-        Parent pane1 = FXMLLoader.load(getClass().getResource(fxmlFiles.get(pointer)));
-        mainPane.getChildren().remove(centrePane);
-        mainPane.getChildren().add(pane1);
-
+        if(pointer == 0)
+        {
+            centrePane.getChildren().remove(centrePane.getCenter());
+            centrePane.setCenter(pane1);
+        }
+        else {
+            centrePane.getChildren().remove(centrePane.getCenter());
+            centrePane.setCenter(sceneNodes.get(pointer));
+        }
+        setPaneLabelText();
     }
 
+    /**
+     * Goes forward one pane
+     * increments pointer, removes centre
+     * adds pane from arraylist sceneNodes with index pointer
+     * @param event ActionEvent of right arrow being clicked
+     */
     @FXML
     public void rightArrowClicked(ActionEvent event) throws IOException {
-        System.out.println("right pressed");
         pointerIncrement();
-        Parent pane = FXMLLoader.load(getClass().getResource(fxmlFiles.get(pointer)));
-        mainPane.getChildren().remove(centrePane);
-        mainPane.getChildren().add(pane);
+        if(pointer == 0)
+        {
+            centrePane.getChildren().remove(centrePane.getCenter());
+            centrePane.setCenter(pane1);
+        }
+        else {
+            centrePane.getChildren().remove(centrePane.getCenter());
+            centrePane.setCenter(sceneNodes.get(pointer));
+        }
+        setPaneLabelText();
     }
 
+    /**
+     * Confirms the entered prices
+     * if the prices are valid,
+     * flag set true, prices set in RuntimeDetails
+     * selected prices are outputted
+     * if the prices are invalid,
+     * appropriate error created, values set null and flag set false
+     * @param event ActionEvent of confirm prices button being pressed
+     */
     @FXML
     public void confirmPrices(ActionEvent event)
     {
-        System.out.println("Price confirmed");
         Integer minPriceInput = minimumPriceBox.getSelectionModel().getSelectedItem();
         Integer maxPriceInput = maximumPriceBox.getSelectionModel().getSelectedItem();
         if(minPriceInput == null || maxPriceInput == null) {
@@ -173,6 +254,19 @@ public class pane1Controller extends Application {
         }
     }
 
+    /**
+     * Sets the label for the pane number
+     * used when the pane is changed
+     */
+    private void setPaneLabelText()
+    {
+        int currentPane = pointer + 1;
+        paneLabel.setText("Pane " + currentPane);
+    }
+
+    /**
+     * Sets the total nights, if the dates are valid
+     */
     private void setTotalNights()
     {
         if(RuntimeDetails.isValidDates())
@@ -182,6 +276,10 @@ public class pane1Controller extends Application {
         }
     }
 
+    /**
+     * checks if all details are valid
+     * arrows are enabled if details are valid
+     */
     private void checkValidDetails()
     {
         if(RuntimeDetails.isValidDetails())
@@ -196,23 +294,29 @@ public class pane1Controller extends Application {
         }
     }
 
+    /**
+     * increments the pointer up to size of sceneNodes
+     * sets to pointer to 0 if it reaches arraylist size
+     */
     private void pointerIncrement()
     {
         pointer++;
-        System.out.println(pointer);
-        if(pointer >= fxmlFiles.size())
+        if(pointer >= sceneNodes.size())
         {
             pointer = 0;
         }
     }
 
+    /**
+     * decrements the pointer
+     * sets to pointer to arraylist size - 1 if it reaches 0
+     */
     private void pointerDecrement()
     {
         pointer--;
-        System.out.println(pointer);
         if(pointer < 0)
         {
-            pointer = fxmlFiles.size() - 1;
+            pointer = sceneNodes.size() - 1;
         }
     }
 }
