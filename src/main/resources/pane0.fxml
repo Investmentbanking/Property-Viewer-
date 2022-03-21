@@ -16,7 +16,7 @@
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
             <Region style="-fx-background-color: #202225;" HBox.hgrow="ALWAYS" />
-            <Label style="-fx-font-family: Calibri;" text="Pane 0" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Pane 0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -37,7 +37,7 @@
    <top>
       <HBox spacing="10.0" style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
-            <Label style="-fx-font-family: Calibri;" text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -70,7 +70,7 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label style="-fx-font-family: Calibri;" text="To make a booking:" textFill="WHITE">
+                  <Label text="To make a booking:" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="12.0" />
                      </font></Label>
@@ -80,7 +80,7 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="login" mnemonicParsing="false" onAction="#loginClicked" prefWidth="150.0" style="-fx-font-family: Calibri; -fx-background-color: #282a2e;" text="Sign In" textFill="WHITE">
+                  <Button fx:id="login" mnemonicParsing="false" onAction="#loginClicked" prefWidth="150.0" style="-fx-background-color: #282a2e;" text="Sign In" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="12.0" />
                      </font></Button>
@@ -97,7 +97,7 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label style="-fx-font-family: Calibri;" text="If you do not have an account:" textFill="WHITE">
+                  <Label text="If you do not have an account:" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="12.0" />
                      </font></Label>
@@ -107,7 +107,7 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="register" mnemonicParsing="false" onAction="#registerClicked" prefWidth="150.0" style="-fx-font-family: Calibri; -fx-background-color: #282a2e;" text="Register" textFill="WHITE">
+                  <Button fx:id="register" mnemonicParsing="false" onAction="#registerClicked" prefWidth="150.0" style="-fx-background-color: #282a2e;" text="Register" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font></Button>
@@ -124,7 +124,7 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label style="-fx-font-family: Calibri;" text="Or:" textFill="WHITE">
+                  <Label text="Or:" textFill="WHITE">
                      <font>
                         <Font name="Calibri" size="12.0" />
                      </font></Label>
@@ -141,7 +141,7 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="guest" mnemonicParsing="false" onAction="#guestClicked" prefWidth="150.0" style="-fx-font-family: Calibri; -fx-background-color: #282a2e;" text="Continue as Guest" textFill="WHITE">
+                  <Button fx:id="guest" mnemonicParsing="false" onAction="#guestClicked" prefWidth="150.0" style="-fx-background-color: #282a2e;" text="Continue as Guest" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font></Button>
