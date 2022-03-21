@@ -1,0 +1,121 @@
+.root {
+    -fx-font-family: Calibri;
+    -fx-background-color: #36393f;
+    -fx-font-size: 15;
+    /*-fx-padding: 25;*/
+    /*-fx-spacing: 20;*/
+}
+
+.label{
+    -fx-text-fill: #dcddde;
+}
+
+.list-cell{
+    -fx-text-fill: #dcddde;
+    -fx-font-size: 16;
+}
+.list-cell:odd{
+    -fx-background-color: #36393f;
+}
+.list-cell:even{
+    -fx-background-color: #2f3136;
+}
+.list-view{
+    -fx-background-color: Transparent;
+    -fx-border-color: Transparent;
+    -fx-border-width: 0;
+}
+.scroll-pane{
+    -fx-background-color: Transparent;
+    -fx-border-color: Transparent;
+}
+.button {
+    -fx-background-color: #dcddde;
+    -fx-text-fill: #202225;
+    -fx-background-radius: 20;
+    -fx-padding: 13 0 10 0;
+}
+.button:hover {
+    -fx-background-color: #d47373;
+    -fx-text-fill: #dcddde;
+}
+
+.progress-bar > .track{
+    -fx-background-color: #202225;
+    -fx-background-radius: 10;
+}
+.progress-bar .bar{
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+}
+
+#green .bar{-fx-background-color: green;}
+#orange .bar{-fx-background-color: orange;}
+#red .bar{-fx-background-color: red;}
+
+.id {
+    -fx-font-style: italic;
+}
+
+.title {
+    -fx-font-weight: bold;
+}
+#bold_medium {
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+
+#big_title {
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+}
+
+#rating {
+    -fx-font-size: 35;
+    -fx-font-weight: bold;
+    /*-fx-background-color: red;*/
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+
+}
+
+#price {
+    -fx-font-size: 50;
+}
+#host{
+    -fx-font-size: 20;
+}
+#name{
+    -fx-font-size: 25;
+}
+#id{
+    -fx-font-size: 20;
+}
+.light_border{
+    -fx-background-color:  #2f3136;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+}
+
+.dark_border{
+    -fx-background-color: #202225;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+}
+
+.dark_title_border{
+    -fx-background-color: #202225;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20 10 20;
+}
+
+#regular_text {
+    -fx-font-size: 20;
+}
+
+#property_type{
+    /*-fx-opacity: 0.6;*/
+    -fx-background-color: #2f3136;
+    -fx-background-radius: 20;
+    -fx-padding: 3 20 6 20;
+}

@@ -1,0 +1,12 @@
+.root {
+    -fx-font-family: Calibri;
+    -fx-background-color: #36393f;
+}
+.label{
+    -fx-text-fill: #dcddde;
+}
+#key{
+    -fx-background-color: rgba(0,0,0,0.3);
+    -fx-background-radius: 20;
+    -fx-padding: 15 15 5 15;
+}
