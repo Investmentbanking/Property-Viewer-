@@ -18,11 +18,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BookingController">
    <bottom>
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="leftArrow" mnemonicParsing="false" onAction="#leftArrowClicked" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE">
+            <Button fx:id="leftArrow" mnemonicParsing="false" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="2.0" right="2.0" top="2.0" />
                </HBox.margin>
@@ -31,7 +31,7 @@
                </font>
             </Button>
             <Region style="-fx-background-color: #202225;" HBox.hgrow="ALWAYS" />
-            <Label style="-fx-font-family: calibri;" text="Pane 1" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Pane 1" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -40,7 +40,7 @@
                </padding>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="rightArrow" mnemonicParsing="false" onAction="#rightArrowClicked" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE">
+            <Button fx:id="rightArrow" mnemonicParsing="false" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="2.0" left="2.0" top="2.0" />
                </HBox.margin>
@@ -54,7 +54,7 @@
    <top>
       <HBox spacing="10.0" style="-fx-background-color: #202225; -fx-font-family: serif;" BorderPane.alignment="CENTER">
          <children>
-            <Label style="-fx-font-family: calibri;" text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -63,7 +63,7 @@
                </padding>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <Label style="-fx-font-family: calibri;" text="Min:" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Min:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -75,7 +75,7 @@
                <HBox.margin>
                   <Insets bottom="2.0" top="2.0" />
                </HBox.margin></ChoiceBox>
-            <Label style="-fx-font-family: calibri;" text="Max:" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Max:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -87,7 +87,7 @@
                <HBox.margin>
                   <Insets bottom="2.0" top="2.0" />
                </HBox.margin></ChoiceBox>
-            <Button fx:id="confirmPrice" minHeight="22.0" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-font-family: calibri; -fx-background-color: #40444b;" text="Confirm" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="confirmPrice" minHeight="22.0" mnemonicParsing="false" style="-fx-background-color: #40444b;" text="Confirm" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="10.0" />
                </font>
@@ -112,7 +112,7 @@
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="600.0" style="-fx-background-color: #40444b;" HBox.hgrow="ALWAYS">
                <content>
-                  <ListView style="-fx-background-color: #40444b;" />
+                  <ListView fx:id="listOfProperties" onMouseClicked="#handleSelectionByTheUser" style="-fx-background-color: #40444b;" />
                </content>
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -192,7 +192,7 @@
                               <Label text="Total price:" textFill="WHITE" GridPane.rowIndex="1" />
                               <Label text="From:" textFill="WHITE" GridPane.rowIndex="2" />
                               <Label text="To:" textFill="WHITE" GridPane.rowIndex="3" />
-                              <Label text="-" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label fx:id="totalNights" text="-" textFill="WHITE" GridPane.columnIndex="1" />
                               <Label text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -204,7 +204,7 @@
                         <VBox>
                            <children>
                               <Region VBox.vgrow="ALWAYS" />
-                              <Button contentDisplay="CENTER" defaultButton="true" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE">
+                              <Button contentDisplay="CENTER" defaultButton="true" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#confirmBooking" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font>

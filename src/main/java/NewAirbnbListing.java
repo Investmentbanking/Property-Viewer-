@@ -38,6 +38,22 @@ public class NewAirbnbListing {
     private final int reviewScoresLocation;         // the location score
     private final double reviewScoresValue;         // the value score
 
+    public NewAirbnbListing(String id, String name){
+        this.id = id;
+        this.name = name;
+        neighbourhoodOverview = null;
+        pictureURL = null;
+        hostID = null;
+        hostName = null;
+        hostResponseTime = null;
+        hostPictureURL = null;
+        neighbourhoodCleansed = null;
+        propertyType = null;
+        amenities = null;
+        latitude = longitude = reviewScoresValue = bathrooms = bedrooms = beds = 0;
+        price = minimumNights = maximumNights = accommodates = hostListings = reviewScoresLocation = 0;
+        availability365 = reviewScoresRating = reviewScoresCleanliness = reviewScoresCheckin = reviewScoresCommunication = 0;
+    }
 
     public NewAirbnbListing(String id, String name, String neighborhood_overview,
                          URL picture_url, String host_id, String host_name, String host_response_time, URL host_picture_url,

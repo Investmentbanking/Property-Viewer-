@@ -38,7 +38,7 @@ public class InitialController extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("pane0.fxml");
+        URL url = getClass().getResource("pane4.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);
