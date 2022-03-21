@@ -18,7 +18,7 @@ import java.net.URL;
  * @author Burhan Tekcan K21013451
  * @version 1.0
  */
-public class initialController extends Application {
+public class InitialController extends Application {
 
     @FXML // login button
     private Button login;

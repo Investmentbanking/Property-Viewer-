@@ -40,11 +40,11 @@ public class SignupController {
 
     @FXML
     public void loginPage(ActionEvent event) throws IOException {
-        initialController.setRoot("login.fxml");
+        InitialController.setRoot("login.fxml");
     }
 
     @FXML
     public void startPage(ActionEvent event) throws IOException {
-        initialController.setRoot("pane0.fxml");
+        InitialController.setRoot("pane0.fxml");
     }
 }
