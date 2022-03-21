@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -16,23 +17,28 @@ public class SignupController {
     PasswordField repeatedPassword;
 
     @FXML
-    public boolean signup(ActionEvent event) {
+    public boolean signup(ActionEvent event) throws IOException {
+        if(username.getText().equals("") || password.getText().equals("") || repeatedPassword.getText().equals("")){
+            new Alerts(Alert.AlertType.ERROR,"Error", null, "Please enter all details");
+            return false;
+        }
         if(password.getText().equals(repeatedPassword.getText())){
             try {
                 Login log = new Login(username.getText(), password.getText());
                 if(log.checkLogin()){
-                    System.out.println("login false");
+                    new Alerts(Alert.AlertType.ERROR,"Error", null, "sorry this username already exists! please pick another one.");
                     return false;
                 }else{
                     log.makeLogin();
-                    System.out.println("login success");
+                    new Alerts(Alert.AlertType.INFORMATION,"Success", null, "Signup success! please login!");
+                    InitialController.setRoot("login.fxml");
                     return true;
                 }
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
         }else {
-            System.out.println("not matching");
+            new Alerts(Alert.AlertType.ERROR,"Error", null, "Both the password and the repeated password have to match!");
             return false;
         }
         return false;
@@ -40,11 +46,11 @@ public class SignupController {
 
     @FXML
     public void loginPage(ActionEvent event) throws IOException {
-        initialController.setRoot("login.fxml");
+        InitialController.setRoot("login.fxml");
     }
 
     @FXML
     public void startPage(ActionEvent event) throws IOException {
-        initialController.setRoot("pane0.fxml");
+        InitialController.setRoot("pane0.fxml");
     }
 }

@@ -61,6 +61,22 @@ public class Pane1Controller extends Application {
     // the prices available to choose from
     private final ObservableList<Integer> availablePrices = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
 
+    // SERGES STUFF DONT TOUCH
+
+    private static Account currentUser = new Account();
+
+    public static Account getCurrentUser(){
+        return currentUser;
+
+    }
+
+    public static void setCurrentUser(String username){
+        currentUser.setUsername(username);
+    }
+
+    // SERGES STUFF END
+
+
     /**
      * Initialise the settings for the scene
      * sets the available prices and initial conditions for pane 1
