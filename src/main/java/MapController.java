@@ -44,7 +44,9 @@ public class MapController implements Initializable {
         LinearGradient gradient = new LinearGradient(1, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
         low_to_high.setFill(gradient);
 
-        MapPane map = new MapPane(RuntimeDetails.getListings());
+        listings = RuntimeDetails.getListings();
+
+        MapPane map = new MapPane(listings);
         pane.setContent(map);
 
 //        map.minWidthProperty().bind(pane.widthProperty());
