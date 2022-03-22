@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
  */
 public class InspectBoxController implements Initializable {
 
-    private static NewAirbnbListing listing = AirbnbDataLoader.loadNewDataSet().get(0);
+    private static NewAirbnbListing listing;
 
     @FXML private VBox root;
 
