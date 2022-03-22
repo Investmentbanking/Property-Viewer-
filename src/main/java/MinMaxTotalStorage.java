@@ -1,3 +1,9 @@
+/**
+ * Small storage class for containing the min, max, and total.
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class MinMaxTotalStorage {
 
     private int total;

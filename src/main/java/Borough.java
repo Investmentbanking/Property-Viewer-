@@ -1,5 +1,15 @@
-import java.util.ArrayList;
-
+/**
+ * An information storage class which stores info for a singular borough as well as all the boroughs.
+ * The info includes:
+ *      - Name of the borough
+ *      - The average price of all listings in the borough
+ *      - The total amount of listings for the borough
+ *      - he total amount of available listings for the borough (Where 365 Availability isn't 0)
+ *      - The total amount of 365 days available (The amount of days the listing is available per listing)
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class Borough {
 
     private String name;                                      // Name of the borough

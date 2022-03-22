@@ -23,7 +23,7 @@
    <children>
       <BorderPane>
          <center>
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="264.0" text="Add to Booking" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#addToBooking" prefHeight="52.0" prefWidth="264.0" text="Add to Booking" BorderPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -83,7 +83,16 @@
          <center>
             <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="light_border" BorderPane.alignment="CENTER">
                <children>
-                  <Circle fx:id="host_picture_url" fill="#202225" radius="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <StackPane>
+                     <children>
+                        <Circle fill="#202225" radius="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <ImageView fx:id="host_picture_url" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@imagePlaceholder.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
                   <VBox alignment="CENTER_LEFT">
                      <children>
                         <Label id="host" fx:id="host_id" styleClass="id" text="host_id">

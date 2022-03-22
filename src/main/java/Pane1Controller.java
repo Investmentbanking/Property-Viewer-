@@ -59,7 +59,7 @@ public class Pane1Controller extends Application {
     // pointer to the current pane
     private int pointer;
     // the prices available to choose from
-    private final ObservableList<Integer> availablePrices = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
+    public static final ObservableList<Integer> AVAILABLE_PRICES = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
 
     // SERGES STUFF DONT TOUCH
 
@@ -83,8 +83,8 @@ public class Pane1Controller extends Application {
     @FXML
     private void initialize()
     {
-        minimumPriceBox.setItems(availablePrices);
-        maximumPriceBox.setItems(availablePrices);
+        minimumPriceBox.setItems(AVAILABLE_PRICES);
+        maximumPriceBox.setItems(AVAILABLE_PRICES);
         minimumPriceBox.setValue(0);
         maximumPriceBox.setValue(1000);
         priceRange.textProperty().set(RuntimeDetails.getPriceRange());

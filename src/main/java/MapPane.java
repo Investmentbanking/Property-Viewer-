@@ -1,9 +1,4 @@
-import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -13,6 +8,12 @@ import javafx.scene.shape.Shape;
 
 import java.util.*;
 
+/**
+ * The pane which creates and holes the circles which represent a borough, and launch the window to inspect the listings of that borough.
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class MapPane extends Pane {
 
     private final ArrayList<MenuCircle> menuCircles;
@@ -20,24 +21,24 @@ public class MapPane extends Pane {
     private final double GAP = 1.0;
     private final int ANGLE_OFFSET = 0;
 
-    ArrayList<NewAirbnbListing> airbnb;
+    ArrayList<NewAirbnbListing> listings;
     ArrayList<Borough> boroughs;
-    HashMap<Borough, ArrayList<NewAirbnbListing>> boroughAirbnbs;
+    HashMap<Borough, ArrayList<NewAirbnbListing>> boroughListings;
 
-    public MapPane(ArrayList<NewAirbnbListing> airbnb) {
-        this.airbnb = airbnb;
-        boroughs = initialiseBoroughs(airbnb);
-        boroughAirbnbs = initialiseBoroughArrayList(airbnb, boroughs);
+    public MapPane(ArrayList<NewAirbnbListing> listings) {
+        this.listings = listings;
+        boroughs = initialiseBoroughs(listings);
+        boroughListings = initialiseBoroughArrayList(listings, boroughs);
 
         setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
 
         menuCircles = new ArrayList<>();
         for (Borough borough : boroughs) {
-            MenuCircle newCircle = new MenuCircle(borough, boroughAirbnbs.get(borough));
+            MenuCircle newCircle = new MenuCircle(borough, boroughListings.get(borough));
             menuCircles.add(newCircle);
 
         }
-        menuCircles.sort(Comparator.comparing(MenuCircle::getSizeValue));
+        menuCircles.sort(Comparator.comparing(MenuCircle::getSizeValue)); // Sorts by circle size
         Collections.reverse(menuCircles);
 
         getChildren().addAll(menuCircles);
@@ -155,7 +156,7 @@ public class MapPane extends Pane {
     }
 
     private ArrayList<Borough> initialiseBoroughs(ArrayList<NewAirbnbListing> airbnbs){
-        boroughAirbnbs = new HashMap<>();
+        boroughListings = new HashMap<>();
 
         HashMap<String, ArrayList<Double>> boroughStats = new HashMap<>();
 

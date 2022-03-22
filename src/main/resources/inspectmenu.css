@@ -2,14 +2,64 @@
     -fx-font-family: Calibri;
     -fx-background-color: #36393f;
 }
+.select_options_title{
+    -fx-font-size: 17;
+    -fx-background-color: #2f3136;
+}
 
-#loading{
+
+.radio-button .radio {
+    -fx-border-width: 0;
     -fx-background-color: #202225;
-    -fx-opacity: 0.5;
 }
-.progress-indicator{
-    -fx-progress-color: white;
+.radio-button .dot {
+    -fx-mark-color: #e83d3d;
+    -fx-mark-highlight-color: #e83d3d;
 }
+
+.select_options_title .button{
+    -fx-background-color: #dcddde;
+    -fx-background-radius: 20;
+}
+.select_options_title .button:hover{
+    -fx-background-color: #e83d3d;
+    -fx-text-fill: #dcddde;
+    -fx-background-radius: 20;
+}
+
+.combo-box{
+    -fx-background-color: #202225;
+    -fx-background-radius: 20;
+}
+.combo-box > .list-cell {
+    -fx-background:  #202225;
+    -fx-background-color: #202225;
+    -fx-background-radius: 20;
+    -fx-text-fill: #dcddde;
+}
+.combo-box-popup .list-cell:odd{
+    -fx-text-fill: #dcddde;
+    -fx-background-color: #36393f;
+}
+.combo-box-popup .list-cell:even{
+    -fx-text-fill: #dcddde;
+    -fx-background: #2f3136;
+    -fx-background-color: #2f3136;
+}
+.combo-box-popup .list-cell:selected {
+    -fx-text-fill: #dcddde;
+    -fx-background: #202225;
+    -fx-background-color: #202225;
+}
+.combo-box-popup .list-cell:hover {
+    -fx-text-fill: #dcddde;
+    -fx-background: #202225;
+    -fx-background-color: #202225;
+}
+
+
+
+
 
 .scroll-pane > .viewport {
     -fx-background-color: transparent;

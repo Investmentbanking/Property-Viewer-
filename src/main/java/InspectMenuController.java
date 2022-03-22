@@ -1,4 +1,3 @@
-import clojure.lang.IFn;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,9 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -18,19 +15,28 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * The controller class for the FXML pane that displays all the listings of a particular borough.
+ * On the left it displays all the listings and on the right is all the info for that listing.
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class InspectMenuController implements Initializable {
 
     @FXML private Label title;
 
-    @FXML private BorderPane loading;
+    @FXML private ComboBox<Integer> min, max;
+    @FXML private RadioButton show_invalid;
+    @FXML private ComboBox<String> sortby, order;
 
+    @FXML private Button relist;
 
     @FXML private BorderPane left;
     @FXML private ScrollPane right;
@@ -43,6 +49,27 @@ public class InspectMenuController implements Initializable {
     private static ArrayList<NewAirbnbListing> currentListings;
     private static Stage stage = null;
     private static double xOffset, yOffset;
+
+    private static InspectListingMenu inspectMenu;
+
+    @FXML private void callRelist(){
+        System.out.println("Relist Called");
+        InspectListingMenu.setSortSelected(sortby.getValue());
+        InspectListingMenu.setOrderSelected(order.getValue());
+        InspectListingMenu.setShowOutOfRange(show_invalid.isSelected());
+
+        RuntimeDetails.setMinimumPrice(min.getValue());
+        RuntimeDetails.setMaximumPrice(max.getValue());
+
+
+
+        System.out.println("Values reassigned: " + sortby.getValue() + " " );
+        System.out.println(sortby.getValue() + " " + order.getValue());
+        System.out.println("New Min: " + min.getValue() + " New Max: " + max.getValue());
+
+        inspectMenu.reList();
+
+    }
 
     /**
      * Closes the window.
@@ -104,6 +131,20 @@ public class InspectMenuController implements Initializable {
             title.setText(stage.getTitle());
         });
 
+
+        min.setItems(Pane1Controller.AVAILABLE_PRICES);
+        max.setItems(Pane1Controller.AVAILABLE_PRICES);
+//        min.getSelectionModel().select(min.getItems().indexOf(RuntimeDetails.getMinimumPrice()));
+//        max.getSelectionModel().select(max.getItems().indexOf(RuntimeDetails.getMaximumPrice()));
+        min.setValue(RuntimeDetails.getMinimumPrice());
+        max.setValue(RuntimeDetails.getMaximumPrice());
+
+        sortby.setItems(InspectListingMenu.SORT_OPTIONS);
+        order.setItems(InspectListingMenu.ORDER_OPTIONS);
+        sortby.getSelectionModel().selectFirst();
+        order.getSelectionModel().selectFirst();
+
+
         very_high.setFill(ListingBox.VERY_HIGH_REVIEW_COLOUR);
         Stop[] stops = new Stop[] {
                 new Stop(0.0, ListingBox.HIGH_REVIEW_COLOUR),
@@ -121,7 +162,7 @@ public class InspectMenuController implements Initializable {
         key.setStyle("-fx-border-radius: 15");
 
 
-        InspectListingMenu inspectMenu = new InspectListingMenu(currentListings);
+        inspectMenu = new InspectListingMenu(currentListings);
         left.setCenter(inspectMenu);
 
         // Credit to https://stackoverflow.com/a/10753277/11245518
@@ -135,10 +176,5 @@ public class InspectMenuController implements Initializable {
         inspectBoxController = (InspectBoxController)fxmlLoader.getController();
 
         right.setContent(inspectBox);
-
-        Platform.runLater(() -> {
-            loading.setVisible(false);
-            loading.setMouseTransparent(true);
-        });
     }
 }

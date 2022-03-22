@@ -39,7 +39,6 @@
     -fx-background-color: #d47373;
     -fx-text-fill: #dcddde;
 }
-
 .progress-bar > .track{
     -fx-background-color: #202225;
     -fx-background-radius: 10;

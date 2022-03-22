@@ -5,13 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -20,6 +21,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The controller class for the FXML pane that contains almost all the information of a specific listing.
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class InspectBoxController implements Initializable {
 
     private static NewAirbnbListing listing = AirbnbDataLoader.loadNewDataSet().get(0);
@@ -29,15 +36,12 @@ public class InspectBoxController implements Initializable {
     @FXML private Label rating;
     @FXML private Label id, name;
 
-
-
-
     @FXML private StackPane image_holder;
 
     @FXML private ImageView picture_url;
     @FXML private Label property_type;
 
-    @FXML private Circle host_picture_url;
+    @FXML private ImageView host_picture_url;
     @FXML private Label host_id, host_name, price;
 
     @FXML private Button visit_button;
@@ -55,6 +59,13 @@ public class InspectBoxController implements Initializable {
 
     private static final Image DEFAULT_IMAGE = new Image("imagePlaceholder.jpg");
 
+    /**
+     * Adds the listing to Booking.
+     * @param event ActionEvent
+     */
+    @FXML private void addToBooking(ActionEvent event){
+        System.out.println("Request to add to booking: " + listing.getName());
+    }
 
     /**
      * Assigns a new listing and reassigns values.
@@ -82,7 +93,7 @@ public class InspectBoxController implements Initializable {
         name.setText(listing.getName());
 
         // 2
-        Image pictureImage = loadImage(listing.getPictureURL().toString());
+        Image pictureImage = loadImage(listing.getPictureURL(), false);
         double constant = pictureImage.getHeight()/pictureImage.getWidth();
 
         picture_url.setImage(pictureImage);
@@ -100,13 +111,20 @@ public class InspectBoxController implements Initializable {
         Rectangle clip = new Rectangle();
         clip.widthProperty().bind(picture_url.fitWidthProperty());
         clip.heightProperty().bind(picture_url.fitHeightProperty());
-
         clip.setArcHeight(50);
         clip.setArcWidth(50);
         picture_url.setClip(clip);
 
         // 3
-        host_picture_url.setFill(new ImagePattern(loadImage(listing.getHostPictureURL().toString())));
+        Rectangle hostClip = new Rectangle();
+        hostClip.widthProperty().bind(host_picture_url.fitWidthProperty());
+        hostClip.heightProperty().bind(host_picture_url.fitHeightProperty());
+        hostClip.setArcHeight(70);
+        hostClip.setArcWidth(70);
+        host_picture_url.setClip(hostClip);
+
+        host_picture_url.setImage(new Image(listing.getHostPictureURL().toString(), true));
+
         host_id.setText(listing.getHostID());
         host_name.setText(listing.getHostName());
         price.setText("$" + listing.getPrice() + "0");
@@ -153,12 +171,14 @@ public class InspectBoxController implements Initializable {
         review_scores_value.setId(calcReviewID(value));
     }
 
-    private Image loadImage(String url){
-        Image image = new Image(url);
-        if (image.isError()){
-            image = DEFAULT_IMAGE;
+    private Image loadImage(URL url, boolean backgroundLoading){
+        if (url != null) {
+            Image image = new Image(url.toString(), backgroundLoading);
+            if (!image.isError()) {
+                return image;
+            }
         }
-        return image;
+        return DEFAULT_IMAGE;
     }
 
     /**

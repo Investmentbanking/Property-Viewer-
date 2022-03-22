@@ -10,6 +10,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+/**
+ * A pane class which is a bod representing a specific listing. The box will display the image of the
+ * property when called, and the colour represents the rating value.
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class ListingBox extends StackPane {
 
     private NewAirbnbListing listing;
@@ -27,7 +34,7 @@ public class ListingBox extends StackPane {
     public static final Color LOW_REVIEW_COLOUR = Color.RED;
     public static final Color VERY_LOW_REVIEW_COLOUR = Color.BLUE;
     public static final Color UNKNOWN_REVIEW_COLOUR = Color.PURPLE;
-    public static final Color OUT_OF_RANGE_COLOUR = Color.GREY;
+    public static final Color OUT_OF_RANGE_COLOUR = Color.DARKGRAY;
     private static final double OVERLAY_TRANSPARENCY = 0.5;
 
     private static final int HIGH_REVIEW_BOUND = 100;
@@ -41,12 +48,22 @@ public class ListingBox extends StackPane {
 
     //Text text;
 
-    public ListingBox(NewAirbnbListing listing) {
+    public ListingBox(NewAirbnbListing listing){
+        this(listing, false);
+    }
+
+    public ListingBox(NewAirbnbListing listing, boolean makeGrey) {
         this.listing = listing;
 
         setPadding(new Insets(5, 5, 5, 5));
 
-        boxColour = calculateRatingColour(listing.getReviewScoresRating());
+        if (makeGrey){
+            Color c = OUT_OF_RANGE_COLOUR;
+            boxColour = new Color(c.getRed(), c.getGreen(), c.getBlue(), OVERLAY_TRANSPARENCY);
+        }
+        else {
+            boxColour = calculateRatingColour(listing.getReviewScoresRating());
+        }
 
         clip = new Rectangle();//20, 20, boxColour);
         clip.widthProperty().bind(widthProperty());
@@ -117,6 +134,7 @@ public class ListingBox extends StackPane {
         setOnMouseExited(this::unhighlight);
 
 
+        //showImage();
 
         //setBackground(new Background(new BackgroundFill(Color.rgb(255, 0, 255, 0.1), CornerRadii.EMPTY, Insets.EMPTY)));
         //setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -184,7 +202,7 @@ public class ListingBox extends StackPane {
 
 
     public void showImage(){
-        image.setImage(new Image(listing.getPictureURL().toString()));
+        image.setImage(new Image(listing.getPictureURL().toString(), true));
     }
 
     public void removeImage(){

@@ -1,33 +1,23 @@
 import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.chart.BubbleChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
 
+/**
+ * A pane of a circle that represents a borough. The size represents the amount of available listings and the colour represents the average price.
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class MenuCircle extends StackPane {
 
     private Borough borough;
@@ -69,9 +59,9 @@ public class MenuCircle extends StackPane {
 
         circle = new Circle(circleSize, circleColor);
         text = new Text(borough.getName());
+        text.setMouseTransparent(true);
 
-
-        setOnMouseClicked(this::openInspectionWindow);
+        circle.setOnMouseClicked(this::openInspectionWindow);
 
         filltCircleIn = new FillTransition(Duration.millis(100), circle, circleColor, circleColor.darker());
         filltCircleOut = new FillTransition(Duration.millis(100), circle, circleColor.darker(), circleColor);
@@ -83,8 +73,9 @@ public class MenuCircle extends StackPane {
         stTextOut.setToX(1);
         stTextOut.setToY(1);
 
-        setOnMouseEntered(this::mouseEnter);
-        setOnMouseExited(this::mouseLeave);
+
+        circle.setOnMouseEntered(this::mouseEnter);
+        circle.setOnMouseExited(this::mouseLeave);
 
         //setOnMouseDragged(this::moveToMouse);       // FOR TESTING
 
@@ -108,11 +99,6 @@ public class MenuCircle extends StackPane {
     private void mouseLeave(MouseEvent event){
         filltCircleOut.play();
         stTextOut.play();
-    }
-
-    private NewAirbnbListing getRandomListing(){
-        Random rnd = new Random();
-        return listings.get(rnd.nextInt(listings.size()));
     }
 
     private void openInspectionWindow(MouseEvent event){

@@ -1,6 +1,7 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -9,11 +10,19 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * The controller class for the FXML pane that holds the map of the london boroughs.
+ * The user can click a circle representing a borough to open a window that displays all the properties of that borough.
+ *
+ * @author Cosmo Colman (K21090628)
+ * @version 22.03.2022
+ */
 public class MapController implements Initializable {
 
-    @FXML private Pane pane;
+    @FXML private ScrollPane pane;
 
     @FXML private GridPane key;
     @FXML private Rectangle low_to_high;
@@ -29,9 +38,12 @@ public class MapController implements Initializable {
         LinearGradient gradient = new LinearGradient(1, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
         low_to_high.setFill(gradient);
 
+        System.out.println("Listing load call started");
+        ArrayList<NewAirbnbListing> listings = AirbnbDataLoader.loadNewDataSet();
+        System.out.println("Listing load call ended");
 
-        MapPane map = new MapPane(AirbnbDataLoader.loadNewDataSet());
-        pane.getChildren().add(map);
+        MapPane map = new MapPane(listings);
+        pane.setContent(map);
 
 //        map.minWidthProperty().bind(pane.widthProperty());
 //        map.minHeightProperty().bind(pane.heightProperty());

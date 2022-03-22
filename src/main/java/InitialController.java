@@ -38,11 +38,20 @@ public class InitialController extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("pane4.fxml");
+//        URL url = getClass().getResource("pane4.fxml");
+//        assert url != null;
+//        Parent root = FXMLLoader.load(url);
+//        scene = new Scene(root);
+//        stage.setTitle("Scene Viewer - Select an Option");
+//        stage.setScene(scene);
+//        stage.show();
+
+        // FOR TESTING MAP AND INSPECT MENU
+        URL url = getClass().getResource("map.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);
-        stage.setTitle("Scene Viewer - Select an Option");
+        stage.setTitle("lol");
         stage.setScene(scene);
         stage.show();
     }
