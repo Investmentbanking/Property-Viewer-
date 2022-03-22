@@ -20,7 +20,7 @@ public class Alerts {
         alert.setTitle(title);
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
-        alert.getDialogPane().setStyle("-fx-font-family: Serif");
+        alert.getDialogPane().setStyle("-fx-font-family: Arial");
         alert.showAndWait();
     }
 }
