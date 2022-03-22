@@ -32,71 +32,107 @@ public class RuntimeDetails {
     }
 
     /**
-     * public static getter methods
-     * returns the values
+     * @return selected start date
      */
-
     public static LocalDate getStartDate(){
         return startDate;
     }
 
+    /**
+     * @return selected end date
+     */
     public static LocalDate getEndDate() {
         return endDate;
     }
 
+    /**
+     * @return true if dates are valid
+     */
     public static boolean isValidDates() {
         return validDates;
     }
 
+    /**
+     * @return true if prices are valid
+     */
     public static boolean isValidPrices() {
         return validPrices;
     }
 
+    /**
+     * @return the maximum price selected
+     */
     public static int getMaximumPrice() {
         return maximumPrice;
     }
 
+    /**
+     * @return the minimum price selected
+     */
     public static int getMinimumPrice() {
         return minimumPrice;
     }
 
+    /**
+     * @return the amount of nights from start date to end date
+     */
     public static long getTotalNights() {
         return totalNights;
     }
 
-    /**
-     * public static setter methods
-     * sets values as given inputs
-     */
 
+    /**
+     * @param endDate the end date selected by the user for bookings
+     */
     public static void setEndDate(LocalDate endDate) {
         RuntimeDetails.endDate = endDate;
     }
 
+    /**
+     * @param maximumPrice the maximum price shown to the user
+     */
     public static void setMaximumPrice(int maximumPrice) {
         RuntimeDetails.maximumPrice = maximumPrice;
     }
 
+    /**
+     * @param minimumPrice the minimum price of properties shown to the user
+     */
     public static void setMinimumPrice(int minimumPrice) {
         RuntimeDetails.minimumPrice = minimumPrice;
     }
 
+    /**
+     * @param startDate sets the start date for bookings
+     */
     public static void setStartDate(LocalDate startDate) {
         RuntimeDetails.startDate = startDate;
     }
 
+    /**
+     * @param totalNights sets the total nights the user wants to stay
+     */
     public static void setTotalNights(long totalNights) {
         RuntimeDetails.totalNights = totalNights;
     }
 
+    /**
+     * @param validDates sets flag true if dates are valid
+     */
     public static void setValidDates(boolean validDates) {
         RuntimeDetails.validDates = validDates;
     }
 
+    /**
+     * @param validPrices sets flag true if prices are valid
+     */
     public static void setValidPrices(boolean validPrices) {
         RuntimeDetails.validPrices = validPrices;
     }
 
+    /**
+     * @return true if both dates and prices are valid
+     */
     public static boolean isValidDetails() {
         return (validDates && validPrices);
     }
