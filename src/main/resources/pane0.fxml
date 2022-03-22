@@ -18,7 +18,7 @@
             <Region style="-fx-background-color: #202225;" HBox.hgrow="ALWAYS" />
             <Label style="-fx-font-family: Arial;" text="Pane 0" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Calibri" size="14.0" />
+                  <Font name="Arial" size="14.0" />
                </font>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
@@ -39,7 +39,7 @@
          <children>
             <Label style="-fx-font-family: Arial;" text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Calibri" size="14.0" />
+                  <Font name="Arial" size="14.0" />
                </font>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
@@ -72,7 +72,7 @@
                   <Region HBox.hgrow="ALWAYS" />
                   <Label style="-fx-font-family: Arial;" text="To make a booking:" textFill="WHITE">
                      <font>
-                        <Font name="Calibri" size="12.0" />
+                        <Font name="Arial" size="12.0" />
                      </font></Label>
                   <Region HBox.hgrow="ALWAYS" />
                </children>
@@ -82,7 +82,7 @@
                   <Region HBox.hgrow="ALWAYS" />
                   <Button fx:id="login" mnemonicParsing="false" onAction="#loginClicked" prefWidth="150.0" style="-fx-font-family: Arial; -fx-background-color: #282a2e;" text="Sign In" textFill="WHITE">
                      <font>
-                        <Font name="Calibri" size="12.0" />
+                        <Font name="Arial" size="12.0" />
                      </font></Button>
                   <Region HBox.hgrow="ALWAYS">
                      <HBox.margin>
@@ -99,7 +99,7 @@
                   <Region HBox.hgrow="ALWAYS" />
                   <Label style="-fx-font-family: Arial;" text="If you do not have an account:" textFill="WHITE">
                      <font>
-                        <Font name="Calibri" size="12.0" />
+                        <Font name="Arial" size="12.0" />
                      </font></Label>
                   <Region HBox.hgrow="ALWAYS" />
                </children>
@@ -109,7 +109,7 @@
                   <Region HBox.hgrow="ALWAYS" />
                   <Button fx:id="register" mnemonicParsing="false" onAction="#registerClicked" prefWidth="150.0" style="-fx-font-family: Arial; -fx-background-color: #282a2e;" text="Register" textFill="WHITE">
                      <font>
-                        <Font name="Calibri" size="12.0" />
+                        <Font name="Arial" size="12.0" />
                      </font></Button>
                   <Region HBox.hgrow="ALWAYS">
                      <HBox.margin>
@@ -126,7 +126,7 @@
                   <Region HBox.hgrow="ALWAYS" />
                   <Label style="-fx-font-family: Arial;" text="Or:" textFill="WHITE">
                      <font>
-                        <Font name="Calibri" size="12.0" />
+                        <Font name="Arial" size="12.0" />
                      </font></Label>
                   <Region HBox.hgrow="ALWAYS">
                      <HBox.margin>
@@ -143,7 +143,7 @@
                   <Region HBox.hgrow="ALWAYS" />
                   <Button fx:id="guest" mnemonicParsing="false" onAction="#guestClicked" prefWidth="150.0" style="-fx-font-family: Arial; -fx-background-color: #282a2e;" text="Continue as Guest" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Bold" size="12.0" />
+                        <Font name="Arial" size="12.0" />
                      </font>
                   </Button>
                   <Region HBox.hgrow="ALWAYS" />
