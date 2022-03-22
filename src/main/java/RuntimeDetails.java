@@ -12,7 +12,9 @@ import java.util.ArrayList;
 public class RuntimeDetails {
 
     // The list of all the listings from the new data set.
-    private static ArrayList<NewAirbnbListing> listings;
+    private static ArrayList<NewAirbnbListing> newAirbnbListings;
+    // The list of all the listings from the old data set.
+    private static ArrayList<OldAirbnbListing> oldAirbnbListings;
     //start date of when the user might want to book
     private static LocalDate startDate;
     // end date of when the user might want to book till
@@ -41,8 +43,12 @@ public class RuntimeDetails {
      * returns the values
      */
 
-    public static ArrayList<NewAirbnbListing> getListings() {
-        return listings;
+    public static ArrayList<NewAirbnbListing> getNewAirbnbListings() {
+        return newAirbnbListings;
+    }
+
+    public static ArrayList<OldAirbnbListing> getOldAirbnbListings() {
+        return oldAirbnbListings;
     }
 
     public static LocalDate getStartDate(){
@@ -78,8 +84,12 @@ public class RuntimeDetails {
      * sets values as given inputs
      */
 
-    public static void setListings(ArrayList<NewAirbnbListing> listings) {
-        RuntimeDetails.listings = listings;
+    public static void setNewAirbnbListings(ArrayList<NewAirbnbListing> newAirbnbListings) {
+        RuntimeDetails.newAirbnbListings = newAirbnbListings;
+    }
+
+    public static void setOldAirbnbListings(ArrayList<OldAirbnbListing> oldAirbnbListings) {
+        RuntimeDetails.oldAirbnbListings = oldAirbnbListings;
     }
 
     public static void setEndDate(LocalDate endDate) {
