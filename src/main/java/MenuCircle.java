@@ -1,5 +1,6 @@
 import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
+import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -81,6 +82,9 @@ public class MenuCircle extends StackPane {
 
         getChildren().addAll(circle);//,text);
 
+
+
+
 //        circle.radiusProperty().bind(widthProperty());
 
         putTextInCircleNEW();
@@ -92,11 +96,13 @@ public class MenuCircle extends StackPane {
 
 
     private void mouseEnter(MouseEvent event){
+        setCursor(Cursor.HAND);
         filltCircleIn.play();
         stTextIn.play();
     }
 
     private void mouseLeave(MouseEvent event){
+        setCursor(Cursor.DEFAULT);
         filltCircleOut.play();
         stTextOut.play();
     }

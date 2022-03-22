@@ -6,10 +6,12 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import jnr.ffi.annotations.In;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +24,7 @@ import java.util.HashMap;
  * @author Cosmo Colman (K21090628)
  * @version 22.03.2022
  */
-public class InspectListingMenu extends ScrollPane {
+public class InspectListingMenu extends ListView<HBox> {
 
     private final int SPACING = 10;         // Spacing between boxes.
     private final int ROW_MAX = 6;          // How many boxes per row.
@@ -34,7 +36,9 @@ public class InspectListingMenu extends ScrollPane {
 
     private ArrayList<HBox> rows;
     private HashMap<HBox, Boolean> imageShown;
-    private VBox root;
+
+    private static HashMap<NewAirbnbListing, ListingBox> boxLookup;
+    //private VBox root;
 
     public static final ObservableList<String> SORT_OPTIONS = FXCollections.observableArrayList( "Listing Name", "Host Name", "Review Score", "Price");
     public static final ObservableList<String> ORDER_OPTIONS = FXCollections.observableArrayList("Ascending", "Descending");
@@ -49,6 +53,21 @@ public class InspectListingMenu extends ScrollPane {
     public InspectListingMenu(ArrayList<NewAirbnbListing> listings) {
         currentListings = listings;
 
+
+        getStyleClass().add("inspect-listing");
+
+        if(boxLookup != null) {
+            boxLookup.forEach((key, value) -> {
+                value.cancelLoad();
+            });
+        }
+
+        boxLookup = new HashMap<>();
+        for (NewAirbnbListing listing : listings){
+            ListingBox box = new ListingBox(listing);
+            boxLookup.put(listing, box);
+        }
+
         generate(currentListings);
     }
 
@@ -57,6 +76,8 @@ public class InspectListingMenu extends ScrollPane {
         generate(currentListings);
         System.out.println("Relist ended");
     }
+
+
 
     public static void setSortSelected(String sortSelected) {
         InspectListingMenu.sortSelected = sortSelected;
@@ -82,22 +103,32 @@ public class InspectListingMenu extends ScrollPane {
         initialiseRangeLists(listings, inRangeListings, outOfRangeListings);        // Modifies the range lists to contain appropriate listings.
         initialiseBoxes(inRangeListings, outOfRangeListings);                       // Creates the actual list and panes of objects.
 
-        setPadding(new Insets(0, SPACING, 0, SPACING));
-        setFitToWidth(true);
-        setHbarPolicy(ScrollBarPolicy.NEVER);
-        setContent(root);
+        //setPadding(new Insets(0, SPACING, 0, SPACING));
+//        setFitToWidth(true);
+//        setHbarPolicy(ScrollBarPolicy.NEVER);
+//        setContent(root);
+
+        setFocusTraversable(false);
+
+        //setPadding(new Insets(SPACING));
+
+
+        getItems().clear();
+        getItems().addAll(rows);
 
         setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        double padding = 4;
-        viewportBoundsProperty().addListener((obs, old, bounds) -> {
+
+        double padding = 40;
+        boundsInLocalProperty().addListener((obs, old, bounds) -> {
             size.setValue((bounds.getWidth() - padding - ((ROW_MAX - 1) * SPACING)) / ROW_MAX);
         });
 
-        for (int i = 0; i <= STARTING_BOUND; i++){
-            showImageInRow(rows.get(i));                // Loads image of first SELECT_BOUND mount of rows.
-        }
+//        for (int i = 0; i <= STARTING_BOUND; i++){
+//            showImageInRow(rows.get(i));                // Loads image of first SELECT_BOUND mount of rows.
+//        }
     }
+
 
     /**
      * Sorts the list depending on the selected sort and order options.
@@ -150,11 +181,11 @@ public class InspectListingMenu extends ScrollPane {
     private void initialiseBoxes(ArrayList<NewAirbnbListing> inRange, ArrayList<NewAirbnbListing> outOfRange){
         // Prepare Boxes and Rows
         rows = new ArrayList<>();
-        imageShown = new HashMap<>();
+        //imageShown = new HashMap<>();
 
-        root = new VBox();   // Causes way less lag than GridPane
-        root.setPadding(new Insets(SPACING, 0, SPACING,0));
-        root.setSpacing(SPACING);
+        //root = new VBox();   // Causes way less lag than GridPane
+        //setPadding(new Insets(SPACING, 0, SPACING,0));
+        //setSpacing(SPACING);
 
         // Create List
         int inRangeCount = inRange.size();
@@ -168,21 +199,23 @@ public class InspectListingMenu extends ScrollPane {
         for (NewAirbnbListing listing: newListing){
             if (rowCount == ROW_MAX || row == null){
                 row = new HBox();
-                row.setOnMouseEntered(this::showRowImages);
+                //row.setOnMouseEntered(this::showRowImages);
                 row.setSpacing(SPACING);
-                imageShown.put(row, false);
+                row.setPadding(new Insets((((double)SPACING)/4), 0, (((double)SPACING)/4), 0));
+                //imageShown.put(row, false);
                 rows.add(row);
-                root.getChildren().add(row);
+                //root.getChildren().add(row);
                 rowCount = 0;
             }
 
-            ListingBox box;
+            ListingBox box = boxLookup.get(listing);
             if (listingCount < inRangeCount) {
-                box = new ListingBox(listing);
+                box.setInvalidColour(false);
             }
             else {
-                box = new ListingBox(listing, true);
+                box.setInvalidColour(true);
             }
+            box.showImage();
 
             box.minWidthProperty().bind(size);
             box.setOnMouseClicked(this::openInspectMenu);

@@ -1,7 +1,6 @@
 import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
-import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,11 +21,13 @@ public class ListingBox extends StackPane {
     private NewAirbnbListing listing;
     private Rectangle clip;
     private Rectangle rating;
-    private ImageView image;
+    private ImageView imageView;
+
+    private Image image;
 
     private int size = 30;
 
-    private Color boxColour;
+    private Color ratingColour, boxColour;
 
     public static final Color VERY_HIGH_REVIEW_COLOUR = Color.AQUA;
     public static final Color HIGH_REVIEW_COLOUR = Color.GREEN;
@@ -48,22 +49,14 @@ public class ListingBox extends StackPane {
 
     //Text text;
 
-    public ListingBox(NewAirbnbListing listing){
-        this(listing, false);
-    }
-
-    public ListingBox(NewAirbnbListing listing, boolean makeGrey) {
+    public ListingBox(NewAirbnbListing listing) {
         this.listing = listing;
 
-        setPadding(new Insets(5, 5, 5, 5));
+        image = null;
 
-        if (makeGrey){
-            Color c = OUT_OF_RANGE_COLOUR;
-            boxColour = new Color(c.getRed(), c.getGreen(), c.getBlue(), OVERLAY_TRANSPARENCY);
-        }
-        else {
-            boxColour = calculateRatingColour(listing.getReviewScoresRating());
-        }
+
+        ratingColour = calculateRatingColour(listing.getReviewScoresRating());
+        boxColour = ratingColour;
 
         clip = new Rectangle();//20, 20, boxColour);
         clip.widthProperty().bind(widthProperty());
@@ -72,10 +65,10 @@ public class ListingBox extends StackPane {
         clip.setArcWidth(40);
         clip.setArcHeight(40);
 
-        image = new ImageView(DEFAULT_IMAGE);
-        image.fitHeightProperty().bind(clip.heightProperty());
-        image.fitWidthProperty().bind(clip.heightProperty());
-        image.setClip(clip);
+        imageView = new ImageView(DEFAULT_IMAGE);
+        imageView.fitHeightProperty().bind(clip.heightProperty());
+        imageView.fitWidthProperty().bind(clip.heightProperty());
+        imageView.setClip(clip);
 
         // Full cover colour
         rating = new Rectangle(size, size, boxColour);
@@ -101,18 +94,17 @@ public class ListingBox extends StackPane {
         maxWidthProperty().bind(minWidthProperty());
         minHeightProperty().bind(minWidthProperty());
 
-        getChildren().addAll(image, rating);//, square);//, text);
-
+        getChildren().addAll(imageView, rating);//, square);//, text);
 
 
 
         filltRatingIn = new FillTransition(Duration.millis(100), rating, boxColour, boxColour.darker());
         filltRatingOut = new FillTransition(Duration.millis(100), rating, boxColour.darker(), boxColour);
 
-        stImageIn = new ScaleTransition(Duration.millis(100), image);
+        stImageIn = new ScaleTransition(Duration.millis(100), imageView);
         stImageIn.setToX(1.2);
         stImageIn.setToY(1.2);
-        stImageOut = new ScaleTransition(Duration.millis(100), image);
+        stImageOut = new ScaleTransition(Duration.millis(100), imageView);
         stImageOut.setToX(1);
         stImageOut.setToY(1);
 
@@ -141,6 +133,19 @@ public class ListingBox extends StackPane {
 
     }
 
+
+    public void setInvalidColour(boolean isInvalid){
+        if (isInvalid){
+            Color c = OUT_OF_RANGE_COLOUR;
+            boxColour = new Color(c.getRed(), c.getGreen(), c.getBlue(), OVERLAY_TRANSPARENCY);
+        }
+        else {
+            boxColour = ratingColour;
+        }
+        filltRatingIn = new FillTransition(Duration.millis(100), rating, boxColour, boxColour.darker());
+        filltRatingOut = new FillTransition(Duration.millis(100), rating, boxColour.darker(), boxColour);
+        rating.setFill(boxColour);
+    }
 
     private void highlight(MouseEvent event){
         filltRatingIn.play();
@@ -202,11 +207,14 @@ public class ListingBox extends StackPane {
 
 
     public void showImage(){
-        image.setImage(new Image(listing.getPictureURL().toString(), true));
+        if (image == null) {
+            image = new Image(listing.getPictureURL().toString(), true);
+            imageView.setImage(image);
+        }
     }
 
-    public void removeImage(){
-        image.setImage(null);
+    public void cancelLoad(){
+        image.cancel();
     }
 
 }
