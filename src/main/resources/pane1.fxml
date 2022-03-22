@@ -27,7 +27,7 @@
                   <Insets bottom="2.0" right="2.0" top="2.0" />
                </HBox.margin>
                <font>
-                  <Font name="Bauhaus 93" size="12.0" />
+                  <Font name="Arial" size="12.0" />
                </font>
             </Button>
             <Region style="-fx-background-color: #202225;" HBox.hgrow="ALWAYS" />
@@ -45,7 +45,7 @@
                   <Insets bottom="2.0" left="2.0" top="2.0" />
                </HBox.margin>
                <font>
-                  <Font name="Bauhaus 93" size="12.0" />
+                  <Font name="Arial" size="12.0" />
                </font>
             </Button>
          </children>
@@ -75,9 +75,9 @@
                            </VBox.margin>
                            <children>
                               <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                              <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="How to use:&#10;1. Select valid minimum and maximum prices at the top &#10;and press confirm.&#10;2. Select the start and end dates of the period you are looking for&#10;3. View {PANE2}&#10;4. View{PANE3}&#10;5. Book a location if you are logged in on Pane 4&#10;&#10;">
+                              <TextArea editable="false" prefColumnCount="35" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="How to use:&#10;1. Select valid minimum and maximum prices at the top &#10;and press confirm.&#10;2. Select the start and end dates of the period you are looking for&#10;3. View {PANE2}&#10;4. View{PANE3}&#10;5. Book a location if you are logged in on Pane 4&#10;&#10;">
                                  <font>
-                                    <Font name="Arial" size="12.0" />
+                                    <Font name="Arial" size="10.0" />
                                  </font>
                                  <padding>
                                     <Insets bottom="10.0" right="10.0" />
@@ -141,7 +141,7 @@
                         <HBox VBox.vgrow="ALWAYS">
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <TextArea editable="false" prefColumnCount="20" prefRowCount="3" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
+                              <TextArea editable="false" prefColumnCount="20" prefRowCount="4" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
