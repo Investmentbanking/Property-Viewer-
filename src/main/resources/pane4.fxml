@@ -34,9 +34,9 @@
                   <HBox VBox.vgrow="ALWAYS">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Property Name" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label style="-fx-font-family: Arial;" text="Property Name" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Calibri Bold" size="30.0" />
+                              <Font name="Arial Bold" size="30.0" />
                            </font>
                         </Label>
                         <Region HBox.hgrow="ALWAYS" />
@@ -56,7 +56,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <HBox spacing="1.0" style="-fx-spacing: 10;" VBox.vgrow="SOMETIMES">
+                  <HBox spacing="1.0" style="-fx-spacing: 10; -fx-font-family: Arial;" VBox.vgrow="SOMETIMES">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
                         <Label text="Beds:" textAlignment="CENTER" textFill="WHITE" />
@@ -88,8 +88,8 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <GridPane alignment="TOP_CENTER" style="-fx-padding: 20;">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -98,14 +98,20 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="Total Nights" textFill="WHITE" />
-                              <Label text="Total price:" textFill="WHITE" GridPane.rowIndex="1" />
-                              <Label text="From:" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label text="To:" textFill="WHITE" GridPane.rowIndex="3" />
-                              <Label fx:id="totalNights" text="-" textFill="WHITE" GridPane.columnIndex="1" />
-                              <Label text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label style="-fx-font-family: Arial;" text="Total Nights" textFill="WHITE" />
+                              <Label style="-fx-font-family: Arial;" text="Total price:" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label style="-fx-font-family: Arial;" text="From:" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font></Label>
+                              <Label style="-fx-font-family: Arial;" text="To:" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font></Label>
+                              <Label fx:id="totalNights" style="-fx-font-family: Arial;" text="-" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label style="-fx-font-family: Arial;" text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label style="-fx-font-family: Arial;" text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label style="-fx-font-family: Arial;" text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -114,9 +120,9 @@
                         <VBox>
                            <children>
                               <Region VBox.vgrow="ALWAYS" />
-                              <Button contentDisplay="CENTER" defaultButton="true" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#confirmBooking" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE">
+                              <Button contentDisplay="CENTER" defaultButton="true" minHeight="30.0" minWidth="90.0" mnemonicParsing="false" onAction="#confirmBooking" style="-fx-background-color: #40444b; -fx-font-family: Arial;" text="Confirm" textFill="WHITE">
                                  <font>
-                                    <Font name="Calibri Bold" size="12.0" />
+                                    <Font name="Arial Bold" size="12.0" />
                                  </font>
                               </Button>
                               <Region VBox.vgrow="ALWAYS" />
