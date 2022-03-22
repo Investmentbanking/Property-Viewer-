@@ -18,7 +18,7 @@ import java.net.URL;
  * @author Burhan Tekcan K21013451
  * @version 1.0
  */
-public class initialController extends Application {
+public class InitialController extends Application {
 
     @FXML // login button
     private Button login;
@@ -38,7 +38,7 @@ public class initialController extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = getClass().getResource("pane0.fxml");
+        URL url = getClass().getResource("pane4.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);

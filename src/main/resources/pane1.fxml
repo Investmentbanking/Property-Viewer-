@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pane1Controller">
+<BorderPane fx:id="mainPane" minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pane1Controller">
    <bottom>
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +31,7 @@
                </font>
             </Button>
             <Region style="-fx-background-color: #202225;" HBox.hgrow="ALWAYS" />
-            <Label fx:id="paneLabel" style="-fx-font-family: calibri;" text="Pane 1" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="paneLabel" text="Pane 1" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -75,7 +75,7 @@
                            </VBox.margin>
                            <children>
                               <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                              <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136; -fx-font-family: Calibri; -fx-control-inner-background: #2f3136;" text="How to use:&#10;1. Select valid minimum and maximum prices at the top &#10;and press confirm.&#10;2. Select the start and end dates of the period you are looking for&#10;3. View {PANE2}&#10;4. View{PANE3}&#10;5. Book a location if you are logged in on Pane 4&#10;&#10;">
+                              <TextArea editable="false" prefColumnCount="30" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="How to use:&#10;1. Select valid minimum and maximum prices at the top &#10;and press confirm.&#10;2. Select the start and end dates of the period you are looking for&#10;3. View {PANE2}&#10;4. View{PANE3}&#10;5. Book a location if you are logged in on Pane 4&#10;&#10;">
                                  <font>
                                     <Font name="Calibri" size="12.0" />
                                  </font>
@@ -89,7 +89,7 @@
                         <HBox>
                            <children>
                               <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                              <Label style="-fx-font-family: calibri;" text="Selected price range:" textFill="WHITE">
+                              <Label text="Selected price range:" textFill="WHITE">
                                  <padding>
                                     <Insets right="5.0" />
                                  </padding>
@@ -97,7 +97,7 @@
                                     <Font name="Calibri" size="12.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="priceRange" style="-fx-font-family: calibri;" text="None Selected" textFill="WHITE">
+                              <Label fx:id="priceRange" text="None Selected" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -130,7 +130,7 @@
                            </VBox.margin>
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label alignment="CENTER" style="-fx-font-family: Calibri;" text="Settings" textAlignment="CENTER" textFill="WHITE">
+                              <Label alignment="CENTER" text="Settings" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri Bold" size="18.0" />
                                  </font>
@@ -141,7 +141,7 @@
                         <HBox VBox.vgrow="ALWAYS">
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <TextArea editable="false" prefColumnCount="20" prefRowCount="3" style="-fx-background-color: #2f3136; -fx-font-family: Calibri; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
+                              <TextArea editable="false" prefColumnCount="20" prefRowCount="3" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
                                  <font>
                                     <Font name="Calibri" size="12.0" />
                                  </font>
@@ -162,12 +162,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label style="-fx-font-family: calibri;" text="From:" textFill="WHITE">
+                                    <Label text="From:" textFill="WHITE">
                                        <font>
                                           <Font name="Calibri" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label style="-fx-font-family: calibri;" text="To:" textFill="WHITE" GridPane.rowIndex="1">
+                                    <Label text="To:" textFill="WHITE" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Calibri" size="12.0" />
                                        </font>
@@ -196,7 +196,7 @@
    <top>
       <HBox spacing="10.0" style="-fx-background-color: #202225; -fx-font-family: serif;" BorderPane.alignment="CENTER">
          <children>
-            <Label style="-fx-font-family: calibri;" text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Property Viewer" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -205,7 +205,7 @@
                </padding>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <Label style="-fx-font-family: calibri;" text="Min:" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Min:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -217,7 +217,7 @@
                <HBox.margin>
                   <Insets top="1.0" />
                </HBox.margin></ChoiceBox>
-            <Label style="-fx-font-family: calibri;" text="Max:" textAlignment="CENTER" textFill="WHITE">
+            <Label text="Max:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -229,7 +229,7 @@
                <HBox.margin>
                   <Insets top="1.0" />
                </HBox.margin></ChoiceBox>
-            <Button fx:id="confirmPrice" maxHeight="22.0" minHeight="22.0" minWidth="50.0" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-font-family: calibri; -fx-background-color: #40444b;" text="Confirm" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Button fx:id="confirmPrice" maxHeight="22.0" minHeight="22.0" minWidth="50.0" mnemonicParsing="false" onAction="#confirmPrices" style="-fx-background-color: #40444b;" text="Confirm" textFill="WHITE" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Calibri" size="10.0" />
                </font>
