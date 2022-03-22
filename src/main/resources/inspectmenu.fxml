@@ -141,7 +141,7 @@
                   </Label>
                </children>
                <StackPane.margin>
-                  <Insets bottom="10.0" left="10.0" />
+                  <Insets bottom="10.0" left="20.0" />
                </StackPane.margin>
             </GridPane>
          </children>

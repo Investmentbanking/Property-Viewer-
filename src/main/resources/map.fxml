@@ -84,7 +84,7 @@
             </Label>
          </children>
          <StackPane.margin>
-            <Insets bottom="10.0" left="10.0" />
+            <Insets bottom="20.0" left="10.0" />
          </StackPane.margin>
       </GridPane>
       <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan" StackPane.alignment="TOP_LEFT">
