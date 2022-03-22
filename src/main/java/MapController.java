@@ -27,6 +27,12 @@ public class MapController implements Initializable {
     @FXML private GridPane key;
     @FXML private Rectangle low_to_high;
 
+    ArrayList<NewAirbnbListing> listings;
+
+    @FXML private void openInspectionWindowForAll(){
+        InspectMenuController.create(listings, "All listings");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         key.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -39,7 +45,7 @@ public class MapController implements Initializable {
         low_to_high.setFill(gradient);
 
         System.out.println("Listing load call started");
-        ArrayList<NewAirbnbListing> listings = AirbnbDataLoader.loadNewDataSet();
+        listings = AirbnbDataLoader.loadNewDataSet();
         System.out.println("Listing load call ended");
 
         MapPane map = new MapPane(listings);

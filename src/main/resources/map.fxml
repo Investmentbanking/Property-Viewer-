@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -17,7 +20,11 @@
 
 <StackPane prefHeight="678.0" prefWidth="917.0" stylesheets="@map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
    <children>
-      <ScrollPane fx:id="pane" pannable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Transparent;" />
+      <ScrollPane fx:id="pane" pannable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Transparent;">
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
+      </ScrollPane>
       <GridPane id="key" fx:id="key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
@@ -87,10 +94,18 @@
             <Insets bottom="20.0" left="10.0" />
          </StackPane.margin>
       </GridPane>
-      <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan" StackPane.alignment="TOP_LEFT">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" StackPane.alignment="TOP_LEFT">
          <StackPane.margin>
             <Insets left="10.0" top="10.0" />
          </StackPane.margin>
-      </Label>
+         <children>
+            <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan" />
+            <Button mnemonicParsing="false" onAction="#openInspectionWindowForAll" styleClass="view_all_button" text="View ALL Properties">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </StackPane>

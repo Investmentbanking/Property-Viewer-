@@ -17,6 +17,18 @@
     -fx-padding: 10 20 10 20;
     -fx-font-weight: bold;
 }
+.view_all_button{
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-background-color: #dcddde;
+    -fx-text-fill: #202225;
+    -fx-background-radius: 20;
+    -fx-padding: 11 20 9 20;
+}
+.view_all_button:hover{
+    -fx-background-color: red;
+    -fx-text-fill: #dcddde;
+}
 
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
