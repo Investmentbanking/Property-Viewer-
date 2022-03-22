@@ -99,11 +99,13 @@ public class Pane1Controller extends Application {
      */
     public Pane1Controller() throws IOException
     {
-        Node pane2 = FXMLLoader.load(getClass().getResource("login.fxml"));
-        Node pane3 = FXMLLoader.load(getClass().getResource("signup.fxml"));
+        Node pane2 = FXMLLoader.load(getClass().getResource("map.fxml"));
+        Node pane3 = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Node pane4 = FXMLLoader.load(getClass().getResource("pane4.fxml"));
         sceneNodes.add(null);
         sceneNodes.add(pane2);
         sceneNodes.add(pane3);
+        sceneNodes.add(pane4);
         pointer = 0;
     }
 

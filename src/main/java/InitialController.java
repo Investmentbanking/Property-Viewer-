@@ -47,7 +47,7 @@ public class InitialController extends Application {
 //        stage.show();
 
         // FOR TESTING MAP AND INSPECT MENU
-        URL url = getClass().getResource("map.fxml");
+        URL url = getClass().getResource("pane0.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);
