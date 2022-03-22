@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 /**
  * The users entered search details
@@ -10,6 +11,10 @@ import java.time.temporal.ChronoUnit;
  */
 public class RuntimeDetails {
 
+    // The list of all the listings from the new data set.
+    private static ArrayList<NewAirbnbListing> newAirbnbListings;
+    // The list of all the listings from the old data set.
+    private static ArrayList<OldAirbnbListing> oldAirbnbListings;
     //start date of when the user might want to book
     private static LocalDate startDate;
     // end date of when the user might want to book till
@@ -31,9 +36,20 @@ public class RuntimeDetails {
         maximumPrice = 1000;
     }
 
+
+
     /**
      * @return selected start date
      */
+
+    public static ArrayList<NewAirbnbListing> getNewAirbnbListings() {
+        return newAirbnbListings;
+    }
+
+    public static ArrayList<OldAirbnbListing> getOldAirbnbListings() {
+        return oldAirbnbListings;
+    }
+
     public static LocalDate getStartDate(){
         return startDate;
     }
@@ -84,6 +100,15 @@ public class RuntimeDetails {
     /**
      * @param endDate the end date selected by the user for bookings
      */
+
+    public static void setNewAirbnbListings(ArrayList<NewAirbnbListing> newAirbnbListings) {
+        RuntimeDetails.newAirbnbListings = newAirbnbListings;
+    }
+
+    public static void setOldAirbnbListings(ArrayList<OldAirbnbListing> oldAirbnbListings) {
+        RuntimeDetails.oldAirbnbListings = oldAirbnbListings;
+    }
+
     public static void setEndDate(LocalDate endDate) {
         RuntimeDetails.endDate = endDate;
     }

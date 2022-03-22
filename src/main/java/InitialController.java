@@ -38,6 +38,10 @@ public class InitialController extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
+
+    RuntimeDetails.setNewAirbnbListings(AirbnbDataLoader.loadNewDataSet());     // Loads the new dataset being used for this project.
+    RuntimeDetails.setOldAirbnbListings(AirbnbDataLoader.loadOldDataSet());     // Loads the new dataset being used for this project.
+
 //        URL url = getClass().getResource("pane4.fxml");
 //        assert url != null;
 //        Parent root = FXMLLoader.load(url);

@@ -44,9 +44,7 @@ public class MapController implements Initializable {
         LinearGradient gradient = new LinearGradient(1, 0, 1, 1, true, CycleMethod.NO_CYCLE, stops);
         low_to_high.setFill(gradient);
 
-        System.out.println("Listing load call started");
-        listings = AirbnbDataLoader.loadNewDataSet();
-        System.out.println("Listing load call ended");
+        listings = RuntimeDetails.getNewAirbnbListings();
 
         MapPane map = new MapPane(listings);
         pane.setContent(map);
