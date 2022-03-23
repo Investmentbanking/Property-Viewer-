@@ -11,7 +11,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import jnr.ffi.annotations.In;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,9 +19,10 @@ import java.util.HashMap;
 
 /**
  * A pane class which displays all the listings in the form of ListingBox's.
+ * This is a list which the user can scroll to view all af the Boxes.
  *
  * @author Cosmo Colman (K21090628)
- * @version 22.03.2022
+ * @version 23.03.2022
  */
 public class InspectListingMenu extends ListView<HBox> {
 
@@ -33,12 +33,9 @@ public class InspectListingMenu extends ListView<HBox> {
     private final int SELECT_BOUND = 4;     // When mouse hover on row, this is how many rows above and below are also checked.
 
     private ArrayList<NewAirbnbListing> currentListings;
-
     private ArrayList<HBox> rows;
     private HashMap<HBox, Boolean> imageShown;
-
     private static HashMap<NewAirbnbListing, ListingBox> boxLookup;
-    //private VBox root;
 
     public static final ObservableList<String> SORT_OPTIONS = FXCollections.observableArrayList( "Listing Name", "Host Name", "Review Score", "Price");
     public static final ObservableList<String> ORDER_OPTIONS = FXCollections.observableArrayList("Ascending", "Descending");
@@ -48,17 +45,18 @@ public class InspectListingMenu extends ListView<HBox> {
 
     private static boolean showOutOfRange = true;
 
-    private DoubleProperty size = new SimpleDoubleProperty();
+    private final DoubleProperty size = new SimpleDoubleProperty();
 
+    /**
+     * Constructor for a listing menu of boxes displaying properties.
+     * @param listings The listings you want to display in the boxes.
+     */
     public InspectListingMenu(ArrayList<NewAirbnbListing> listings) {
         currentListings = listings;
 
-
-        getStyleClass().add("inspect-listing");
-
         if(boxLookup != null) {
             boxLookup.forEach((key, value) -> {
-                value.cancelLoad();
+                value.cancelLoad();                     // De-loads off-screen images so the new images can load.
             });
         }
 
@@ -68,23 +66,40 @@ public class InspectListingMenu extends ListView<HBox> {
             boxLookup.put(listing, box);
         }
 
+        getStyleClass().add("inspect-listing");
+        setFocusTraversable(false);
+        setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
+
         generate(currentListings);
     }
 
+    /**
+     * Relists the currently displayed boxes. Suitable if the list order properties have changed.
+     */
     public void reList(){
-        System.out.println("Relist started");
         generate(currentListings);
-        System.out.println("Relist ended");
     }
 
-
-
+    /**
+     * Sets the sort-by type of the properties.
+     * @param sortSelected The sort-by type to set.
+     */
     public static void setSortSelected(String sortSelected) {
         InspectListingMenu.sortSelected = sortSelected;
     }
+
+    /**
+     * Sets the order type of the properties.
+     * @param orderSelected The order type to set.
+     */
     public static void setOrderSelected(String orderSelected) {
         InspectListingMenu.orderSelected = orderSelected;
     }
+
+    /**
+     * Sets if the out-of-range listings should be shown
+     * @param showOutOfRange True if you want to show the out-of-range listings.
+     */
     public static void setShowOutOfRange(boolean showOutOfRange) {
         InspectListingMenu.showOutOfRange = showOutOfRange;
     }
@@ -103,21 +118,8 @@ public class InspectListingMenu extends ListView<HBox> {
         initialiseRangeLists(listings, inRangeListings, outOfRangeListings);        // Modifies the range lists to contain appropriate listings.
         initialiseBoxes(inRangeListings, outOfRangeListings);                       // Creates the actual list and panes of objects.
 
-        //setPadding(new Insets(0, SPACING, 0, SPACING));
-//        setFitToWidth(true);
-//        setHbarPolicy(ScrollBarPolicy.NEVER);
-//        setContent(root);
-
-        setFocusTraversable(false);
-
-        //setPadding(new Insets(SPACING));
-
-
         getItems().clear();
         getItems().addAll(rows);
-
-        setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
-
 
         double padding = 40;
         boundsInLocalProperty().addListener((obs, old, bounds) -> {
@@ -128,7 +130,6 @@ public class InspectListingMenu extends ListView<HBox> {
 //            showImageInRow(rows.get(i));                // Loads image of first SELECT_BOUND mount of rows.
 //        }
     }
-
 
     /**
      * Sorts the list depending on the selected sort and order options.
@@ -183,10 +184,6 @@ public class InspectListingMenu extends ListView<HBox> {
         rows = new ArrayList<>();
         //imageShown = new HashMap<>();
 
-        //root = new VBox();   // Causes way less lag than GridPane
-        //setPadding(new Insets(SPACING, 0, SPACING,0));
-        //setSpacing(SPACING);
-
         // Create List
         int inRangeCount = inRange.size();
         ArrayList<NewAirbnbListing> newListing = new ArrayList<>();
@@ -226,7 +223,18 @@ public class InspectListingMenu extends ListView<HBox> {
         }
     }
 
+    /**
+     * Opens the inspect-menu relative to the selected listing.
+     * @param event MouseEvent call
+     */
+    private void openInspectMenu(MouseEvent event) {
+        InspectMenuController.setInspectBoxListing(((ListingBox)event.getSource()).getListing());
+    }
 
+
+
+
+    // ALL BELOW MAY BE DELETE OR REPURPOSED
 
     public void showRowImages(MouseEvent event){
         HBox hBox = ((HBox)(event.getSource()));
@@ -252,7 +260,6 @@ public class InspectListingMenu extends ListView<HBox> {
             }
         }
     }
-
 
     public void showOnScreenImages(){
         Bounds paneBounds = localToScene(getBoundsInParent());
@@ -302,9 +309,4 @@ public class InspectListingMenu extends ListView<HBox> {
         }
         return visibleNodes;
     }
-
-    private void openInspectMenu(MouseEvent event) {
-        InspectMenuController.setInspectBoxListing(((ListingBox)event.getSource()).getListing());
-    }
-
 }
