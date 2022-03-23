@@ -52,7 +52,7 @@ public class Pane1Controller extends Application {
     @FXML // the root pane
     private BorderPane mainPane;
 
-    // the first pane; stored to then show again if user wants to go back
+    // the first pane; stored to show again if user goes back to pane 1
     private Node pane1;
     // all available panes for the main scene
     private final ArrayList<Node> sceneNodes = new ArrayList<>();
@@ -60,21 +60,26 @@ public class Pane1Controller extends Application {
     private int pointer;
     // the prices available to choose from
     public static final ObservableList<Integer> AVAILABLE_PRICES = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
-
-    // SERGES STUFF DONT TOUCH
-
+    // object of the current users account
     private static Account currentUser = new Account();
 
+    /**
+     * Simple getter method to return the current users account as object
+     * @return the users account
+     */
     public static Account getCurrentUser() {
         return currentUser;
 
     }
 
+    /**
+     * A setter method to set the current users Username as the argument string
+     * @param username the current users username
+     */
     public static void setCurrentUser(String username){
         currentUser.setUsername(username);
     }
 
-    // SERGES STUFF END
 
     /**
      * Initialise the settings for the scene

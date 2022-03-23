@@ -5,7 +5,8 @@ import java.util.ArrayList;
 /**
  * The users entered search details
  * stores start and end dates, price range
- * validity flags, and total nights
+ * validity flags, property listings and total nights
+ * stored in static fields in this class
  * @author Burhan Tekcan K21013451
  * @version 1.0
  */

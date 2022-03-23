@@ -1,7 +1,8 @@
 import javafx.scene.control.Alert;
 
 /**
- * A quick one line way to make an alert
+ * A class that creates an alert in one line
+ * made so that blocks of code are not repeated throughout
  *
  * @author Burhan Tekcan K21013451
  * @version 1.0
