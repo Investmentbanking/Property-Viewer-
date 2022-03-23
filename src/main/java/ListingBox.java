@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 /**
- * A pane class which is a bod representing a specific listing. The box will display the image of the
+ * A pane class which is a box representing a specific listing. The box will display the image of the
  * property when called, and the colour represents the rating value.
  *
  * @author Cosmo Colman (K21090628)
@@ -19,13 +19,13 @@ import javafx.util.Duration;
 public class ListingBox extends StackPane {
 
     private NewAirbnbListing listing;
-    private Rectangle clip;
+
+    private Rectangle clip;         // Clips rating
+    private Image image = null;     // Put in imageView
+
+    // Visible components
     private Rectangle rating;
     private ImageView imageView;
-
-    private Image image;
-
-    private int size = 30;
 
     private Color ratingColour, boxColour;
 
@@ -47,13 +47,12 @@ public class ListingBox extends StackPane {
     private ScaleTransition stImageIn, stImageOut, stRatingIn, stRatingOut;
     private FadeTransition ftRatingIn, ftRatingOut;
 
-    //Text text;
-
+    /**
+     * Constructor for a listing box for a specific listing, it will display the property image and be the colour of the rating.
+     * @param listing The listing to be represented by the object.
+     */
     public ListingBox(NewAirbnbListing listing) {
         this.listing = listing;
-
-        image = null;
-
 
         ratingColour = calculateRatingColour(listing.getReviewScoresRating());
         boxColour = ratingColour;
@@ -71,32 +70,20 @@ public class ListingBox extends StackPane {
         imageView.setClip(clip);
 
         // Full cover colour
-        rating = new Rectangle(size, size, boxColour);
+        rating = new Rectangle(20, 20, boxColour);
         rating.widthProperty().bind(widthProperty());
         rating.heightProperty().bind(heightProperty());
         rating.setArcWidth(40);
         rating.setArcHeight(40);
 
-        // Bottom right icon colour
-//        rating = new Rectangle(size, size, boxColour);
-//        setAlignment(rating, Pos.BOTTOM_RIGHT);
-//        rating.setArcWidth(40);
-//        rating.setArcHeight(40);
-
-
-
-
-//        text = new Text("lol");
-//        Font newFont = Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 15);
-//        text.setFont(newFont);
-
         maxHeightProperty().bind(minWidthProperty());
         maxWidthProperty().bind(minWidthProperty());
         minHeightProperty().bind(minWidthProperty());
 
-        getChildren().addAll(imageView, rating);//, square);//, text);
+        getChildren().addAll(imageView, rating);//, text);
 
-
+        setOnMouseEntered(this::highlight);
+        setOnMouseExited(this::unhighlight);
 
         filltRatingIn = new FillTransition(Duration.millis(100), rating, boxColour, boxColour.darker());
         filltRatingOut = new FillTransition(Duration.millis(100), rating, boxColour.darker(), boxColour);
@@ -121,19 +108,59 @@ public class ListingBox extends StackPane {
         ftRatingOut = new FadeTransition(Duration.millis(100), rating);
         ftRatingOut.setFromValue(0);
         ftRatingOut.setToValue(1);
-
-        setOnMouseEntered(this::highlight);
-        setOnMouseExited(this::unhighlight);
-
-
-        //showImage();
-
-        //setBackground(new Background(new BackgroundFill(Color.rgb(255, 0, 255, 0.1), CornerRadii.EMPTY, Insets.EMPTY)));
-        //setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
     }
 
+    /**
+     * Get the listing representing the box.
+     * @return the listing representing the box.
+     */
+    public NewAirbnbListing getListing() {
+        return listing;
+    }
 
+    /**
+     * Load the image in the box.
+     */
+    public void showImage(){
+        if (image == null) {
+            image = new Image(listing.getPictureURL().toString(), true);
+            imageView.setImage(image);
+        }
+    }
+
+    /**
+     * Cancel the loading of the image.
+     */
+    public void cancelLoad(){
+        image.cancel();
+    }
+
+    /**
+     * Highlight the box on mouse enter.
+     * @param event MouseEvent call.
+     */
+    private void highlight(MouseEvent event){
+        filltRatingIn.play();
+        stImageIn.play();
+        stRatingIn.play();
+        ftRatingIn.play();
+    }
+
+    /**
+     * Remove highlight of the box on mouse exit.
+     * @param event MouseEvent call.
+     */
+    private void unhighlight(MouseEvent event){
+        filltRatingOut.play();
+        stImageOut.play();
+        stRatingOut.play();
+        ftRatingOut.play();
+    }
+
+    /**
+     * Set if the box should have an invalid out-of-bound colour.
+     * @param isInvalid True if the box should have an invalid colour.
+     */
     public void setInvalidColour(boolean isInvalid){
         if (isInvalid){
             Color c = OUT_OF_RANGE_COLOUR;
@@ -147,24 +174,11 @@ public class ListingBox extends StackPane {
         rating.setFill(boxColour);
     }
 
-    private void highlight(MouseEvent event){
-        filltRatingIn.play();
-        stImageIn.play();
-        stRatingIn.play();
-        ftRatingIn.play();
-    }
-
-    private void unhighlight(MouseEvent event){
-        filltRatingOut.play();
-        stImageOut.play();
-        stRatingOut.play();
-        ftRatingOut.play();
-    }
-
-    public NewAirbnbListing getListing() {
-        return listing;
-    }
-
+    /**
+     * Calculate the colour that should be representing the rating of the listing.
+     * @param rating The rating of the listing.
+     * @return The colour of the box from the rating.
+     */
     public static Color calculateRatingColour(double rating){
         if (rating == -1){
             Color c = UNKNOWN_REVIEW_COLOUR;
@@ -204,17 +218,4 @@ public class ListingBox extends StackPane {
 
         return new Color(r, g, b, OVERLAY_TRANSPARENCY);
     }
-
-
-    public void showImage(){
-        if (image == null) {
-            image = new Image(listing.getPictureURL().toString(), true);
-            imageView.setImage(image);
-        }
-    }
-
-    public void cancelLoad(){
-        image.cancel();
-    }
-
 }
