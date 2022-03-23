@@ -45,8 +45,6 @@ public class MapPane extends Pane {
 
         getChildren().addAll(menuCircles);
 
-        MenuCircle.setAllCircles(menuCircles);
-
         layout();   // Required to get correct bounds.
         arrangeCircles(menuCircles);
         fixAlignment(menuCircles);
@@ -212,45 +210,5 @@ public class MapPane extends Pane {
         }
 
         return boroughAirbnbs;
-    }
-
-    /**
-     * Only for Testing purposes. If the dataset is unavailable, these values will determine a pattern for the map.
-     * @param boroughs Borough list to add to.
-     */
-    private void addBoroughs(ArrayList<Borough> boroughs) {
-        boroughs.add(new Borough("Enfield", 57, 301, 258, 66777));
-        boroughs.add(new Borough("Westminster", 147, 5361, 4397, 813720));
-        boroughs.add(new Borough("Hillingdon", 58, 277, 250, 55740));
-        boroughs.add(new Borough("Havering", 61, 99, 91, 23219));
-        boroughs.add(new Borough("Wandsworth", 97, 2748, 2077, 413623));
-        boroughs.add(new Borough("Lewisham", 63, 1502, 1159, 253472));
-        boroughs.add(new Borough("Tower Hamlets", 78, 5613, 4272, 851791));
-        boroughs.add(new Borough("Hounslow", 93, 647, 528, 115199));
-        boroughs.add(new Borough("Redbridge", 59, 383, 339, 87985));
-        boroughs.add(new Borough("Southwark", 86, 3359, 2561, 460096));
-        boroughs.add(new Borough("Camden", 118, 3761, 2927, 551240));
-        boroughs.add(new Borough("Bromley", 57, 391, 339, 80109));
-        boroughs.add(new Borough("Lambeth", 84, 3276, 2492, 480479));
-        boroughs.add(new Borough("Kensington and Chelsea", 156, 3476, 2801, 531683));
-        boroughs.add(new Borough("Islington", 95, 3583, 2559, 448128));
-        boroughs.add(new Borough("Barnet", 71, 1012, 838, 199716));
-        boroughs.add(new Borough("Richmond upon Thames", 122, 872, 684, 154401));
-        boroughs.add(new Borough("Kingston upon Thames", 75, 316, 261, 60952));
-        boroughs.add(new Borough("Harrow", 58, 266, 253, 63963));
-        boroughs.add(new Borough("Sutton", 53, 147, 129, 31145));
-        boroughs.add(new Borough("Haringey", 69, 1493, 1101, 228187));
-        boroughs.add(new Borough("Brent", 80, 1609, 1319, 287962));
-        boroughs.add(new Borough("Bexley", 49, 115, 104, 26059));
-        boroughs.add(new Borough("Hackney", 83, 4688, 3221, 613468));
-        boroughs.add(new Borough("Greenwich", 74, 917, 766, 175916));
-        boroughs.add(new Borough("Hammersmith and Fulham", 105, 2806, 2202, 434952));
-        boroughs.add(new Borough("Waltham Forest", 60, 911, 755, 178678));
-        boroughs.add(new Borough("Merton", 94, 820, 645, 142139));
-        boroughs.add(new Borough("Croydon", 53, 553, 500, 117044));
-        boroughs.add(new Borough("Newham", 70, 1151, 923, 199022));
-        boroughs.add(new Borough("Ealing", 82, 1003, 804, 174079));
-        boroughs.add(new Borough("City of London", 149, 306, 264, 47240));
-        boroughs.add(new Borough("Barking and Dagenham", 48, 142, 122, 32743));
     }
 }
