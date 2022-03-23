@@ -1,6 +1,9 @@
+import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.scene.Cursor;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -10,6 +13,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 
@@ -42,7 +46,7 @@ public class MenuCircle extends StackPane {
     private int fontSize;
 
     private FillTransition filltCircleIn, filltCircleOut;
-    private ScaleTransition stTextIn, stTextOut;
+    private ScaleTransition stCircleIn, stCircleOut, stTextIn, stTextOut;
 
     /**
      * Constructor for a Menu-Circle which represents a specific borough and contains the listing of all properties in that borough. Clicking this object will open the pane specific to that borough.
@@ -60,24 +64,37 @@ public class MenuCircle extends StackPane {
         fontSize = (int)(((circleSize/MAX_SIZE) * tempFontSize) + MIN_FONT_SIZE);
 
         circle = new Circle(circleSize, circleColor);
+        circle.setOnMouseClicked(this::openInspectionWindow);
+
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(200);
+        dropShadow.setColor(Color.color(0,0,0, 0.5));
+        circle.setEffect(dropShadow);
+
         text = new Text(borough.getName());
         text.setMouseTransparent(true);
-
-        circle.setOnMouseClicked(this::openInspectionWindow);
 
         filltCircleIn = new FillTransition(Duration.millis(100), circle, circleColor, circleColor.darker());
         filltCircleOut = new FillTransition(Duration.millis(100), circle, circleColor.darker(), circleColor);
 
+        final double CIRCLE_SIZE_SCALE = 1.1;
+        stCircleIn = new ScaleTransition(Duration.millis(100), circle);
+        stCircleIn.setToX(CIRCLE_SIZE_SCALE);
+        stCircleIn.setToY(CIRCLE_SIZE_SCALE);
+        stCircleOut = new ScaleTransition(Duration.millis(100), circle);
+        stCircleOut.setToX(1);
+        stCircleOut.setToY(1);
+
+        final double TEXT_SIZE_SCALE = 1.4;
         stTextIn = new ScaleTransition(Duration.millis(100), text);
-        stTextIn.setToX(1.2);
-        stTextIn.setToY(1.2);
+        stTextIn.setToX(TEXT_SIZE_SCALE);
+        stTextIn.setToY(TEXT_SIZE_SCALE);
         stTextOut = new ScaleTransition(Duration.millis(100), text);
         stTextOut.setToX(1);
         stTextOut.setToY(1);
 
         circle.setOnMouseEntered(this::mouseEnter);
         circle.setOnMouseExited(this::mouseLeave);
-
         getChildren().addAll(circle);
 
         do {
@@ -88,6 +105,7 @@ public class MenuCircle extends StackPane {
         text.setFill(Color.WHITE);
 
         getChildren().add(text);
+        setPickOnBounds(false); // Lets you click through the StackPane to the components below.
     }
 
     /**
@@ -132,8 +150,11 @@ public class MenuCircle extends StackPane {
      * @param event MouseEvent call.
      */
     private void mouseEnter(MouseEvent event){
+        toFront();
+
         setCursor(Cursor.HAND);
         filltCircleIn.play();
+        stCircleIn.play();
         stTextIn.play();
     }
 
@@ -144,6 +165,7 @@ public class MenuCircle extends StackPane {
     private void mouseLeave(MouseEvent event){
         setCursor(Cursor.DEFAULT);
         filltCircleOut.play();
+        stCircleOut.play();
         stTextOut.play();
     }
 
