@@ -71,7 +71,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ComboBox>
-                              <Button fx:id="relist" minWidth="-Infinity" mnemonicParsing="false" onAction="#callRelist" text="Relist">
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#callRelist" text="Relist">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -89,7 +89,7 @@
                   <ScrollPane fx:id="right" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" minWidth="610.0" style="-fx-background-color: Transparent;" vbarPolicy="ALWAYS" />
               </items>
             </SplitPane>
-            <GridPane id="key" fx:id="key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">
+            <GridPane id="key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
                 <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
