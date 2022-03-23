@@ -8,24 +8,48 @@
  *      - The total amount of 365 days available (The amount of days the listing is available per listing)
  *
  * @author Cosmo Colman (K21090628)
- * @version 22.03.2022
+ * @version 23.03.2022
  */
 public class Borough {
 
-    private String name;                                      // Name of the borough
+    private String name;        // Name of the borough
+    private int avgPrice;       // The average price of all listings in the borough
+    private int count;          // The total amount of listings for the borough
+    private int available;      // The total amount of available listings for the borough (Where 365 Availability isn't 0)
+    private int availableDays;  // The total amount of 365 days available (The amount of days the listing is available per listing)
 
-    private int avgPrice;                                     // The average price of all listings in the borough
-    private static MinMaxTotalStorage avgPriceStorage = new MinMaxTotalStorage();
+    /**
+     * Storage container for the average price of all Boroughs.
+     * Ready to be accessed to retrieve the desired methods.
+     */
+    public static final MinMaxTotalStorage avgPriceStorage = new MinMaxTotalStorage();
 
-    private int count;                                        // The total amount of listings for the borough
-    private static MinMaxTotalStorage countStorage = new MinMaxTotalStorage();
+    /**
+     * Storage container for the total amount of properties for of all Boroughs.
+     * Ready to be accessed to retrieve the desired methods.
+     */
+    public static final MinMaxTotalStorage countStorage = new MinMaxTotalStorage();
 
-    private int available;                                    // The total amount of available listings for the borough (Where 365 Availability isn't 0)
-    private static MinMaxTotalStorage availableStorage = new MinMaxTotalStorage();
+    /**
+     * Storage container for the total amount of available properties for of all Boroughs.
+     * Ready to be accessed to retrieve the desired methods.
+     */
+    public static final MinMaxTotalStorage availableStorage = new MinMaxTotalStorage();
 
-    private int availableDays;                                // The total amount of 365 days available (The amount of days the listing is available per listing)
-    private static MinMaxTotalStorage availableDaysStorage = new MinMaxTotalStorage();
+    /**
+     * Storage container for the total value of available days of all properties for of all Boroughs.
+     * Ready to be accessed to retrieve the desired methods.
+     */
+    public static final MinMaxTotalStorage availableDaysStorage = new MinMaxTotalStorage();
 
+    /**
+     * The constructor for a Borough which stores certain values of it based off input and calculation of the inputs.
+     * @param name Name of the Borough.
+     * @param avgPrice The average price for all the properties in the Borough.
+     * @param count The total amount of properties in the Borough.
+     * @param available The total amount of available properties in the Borough.
+     * @param availableDays The total amount of available days of each property added together.
+     */
     public Borough(String name, int avgPrice, int count, int available, int availableDays) {
         this.name = name;
 
@@ -42,35 +66,43 @@ public class Borough {
         availableDaysStorage.set(availableDays);
     }
 
+    /**
+     * Get the name of the Borough.
+     * @return The name of the Borough.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Get the average price of the Borough.
+     * @return The average price of the Borough.
+     */
     public int getAvgPrice() {
         return avgPrice;
     }
-    public MinMaxTotalStorage getAvgPriceStat() {
-        return avgPriceStorage;
-    }
 
+    /**
+     * Get the total count of properties in the Borough.
+     * @return The total count of properties in the Borough
+     */
     public int getCount() {
         return count;
     }
-    public MinMaxTotalStorage getCountStat() {
-        return countStorage;
-    }
 
+    /**
+     * Get the total amount of available properties in the Borough.
+     * @return the total amount of available properties in the Borough.
+     */
     public int getAvailable() {
         return available;
     }
-    public MinMaxTotalStorage getAvailableStat() {
-        return availableStorage;
-    }
 
+    /**
+     * Get the total of available days from all the properties in the Borough.
+     * @return The total of available days from all the properties in the Borough.
+     */
     public int getAvailableDays() {
         return availableDays;
-    }
-    public MinMaxTotalStorage getAvailableDaysStat() {
-        return availableDaysStorage;
     }
 }
