@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
@@ -26,10 +28,21 @@ public class InitialController extends Application {
     private Button register;
     @FXML // guest button
     private Button guest;
+    @FXML // text label telling the user to wait
+    private Label loadingLabel;
 
     // current scene being presented
     private static Scene scene;
 
+    /**
+     * Sets the visibility of the loading label to false
+     * before the scene is presented to the user
+     */
+    @FXML
+    private void initialize()
+    {
+        loadingLabel.setVisible(false);
+    }
     /**
      * sets the root scene to stage
      * with pane0.fxml
@@ -91,6 +104,17 @@ public class InitialController extends Application {
         URL url = getClass().getResource("pane1.fxml");
         assert url != null;
         scene.setRoot(FXMLLoader.load(url));
+    }
+
+    /**
+     * Sets the loading label to be visible on the pane,
+     * allowing the user to read it
+     * @param event on click of a button
+     */
+    @FXML
+    public void loadingLabelVisible(MouseEvent event)
+    {
+        loadingLabel.setVisible(true);
     }
 
     /**
