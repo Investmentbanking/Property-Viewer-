@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -171,8 +172,8 @@ public class InspectMenuController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane inspectBox = null;
         try {
-            inspectBox = fxmlLoader.load(getClass().getResource("inspectbox.fxml").openStream());
-        } catch (IOException e) {
+            inspectBox = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("inspectbox.fxml")).openStream());
+        } catch (IOException e){
             e.printStackTrace();
         }
         inspectBoxController = (InspectBoxController)fxmlLoader.getController();
