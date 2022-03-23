@@ -2,13 +2,15 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
@@ -36,22 +38,21 @@ public class InspectMenuController implements Initializable {
     @FXML private RadioButton show_invalid;
     @FXML private ComboBox<String> sortby, order;
 
-    @FXML private Button relist;
-
     @FXML private BorderPane left;
     @FXML private ScrollPane right;
 
     @FXML private Rectangle very_high, high_to_low, very_low, unknown, out_of_range;
-    @FXML private GridPane key;
 
     private static InspectBoxController inspectBoxController;
+    private static InspectListingMenu inspectMenu;
 
     private static ArrayList<NewAirbnbListing> currentListings;
     private static Stage stage = null;
     private static double xOffset, yOffset;
 
-    private static InspectListingMenu inspectMenu;
-
+    /**
+     * Assigns new list order parameters and then calls a relist for the inspect-listing menu.
+     */
     @FXML private void callRelist(){
         System.out.println("Relist Called");
         InspectListingMenu.setSortSelected(sortby.getValue());
@@ -61,14 +62,7 @@ public class InspectMenuController implements Initializable {
         RuntimeDetails.setMinimumPrice(min.getValue());
         RuntimeDetails.setMaximumPrice(max.getValue());
 
-
-
-        System.out.println("Values reassigned: " + sortby.getValue() + " " );
-        System.out.println(sortby.getValue() + " " + order.getValue());
-        System.out.println("New Min: " + min.getValue() + " New Max: " + max.getValue());
-
         inspectMenu.reList();
-
     }
 
     /**
@@ -79,8 +73,8 @@ public class InspectMenuController implements Initializable {
     }
 
     /**
-     * Sets position of mouse on title bar.
-     * @param event MouseEvent
+     * Sets position of mouse on title bar. Used for recreating how window tile bars work.
+     * @param event MouseEvent call.
      */
     @FXML private void setOffset(MouseEvent event){
         xOffset = stage.getX() - event.getScreenX();
@@ -88,15 +82,20 @@ public class InspectMenuController implements Initializable {
     }
 
     /**
-     * Moves window to mouse.
-     * @param event MouseEvent
+     * Moves window to mouse. Used for recreating how window tile bars work.
+     * @param event MouseEvent call.
      */
     @FXML private void toMouse(MouseEvent event){
         stage.setX(event.getScreenX() + xOffset);
         stage.setY(event.getScreenY() + yOffset);
     }
 
-    public static void create(ArrayList<NewAirbnbListing> listings, String name){
+    /**
+     * Creates and shows the new stage for the Inspect-Menu.
+     * @param listings The listings you want to display in the menu.
+     * @param title The title of the window displayed at the top.
+     */
+    public static void create(ArrayList<NewAirbnbListing> listings, String title){
         currentListings = listings;
 
         URL url = InspectMenuController.class.getResource("inspectmenu.fxml");
@@ -116,26 +115,34 @@ public class InspectMenuController implements Initializable {
         }
 
         stage.setScene(scene);
-        stage.setTitle(name);
+        stage.setTitle(title);
         stage.show();
     }
 
+    /**
+     * Sets a new listing to display in the Inspect-Menu and also refreshed the content.
+     * @param newListing The new listing you wish to set the Inspect-Menu to.
+     */
     public static void setInspectBoxListing(NewAirbnbListing newListing){
         inspectBoxController.setListing(newListing);
     }
 
+    /**
+     * Initialises the FXML component.
+     * @param location FXML placeholder location.
+     * @param resources FXML placeholder resources.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Since state is currently null, runLater is preformed for when it is visible.
         Platform.runLater(() -> {
             Stage stage = (Stage)title.getScene().getWindow();
             title.setText(stage.getTitle());
         });
 
-
+        // Assigning the ComboBox's
         min.setItems(Pane1Controller.AVAILABLE_PRICES);
         max.setItems(Pane1Controller.AVAILABLE_PRICES);
-//        min.getSelectionModel().select(min.getItems().indexOf(RuntimeDetails.getMinimumPrice()));
-//        max.getSelectionModel().select(max.getItems().indexOf(RuntimeDetails.getMaximumPrice()));
         min.setValue(RuntimeDetails.getMinimumPrice());
         max.setValue(RuntimeDetails.getMaximumPrice());
 
@@ -144,7 +151,7 @@ public class InspectMenuController implements Initializable {
         sortby.getSelectionModel().selectFirst();
         order.getSelectionModel().selectFirst();
 
-
+        // Assigning the colours of they key.
         very_high.setFill(ListingBox.VERY_HIGH_REVIEW_COLOUR);
         Stop[] stops = new Stop[] {
                 new Stop(0.0, ListingBox.HIGH_REVIEW_COLOUR),
@@ -157,15 +164,10 @@ public class InspectMenuController implements Initializable {
         unknown.setFill(ListingBox.UNKNOWN_REVIEW_COLOUR);
         out_of_range.setFill(ListingBox.OUT_OF_RANGE_COLOUR);
 
-        key.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        key.setStyle("-fx-border-radius: 15");
-
-
+        // Assigning the SplitPane contents
         inspectMenu = new InspectListingMenu(currentListings);
         left.setCenter(inspectMenu);
 
-        // Credit to https://stackoverflow.com/a/10753277/11245518
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane inspectBox = null;
         try {
@@ -174,7 +176,6 @@ public class InspectMenuController implements Initializable {
             e.printStackTrace();
         }
         inspectBoxController = (InspectBoxController)fxmlLoader.getController();
-
         right.setContent(inspectBox);
     }
 }
