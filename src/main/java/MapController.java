@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
  * The user can click a circle representing a borough to open a window that displays all the properties of that borough.
  *
  * @author Cosmo Colman (K21090628)
- * @version 22.03.2022
+ * @version 23.03.2022
  */
 public class MapController implements Initializable {
 

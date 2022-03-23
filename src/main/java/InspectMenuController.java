@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
  * On the left it displays all the listings and on the right is all the info for that listing.
  *
  * @author Cosmo Colman (K21090628)
- * @version 22.03.2022
+ * @version 23.03.2022
  */
 public class InspectMenuController implements Initializable {
 

@@ -14,7 +14,7 @@ import javafx.util.Duration;
  * property when called, and the colour represents the rating value.
  *
  * @author Cosmo Colman (K21090628)
- * @version 22.03.2022
+ * @version 23.03.2022
  */
 public class ListingBox extends StackPane {
 
