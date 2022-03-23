@@ -1,11 +1,6 @@
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
@@ -22,49 +17,78 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * The controller class for the FXML pane that contains almost all the information of a specific listing.
+ * The controller class for the FXML pane that contains almost all the information of a specific listing
+ * in the form of a visual panel of information.
  *
  * @author Cosmo Colman (K21090628)
- * @version 22.03.2022
+ * @version 23.03.2022
  */
 public class InspectBoxController implements Initializable {
 
-    private static NewAirbnbListing listing;
-
     @FXML private VBox root;
 
+    // 1st Section Nodes
     @FXML private Label rating;
     @FXML private Label id, name;
 
+    // 2nd Section Nodes
     @FXML private StackPane image_holder;
-
     @FXML private ImageView picture_url;
     @FXML private Label property_type;
 
+    // 3rd Section Nodes
     @FXML private ImageView host_picture_url;
     @FXML private Label host_id, host_name, price;
 
-    @FXML private Button visit_button;
+    // 4th Section Nodes
     @FXML private Label neighbourhood_cleansed;
 
+    // 5th Section Nodes
     @FXML private Label neighbourhood_overview;
 
+    // 6th Section Nodes
     @FXML private Label accommodates, bathrooms, bedrooms, beds, minimum_nights, maximum_nights, availability_365;
     @FXML private ListView<String> amenities;
 
+    // 7th Section Nodes
     @FXML private ProgressBar review_scores_cleanliness, review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value;
 
-    private DoubleProperty size = new SimpleDoubleProperty();
-
+    private static NewAirbnbListing listing;
 
     private static final Image DEFAULT_IMAGE = new Image("imagePlaceholder.jpg");
 
     /**
      * Adds the listing to Booking.
-     * @param event ActionEvent
      */
-    @FXML private void addToBooking(ActionEvent event){
+    @FXML
+    private void addToBooking(){
         System.out.println("Request to add to booking: " + listing.getName());
+    }
+
+    /**
+     * Opens a GoogleMaps link in the default browser of the location of the current property.  */
+    @FXML
+    private void openGoogleMaps(){
+        double latitude = listing.getLatitude();
+        double longitude = listing.getLongitude();
+
+        URI uri;
+        try {
+            uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
+            java.awt.Desktop.getDesktop().browse(uri);
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Initialises the FXML component.
+     * @param location FXML placeholder location.
+     * @param resources FXML placeholder resources.
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        root.setVisible(false);
     }
 
     /**
@@ -81,7 +105,7 @@ public class InspectBoxController implements Initializable {
      * Assigns all the values to the panel.
      */
     private void assign(){
-        // 1
+        // 1st Section Nodes
         int ratingValue = listing.getReviewScoresRating();
         if (ratingValue == -1){rating.setText("?");}
         else{rating.setText(ratingValue + "");}
@@ -92,7 +116,7 @@ public class InspectBoxController implements Initializable {
         id.setText(listing.getId());
         name.setText(listing.getName());
 
-        // 2
+        // 2nd Section Nodes
         Image pictureImage = loadImage(listing.getPictureURL(), false);
         double constant = pictureImage.getHeight()/pictureImage.getWidth();
 
@@ -115,7 +139,7 @@ public class InspectBoxController implements Initializable {
         clip.setArcWidth(50);
         picture_url.setClip(clip);
 
-        // 3
+        // 3rd Section Nodes
         Rectangle hostClip = new Rectangle();
         hostClip.widthProperty().bind(host_picture_url.fitWidthProperty());
         hostClip.heightProperty().bind(host_picture_url.fitHeightProperty());
@@ -129,15 +153,15 @@ public class InspectBoxController implements Initializable {
         host_name.setText(listing.getHostName());
         price.setText("$" + listing.getPrice() + "0");
 
-        // 4
+        // 4th Section Nodes
         neighbourhood_cleansed.setText(listing.getNeighbourhoodCleansed());
 
-        // 5
+        // 5th Section Nodes
         String overview = listing.getNeighbourhoodOverview();
         if (overview.equals("")){neighbourhood_overview.setText("EMPTY DESCRIPTION");}
         else {neighbourhood_overview.setText(overview);}
 
-        // 6
+        // 6th Section Nodes
         accommodates.setText(listing.getAccommodates() + "");
         bathrooms.setText(listing.getBathrooms() + "");
         bedrooms.setText(listing.getBedrooms() + "");
@@ -149,7 +173,7 @@ public class InspectBoxController implements Initializable {
             amenities.getItems().addAll(listing.getAmenities());
         }
 
-        // 7
+        // 7th Section Nodes
         double cleanliness = ((double)listing.getReviewScoresCleanliness())/10;
         review_scores_cleanliness.setProgress(cleanliness);
         review_scores_cleanliness.setId(calcReviewID(cleanliness));
@@ -171,6 +195,12 @@ public class InspectBoxController implements Initializable {
         review_scores_value.setId(calcReviewID(value));
     }
 
+    /**
+     * Returns an image loaded from a URL and if the URL is invalid a placeholder image is loaded instead.
+     * @param url URL of the image.
+     * @param backgroundLoading True if you want the image to be leaded in a background thread.
+     * @return The Image class of the URL or placeholder image.
+     */
     private Image loadImage(URL url, boolean backgroundLoading){
         if (url != null) {
             Image image = new Image(url.toString(), backgroundLoading);
@@ -182,7 +212,7 @@ public class InspectBoxController implements Initializable {
     }
 
     /**
-     * Calculated what the colour of the progress bar should be and returns the IF of the colour.
+     * Calculates what the colour of the progress bar should be and returns the CSS ID of the colour.
      * @param review The progress bar value. Max 1.0.
      * @return The ID of the colour.
      */
@@ -197,34 +227,4 @@ public class InspectBoxController implements Initializable {
             return "red";
         }
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        root.setVisible(false);
-    }
-
-    @FXML
-    private void openGoogleMaps(ActionEvent event) throws IOException{
-        double latitude = listing.getLatitude();
-        double longitude = listing.getLongitude();
-
-        URI uri;
-        try {
-            uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
-            java.awt.Desktop.getDesktop().browse(uri);
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void bindAllToScene(Pane root){
-        for (Node node : root.getChildrenUnmodifiable()){
-            if (node instanceof Pane){
-                bindAllToScene((Pane)node);
-            }
-
-            // epic code to bind the node to the scene so everything scales
-        }
-    }
-
 }
