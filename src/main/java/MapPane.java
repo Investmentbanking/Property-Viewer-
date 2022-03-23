@@ -9,24 +9,26 @@ import javafx.scene.shape.Shape;
 import java.util.*;
 
 /**
- * The pane which creates and holes the circles which represent a borough, and launch the window to inspect the listings of that borough.
+ * The pane which creates and holds the circles which represent a Borough, and launch the window to inspect the listings of that borough.
  *
  * @author Cosmo Colman (K21090628)
- * @version 22.03.2022
+ * @version 23.03.2022
  */
 public class MapPane extends Pane {
-
-    private final ArrayList<MenuCircle> menuCircles;
 
     private final double GAP = 1.0;
     private final int ANGLE_OFFSET = 0;
 
-    ArrayList<NewAirbnbListing> listings;
-    ArrayList<Borough> boroughs;
-    HashMap<Borough, ArrayList<NewAirbnbListing>> boroughListings;
+    private ArrayList<MenuCircle> menuCircles;
 
+    private ArrayList<Borough> boroughs;
+    private HashMap<Borough, ArrayList<NewAirbnbListing>> boroughListings;
+
+    /**
+     * Constructor for the map that contains circles for each Borough.
+     * @param listings The listing for all Boroughs.
+     */
     public MapPane(ArrayList<NewAirbnbListing> listings) {
-        this.listings = listings;
         boroughs = initialiseBoroughs(listings);
         boroughListings = initialiseBoroughArrayList(listings, boroughs);
 
@@ -45,35 +47,37 @@ public class MapPane extends Pane {
 
         MenuCircle.setAllCircles(menuCircles);
 
-        layout();
+        layout();   // Required to get correct bounds.
         arrangeCircles(menuCircles);
         fixAlignment(menuCircles);
-
     }
 
-
+    /**
+     * Removes empty space on the top and left of the pane.
+     * @param circles All the circles on the menu.
+     */
     private void fixAlignment(ArrayList<MenuCircle> circles){
         double smallestX = Double.MAX_VALUE;
         double smallestY = Double.MAX_VALUE;
 
-        for (MenuCircle circle : menuCircles){
+        for (MenuCircle circle : circles){
             smallestX = Math.min(circle.getLayoutX() , smallestX);
             smallestY = Math.min(circle.getLayoutY() , smallestY);
         }
 
-        for (MenuCircle circle : menuCircles){
+        for (MenuCircle circle : circles){
             circle.setLayoutX(circle.getLayoutX() - smallestX);
             circle.setLayoutY(circle.getLayoutY() - smallestY);
         }
-
     }
 
+    /**
+     * Arranges the circles in a collective formation.
+     * @param circles All the circles to be arranged.
+     */
     private void arrangeCircles(ArrayList<MenuCircle> circles) {
         MenuCircle pivotCircle = circles.get(0);
-        MenuCircle prev = null;
-
-//        int checkIndex = -1;
-        int relocation = 1;
+        MenuCircle prev;
 
         pivotCircle.setPosition(500,500);
 
@@ -83,25 +87,17 @@ public class MapPane extends Pane {
 
                 boolean hasCollision = true;
                 double angle = 0;
-                while (hasCollision){// && angle < 360) {
-                    //System.out.println(hasCollision + " " + angle);
-
+                while (hasCollision){
                     if (angle >= 360) {
                         angle = 0;
                         int newPivot = circles.indexOf(prev) - 1;
-
                         prev = circles.get(newPivot);
-
                         pivotCircle = circles.get(newPivot);
-
-                        //System.out.println("index: " + newPivot);
-
                     }
 
                     setPositionFrom(pivotCircle, next, angle);
 
-                    hasCollision = checkCollision(next);
-
+                    hasCollision = isColliding(next);
                     if (hasCollision) {
                         angle += 1;
                     }
@@ -110,7 +106,12 @@ public class MapPane extends Pane {
         }
     }
 
-
+    /**
+     * Sets a circles from another circle ar a specific angle.
+     * @param circle1 Circle to act as the pivot.
+     * @param circle2 Circle you want to set from the first.
+     * @param angle The angle at which you want the circle to be placed from.
+     */
     private void setPositionFrom(MenuCircle circle1, MenuCircle circle2, double angle){
         double rad = Math.toRadians(angle - ANGLE_OFFSET);
         double distance = circle1.getRadius() + circle2.getRadius() + GAP;
@@ -124,8 +125,13 @@ public class MapPane extends Pane {
         circle2.setPositionFromCentre((int)centreX2, (int)centreY2);
     }
 
-    //https://stackoverflow.com/a/15014709/11245518
-    private boolean checkCollision(MenuCircle circle) {
+    /**
+     * Checks if a circle is intersecting any other circle.
+     * @param circle Circle to check if intersecting.
+     * @return True if circle is intersecting another.
+     * @author https://stackoverflow.com/a/15014709/11245518
+     */
+    private boolean isColliding(MenuCircle circle) {
         boolean collisionDetected = false;
         for (MenuCircle static_circle : menuCircles) {
             if (static_circle != circle) {
@@ -139,28 +145,17 @@ public class MapPane extends Pane {
         return collisionDetected;
     }
 
-    private HashMap<Borough, ArrayList<NewAirbnbListing>> initialiseBoroughArrayList(ArrayList<NewAirbnbListing> allAirbnbs, ArrayList<Borough> allBoroughs) {
-        HashMap<Borough, ArrayList<NewAirbnbListing>> boroughAirbnbs = new HashMap<>();
-        HashMap<String,Borough> boroughLookUp = new HashMap<>();
-
-        for (Borough borough : allBoroughs){
-            boroughAirbnbs.put(borough, new ArrayList<NewAirbnbListing>());
-            boroughLookUp.put(borough.getName(), borough);
-        }
-
-        for (NewAirbnbListing listing : allAirbnbs){
-            boroughAirbnbs.get(boroughLookUp.get(listing.getNeighbourhoodCleansed())).add(listing);
-        }
-
-        return boroughAirbnbs;
-    }
-
-    private ArrayList<Borough> initialiseBoroughs(ArrayList<NewAirbnbListing> airbnbs){
+    /**
+     * Initialise the Boroughs from all listings. The values in the borough objects are calculated from the properties of the listing.
+     * @param allListings The list of all properties.
+     * @return The list of all the created Borough objects.
+     */
+    private ArrayList<Borough> initialiseBoroughs(ArrayList<NewAirbnbListing> allListings){
         boroughListings = new HashMap<>();
 
         HashMap<String, ArrayList<Double>> boroughStats = new HashMap<>();
 
-        for (NewAirbnbListing listing : airbnbs){
+        for (NewAirbnbListing listing : allListings){
             String boroughName = listing.getNeighbourhoodCleansed();
 
             if (!boroughStats.containsKey(boroughName)) {
@@ -197,7 +192,32 @@ public class MapPane extends Pane {
         return  boroughs;
     }
 
-    // TEMP PLACE TO ADD THE VALUES I WANT FOR BOROUGHS
+    /**
+     * Initialised which listings belong to what Borough.
+     * @param allListings The list of all properties.
+     * @param allBoroughs The list of all Boroughs.
+     * @return The HashMap which connects the list of properties in a borough to the Borough.
+     */
+    private HashMap<Borough, ArrayList<NewAirbnbListing>> initialiseBoroughArrayList(ArrayList<NewAirbnbListing> allListings, ArrayList<Borough> allBoroughs) {
+        HashMap<Borough, ArrayList<NewAirbnbListing>> boroughAirbnbs = new HashMap<>();
+        HashMap<String,Borough> boroughLookUp = new HashMap<>();
+
+        for (Borough borough : allBoroughs){
+            boroughAirbnbs.put(borough, new ArrayList<>());
+            boroughLookUp.put(borough.getName(), borough);
+        }
+
+        for (NewAirbnbListing listing : allListings){
+            boroughAirbnbs.get(boroughLookUp.get(listing.getNeighbourhoodCleansed())).add(listing);
+        }
+
+        return boroughAirbnbs;
+    }
+
+    /**
+     * Only for Testing purposes. If the dataset is unavailable, these values will determine a pattern for the map.
+     * @param boroughs Borough list to add to.
+     */
     private void addBoroughs(ArrayList<Borough> boroughs) {
         boroughs.add(new Borough("Enfield", 57, 301, 258, 66777));
         boroughs.add(new Borough("Westminster", 147, 5361, 4397, 813720));
@@ -233,5 +253,4 @@ public class MapPane extends Pane {
         boroughs.add(new Borough("City of London", 149, 306, 264, 47240));
         boroughs.add(new Borough("Barking and Dagenham", 48, 142, 122, 32743));
     }
-
 }
