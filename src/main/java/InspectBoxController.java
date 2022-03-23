@@ -1,6 +1,7 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
@@ -61,8 +62,14 @@ public class InspectBoxController implements Initializable {
      * Adds the listing to Booking.
      */
     @FXML
-    private void addToBooking(){
-        System.out.println("Request to add to booking: " + listing.getName());
+    private void addToBooking() throws IOException {
+        if(Pane1Controller.getCurrentUser().getUsername() == null){
+            new Alerts(Alert.AlertType.ERROR,"Error", null, "You need to have an account to be able to book a property :(");
+        }else{
+            // actually booking
+            Pane1Controller.getCurrentUser().addProperties(listing);
+            InitialController.setRoot("pane4.fxml");
+        }
     }
 
     /**

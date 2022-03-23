@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #36393f; -fx-font-family: serif;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
@@ -17,7 +18,7 @@
       </HBox>
       <TextField fx:id="username" promptText="username" style="-fx-background-radius: 10;" />
       <PasswordField fx:id="password" promptText="password" style="-fx-background-radius: 10;" />
-      <Button fx:id="submit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#checkDetails" style="-fx-background-radius: 6;" text="Login" />
+      <Button fx:id="submit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#checkDetails" onMousePressed="#change" style="-fx-background-radius: 6;" text="Login" />
       <HBox alignment="CENTER">
          <children>
             <Label text="don't have an account? try to " textFill="#cdcaca" />
@@ -30,6 +31,11 @@
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startPage" style="-fx-background-radius: 6;" text="start page" />
          </children>
       </HBox>
+      <Label fx:id="loadingLabel" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

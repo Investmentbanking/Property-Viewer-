@@ -54,5 +54,4 @@ public class BookingController {
         System.out.println(listings.size());
         System.out.println("clicked on " + listOfProperties.getSelectionModel().getSelectedItem());
     }
-
 }

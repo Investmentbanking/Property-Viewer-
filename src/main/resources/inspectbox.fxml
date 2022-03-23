@@ -26,7 +26,7 @@
          <center>
             <Button mnemonicParsing="false" onAction="#addToBooking" prefHeight="52.0" prefWidth="264.0" text="Add to Booking" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="Arial" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -40,11 +40,20 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
             </Label>
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="id" styleClass="id" text="id" />
-                  <Label fx:id="name" styleClass="title" text="name" />
+                  <Label fx:id="id" styleClass="id" text="id">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font></Label>
+                  <Label fx:id="name" styleClass="title" text="name">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font></Label>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -67,7 +76,7 @@
             </ImageView>
             <Label fx:id="property_type" text="property_type" StackPane.alignment="BOTTOM_RIGHT">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="Arial" size="24.0" />
                </font>
             </Label>
          </children>
@@ -82,6 +91,9 @@
                   <String fx:value="title" />
                   <String fx:value="dark_border" />
                </styleClass>
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
             </Label>
          </right>
          <center>
@@ -103,8 +115,14 @@
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
                         </Label>
-                        <Label id="host" fx:id="host_name" styleClass="title" text="host_name" />
+                        <Label id="host" fx:id="host_name" styleClass="title" text="host_name">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font></Label>
                      </children>
                   </VBox>
                </children>
@@ -118,7 +136,7 @@
          <children>
             <Button fx:id="visit_button" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#openGoogleMaps" prefHeight="68.0" prefWidth="74.0" text="Visit!">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="Arial" size="24.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -126,12 +144,15 @@
             </Button>
             <Label id="big_title" fx:id="neighbourhood_cleansed" styleClass="light_border" text="neighbourhood_cleansed">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="Arial" size="24.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <Label id="regular_text" fx:id="neighbourhood_overview" maxWidth="1.7976931348623157E308" styleClass="light_border" text="neighbourhood_overview" wrapText="true" VBox.vgrow="ALWAYS" />
+      <Label id="regular_text" fx:id="neighbourhood_overview" maxWidth="1.7976931348623157E308" styleClass="light_border" text="neighbourhood_overview" wrapText="true" VBox.vgrow="ALWAYS">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Label>
       <GridPane hgap="10.0" styleClass="light_border" vgap="10.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -160,73 +181,73 @@
                <children>
                   <Label id="bold_medium" text="Accommodates:">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="bold_medium" text="Bathrooms:" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="bold_medium" text="Bedrooms:" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="bold_medium" text="Beds:" GridPane.rowIndex="3">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label text=" " GridPane.rowIndex="4" />
                   <Label id="bold_medium" text="Min Nights:" GridPane.rowIndex="5">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="bold_medium" text="Max Nights:" GridPane.rowIndex="6">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="bold_medium" text="Availability 365:" GridPane.rowIndex="7">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="regular_text" fx:id="accommodates" text="accommodates" GridPane.columnIndex="1">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="regular_text" fx:id="bathrooms" text="bathrooms" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="regular_text" fx:id="bedrooms" text="bedrooms" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="regular_text" fx:id="beds" text="beds" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="regular_text" fx:id="minimum_nights" text="minimum_nights" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="regular_text" fx:id="maximum_nights" text="maximum_nights" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                   <Label id="regular_text" fx:id="availability_365" text="availability_365" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Arial" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -238,7 +259,7 @@
             </ScrollPane>
             <Label id="big_title" styleClass="dark_title_border" text="Listing Info">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="Arial" size="20.0" />
                </font>
                <GridPane.margin>
                   <Insets />
@@ -246,7 +267,7 @@
             </Label>
             <Label id="bold_medium" alignment="BOTTOM_LEFT" text="Amenities:" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="Arial" size="13.0" />
                </font>
             </Label>
          </children>
@@ -255,38 +276,38 @@
          <children>
             <Label id="big_title" styleClass="dark_title_border" text="Reviews">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="Arial" size="20.0" />
                </font>
             </Label>
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label id="bold_medium" text="Cleanliness">
                      <font>
-                        <Font name="System Bold Italic" size="17.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
                   </Label>
                   <ProgressBar fx:id="review_scores_cleanliness" maxWidth="1.7976931348623157E308" progress="0.0" />
                   <Label id="bold_medium" text="Checkin">
                      <font>
-                        <Font name="System Bold Italic" size="17.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
                   </Label>
                   <ProgressBar fx:id="review_scores_checkin" maxWidth="1.7976931348623157E308" progress="0.0" />
                   <Label id="bold_medium" text="Communication">
                      <font>
-                        <Font name="System Bold Italic" size="17.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
                   </Label>
                   <ProgressBar fx:id="review_scores_communication" maxWidth="1.7976931348623157E308" progress="0.0" />
                   <Label id="bold_medium" text="Location">
                      <font>
-                        <Font name="System Bold Italic" size="17.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
                   </Label>
                   <ProgressBar fx:id="review_scores_location" maxWidth="1.7976931348623157E308" progress="0.0" />
                   <Label id="bold_medium" text="Value">
                      <font>
-                        <Font name="System Bold Italic" size="17.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
                   </Label>
                   <ProgressBar fx:id="review_scores_value" maxWidth="1.7976931348623157E308" progress="0.0" />
