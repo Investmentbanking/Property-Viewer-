@@ -12,11 +12,11 @@
  */
 public class Borough {
 
-    private String name;        // Name of the borough
-    private int avgPrice;       // The average price of all listings in the borough
-    private int count;          // The total amount of listings for the borough
-    private int available;      // The total amount of available listings for the borough (Where 365 Availability isn't 0)
-    private int availableDays;  // The total amount of 365 days available (The amount of days the listing is available per listing)
+    private final String name;        // Name of the borough
+    private final int avgPrice;       // The average price of all listings in the borough
+    private final int count;          // The total amount of listings for the borough
+    private final int available;      // The total amount of available listings for the borough (Where 365 Availability isn't 0)
+    private final int availableDays;  // The total amount of 365 days available (The amount of days the listing is available per listing)
 
     /**
      * Storage container for the average price of all Boroughs.
