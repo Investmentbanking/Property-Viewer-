@@ -29,10 +29,19 @@ public class MapController implements Initializable {
 
     ArrayList<NewAirbnbListing> listings;
 
-    @FXML private void openInspectionWindowForAll(){
-        InspectMenuController.create(listings, "All listings");
+    /**
+     * Open the inspection window for all listings in the dataset. Unspecific to any Borough.
+     */
+    @FXML
+    private void openInspectionWindowForAll(){
+        InspectMenuController.create(listings, "All Listings");
     }
 
+    /**
+     * Initialises the FXML component.
+     * @param location FXML placeholder location.
+     * @param resources FXML placeholder resources.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         key.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -48,8 +57,5 @@ public class MapController implements Initializable {
 
         MapPane map = new MapPane(listings);
         pane.setContent(map);
-
-//        map.minWidthProperty().bind(pane.widthProperty());
-//        map.minHeightProperty().bind(pane.heightProperty());
     }
 }
