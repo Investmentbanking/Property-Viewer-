@@ -12,29 +12,32 @@ public class AirbnbDataLoader {
     private static final ArrayList<NewAirbnbListing> NewListings = new ArrayList<>();
     private static final ArrayList<OldAirbnbListing> OldListings = new ArrayList<>();
 
-    private static int minPrice;
-    private static int maxPrice;
+    private static double minPrice = RuntimeDetails.getMinimumPrice();
+    private static double maxPrice = RuntimeDetails.getMaximumPrice();
 
     public AirbnbDataLoader() {
     }
 
     /**
-     * Filters the properties within the given price range.
+     * Filters the properties from the new CSV file within the given price range.
      * @return the new ArrayList with the specific AirbnbListings.
      */
-    public static ArrayList<NewAirbnbListing> loadRange() {
+    public static ArrayList<NewAirbnbListing> loadNewRange() {
         ArrayList<NewAirbnbListing> list = loadNewDataSet();
         list.removeIf(n -> (n.getPrice() < minPrice));
         list.removeIf(n -> (n.getPrice() > maxPrice));
         return list;
     }
 
-    public static void setMin(int minPrice) {
-        AirbnbDataLoader.minPrice = minPrice;
-    }
-
-    public static void setMax(int maxPrice) {
-        AirbnbDataLoader.maxPrice = maxPrice;
+    /**
+     * Filters the properties from the original CAV file within the given price range.
+     * @return the new ArrayList with the specific AirbnbListings.
+     */
+    public static ArrayList<OldAirbnbListing> loadOldRange(){
+        ArrayList<OldAirbnbListing> list = loadOldDataSet();
+        list.removeIf(n -> (n.getPrice() < minPrice));
+        list.removeIf(n -> (n.getPrice() > maxPrice));
+        return list;
     }
 
     /**
