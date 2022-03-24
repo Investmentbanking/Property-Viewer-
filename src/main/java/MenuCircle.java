@@ -1,7 +1,5 @@
-import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
-import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
@@ -13,7 +11,6 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 
@@ -37,8 +34,8 @@ public class MenuCircle extends StackPane {
     public static final Color CHEAP_COLOR = Color.rgb(46, 50, 177);
     public static final Color EXPENSIVE_COLOR = Color.rgb(242, 63, 63);
 
-    private static final int MIN_SIZE = 35;
-    private static final int MAX_SIZE = 150;
+    private static final int MIN_CIRCLE_SIZE = 35;
+    private static final int MAX_CIRCLE_SIZE = 150;
 
     private static final int MAX_FONT_SIZE = 35;
     private static final int MIN_FONT_SIZE = 10;
@@ -61,7 +58,7 @@ public class MenuCircle extends StackPane {
         circleColor = calculateColor();
 
         int tempFontSize = MAX_FONT_SIZE - MIN_FONT_SIZE;
-        fontSize = (int)(((circleSize/MAX_SIZE) * tempFontSize) + MIN_FONT_SIZE);
+        fontSize = (int)(((circleSize/ MAX_CIRCLE_SIZE) * tempFontSize) + MIN_FONT_SIZE);
 
         circle = new Circle(circleSize, circleColor);
         circle.setOnMouseClicked(this::openInspectionWindow);
@@ -139,8 +136,8 @@ public class MenuCircle extends StackPane {
 
         double calc;
         calc = (borough.getAvailable() - min) / (max - min);
-        calc *= MAX_SIZE - MIN_SIZE;
-        calc += MIN_SIZE;
+        calc *= MAX_CIRCLE_SIZE - MIN_CIRCLE_SIZE;
+        calc += MIN_CIRCLE_SIZE;
 
         return (int)calc;
     }

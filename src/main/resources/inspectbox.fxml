@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -40,6 +41,9 @@
                <HBox.margin>
                   <Insets />
                </HBox.margin>
+               <tooltip>
+                  <Tooltip text="Rating Value" />
+               </tooltip>
             </Label>
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>

@@ -14,7 +14,7 @@ import java.util.*;
  * @author Cosmo Colman (K21090628)
  * @version 23.03.2022
  */
-public class MapPane extends Pane {
+public class CircleMap extends Pane {
 
     private final double GAP = 1.0;
     private final int ANGLE_OFFSET = 0;
@@ -28,7 +28,7 @@ public class MapPane extends Pane {
      * Constructor for the map that contains circles for each Borough.
      * @param listings The listing for all Boroughs.
      */
-    public MapPane(ArrayList<NewAirbnbListing> listings) {
+    public CircleMap(ArrayList<NewAirbnbListing> listings) {
         boroughs = initialiseBoroughs(listings);
         boroughListings = initialiseBoroughArrayList(listings, boroughs);
 
@@ -38,7 +38,6 @@ public class MapPane extends Pane {
         for (Borough borough : boroughs) {
             MenuCircle newCircle = new MenuCircle(borough, boroughListings.get(borough));
             menuCircles.add(newCircle);
-
         }
         menuCircles.sort(Comparator.comparing(MenuCircle::getSizeValue)); // Sorts by circle size
         Collections.reverse(menuCircles);

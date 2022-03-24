@@ -105,6 +105,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="toggle_map" mnemonicParsing="false" onAction="#switchMap" styleClass="toggle_map_button" text="toggle_map" />
          </children>
       </VBox>
    </children>

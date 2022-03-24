@@ -1,6 +1,7 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -11,6 +12,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -24,10 +26,15 @@ public class MapController implements Initializable {
 
     @FXML private ScrollPane pane;
 
+    @FXML private Button toggle_map;
+    private final ArrayList<String> SWITCH_LABEL = new ArrayList<>(Arrays.asList("Show Geographical", "Show Bubbles"));
+
     @FXML private GridPane key;
     @FXML private Rectangle low_to_high;
 
-    ArrayList<NewAirbnbListing> listings;
+    private ArrayList<NewAirbnbListing> listings;
+
+    private ArrayList<Pane> mapsPanes;
 
     /**
      * Open the inspection window for all listings in the dataset. Unspecific to any Borough.
@@ -35,6 +42,16 @@ public class MapController implements Initializable {
     @FXML
     private void openInspectionWindowForAll(){
         InspectMenuController.create(listings, "All Listings");
+    }
+
+    /**
+     * Switches the displayed map between Bubble and Geographical.
+     */
+    @FXML
+    private void switchMap(){
+        int currentIndex = SWITCH_LABEL.indexOf(toggle_map.getText());
+        toggle_map.setText(SWITCH_LABEL.get(1 - currentIndex));
+        pane.setContent(mapsPanes.get(1 - currentIndex));
     }
 
     /**
@@ -55,7 +72,14 @@ public class MapController implements Initializable {
 
         listings = RuntimeDetails.getNewAirbnbListings();
 
-        MapPane map = new MapPane(listings);
-        pane.setContent(map);
+        CircleMap circleMap = new CircleMap(listings);
+        GeoMap geoMap = new GeoMap(listings);
+
+        mapsPanes = new ArrayList<>();
+        mapsPanes.add(circleMap);
+        mapsPanes.add(geoMap);
+
+        toggle_map.setText(SWITCH_LABEL.get(0));
+        pane.setContent(mapsPanes.get(0));
     }
 }
