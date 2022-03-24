@@ -15,7 +15,6 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
 <StackPane prefHeight="678.0" prefWidth="917.0" stylesheets="@map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
    <children>
@@ -68,26 +67,10 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Label text="Low Availability" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Label>
-            <Label text="High Availability" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Label>
-            <Label text="Low Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Label>
-            <Label text="High Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Label>
+            <Label text="Low Availability" GridPane.columnIndex="1" />
+            <Label text="High Availability" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Low Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="High Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <StackPane.margin>
             <Insets bottom="20.0" left="10.0" />
@@ -98,17 +81,11 @@
             <Insets left="10.0" top="10.0" />
          </StackPane.margin>
          <children>
-            <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan">
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font></Label>
+            <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan" />
             <Button mnemonicParsing="false" onAction="#openInspectionWindowForAll" styleClass="view_all_button" text="View ALL Properties">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font>
             </Button>
             <Button fx:id="toggle_map" mnemonicParsing="false" onAction="#switchMap" styleClass="toggle_map_button" text="toggle_map" />
          </children>
