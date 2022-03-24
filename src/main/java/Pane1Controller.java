@@ -69,7 +69,6 @@ public class Pane1Controller extends Application {
      */
     public static Account getCurrentUser() {
         return currentUser;
-
     }
 
     /**
@@ -106,11 +105,11 @@ public class Pane1Controller extends Application {
     {
         Node pane2 = FXMLLoader.load(getClass().getResource("map.fxml"));
         Node pane3 = FXMLLoader.load(getClass().getResource("login.fxml"));
-        //Node pane4 = FXMLLoader.load(getClass().getResource("pane4.fxml"));
+        Node pane4 = FXMLLoader.load(getClass().getResource("pane4.fxml"));
         sceneNodes.add(null);
         sceneNodes.add(pane2);
         sceneNodes.add(pane3);
-        //sceneNodes.add(pane4);
+        sceneNodes.add(pane4);
         pointer = 0;
     }
 

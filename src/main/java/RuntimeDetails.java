@@ -32,9 +32,11 @@ public class RuntimeDetails {
     private static int maximumPrice;
 
     // A static block to set minimum price and maximum price to the largest possible range
+    // and set valid prices flag to true
     static{
         minimumPrice = 0;
         maximumPrice = 1000;
+        validPrices = true;
     }
 
 

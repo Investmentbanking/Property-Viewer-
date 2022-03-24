@@ -17,7 +17,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane prefHeight="678.0" prefWidth="917.0" stylesheets="@map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
    <children>
       <ScrollPane fx:id="pane" pannable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Transparent;">
@@ -71,22 +70,22 @@
             </Rectangle>
             <Label text="Low Availability" GridPane.columnIndex="1">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </Label>
             <Label text="High Availability" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </Label>
             <Label text="Low Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </Label>
             <Label text="High Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="Arial" size="15.0" />
                </font>
             </Label>
          </children>
@@ -99,11 +98,17 @@
             <Insets left="10.0" top="10.0" />
          </StackPane.margin>
          <children>
-            <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan" />
+            <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font></Label>
             <Button mnemonicParsing="false" onAction="#openInspectionWindowForAll" styleClass="view_all_button" text="View ALL Properties">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
             </Button>
             <Button fx:id="toggle_map" mnemonicParsing="false" onAction="#switchMap" styleClass="toggle_map_button" text="toggle_map" />
          </children>

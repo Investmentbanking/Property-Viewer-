@@ -16,13 +16,11 @@ public class Account {
 
     public Account() {
         this.bookings = new ArrayList<>();
-        this.username = "";
         this.desiredProperties = new ArrayList<>();
-        addProperties();
     }
 
-    private void addProperties() {
-        desiredProperties.add(new NewAirbnbListing("12", "asd"));
+    public void addProperties(NewAirbnbListing listing) {
+        desiredProperties.add(listing);
     }
 
     public String getUsername() {

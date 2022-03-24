@@ -141,7 +141,7 @@
             <HBox>
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="guest" mnemonicParsing="false" onAction="#guestClicked" prefWidth="150.0" style="-fx-font-family: Arial; -fx-background-color: #282a2e;" text="Continue as Guest" textFill="WHITE">
+                  <Button fx:id="guest" mnemonicParsing="false" onAction="#guestClicked" onMousePressed="#loadingLabelVisible" prefWidth="150.0" style="-fx-font-family: Arial; -fx-background-color: #282a2e;" text="Continue as Guest" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
@@ -153,6 +153,17 @@
                </VBox.margin>
             </HBox>
             <Region VBox.vgrow="ALWAYS" />
+            <HBox layoutX="10.0" layoutY="364.0">
+               <children>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="loadingLabel" text="Loading... Please Wait" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>
