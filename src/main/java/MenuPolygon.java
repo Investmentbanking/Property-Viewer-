@@ -98,7 +98,7 @@ public class MenuPolygon extends StackPane {
             polygon = new Polygon(POINTS_LOOKUP.get(borough.getName()));
         }
         else {
-            System.out.println("NON-RECOGNISED BOROUGH NAME - Assigning placeholder shape");
+            System.err.println("NON-RECOGNISED BOROUGH NAME - Assigning placeholder shape");
             polygon = new Polygon();
         }
         polygon.setFill(circleColor);
