@@ -67,6 +67,13 @@ public class InspectMenuController implements Initializable {
     }
 
     /**
+     * Toggles if the images should unload offscreen or not.
+     */
+    @FXML private void toggleOffScreenUnload(){
+        inspectMenu.toggleUnloadOffscreen();
+    }
+
+    /**
      * Closes the window.
      */
     @FXML private void closeWindow(){

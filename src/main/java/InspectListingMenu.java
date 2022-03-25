@@ -1,12 +1,22 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.ListView;
+import javafx.scene.control.skin.ListViewSkin;
+import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,11 +32,6 @@ import java.util.HashMap;
  */
 public class InspectListingMenu extends ListView<HBox> {
 
-    private final int SPACING = 10;         // Spacing between boxes.
-    private final int ROW_MAX = 6;          // How many boxes per row.
-    private final int SELECT_BOUND = 4;     // When mouse hover on row, this is how many rows above and below are also checked.
-    private final DoubleProperty SIZE_PROPERTY = new SimpleDoubleProperty();    // Property for resize of boxes.
-
     // List sort options
     public static final ObservableList<String> SORT_OPTIONS = FXCollections.observableArrayList( "Listing Name", "Host Name", "Review Score", "Price");
     public static final ObservableList<String> ORDER_OPTIONS = FXCollections.observableArrayList("Ascending", "Descending");
@@ -34,10 +39,25 @@ public class InspectListingMenu extends ListView<HBox> {
     private static String orderSelected = ORDER_OPTIONS.get(0);
     private static boolean showOutOfRange = true;
 
+    private final int SPACING = 10;         // Spacing between boxes.
+    private final int ROW_MAX = 6;          // How many boxes per row.
+    private final int SELECT_BOUND = 4;     // When mouse hover on row, this is how many rows above and below are also checked.
+    private final DoubleProperty SIZE_PROPERTY = new SimpleDoubleProperty();    // Property for resize of boxes.
+
+    // Events on scroll
+    private static final int SCROLLEVENT_DELAY = 250; // In milliseconds
+    public static final EventType<Event> SCROLL_TICK = new EventType<>(InspectListingMenu.class.getName() + ".SCROLL_TICK");
+    //private final Timeline notifyLoop;
+    private long lastScroll = 0;
+
     private final ArrayList<NewAirbnbListing> currentListings;
     private ArrayList<HBox> rows;
-    //private HashMap<HBox, Boolean> imageShown;
     private static HashMap<NewAirbnbListing, ListingBox> boxLookup;
+
+    private int first = 0;
+    private int last  = 0;
+
+    private static boolean unloadOffscreen = false;
 
     /**
      * Constructor for a listing menu of boxes displaying properties.
@@ -45,11 +65,6 @@ public class InspectListingMenu extends ListView<HBox> {
      */
     public InspectListingMenu(ArrayList<NewAirbnbListing> listings) {
         currentListings = listings;
-
-        // De-loads off-screen images so the new images can load.
-        if(boxLookup != null) {
-            boxLookup.forEach((key, value) -> value.cancelLoad());
-        }
 
         // Creates all the ListingBoxes for each listing.
         boxLookup = new HashMap<>();
@@ -63,6 +78,116 @@ public class InspectListingMenu extends ListView<HBox> {
         setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
 
         generate(currentListings);
+
+        addEventHandler(SCROLL_TICK, e -> {
+            updateOnScreenImages(unloadOffscreen);
+        });
+
+        addEventFilter(ScrollEvent.ANY, (e) -> {
+            lastScroll = System.currentTimeMillis();
+        });
+
+        Timeline notifyLoop = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+            if (lastScroll == 0)
+                return;
+            long now = System.currentTimeMillis();
+            if (now - lastScroll > SCROLLEVENT_DELAY) {
+                lastScroll = 0;
+                fireEvent(new Event(this, this, SCROLL_TICK));
+            }
+        }));
+        notifyLoop.setCycleCount(Timeline.INDEFINITE);
+        notifyLoop.play();
+
+        Platform.runLater(() -> {
+            updateOnScreenImages(false);
+        });
+    }
+
+    /**
+     * Toggles if the images should unload offscreen or not.
+     */
+    public void toggleUnloadOffscreen() {
+        unloadOffscreen = !unloadOffscreen;
+        if (unloadOffscreen) {
+            updateImages(0, first, false);
+            updateImages(last + 1, getItems().size(), false);
+        }
+    }
+
+    /**
+     * Load or unload the images in all cells within a range.
+     * @param start The starting index.
+     * @param end The ending index.
+     * @param load If true then image will load, if false then image will unload.
+     */
+    public void updateImages(int start, int end, boolean load){
+        for (int index = start; index < end; index++) {
+            for (Node node : getItems().get(index).getChildrenUnmodifiable()) {
+//                if (load && !((ListingBox)box).isImageLoaded()){
+//                    ((ListingBox)box).loadImage();
+//                }
+//                else if (!load && ((ListingBox)box).isImageLoaded()) {
+//                    ((ListingBox)box).unloadImage();
+//                }
+
+
+                ListingBox box = (ListingBox) node;
+
+                if(load){ // LOAD THE IMAGE
+                    if(!box.isImageLoaded()){
+                     box.loadImage();
+                    }
+                }
+                if(!load){ // UNLOAD IMAGE
+                    if(box.isImageLoaded()){
+                        box.unloadImage();
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    /**
+     * Loads all time images of the boxes currently on screen.
+     * @param unloadPrev If this is set to true, then the previous images will be unloaded.
+     */
+    private void updateOnScreenImages(boolean unloadPrev){
+        if(unloadPrev){
+            int prevFirst = first;
+            int prevLast = last;
+            setVisualIndex();
+            boolean intersected = false;
+            if (prevFirst < first && first < prevLast){ // First is between last index
+                System.out.println("prevFirst: " + prevFirst + "first: " + first);
+                updateImages(prevFirst, first+1, false);
+                intersected = true;
+            }
+            if (prevFirst < last && last < prevLast){ // First is between last index
+                System.out.println("prevLast: " + prevLast + "last: " + last);
+                updateImages(last+1, prevLast, false);
+                intersected = true;
+            }
+            if(!intersected){
+                updateImages(prevFirst, prevLast+1, false);
+            }
+        }
+        else {
+            setVisualIndex();
+        }
+        updateImages(first, last+1, true);
+    }
+
+    /**
+     * Updates the first and last index value of the visual rows in the window.
+     */
+    private void setVisualIndex(){
+        ListViewSkin<?> listViewSkin = (ListViewSkin<?>) getSkin();
+        VirtualFlow<?> virtualFlow = (VirtualFlow<?>) listViewSkin.getChildren().get(0);
+        first = virtualFlow.getFirstVisibleCell().getIndex();
+        last = virtualFlow.getLastVisibleCell().getIndex();
     }
 
     /**
@@ -115,10 +240,6 @@ public class InspectListingMenu extends ListView<HBox> {
 
         double padding = 40;
         boundsInLocalProperty().addListener((obs, old, bounds) -> SIZE_PROPERTY.setValue((bounds.getWidth() - padding - ((ROW_MAX - 1) * SPACING)) / ROW_MAX));
-
-//        for (int i = 0; i <= STARTING_BOUND; i++){
-//            showImageInRow(rows.get(i));                // Loads image of first SELECT_BOUND mount of rows.
-//        }
     }
 
     /**
@@ -184,17 +305,14 @@ public class InspectListingMenu extends ListView<HBox> {
         for (NewAirbnbListing listing: newListing){
             if (rowCount == ROW_MAX || row == null){
                 row = new HBox();
-                //row.setOnMouseEntered(this::showRowImages);
                 row.setSpacing(SPACING);
                 row.setPadding(new Insets((((double)SPACING)/4), 0, (((double)SPACING)/4), 0));
-                //imageShown.put(row, false);
                 rows.add(row);
                 rowCount = 0;
             }
 
             ListingBox box = boxLookup.get(listing);
             box.setInvalidColour(listingCount >= inRangeCount);
-            box.showImage();
 
             box.minWidthProperty().bind(SIZE_PROPERTY);
             box.setOnMouseClicked(this::openInspectMenu);

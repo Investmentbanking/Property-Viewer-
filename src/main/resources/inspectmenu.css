@@ -11,6 +11,15 @@
     -fx-background-color: Transparent;
 }
 
+.radio-button{
+    -fx-text-fill: #dcddde;
+    -fx-font-size: 17;
+}
+#unload-radio{
+    -fx-background-color: rgba(0,0,0,0.5);
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+}
 .radio-button .radio {
     -fx-border-width: 0;
     -fx-background-color: #202225;

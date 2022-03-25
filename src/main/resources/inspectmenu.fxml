@@ -29,63 +29,72 @@
          <children>
             <SplitPane dividerPositions="0.5677582330977956" style="-fx-background-color: Transparent;">
               <items>
-                  <BorderPane fx:id="left" minWidth="550.0" prefHeight="800.0" prefWidth="800.0">
-                     <top>
-                        <HBox alignment="CENTER" prefHeight="40.0" spacing="10.0" styleClass="select_options_title" BorderPane.alignment="CENTER">
-                           <children>
-                              <ComboBox fx:id="min" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="min">
-                                 <tooltip>
-                                    <Tooltip text="Minimum" />
-                                 </tooltip>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ComboBox>
-                              <ComboBox fx:id="max" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="max">
-                                 <tooltip>
-                                    <Tooltip text="Maximum" />
-                                 </tooltip>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ComboBox>
-                              <RadioButton fx:id="show_invalid" minWidth="-Infinity" mnemonicParsing="false" selected="true" text="Show Invalid" textFill="WHITE">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </RadioButton>
-                              <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                              <ComboBox fx:id="sortby" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="sort_order">
-                                 <tooltip>
-                                    <Tooltip text="Sort By" />
-                                 </tooltip>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ComboBox>
-                              <ComboBox fx:id="order" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="order">
-                                 <tooltip>
-                                    <Tooltip text="Order By" />
-                                 </tooltip>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ComboBox>
-                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#callRelist" text="Relist">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                           <BorderPane.margin>
-                              <Insets />
-                           </BorderPane.margin>
-                        </HBox>
-                     </top>
-                  </BorderPane>
+                  <StackPane>
+                     <children>
+                        <BorderPane fx:id="left" minWidth="550.0" prefHeight="800.0" prefWidth="800.0">
+                           <top>
+                              <HBox alignment="CENTER" prefHeight="40.0" spacing="10.0" styleClass="select_options_title" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ComboBox fx:id="min" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="min">
+                                       <tooltip>
+                                          <Tooltip text="Minimum" />
+                                       </tooltip>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <ComboBox fx:id="max" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="max">
+                                       <tooltip>
+                                          <Tooltip text="Maximum" />
+                                       </tooltip>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <RadioButton fx:id="show_invalid" minWidth="-Infinity" mnemonicParsing="false" selected="true" text="Show Invalid" textFill="WHITE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </RadioButton>
+                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="sortby" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="sort_order">
+                                       <tooltip>
+                                          <Tooltip text="Sort By" />
+                                       </tooltip>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <ComboBox fx:id="order" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="order">
+                                       <tooltip>
+                                          <Tooltip text="Order By" />
+                                       </tooltip>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#callRelist" text="Relist">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                              </HBox>
+                           </top>
+                        </BorderPane>
+                        <RadioButton id="unload-radio" mnemonicParsing="false" onAction="#toggleOffScreenUnload" text="Unload Offscreen Images" StackPane.alignment="BOTTOM_RIGHT">
+                           <StackPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </StackPane.margin>
+                        </RadioButton>
+                     </children>
+                  </StackPane>
                   <ScrollPane fx:id="right" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" minWidth="610.0" style="-fx-background-color: Transparent;" vbarPolicy="ALWAYS" />
               </items>
             </SplitPane>

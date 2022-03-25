@@ -9,6 +9,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 /**
  * A pane class which is a box representing a specific listing. The box will display the image of the
  * property when called, and the colour represents the rating value.
@@ -22,6 +27,8 @@ public class ListingBox extends StackPane {
 
     private Rectangle clip;         // Clips rating
     private Image image = null;     // Put in imageView
+
+    private boolean isImageLoaded;
 
     // Visible components
     private Rectangle rating;
@@ -53,6 +60,8 @@ public class ListingBox extends StackPane {
      */
     public ListingBox(NewAirbnbListing listing) {
         this.listing = listing;
+
+        isImageLoaded = false;
 
         ratingColour = calculateRatingColour(listing.getReviewScoresRating());
         boxColour = ratingColour;
@@ -119,12 +128,46 @@ public class ListingBox extends StackPane {
     }
 
     /**
+     * Get if the image is loaded or is currently loading.
+     * @return True if image has been set to load.
+     */
+    public boolean isImageLoaded() {
+        return isImageLoaded;
+    }
+
+    /**
      * Load the image in the box.
      */
-    public void showImage(){
-        if (image == null) {
+    public void loadImage(){
+        if (!isImageLoaded) {
+            isImageLoaded = true;
             image = new Image(listing.getPictureURL().toString(), true);
             imageView.setImage(image);
+
+//            new Thread(() -> {
+//                try {
+//                    HttpURLConnection huc = null;
+//                    huc = (HttpURLConnection)  listing.getPictureURL().openConnection();
+//                    huc.setRequestMethod ("GET");
+//                    huc.connect () ;
+//                    if(huc.getResponseCode() == 404){
+//                        imageView.setImage(DEFAULT_IMAGE);
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }).start();
+        }
+    }
+
+    /**
+     * Unload the image in the box. If the image is still loading it will cancel it. Default image will be restored.
+     */
+    public void unloadImage(){
+        if (isImageLoaded) {
+            isImageLoaded = false;
+            image.cancel();
+            imageView.setImage(DEFAULT_IMAGE);
         }
     }
 
