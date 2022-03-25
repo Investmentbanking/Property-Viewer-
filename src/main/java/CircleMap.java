@@ -78,6 +78,7 @@ public class CircleMap extends Pane {
 
         pivotCircle.setXY(500,500);
 
+        int increment = 1;
         for (MenuCircle next : circles) {
             prev = next;
             if (circles.indexOf(next) != 0) {
@@ -85,8 +86,9 @@ public class CircleMap extends Pane {
                 boolean hasCollision = true;
                 double angle = 0;
                 while (hasCollision){
-                    if (angle >= 360) {
+                    if (angle >= 360 || angle <= -360) {
                         angle = 0;
+                        increment = -increment; // Flips rotation
                         int newPivot = circles.indexOf(prev) - 1;
                         prev = circles.get(newPivot);
                         pivotCircle = circles.get(newPivot);
@@ -96,7 +98,7 @@ public class CircleMap extends Pane {
 
                     hasCollision = isColliding(next);
                     if (hasCollision) {
-                        angle += 1;
+                        angle += increment;
                     }
                 }
             }
