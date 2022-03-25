@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
@@ -66,7 +67,7 @@
          <children>
             <ImageView fx:id="picture_url" fitHeight="372.0" fitWidth="446.0" pickOnBounds="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@imagePlaceholder.jpg" />
+                  <Image url="@imagePlaceholderDark.jpg" />
                </image>
             </ImageView>
             <Label fx:id="property_type" text="property_type" StackPane.alignment="BOTTOM_RIGHT">
@@ -74,6 +75,7 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
+            <ProgressIndicator fx:id="picture_url_loading" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </StackPane>
       <BorderPane>
@@ -96,9 +98,10 @@
                         <Circle fill="#202225" radius="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                         <ImageView fx:id="host_picture_url" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true">
                            <image>
-                              <Image url="@imagePlaceholder.jpg" />
+                              <Image url="@imagePlaceholderDark.jpg" />
                            </image>
                         </ImageView>
+                        <ProgressIndicator fx:id="host_picture_url_loading" minHeight="-Infinity" minWidth="-Infinity" />
                      </children>
                   </StackPane>
                   <VBox alignment="CENTER_LEFT">

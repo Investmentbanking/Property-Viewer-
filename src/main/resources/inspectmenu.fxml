@@ -90,7 +90,7 @@
                         </BorderPane>
                         <RadioButton id="unload-radio" mnemonicParsing="false" onAction="#toggleOffScreenUnload" text="Unload Offscreen Images" StackPane.alignment="BOTTOM_RIGHT">
                            <StackPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
                            </StackPane.margin>
                         </RadioButton>
                      </children>

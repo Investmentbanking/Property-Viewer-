@@ -143,20 +143,6 @@ public class ListingBox extends StackPane {
             isImageLoaded = true;
             image = new Image(listing.getPictureURL().toString(), true);
             imageView.setImage(image);
-
-//            new Thread(() -> {
-//                try {
-//                    HttpURLConnection huc = null;
-//                    huc = (HttpURLConnection)  listing.getPictureURL().openConnection();
-//                    huc.setRequestMethod ("GET");
-//                    huc.connect () ;
-//                    if(huc.getResponseCode() == 404){
-//                        imageView.setImage(DEFAULT_IMAGE);
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }).start();
         }
     }
 

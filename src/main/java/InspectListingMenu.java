@@ -41,23 +41,19 @@ public class InspectListingMenu extends ListView<HBox> {
 
     private final int SPACING = 10;         // Spacing between boxes.
     private final int ROW_MAX = 6;          // How many boxes per row.
-    private final int SELECT_BOUND = 4;     // When mouse hover on row, this is how many rows above and below are also checked.
     private final DoubleProperty SIZE_PROPERTY = new SimpleDoubleProperty();    // Property for resize of boxes.
 
     // Events on scroll
     private static final int SCROLLEVENT_DELAY = 250; // In milliseconds
     public static final EventType<Event> SCROLL_TICK = new EventType<>(InspectListingMenu.class.getName() + ".SCROLL_TICK");
-    //private final Timeline notifyLoop;
     private long lastScroll = 0;
+    private int first = 0;
+    private int last  = 0;
+    private static boolean unloadOffscreen = false;
 
     private final ArrayList<NewAirbnbListing> currentListings;
     private ArrayList<HBox> rows;
     private static HashMap<NewAirbnbListing, ListingBox> boxLookup;
-
-    private int first = 0;
-    private int last  = 0;
-
-    private static boolean unloadOffscreen = false;
 
     /**
      * Constructor for a listing menu of boxes displaying properties.
@@ -79,6 +75,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
         generate(currentListings);
 
+        // Events related to scrolling.
         addEventHandler(SCROLL_TICK, e -> {
             updateOnScreenImages(unloadOffscreen);
         });
@@ -122,31 +119,25 @@ public class InspectListingMenu extends ListView<HBox> {
      * @param load If true then image will load, if false then image will unload.
      */
     public void updateImages(int start, int end, boolean load){
-        for (int index = start; index < end; index++) {
-            for (Node node : getItems().get(index).getChildrenUnmodifiable()) {
-//                if (load && !((ListingBox)box).isImageLoaded()){
-//                    ((ListingBox)box).loadImage();
-//                }
-//                else if (!load && ((ListingBox)box).isImageLoaded()) {
-//                    ((ListingBox)box).unloadImage();
-//                }
-
-
-                ListingBox box = (ListingBox) node;
-
-                if(load){ // LOAD THE IMAGE
-                    if(!box.isImageLoaded()){
-                     box.loadImage();
+        if ((start >= 0 && end <= getItems().size() && start < end)){
+            for (int index = start; index < end; index++) {
+                for (Node node : getItems().get(index).getChildrenUnmodifiable()) {
+                    ListingBox box = (ListingBox) node;
+                    if (load) { // Load the image
+                        if (!box.isImageLoaded()) {
+                            box.loadImage();
+                        }
+                    }
+                    if (!load) { // Unload the image
+                        if (box.isImageLoaded()) {
+                            box.unloadImage();
+                        }
                     }
                 }
-                if(!load){ // UNLOAD IMAGE
-                    if(box.isImageLoaded()){
-                        box.unloadImage();
-                    }
-                }
-
-
             }
+        }
+        else{
+            System.err.println("Unaccepted range for updating Images");
         }
     }
 
@@ -161,13 +152,13 @@ public class InspectListingMenu extends ListView<HBox> {
             setVisualIndex();
             boolean intersected = false;
             if (prevFirst < first && first < prevLast){ // First is between last index
-                System.out.println("prevFirst: " + prevFirst + "first: " + first);
-                updateImages(prevFirst, first+1, false);
+                //System.out.println("prevFirst: " + prevFirst + "first: " + first);
+                updateImages(prevFirst, first, false);
                 intersected = true;
             }
-            if (prevFirst < last && last < prevLast){ // First is between last index
-                System.out.println("prevLast: " + prevLast + "last: " + last);
-                updateImages(last+1, prevLast, false);
+            if (prevFirst < last && last < prevLast){ // Last is between last index
+                //System.out.println("prevLast: " + prevLast + "last: " + last);
+                updateImages(last+1, prevLast+1, false);
                 intersected = true;
             }
             if(!intersected){
@@ -297,7 +288,6 @@ public class InspectListingMenu extends ListView<HBox> {
         newListing.addAll(inRange);
         newListing.addAll(outOfRange);
 
-        //imageShown = new HashMap<>();
         rows = new ArrayList<>();
         HBox row = null;
         int rowCount = 0;
@@ -332,83 +322,4 @@ public class InspectListingMenu extends ListView<HBox> {
     private void openInspectMenu(MouseEvent event) {
         InspectMenuController.setInspectBoxListing(((ListingBox)event.getSource()).getListing());
     }
-
-
-
-
-    // ALL BELOW MAY BE DELETE OR REPURPOSED
-
-//    public void showRowImages(MouseEvent event){
-//        HBox hBox = ((HBox)(event.getSource()));
-//        showImageInRow(hBox);
-//
-//        int index = rows.indexOf(hBox);
-//        int ok = -1;
-//        for (int i = 1; i < SELECT_BOUND; i++){
-//            if ((index - i) >= 0){
-//                showImageInRow(rows.get(index - i));
-//            }
-//            if ((index + i) < rows.size()){
-//                showImageInRow(rows.get(index + i));
-//            }
-//        }
-//    }
-//
-//    private void showImageInRow(HBox row){
-//        if (!imageShown.get(row)) {
-//            imageShown.replace(row, true);
-//            for (Node node : row.getChildrenUnmodifiable()) {
-//                ((ListingBox) node).showImage();
-//            }
-//        }
-//    }
-//
-//    public void showOnScreenImages(){
-//        Bounds paneBounds = localToScene(getBoundsInParent());
-//        for (HBox hBox : rows){
-//            Bounds nodeBounds = hBox.localToScene(hBox.getBoundsInLocal());
-//            if(paneBounds.intersects(nodeBounds)){
-//                imageShown.replace(hBox, true);
-//                for (Node node : hBox.getChildrenUnmodifiable()){
-//                    //System.out.println("yes");
-//                    ((ListingBox)node).showImage();
-//                }
-//            }
-//            else {
-//                for (Node node : hBox.getChildrenUnmodifiable()){
-//                    //System.out.println("no");
-//                    ((ListingBox)node).removeImage();
-//                }
-//            }
-
-//            if (hBox.getLayoutY() < 0){
-//                for (Node node : hBox.getChildrenUnmodifiable()){
-//                    ((ListingBox)node).removeImage();
-//                }
-//            }
-//            else if (hBox.getLayoutY() < getHeight()){
-//                for (Node node : hBox.getChildrenUnmodifiable()){
-//                    ((ListingBox)node).showImage(null);
-//                }
-//            }
-//            else{
-//                break;
-//            }
-//        }
-//    }
-//
-//    // Credit to https://stackoverflow.com/a/30780960/11245518
-//    private ArrayList<Node> getVisibleNodes(ScrollPane pane) {
-//        ArrayList<Node> visibleNodes = new ArrayList<>();
-//        Bounds paneBounds = pane.localToScene(pane.getBoundsInParent());
-//        if (pane.getContent() instanceof Parent) {
-//            for (Node n : ((Parent) pane.getContent()).getChildrenUnmodifiable()) {
-//                Bounds nodeBounds = n.localToScene(n.getBoundsInLocal());
-//                if (paneBounds.intersects(nodeBounds)) {
-//                    visibleNodes.add(n);
-//                }
-//            }
-//        }
-//        return visibleNodes;
-//    }
 }

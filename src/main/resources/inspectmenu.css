@@ -10,7 +10,6 @@
 .inspect-listing .list-cell{
     -fx-background-color: Transparent;
 }
-
 .radio-button{
     -fx-text-fill: #dcddde;
     -fx-font-size: 17;

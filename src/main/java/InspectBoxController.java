@@ -1,10 +1,7 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -34,10 +31,12 @@ public class InspectBoxController implements Initializable {
 
     // 2nd Section Nodes
     @FXML private StackPane image_holder;
+    @FXML private ProgressIndicator picture_url_loading;
     @FXML private ImageView picture_url;
     @FXML private Label property_type;
 
     // 3rd Section Nodes
+    @FXML private ProgressIndicator host_picture_url_loading;
     @FXML private ImageView host_picture_url;
     @FXML private Label host_id, host_name, price;
 
@@ -56,7 +55,7 @@ public class InspectBoxController implements Initializable {
 
     private static NewAirbnbListing listing;
 
-    private static final Image DEFAULT_IMAGE = new Image("imagePlaceholder.jpg");
+    private static final Image DEFAULT_IMAGE = new Image("imagePlaceholderDark.jpg");
 
     /**
      * Adds the listing to Booking.
@@ -124,20 +123,15 @@ public class InspectBoxController implements Initializable {
         name.setText(listing.getName());
 
         // 2nd Section Nodes
-        Image pictureImage = loadImage(listing.getPictureURL(), false);
-        double constant = pictureImage.getHeight()/pictureImage.getWidth();
-
-        picture_url.setImage(pictureImage);
-        property_type.setText(listing.getPropertyType());
-
-        image_holder.maxHeightProperty().bind(image_holder.minHeightProperty());
-        image_holder.maxWidthProperty().bind(image_holder.minWidthProperty());
-
-        image_holder.minWidthProperty().bind(root.widthProperty().subtract(50));
-        image_holder.minHeightProperty().bind(image_holder.minWidthProperty().multiply(constant));
-
-        picture_url.fitWidthProperty().bind(image_holder.widthProperty());
-        picture_url.fitHeightProperty().bind(image_holder.heightProperty());
+        picture_url_loading.setVisible(true);
+        bindImageProperties(DEFAULT_IMAGE);
+        new Thread(() -> {
+            Image urlImage = new Image(listing.getPictureURL().toString(), false);
+            picture_url_loading.setVisible(false);
+            if (!urlImage.isError()){
+                bindImageProperties(urlImage);
+            }
+        }).start();
 
         Rectangle clip = new Rectangle();
         clip.widthProperty().bind(picture_url.fitWidthProperty());
@@ -154,7 +148,15 @@ public class InspectBoxController implements Initializable {
         hostClip.setArcWidth(70);
         host_picture_url.setClip(hostClip);
 
-        host_picture_url.setImage(new Image(listing.getHostPictureURL().toString(), true));
+        host_picture_url_loading.setVisible(true);
+        host_picture_url.setImage(DEFAULT_IMAGE);
+        new Thread(() -> {
+            Image urlImage = new Image(listing.getHostPictureURL().toString(), false);
+            host_picture_url_loading.setVisible(false);
+            if (!urlImage.isError()){
+                host_picture_url.setImage(urlImage);
+            }
+        }).start();
 
         host_id.setText(listing.getHostID());
         host_name.setText(listing.getHostName());
@@ -176,6 +178,7 @@ public class InspectBoxController implements Initializable {
         minimum_nights.setText(listing.getMinimumNights() + "");
         maximum_nights.setText(listing.getMaximumNights() + "");
         availability_365.setText(listing.getAvailability365() + "/365");
+        amenities.getItems().clear();
         if(listing.getAmenities().size() != 0) {
             amenities.getItems().addAll(listing.getAmenities());
         }
@@ -200,6 +203,26 @@ public class InspectBoxController implements Initializable {
         double value = ((double)listing.getReviewScoresValue())/10;
         review_scores_value.setProgress(value);
         review_scores_value.setId(calcReviewID(value));
+    }
+
+    /**
+     * Binds the size of the Image to the ImageView for the picture_url
+     * @param newImage The image to bind to picture_url.
+     */
+    private void bindImageProperties(Image newImage) {
+        double newConstant = newImage.getHeight()/newImage.getWidth();
+
+        picture_url.setImage(newImage);
+        property_type.setText(listing.getPropertyType());
+
+        image_holder.maxHeightProperty().bind(image_holder.minHeightProperty());
+        image_holder.maxWidthProperty().bind(image_holder.minWidthProperty());
+
+        image_holder.minWidthProperty().bind(root.widthProperty().subtract(50));
+        image_holder.minHeightProperty().bind(image_holder.minWidthProperty().multiply(newConstant));
+
+        picture_url.fitWidthProperty().bind(image_holder.widthProperty());
+        picture_url.fitHeightProperty().bind(image_holder.heightProperty());
     }
 
     /**
