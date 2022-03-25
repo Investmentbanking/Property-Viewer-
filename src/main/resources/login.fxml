@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #36393f; -fx-font-family: Arial;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #36393f; -fx-font-family: Arial;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
       <HBox>
          <children>
-            <Label text="Login " textFill="#cdcaca" />
+            <Label text="Login" textFill="#cdcaca" />
          </children>
       </HBox>
       <TextField fx:id="username" promptText="username" style="-fx-background-radius: 10;" />

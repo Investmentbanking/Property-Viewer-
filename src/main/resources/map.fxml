@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<StackPane prefHeight="678.0" prefWidth="917.0" stylesheets="@map.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
+<StackPane prefHeight="678.0" prefWidth="917.0" stylesheets="@map.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
    <children>
       <ScrollPane fx:id="pane" pannable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Transparent;">
          <cursor>

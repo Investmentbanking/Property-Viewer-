@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-background-image: url('citySkyline.png');" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitialController">
+<BorderPane minHeight="480.0" minWidth="720.0" style="-fx-background-color: #36393f; -fx-background-image: url('citySkyline.png');" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InitialController">
    <bottom>
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
