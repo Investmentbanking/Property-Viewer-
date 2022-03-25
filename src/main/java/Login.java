@@ -43,8 +43,6 @@ public class Login {
     public boolean makeLogin(){
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
-            System.out.println(file);
-
             FileWriter writer = new FileWriter(file, true);
 
             String[] line;
@@ -54,7 +52,6 @@ public class Login {
             while ((line = reader.readNext()) != null) {
                 lastID = convertID(line[0]);
                 String usernameInDB = line[1];
-                System.out.println(usernameInDB);
                 if(usernameInDB.equals(this.username)){
                     return false;
                 }

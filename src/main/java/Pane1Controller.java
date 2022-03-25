@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -61,7 +62,15 @@ public class Pane1Controller extends Application {
     // the prices available to choose from
     public static final ObservableList<Integer> AVAILABLE_PRICES = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
     // object of the current users account
-    private static Account currentUser = new Account();
+    private static Account currentUser;
+
+    static {
+        try {
+            currentUser = new Account();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Simple getter method to return the current users account as object

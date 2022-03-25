@@ -1,8 +1,10 @@
 import com.opencsv.CSVReader;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.Pane;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -11,16 +13,12 @@ import java.util.ArrayList;
 public class Account {
     private String username;
     private ArrayList<NewAirbnbListing> bookings;
-    private ArrayList<NewAirbnbListing> desiredProperties;
     private final URL url = this.getClass().getResource("reservation.csv");
+    private final String file = new File(url.toURI()).getAbsolutePath();
 
-    public Account() {
+
+    public Account() throws URISyntaxException {
         this.bookings = new ArrayList<>();
-        this.desiredProperties = new ArrayList<>();
-    }
-
-    public void addProperties(NewAirbnbListing listing) {
-        desiredProperties.add(listing);
     }
 
     public String getUsername() {
@@ -31,17 +29,13 @@ public class Account {
         return bookings;
     }
 
-    public ArrayList<NewAirbnbListing> getDesiredProperty(){
-        return desiredProperties;
-    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public boolean isPropertyTaken() {
+    public boolean isPropertyTaken(NewAirbnbListing property) {
         try {
-            String file = new File(url.toURI()).getAbsolutePath();
             CSVReader reader = new CSVReader(new FileReader(file));
             String[] line;
 
@@ -51,21 +45,32 @@ public class Account {
                 String propertyID = line[0];
                 String propertyBookedBy = line[1];
 
-                for (NewAirbnbListing listings : desiredProperties) {
-                    if(listings.getId().equals(propertyID)){
-                        new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry :( \n this property is already reserved by a user with the ID: " + propertyBookedBy);
-                        return true;
-                    }
+                if(property.getId().equals(propertyID)){
+                    new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry :( \n this property is already reserved by a user with the ID: " + propertyBookedBy);
+                    return true;
                 }
             }
-        } catch (URISyntaxException | IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
+        bookProperty(property);
+
         return false;
     }
 
-    public void reserveProperty(){
-        bookings.addAll(desiredProperties);
-        desiredProperties.clear();
+    private void bookProperty(NewAirbnbListing property){
+        try {
+            CSVReader reader = new CSVReader(new FileReader(file));
+            FileWriter writer = new FileWriter(file, true);
+            String newBooking = (property.getId()) + "," + Pane1Controller.getCurrentUser().getUsername() + '\n';
+            writer.write(newBooking);
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void reserveProperty(NewAirbnbListing property){
+        bookings.add(property);
     }
 }
