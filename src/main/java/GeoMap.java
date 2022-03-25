@@ -56,7 +56,7 @@ public class GeoMap extends Pane {
      */
     private void arrangePolygons(ArrayList<MenuPolygon> polygons) {
         for (MenuPolygon menuPolygon: polygons){
-            double[] points = Doubles.toArray(menuPolygon.getPolygon().getPoints());
+            double[] points = Doubles.toArray(menuPolygon.getBoroughShape().getPoints());
 
             Polygon tempPolygon = new Polygon(points);
             getChildren().add(tempPolygon);

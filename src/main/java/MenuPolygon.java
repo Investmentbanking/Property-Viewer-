@@ -1,16 +1,7 @@
-import javafx.animation.FillTransition;
-import javafx.animation.ScaleTransition;
-import javafx.scene.Cursor;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +12,7 @@ import java.util.HashMap;
  * @author Cosmo Colman (K21090628)
  * @version 24.03.2022
  */
-public class MenuPolygon extends StackPane {
+public class MenuPolygon extends MenuShape {
 
     private final static HashMap<String, double[]> POINTS_LOOKUP;
     static {
@@ -61,172 +52,63 @@ public class MenuPolygon extends StackPane {
         POINTS_LOOKUP.put("Tower Hamlets",new double[]{392.0, 248.0, 389.0, 226.0, 436.0, 205.0, 442.0, 235.0, 458.0, 250.0, 442.0, 255.0, 444.0, 272.0, 434.0, 273.0, 423.0, 249.0});
     }
 
-    private Borough borough;
-    private ArrayList<NewAirbnbListing> listings;
-
-    private Polygon polygon;
-    private Text text;
-
-    private Color circleColor;
-
-    public static final Color CHEAP_COLOR = Color.rgb(46, 50, 177);
-    public static final Color EXPENSIVE_COLOR = Color.rgb(242, 63, 63);
-
-    private static final int MIN_SIZE = 35;
-    private static final int MAX_SIZE = 150;
-
-    private static final int MAX_FONT_SIZE = 35;
-    private static final int MIN_FONT_SIZE = 10;
-
-    private int fontSize;
-
-    private FillTransition filltCircleIn, filltCircleOut;
-    private ScaleTransition stCircleIn, stCircleOut, stTextIn, stTextOut;
-
     /**
      * Constructor for a Menu-Polygon which represents a specific borough and contains the listing of all properties in that borough. Clicking this object will open the pane specific to that borough.
      * @param borough The borough the object represents.
      * @param listings The listings of that borough.
      */
     public MenuPolygon(Borough borough, ArrayList<NewAirbnbListing> listings) {
-        this.borough = borough;
-        this.listings = listings;
+        super(borough, listings, getBoroughPolygon(borough.getName()));
 
-        circleColor = calculateColor();
+        shapeSizeScale = 1.2;
+        textSizeScale = 1.5;
 
-        if (POINTS_LOOKUP.containsKey(borough.getName())){
-            polygon = new Polygon(POINTS_LOOKUP.get(borough.getName()));
-        }
-        else {
-            System.err.println("NON-RECOGNISED BOROUGH NAME - Assigning placeholder shape");
-            polygon = new Polygon();
-        }
-        polygon.setFill(circleColor);
-        polygon.setOnMouseClicked(this::openInspectionWindow);
-
-//        polygon.setStroke(circleColor.brighter().brighter());
-//        polygon.setStrokeWidth(3);
-//        polygon.setStrokeType(StrokeType.INSIDE);
-
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setRadius(50);
-        dropShadow.setColor(Color.color(0,0,0, 0.5));
-        polygon.setEffect(dropShadow);
-
-        text = new Text(borough.getName());
-        text.setMouseTransparent(true);
-
-        filltCircleIn = new FillTransition(Duration.millis(100), polygon, circleColor, circleColor.darker());
-        filltCircleOut = new FillTransition(Duration.millis(100), polygon, circleColor.darker(), circleColor);
-
-        final double CIRCLE_SIZE_SCALE = 1.2;
-        stCircleIn = new ScaleTransition(Duration.millis(100), polygon);
-        stCircleIn.setToX(CIRCLE_SIZE_SCALE);
-        stCircleIn.setToY(CIRCLE_SIZE_SCALE);
-        stCircleOut = new ScaleTransition(Duration.millis(100), polygon);
-        stCircleOut.setToX(1);
-        stCircleOut.setToY(1);
-
-        final double TEXT_SIZE_SCALE = 1.5;
-        stTextIn = new ScaleTransition(Duration.millis(100), text);
-        stTextIn.setToX(TEXT_SIZE_SCALE);
-        stTextIn.setToY(TEXT_SIZE_SCALE);
-        stTextOut = new ScaleTransition(Duration.millis(100), text);
-        stTextOut.setToX(1);
-        stTextOut.setToY(1);
-
-        polygon.setOnMouseEntered(this::mouseEnter);
-        polygon.setOnMouseExited(this::mouseLeave);
-        getChildren().addAll(polygon);
-
-        fontSize = (int)polygon.getLayoutBounds().getWidth();
+//        shape.setStroke(circleColor.brighter().brighter());
+//        shape.setStrokeWidth(3);
+//        shape.setStrokeType(StrokeType.INSIDE);
 
         fontSize = 15;
         do {
             Font newFont = Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, fontSize--);
             text.setFont(newFont);
-        }while (text.getLayoutBounds().getWidth() > polygon.getLayoutBounds().getWidth());
-
-        text.setFill(Color.WHITE);
-
-        getChildren().add(text);
-        setPickOnBounds(false); // Lets you click through the StackPane to the components below.
+        }while (text.getLayoutBounds().getWidth() > shape.getLayoutBounds().getWidth());
     }
 
     /**
-     * Set the position of the object dependent on the polygon shape, ignoring the text.
-     * @param x
-     * @param y
+     * Returns the polygon shape of the passed in borough name. If the name is invalid, an empty polygon is returned.
+     * @param boroughName The name of the Borough.
+     * @return The polygon in the shape of the borough.
      */
-    public void setXY(double x, double y){
-        double textWidth = text.getLayoutBounds().getWidth();
-        double polygonWidth = polygon.getLayoutBounds().getWidth();
-        if (textWidth > polygonWidth){
-             x -= (textWidth - polygonWidth)/2;
+    private static Polygon getBoroughPolygon(String boroughName){
+        if (POINTS_LOOKUP.containsKey(boroughName)){
+            return new Polygon(POINTS_LOOKUP.get(boroughName));
         }
-        setLayoutX(x);
-        setLayoutY(y);
-    }
-
-    /**
-     * Calculates what the colour of the circle should be based on the price.
-     * @return the calculated colour of the circle.
-     */
-    private Color calculateColor(){
-        double min = Borough.avgPriceStorage.min();
-        double max = Borough.avgPriceStorage.max();
-
-        double calc = (borough.getAvgPrice() - min) / (max - min);
-
-        double r = EXPENSIVE_COLOR.getRed() - CHEAP_COLOR.getRed();
-        double g = EXPENSIVE_COLOR.getGreen() - CHEAP_COLOR.getGreen();
-        double b = EXPENSIVE_COLOR.getBlue() - CHEAP_COLOR.getBlue();
-
-        r = (r * calc) + CHEAP_COLOR.getRed();
-        g = (g * calc) + CHEAP_COLOR.getGreen();
-        b = (b * calc) + CHEAP_COLOR.getBlue();
-
-        return new Color(r, g, b, 1.0);
-    }
-
-    /**
-     * Makes the cursor a hand and plays transitions on mouse enter.
-     * @param event MouseEvent call.
-     */
-    private void mouseEnter(MouseEvent event){
-        toFront();
-
-        setCursor(Cursor.HAND);
-        filltCircleIn.play();
-        stCircleIn.play();
-        stTextIn.play();
-    }
-
-    /**
-     * Makes the cursor default and reverts transitions on mouse exit.
-     * @param event MouseEvent call.
-     */
-    private void mouseLeave(MouseEvent event){
-        setCursor(Cursor.DEFAULT);
-        filltCircleOut.play();
-        stCircleOut.play();
-        stTextOut.play();
-    }
-
-    /**
-     * Opens the inspection window specific to the borough and its listings.
-     * @param event MouseEvent call.
-     */
-    private void openInspectionWindow(MouseEvent event){
-        InspectMenuController.create(listings, borough.getName());
+        else {
+            System.err.println("NON-RECOGNISED BOROUGH NAME - Assigning empty Polygon");
+            return new Polygon();
+        }
     }
 
     /**
      * Get the polygon object of the object.
      * @return The polygon object of the object.
      */
-    public Polygon getPolygon() {
-        return polygon;
+    public Polygon getBoroughShape() {
+        return (Polygon) shape;
     }
 
+    /**
+     * Set the position of the object dependent on the polygon shape, ignoring the text.
+     * @param x X position to be set.
+     * @param y Y position to be set.
+     */
+    public void setXY(double x, double y){
+        double textWidth = text.getLayoutBounds().getWidth();
+        double polygonWidth = shape.getLayoutBounds().getWidth();
+        if (textWidth > polygonWidth){
+             x -= (textWidth - polygonWidth)/2;
+        }
+        setLayoutX(x);
+        setLayoutY(y);
+    }
 }

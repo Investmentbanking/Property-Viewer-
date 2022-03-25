@@ -76,7 +76,7 @@ public class CircleMap extends Pane {
         MenuCircle pivotCircle = circles.get(0);
         MenuCircle prev;
 
-        pivotCircle.setPosition(500,500);
+        pivotCircle.setXY(500,500);
 
         for (MenuCircle next : circles) {
             prev = next;
@@ -132,7 +132,7 @@ public class CircleMap extends Pane {
         boolean collisionDetected = false;
         for (MenuCircle static_circle : menuCircles) {
             if (static_circle != circle) {
-                Shape intersect = Shape.intersect(circle.getCircle(), static_circle.getCircle());
+                Shape intersect = Shape.intersect(circle.getBoroughShape(), static_circle.getBoroughShape());
 
                 if (intersect.getBoundsInLocal().getWidth() != -1) {
                     collisionDetected = true;
