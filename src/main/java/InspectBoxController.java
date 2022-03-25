@@ -66,8 +66,8 @@ public class InspectBoxController implements Initializable {
             new Alerts(Alert.AlertType.ERROR,"Error", null, "You need to have an account to be able to book a property :(");
         }else{
             // actually booking
-            Pane1Controller.getCurrentUser().addProperties(listing);
-            InitialController.setRoot("pane4.fxml");
+            BookingController.listings.add(listing);
+            new Alerts(Alert.AlertType.INFORMATION,"Success", null, listing.getId() + " has been added to your bookings, you could either continue browsing or go to the booking page to confirm booking");
         }
     }
 
