@@ -3,104 +3,107 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@Statistics.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StatisticsEventHandler">
-   <bottom>
-      <ToolBar BorderPane.alignment="CENTER">
-         <items>
-            <HBox alignment="CENTER_RIGHT">
-               <children>
-                  <Button mnemonicParsing="false" text="&lt;" />
-                  <Region prefHeight="25.0" prefWidth="571.0" HBox.hgrow="ALWAYS">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Region>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="&gt;" />
-               </children>
-            </HBox>
-         </items>
-      </ToolBar>
-   </bottom>
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #36393f;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StatisticsEventHandler">
    <center>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="633.0">
                <children>
-                  <ComboBox id="box" prefHeight="25.0" prefWidth="486.0" HBox.hgrow="ALWAYS" />
-                  <Region prefHeight="37.0" prefWidth="280.0" />
+                  <ComboBox id="box" minWidth="486.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin></ComboBox>
+                  <Region HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="173.0" prefWidth="578.0">
+            <GridPane hgap="10.0" minHeight="400.0" minWidth="720.0" vgap="10.0" VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <BorderPane id="borderpane1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="163.0" prefWidth="305.0">
+                  <BorderPane id="borderpane1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;">
                      <left>
-                        <Button id="11" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" textFill="#0b0b0b" BorderPane.alignment="CENTER" />
+                        <Button id="11" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </left>
                      <right>
-                        <Button id="10" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" BorderPane.alignment="CENTER_RIGHT" />
+                        <Button id="10" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
                      </right>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
                      <center>
-                        <Text id="stat1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="178.00003051757812" BorderPane.alignment="CENTER" />
+                        <Text id="stat1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Text>
                      </center>
                   </BorderPane>
-                  <BorderPane id="borderpane2" prefHeight="163.0" prefWidth="303.0">
+                  <BorderPane id="borderpane2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;" GridPane.columnIndex="1">
                      <left>
-                        <Button id="21" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" BorderPane.alignment="CENTER" />
+                        <Button id="21" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </left>
                      <right>
-                        <Button id="20" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" BorderPane.alignment="CENTER" />
+                        <Button id="20" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
                      </right>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
                      <center>
-                        <Text id="stat2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="173.1367702484131" BorderPane.alignment="CENTER" />
+                        <Text id="stat2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Text>
+                     </center>
+                  </BorderPane>
+                  <BorderPane id="borderpane3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;" GridPane.rowIndex="1">
+                     <left>
+                        <Button id="31" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button id="30" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
+                     </right>
+                     <center>
+                        <Text id="stat3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Text>
+                     </center>
+                  </BorderPane>
+                  <BorderPane id="borderpane4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <left>
+                        <Button id="41" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button id="40" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
+                     </right>
+                     <center>
+                        <Text id="stat4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Text>
                      </center>
                   </BorderPane>
                </children>
-            </HBox>
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-               <children>
-                  <BorderPane id="borderpane3" prefHeight="170.0" prefWidth="303.0">
-                     <left>
-                        <Button id="31" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" BorderPane.alignment="CENTER" />
-                     </left>
-                     <right>
-                        <Button id="30" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" BorderPane.alignment="CENTER" />
-                     </right>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                     <center>
-                        <Text id="stat3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="170.13668823242188" BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-                  <BorderPane id="borderpane4" prefHeight="170.0" prefWidth="306.0">
-                     <left>
-                        <Button id="41" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" BorderPane.alignment="CENTER" />
-                     </left>
-                     <right>
-                        <Button id="40" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" BorderPane.alignment="CENTER" />
-                     </right>
-                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </HBox.margin>
-                     <center>
-                        <Text id="stat4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="174.13674354553223" BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-               </children>
-            </HBox>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
          </children>
       </VBox>
    </center>

@@ -21,8 +21,6 @@ public class AmenitiesStatisticsCollector {
             if (listing.getAmenities() != null) {
                 if (listing.getAmenities().contains("Oven")) {
                     count++;
-                    System.out.println(listing.getAmenities());
-                    System.out.println("oven: " + count);
                 }
             }
         }
