@@ -102,6 +102,14 @@ public class InspectListingMenu extends ListView<HBox> {
     }
 
     /**
+     * Get if the unload-offscreen setting is enabled.
+     * @return True if the unload-offscreen setting is enabled.
+     */
+    public static boolean isUnloadOffscreen() {
+        return unloadOffscreen;
+    }
+
+    /**
      * Toggles if the images should unload offscreen or not.
      */
     public void toggleUnloadOffscreen() {

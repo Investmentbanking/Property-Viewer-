@@ -22,162 +22,183 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@inspectmenu.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InspectMenuController">
-   <center>
-      <StackPane prefHeight="800.0">
-         <children>
-            <SplitPane dividerPositions="0.5677582330977956" style="-fx-background-color: Transparent;">
-              <items>
-                  <StackPane>
-                     <children>
-                        <BorderPane fx:id="left" minWidth="550.0" prefHeight="800.0" prefWidth="800.0">
-                           <top>
-                              <HBox alignment="CENTER" prefHeight="40.0" spacing="10.0" styleClass="select_options_title" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <ComboBox fx:id="min" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="min">
-                                       <tooltip>
-                                          <Tooltip text="Minimum" />
-                                       </tooltip>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                    <ComboBox fx:id="max" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="max">
-                                       <tooltip>
-                                          <Tooltip text="Maximum" />
-                                       </tooltip>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                    <RadioButton fx:id="show_invalid" minWidth="-Infinity" mnemonicParsing="false" selected="true" text="Show Invalid" textFill="WHITE">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </RadioButton>
-                                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                    <ComboBox fx:id="sortby" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="sort_order">
-                                       <tooltip>
-                                          <Tooltip text="Sort By" />
-                                       </tooltip>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                    <ComboBox fx:id="order" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="order">
-                                       <tooltip>
-                                          <Tooltip text="Order By" />
-                                       </tooltip>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                    <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#callRelist" text="Relist">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                                 <padding>
-                                    <Insets left="10.0" right="10.0" />
-                                 </padding>
-                                 <BorderPane.margin>
-                                    <Insets />
-                                 </BorderPane.margin>
-                              </HBox>
-                           </top>
-                        </BorderPane>
-                        <RadioButton id="unload-radio" mnemonicParsing="false" onAction="#toggleOffScreenUnload" text="Unload Offscreen Images" StackPane.alignment="BOTTOM_RIGHT">
-                           <StackPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
-                           </StackPane.margin>
-                        </RadioButton>
-                     </children>
-                  </StackPane>
-                  <ScrollPane fx:id="right" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" minWidth="610.0" style="-fx-background-color: Transparent;" vbarPolicy="ALWAYS" />
-              </items>
-            </SplitPane>
-            <GridPane id="key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">
-              <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
-                <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints vgrow="NEVER" />
-                <RowConstraints vgrow="NEVER" />
-                <RowConstraints vgrow="NEVER" />
-                  <RowConstraints vgrow="NEVER" />
-                  <RowConstraints vgrow="NEVER" />
-                  <RowConstraints vgrow="NEVER" />
-              </rowConstraints>
+
+<StackPane stylesheets="@inspectmenu.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InspectMenuController">
+   <children>
+      <BorderPane>
+         <center>
+            <StackPane prefHeight="800.0">
                <children>
-                  <Rectangle fx:id="very_high" arcHeight="5.0" arcWidth="5.0" fill="#37ffcd" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" />
-                  <Rectangle fx:id="high_to_low" arcHeight="5.0" arcWidth="5.0" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
-                     <fill>
-                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.01666666753590107" green="1.0" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.49143302329232763">
-                                 <color>
-                                    <Color red="1.0" green="0.9381107687950134" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </fill>
-                  </Rectangle>
-                  <Rectangle fx:id="very_low" arcHeight="5.0" arcWidth="5.0" fill="#2b1fd7" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="3" />
-                  <Rectangle fx:id="unknown" arcHeight="5.0" arcWidth="5.0" fill="#a625ec" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="4" />
-                  <Rectangle fx:id="out_of_range" arcHeight="5.0" arcWidth="5.0" fill="#6d6d6d" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="5" />
-                  <Label text="Perfect Rating (100)" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="High Rating" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Low Rating" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Very Low Rating (&lt;80)" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Unknown Rating" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Out of Desired Range" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
+                  <SplitPane dividerPositions="0.5677582330977956" style="-fx-background-color: Transparent;">
+                    <items>
+                        <StackPane>
+                           <children>
+                              <BorderPane fx:id="left" minWidth="300.0" prefHeight="800.0" prefWidth="800.0">
+                                 <top>
+                                    <HBox alignment="CENTER" prefHeight="40.0" spacing="10.0" styleClass="select_options_title" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ComboBox fx:id="min" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="min">
+                                             <tooltip>
+                                                <Tooltip text="Minimum" />
+                                             </tooltip>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ComboBox>
+                                          <ComboBox fx:id="max" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="max">
+                                             <tooltip>
+                                                <Tooltip text="Maximum" />
+                                             </tooltip>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ComboBox>
+                                          <RadioButton fx:id="show_invalid" minWidth="-Infinity" mnemonicParsing="false" selected="true" text="Show Invalid" textFill="WHITE">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </RadioButton>
+                                          <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <ComboBox fx:id="sortby" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="sort_order">
+                                             <tooltip>
+                                                <Tooltip text="Sort By" />
+                                             </tooltip>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ComboBox>
+                                          <ComboBox fx:id="order" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="order">
+                                             <tooltip>
+                                                <Tooltip text="Order By" />
+                                             </tooltip>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ComboBox>
+                                          <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#callRelist" text="Relist">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                       </children>
+                                       <padding>
+                                          <Insets left="10.0" right="10.0" />
+                                       </padding>
+                                       <BorderPane.margin>
+                                          <Insets />
+                                       </BorderPane.margin>
+                                    </HBox>
+                                 </top>
+                              </BorderPane>
+                              <RadioButton id="unload-radio" fx:id="unload_radio" mnemonicParsing="false" onAction="#toggleOffScreenUnload" text="Unload Offscreen Images" StackPane.alignment="BOTTOM_RIGHT">
+                                 <StackPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
+                                 </StackPane.margin>
+                              </RadioButton>
+                           </children>
+                        </StackPane>
+                        <ScrollPane fx:id="right" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" minWidth="410.0" style="-fx-background-color: Transparent;" vbarPolicy="ALWAYS" />
+                    </items>
+                  </SplitPane>
+                  <GridPane id="key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
+                      <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints vgrow="NEVER" />
+                      <RowConstraints vgrow="NEVER" />
+                      <RowConstraints vgrow="NEVER" />
+                        <RowConstraints vgrow="NEVER" />
+                        <RowConstraints vgrow="NEVER" />
+                        <RowConstraints vgrow="NEVER" />
+                    </rowConstraints>
+                     <children>
+                        <Rectangle fx:id="very_high" arcHeight="5.0" arcWidth="5.0" fill="#37ffcd" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" />
+                        <Rectangle fx:id="high_to_low" arcHeight="5.0" arcWidth="5.0" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.01666666753590107" green="1.0" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.49143302329232763">
+                                       <color>
+                                          <Color red="1.0" green="0.9381107687950134" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle fx:id="very_low" arcHeight="5.0" arcWidth="5.0" fill="#2b1fd7" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="3" />
+                        <Rectangle fx:id="unknown" arcHeight="5.0" arcWidth="5.0" fill="#a625ec" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="4" />
+                        <Rectangle fx:id="out_of_range" arcHeight="5.0" arcWidth="5.0" fill="#6d6d6d" height="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="5" />
+                        <Label text="Perfect Rating (100)" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="High Rating" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Low Rating" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Very Low Rating (&lt;80)" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Unknown Rating" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label text="Out of Desired Range" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="10.0" left="20.0" />
+                     </StackPane.margin>
+                  </GridPane>
                </children>
-               <StackPane.margin>
-                  <Insets bottom="10.0" left="20.0" />
-               </StackPane.margin>
-            </GridPane>
-         </children>
-      </StackPane>
-   </center>
-   <top>
-      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" onMouseDragged="#toMouse" onMousePressed="#setOffset" prefHeight="40.0" styleClass="title_bar" BorderPane.alignment="CENTER">
+            </StackPane>
+         </center>
+         <top>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseDragged="#toMouse" onMousePressed="#setOffset" prefHeight="38.0" styleClass="title_bar" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+      <Region maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onMouseDragged="#eastResize" onMousePressed="#setOffset" prefWidth="3.0" StackPane.alignment="CENTER_RIGHT">
+         <cursor>
+            <Cursor fx:constant="E_RESIZE" />
+         </cursor>
+      </Region>
+      <Region maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseDragged="#southResize" onMousePressed="#setOffset" prefHeight="3.0" StackPane.alignment="BOTTOM_CENTER">
+         <cursor>
+            <Cursor fx:constant="S_RESIZE" />
+         </cursor>
+      </Region>
+      <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#southeastResize" onMousePressed="#setOffset" prefHeight="5.0" prefWidth="5.0" StackPane.alignment="BOTTOM_RIGHT">
+         <cursor>
+            <Cursor fx:constant="SE_RESIZE" />
+         </cursor>
+      </Region>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseDragged="#toMouse" onMousePressed="#setOffset" prefHeight="40.0" styleClass="title_bar" StackPane.alignment="TOP_CENTER">
          <children>
             <Label fx:id="title" maxWidth="1.7976931348623157E308" prefHeight="31.0" styleClass="window_title" text=" ">
                <HBox.margin>
@@ -195,5 +216,5 @@
             </Button>
          </children>
       </HBox>
-   </top>
-</BorderPane>
+   </children>
+</StackPane>

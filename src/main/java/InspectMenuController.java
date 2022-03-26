@@ -35,6 +35,8 @@ public class InspectMenuController implements Initializable {
 
     @FXML private Label title;
 
+    @FXML private RadioButton unload_radio;
+
     @FXML private ComboBox<Integer> min, max;
     @FXML private RadioButton show_invalid;
     @FXML private ComboBox<String> sortby, order;
@@ -50,6 +52,7 @@ public class InspectMenuController implements Initializable {
     private static ArrayList<NewAirbnbListing> currentListings;
     private static Stage stage = null;
     private static double xOffset, yOffset;
+    private static double widthOffset, heightOffset;
 
     /**
      * Assigns new list order parameters and then calls a relist for the inspect-listing menu.
@@ -81,12 +84,15 @@ public class InspectMenuController implements Initializable {
     }
 
     /**
-     * Sets position of mouse on title bar. Used for recreating how window tile bars work.
+     * Sets position of mouse on the stage. Used for recreating how window tile bars work and window resizing.
      * @param event MouseEvent call.
      */
     @FXML private void setOffset(MouseEvent event){
         xOffset = stage.getX() - event.getScreenX();
         yOffset = stage.getY() - event.getScreenY();
+
+        widthOffset = stage.getWidth();
+        heightOffset = stage.getHeight();
     }
 
     /**
@@ -96,6 +102,43 @@ public class InspectMenuController implements Initializable {
     @FXML private void toMouse(MouseEvent event){
         stage.setX(event.getScreenX() + xOffset);
         stage.setY(event.getScreenY() + yOffset);
+    }
+
+    /**
+     * Implements a west corner stage resize functionality which isn't native to undecorated windows.
+     * @param event MouseEvent call.
+     */
+    @FXML private void eastResize(MouseEvent event){
+        double newWidth = widthOffset + event.getSceneX() + xOffset;
+        if(newWidth > stage.getMinWidth()) {
+            stage.setWidth(newWidth);
+        }
+    }
+
+    /**
+     * Implements a south corner stage resize functionality which isn't native to undecorated windows.
+     * @param event MouseEvent call.
+     */
+    @FXML private void southResize(MouseEvent event){
+        double newHeight = heightOffset + event.getSceneY() + yOffset;
+        if(newHeight > stage.getMinHeight()) {
+            stage.setHeight(newHeight);
+        }
+    }
+
+    /**
+     * Implements a south-west corner stage resize functionality which isn't native to undecorated windows.
+     * @param event MouseEvent call.
+     */
+    @FXML private void southeastResize(MouseEvent event){
+        double newWidth = widthOffset + event.getSceneX() + xOffset;
+        if(newWidth > stage.getMinWidth()) {
+            stage.setWidth(newWidth);
+        }
+        double newHeight = heightOffset + event.getSceneY() + yOffset;
+        if(newHeight > stage.getMinHeight()) {
+            stage.setHeight(newHeight);
+        }
     }
 
     /**
@@ -115,13 +158,17 @@ public class InspectMenuController implements Initializable {
             e.printStackTrace();
         }
         assert root != null;
-        Scene scene = new Scene(root);
 
-        if (stage == null) {
-            stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
+        if (stage != null) {
+            stage.close();
         }
 
+        stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setMinWidth(750);
+        stage.setMinHeight(400);
+
+        Scene scene = new Scene(root, 1400, 800);
         stage.setScene(scene);
         stage.setTitle(title);
         stage.show();
@@ -171,6 +218,9 @@ public class InspectMenuController implements Initializable {
         very_low.setFill(ListingBox.VERY_LOW_REVIEW_COLOUR);
         unknown.setFill(ListingBox.UNKNOWN_REVIEW_COLOUR);
         out_of_range.setFill(ListingBox.OUT_OF_RANGE_COLOUR);
+
+        // Assigning the Unload-Radio status.
+        unload_radio.setSelected(InspectListingMenu.isUnloadOffscreen());
 
         // Assigning the SplitPane contents
         inspectMenu = new InspectListingMenu(currentListings);

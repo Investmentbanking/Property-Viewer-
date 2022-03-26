@@ -94,6 +94,13 @@ public abstract class MenuShape extends StackPane {
     abstract Shape getBoroughShape();
 
     /**
+     * Set the position of both X and Y of the object.
+     * @param x X position to be set.
+     * @param y Y position to be set.
+     */
+    abstract void setXY(double x, double y);
+
+    /**
      * Calculates what the colour of the circle should be based on the price.
      * @return the calculated colour of the circle.
      */
@@ -113,13 +120,6 @@ public abstract class MenuShape extends StackPane {
 
         return new Color(r, g, b, 1.0);
     }
-
-    /**
-     * Set the position of both X and Y of the object.
-     * @param x X position to be set.
-     * @param y Y position to be set.
-     */
-    abstract void setXY(double x, double y);
 
     /**
      * Makes the cursor a hand and plays transitions on mouse enter.
