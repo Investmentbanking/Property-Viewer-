@@ -44,7 +44,7 @@ public class MapController implements Initializable {
     }
 
     /**
-     * Switches the displayed map between Bubble and Geographical.
+     * Switches the displayed map between Geographical and Bubble.
      */
     @FXML
     private void switchMap(){
