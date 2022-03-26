@@ -58,7 +58,6 @@ public class InspectMenuController implements Initializable {
      * Assigns new list order parameters and then calls a relist for the inspect-listing menu.
      */
     @FXML private void callRelist(){
-        System.out.println("Relist Called");
         InspectListingMenu.setSortSelected(sortby.getValue());
         InspectListingMenu.setOrderSelected(order.getValue());
         InspectListingMenu.setShowOutOfRange(show_invalid.isSelected());
