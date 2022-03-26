@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -56,7 +57,8 @@ public class InspectMenuController implements Initializable {
     /**
      * Assigns new list order parameters and then calls a relist for the inspect-listing menu.
      */
-    @FXML private void callRelist(){
+    @FXML
+    private void callRelist(){
         InspectListingMenu.setSortSelected(sortby.getValue());
         InspectListingMenu.setOrderSelected(order.getValue());
         InspectListingMenu.setShowOutOfRange(show_invalid.isSelected());
@@ -70,14 +72,16 @@ public class InspectMenuController implements Initializable {
     /**
      * Toggles if the images should unload offscreen or not.
      */
-    @FXML private void toggleOffScreenUnload(){
+    @FXML
+    private void toggleOffScreenUnload(){
         inspectMenu.toggleUnloadOffscreen();
     }
 
     /**
      * Closes the window.
      */
-    @FXML private void closeWindow(){
+    @FXML
+    private void closeWindow(){
         stage.close();
     }
 
@@ -85,7 +89,8 @@ public class InspectMenuController implements Initializable {
      * Sets position of mouse on the stage. Used for recreating how window tile bars work and window resizing.
      * @param event MouseEvent call.
      */
-    @FXML private void setOffset(MouseEvent event){
+    @FXML
+    private void setOffset(MouseEvent event){
         xOffset = stage.getX() - event.getScreenX();
         yOffset = stage.getY() - event.getScreenY();
 
@@ -97,16 +102,18 @@ public class InspectMenuController implements Initializable {
      * Moves window to mouse. Used for recreating how window tile bars work.
      * @param event MouseEvent call.
      */
-    @FXML private void toMouse(MouseEvent event){
+    @FXML
+    private void toMouse(MouseEvent event){
         stage.setX(event.getScreenX() + xOffset);
         stage.setY(event.getScreenY() + yOffset);
     }
 
     /**
-     * Implements a west corner stage resize functionality which isn't native to undecorated windows.
+     * Implements a west corner stage resize functionality which isn't native to undecorated stages.
      * @param event MouseEvent call.
      */
-    @FXML private void eastResize(MouseEvent event){
+    @FXML
+    private void eastResize(MouseEvent event){
         double newWidth = widthOffset + event.getSceneX() + xOffset;
         if(newWidth > stage.getMinWidth()) {
             stage.setWidth(newWidth);
@@ -114,10 +121,11 @@ public class InspectMenuController implements Initializable {
     }
 
     /**
-     * Implements a south corner stage resize functionality which isn't native to undecorated windows.
+     * Implements a south corner stage resize functionality which isn't native to undecorated stages.
      * @param event MouseEvent call.
      */
-    @FXML private void southResize(MouseEvent event){
+    @FXML
+    private void southResize(MouseEvent event){
         double newHeight = heightOffset + event.getSceneY() + yOffset;
         if(newHeight > stage.getMinHeight()) {
             stage.setHeight(newHeight);
@@ -125,18 +133,21 @@ public class InspectMenuController implements Initializable {
     }
 
     /**
-     * Implements a south-west corner stage resize functionality which isn't native to undecorated windows.
+     * Implements a south-west corner stage resize functionality which isn't native to undecorated stages.
      * @param event MouseEvent call.
      */
-    @FXML private void southeastResize(MouseEvent event){
-        double newWidth = widthOffset + event.getSceneX() + xOffset;
-        if(newWidth > stage.getMinWidth()) {
-            stage.setWidth(newWidth);
-        }
-        double newHeight = heightOffset + event.getSceneY() + yOffset;
-        if(newHeight > stage.getMinHeight()) {
-            stage.setHeight(newHeight);
-        }
+    @FXML
+    private void southeastResize(MouseEvent event){
+        southResize(event);
+        eastResize(event);
+    }
+
+    /**
+     * Sets a new listing to display in the Inspect-Menu and also refreshed the content.
+     * @param newListing The new listing you wish to set the Inspect-Menu to.
+     */
+    public static void setInspectBoxListing(NewAirbnbListing newListing){
+        inspectBoxController.setListing(newListing);
     }
 
     /**
@@ -163,21 +174,13 @@ public class InspectMenuController implements Initializable {
 
         stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setMinWidth(750);
-        stage.setMinHeight(400);
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
 
         Scene scene = new Scene(root, 1400, 800);
         stage.setScene(scene);
         stage.setTitle(title);
         stage.show();
-    }
-
-    /**
-     * Sets a new listing to display in the Inspect-Menu and also refreshed the content.
-     * @param newListing The new listing you wish to set the Inspect-Menu to.
-     */
-    public static void setInspectBoxListing(NewAirbnbListing newListing){
-        inspectBoxController.setListing(newListing);
     }
 
     /**
@@ -193,7 +196,7 @@ public class InspectMenuController implements Initializable {
             title.setText(stage.getTitle());
         });
 
-        // Assigning the ComboBox's
+        // Assigning the ComboBoxes.
         min.setItems(Pane1Controller.AVAILABLE_PRICES);
         max.setItems(Pane1Controller.AVAILABLE_PRICES);
         min.setValue(RuntimeDetails.getMinimumPrice());
@@ -204,7 +207,7 @@ public class InspectMenuController implements Initializable {
         sortby.getSelectionModel().selectFirst();
         order.getSelectionModel().selectFirst();
 
-        // Assigning the colours of they key.
+        // Assigning the colours of the key with the correct colours determined by the ListingBox constants.
         very_high.setFill(ListingBox.VERY_HIGH_REVIEW_COLOUR);
         Stop[] stops = new Stop[] {
                 new Stop(0.0, ListingBox.HIGH_REVIEW_COLOUR),
@@ -220,14 +223,14 @@ public class InspectMenuController implements Initializable {
         // Assigning the Unload-Radio status.
         unload_radio.setSelected(InspectListingMenu.isUnloadOffscreen());
 
-        // Assigning the SplitPane contents
+        // Assigning the SplitPane contents.
         inspectMenu = new InspectListingMenu(currentListings);
         left.setCenter(inspectMenu);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane inspectBox = null;
         try {
-            inspectBox = fxmlLoader.load((getClass().getResource("inspectbox.fxml")).openStream());
+            inspectBox = fxmlLoader.load((Objects.requireNonNull(getClass().getResource("inspectbox.fxml"))).openStream());
         } catch (IOException e){
             e.printStackTrace();
         }

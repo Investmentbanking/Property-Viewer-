@@ -2,6 +2,7 @@
     -fx-font-family: Arial;
     -fx-background-color: #36393f;
 }
+
 .select_options_title{
     -fx-font-size: 17;
     -fx-background-color: #2f3136;
@@ -10,19 +11,23 @@
 .inspect-listing .list-cell{
     -fx-background-color: Transparent;
 }
+
 .radio-button{
     -fx-text-fill: #dcddde;
     -fx-font-size: 17;
 }
+
 #unload-radio{
     -fx-background-color: rgba(0,0,0,0.5);
     -fx-background-radius: 20;
     -fx-padding: 10;
 }
+
 .radio-button .radio {
     -fx-border-width: 0;
     -fx-background-color: #202225;
 }
+
 .radio-button .dot {
     -fx-mark-color: #e83d3d;
     -fx-mark-highlight-color: #e83d3d;
@@ -32,6 +37,7 @@
     -fx-background-color: #dcddde;
     -fx-background-radius: 20;
 }
+
 .select_options_title .button:hover{
     -fx-background-color: #e83d3d;
     -fx-text-fill: #dcddde;
@@ -42,62 +48,72 @@
     -fx-background-color: #202225;
     -fx-background-radius: 20;
 }
+
 .combo-box > .list-cell {
     -fx-background:  #202225;
     -fx-background-color: #202225;
     -fx-background-radius: 20;
     -fx-text-fill: #dcddde;
 }
+
 .combo-box-popup .list-cell:odd{
     -fx-text-fill: #dcddde;
     -fx-background-color: #36393f;
 }
+
 .combo-box-popup .list-cell:even{
     -fx-text-fill: #dcddde;
     -fx-background: #2f3136;
     -fx-background-color: #2f3136;
 }
+
 .combo-box-popup .list-cell:selected {
     -fx-text-fill: #dcddde;
     -fx-background: #202225;
     -fx-background-color: #202225;
 }
+
 .combo-box-popup .list-cell:hover {
     -fx-text-fill: #dcddde;
     -fx-background: #202225;
     -fx-background-color: #202225;
 }
 
-
-
-
-
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
+
 .label{
     -fx-text-fill: #dcddde;
 }
+
 .title_bar{
     -fx-background-color: #202225;
 }
+
 .window_title{
     -fx-font-size: 25;
 }
+
 .title_button{
     -fx-text-fill: #dcddde;
     -fx-font-size: 20;
     -fx-background-color: Transparent;
 }
+
 .title_button:hover{
     -fx-background-color: Red;
+}
+.key_font {
+    -fx-font-family: "Comic Sans MS";
 }
 
 #key{
     -fx-background-color: rgba(0,0,0,0.5);
     -fx-background-radius: 20;
     -fx-padding: 15;
-    -fx-font-family: Arial;
+    -fx-font-weight: Bold;
+    -fx-font-size: 15;
 }
 
 .split-pane:horizontal > .split-pane-divider {
@@ -146,5 +162,3 @@
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }
-
-
