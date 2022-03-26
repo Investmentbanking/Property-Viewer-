@@ -17,6 +17,8 @@ public class DefaultStatisticsCollector {
     }
 
     /**
+     * Returns the total number of available properties,
+     * based off the price range.
      * @return The size of the listings in the old CSV file.
      */
     public static int getTotalAvailableProperties(){
@@ -24,15 +26,17 @@ public class DefaultStatisticsCollector {
     }
 
     /**
+     * Returns the borough with the most expensive listing,
+     * based off the listing price * minimum price.
      * @return borough The borough with the most expensive property.
      */
     public static String getMostExpensiveBorough() {
-        int mostExpensivePrice = 0;
+        int highestPrice = 0; // highest price = price * min number of nights
         String borough = "";
-        for(OldAirbnbListing listing: Statistics.getOldListings()) {
-            int listingTotal = listing.getPrice() * listing.getMinimumNights();
-            if(listingTotal > mostExpensivePrice) {
-                listingTotal = mostExpensivePrice;
+        for (OldAirbnbListing listing : Statistics.getOldListings()) {
+            int listingPrice = listing.getPrice() * listing.getMinimumNights();
+            if (listingPrice > highestPrice) {
+                highestPrice = listingPrice;
                 borough = listing.getNeighbourhood();
             }
         }
@@ -42,10 +46,10 @@ public class DefaultStatisticsCollector {
     /**
      * @return count The total number of non-private rooms.
      */
-    public static int getNumberOfNonPrivateRooms() {
+    public static int getNonPrivateProperties() {
         int count = 0;
-        for(OldAirbnbListing listing : Statistics.getOldListings()) {
-            if(!listing.getRoom_type().equals("Private Room")) {
+        for (OldAirbnbListing listing : Statistics.getOldListings()) {
+            if (!listing.getRoom_type().equals("Private room")) {
                 count++;
             }
         }
@@ -53,28 +57,29 @@ public class DefaultStatisticsCollector {
     }
 
     /**
-     * 
+     * Returns the average number of listings.
      * @return
      */
     public static int getAverageListings(){
         int count = 0;
-        for(NewAirbnbListing listing : Statistics.getNewListings()) {
-            count += listing.getHostListings();
+        for(OldAirbnbListing listing : Statistics.getOldListings()) {
+            count += listing.getCalculatedHostListingsCount();
         }
-        return count/Statistics.getNewListings().size();
+        return count/Statistics.getOldListings().size();
     }
 
     /**
-     *
-     * @return
+     * Returns the borough with the cheapest listing,
+     * based off the listing price * minimum nights.
+     * @return borough The cheapest borough.
      */
     public static String getCheapestBorough() {
-        double cheapestPrice = Statistics.getOldListings().get(0).getPrice() * Statistics.getOldListings().get(0).getMinimumNights();
+        int lowestPrice = Statistics.getOldListings().get(0).getPrice() * Statistics.getOldListings().get(0).getMinimumNights(); // use first property as initial price
         String borough = Statistics.getOldListings().get(0).getNeighbourhood();
-        for(OldAirbnbListing listing : Statistics.getOldListings()) {
-            double listingTotal = listing.getPrice() * listing.getMinimumNights();
-            if(listingTotal < cheapestPrice) {
-                listingTotal = cheapestPrice;
+        for (OldAirbnbListing listing : Statistics.getOldListings()) {
+            int listingPrice = listing.getPrice() * listing.getMinimumNights();
+            if (listingPrice < lowestPrice) {
+                lowestPrice = listingPrice;
                 borough = listing.getNeighbourhood();
             }
         }
@@ -97,7 +102,7 @@ public class DefaultStatisticsCollector {
      * 
      * @return
      */
-    public static double getHighestReviewsPerMonth(){
+    public static double getHighestReviewsPerMonth() {
         double highest = 0;
         for(OldAirbnbListing listing : Statistics.getOldListings()) {
             double listingReviews = listing.getReviewsPerMonth();
