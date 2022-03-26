@@ -90,7 +90,9 @@ public class InspectListingMenu extends ListView<HBox> {
             long now = System.currentTimeMillis();
             if (now - lastScroll > SCROLLEVENT_DELAY) {
                 lastScroll = 0;
-                fireEvent(new Event(this, this, SCROLL_TICK));
+                if (getItems().size() != 0) {
+                    fireEvent(new Event(this, this, SCROLL_TICK));
+                }
             }
         }));
         notifyLoop.setCycleCount(Timeline.INDEFINITE);
@@ -194,7 +196,9 @@ public class InspectListingMenu extends ListView<HBox> {
      */
     public void reList(){
         generate(currentListings);
-        updateOnScreenImages(false);
+        if (getItems().size() != 0) {
+            updateOnScreenImages(false);
+        }
     }
 
     /**
