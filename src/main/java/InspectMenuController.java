@@ -21,7 +21,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -29,7 +28,7 @@ import java.util.ResourceBundle;
  * On the left it displays all the listings and on the right is all the info for that listing.
  *
  * @author Cosmo Colman (K21090628)
- * @version 23.03.2022
+ * @version 26.03.2022
  */
 public class InspectMenuController implements Initializable {
 
@@ -58,7 +57,6 @@ public class InspectMenuController implements Initializable {
      * Assigns new list order parameters and then calls a relist for the inspect-listing menu.
      */
     @FXML private void callRelist(){
-        System.out.println("Relist Called");
         InspectListingMenu.setSortSelected(sortby.getValue());
         InspectListingMenu.setOrderSelected(order.getValue());
         InspectListingMenu.setShowOutOfRange(show_invalid.isSelected());
@@ -229,11 +227,11 @@ public class InspectMenuController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Pane inspectBox = null;
         try {
-            inspectBox = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("inspectbox.fxml")).openStream());
+            inspectBox = fxmlLoader.load((getClass().getResource("inspectbox.fxml")).openStream());
         } catch (IOException e){
             e.printStackTrace();
         }
-        inspectBoxController = (InspectBoxController)fxmlLoader.getController();
+        inspectBoxController = fxmlLoader.getController();
         right.setContent(inspectBox);
     }
 }

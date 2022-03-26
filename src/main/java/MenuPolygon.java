@@ -1,3 +1,8 @@
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -10,7 +15,7 @@ import java.util.HashMap;
  * A pane of a polygon that represents a London borough. The shape is a representation of reality.
  *
  * @author Cosmo Colman (K21090628)
- * @version 24.03.2022
+ * @version 26.03.2022
  */
 public class MenuPolygon extends MenuShape {
 
