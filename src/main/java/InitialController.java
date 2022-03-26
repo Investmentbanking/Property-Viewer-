@@ -3,7 +3,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -22,15 +21,9 @@ import java.net.URL;
  */
 public class InitialController extends Application {
 
-    @FXML // login button
-    private Button login;
-    @FXML // register button
-    private Button register;
-    @FXML // guest button
-    private Button guest;
+
     @FXML // text label telling the user to wait
     private Label loadingLabel;
-
     // current scene being presented
     private static Scene scene;
 
@@ -45,30 +38,19 @@ public class InitialController extends Application {
     }
     /**
      * sets the root scene to stage
-     * with pane0.fxml
-     * shows the scene
+     * with pane0.fxml and shows the stage
      * @param stage stage of application
      */
     @Override
     public void start(Stage stage) throws IOException {
-
-    RuntimeDetails.setNewAirbnbListings(AirbnbDataLoader.loadNewDataSet());     // Loads the new dataset being used for this project.
-    RuntimeDetails.setOldAirbnbListings(AirbnbDataLoader.loadOldDataSet());     // Loads the old dataset being used for this project.
-
-//        URL url = getClass().getResource("pane4.fxml");
-//        assert url != null;
-//        Parent root = FXMLLoader.load(url);
-//        scene = new Scene(root);
-//        stage.setTitle("Scene Viewer - Select an Option");
-//        stage.setScene(scene);
-//        stage.show();
-
-        // FOR TESTING MAP AND INSPECT MENU
+        RuntimeDetails.setNewAirbnbListings(AirbnbDataLoader.loadNewDataSet());     // Loads the new dataset being used for this project.
+        RuntimeDetails.setOldAirbnbListings(AirbnbDataLoader.loadOldDataSet());     // Loads the old dataset being used for this project.
         URL url = getClass().getResource("pane0.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);
-        stage.setTitle("lol");
+        stage.setTitle("Scene Viewer 1.0");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -79,9 +61,7 @@ public class InitialController extends Application {
      */
     @FXML
     public void loginClicked(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("login.fxml");
-        assert url != null;
-        scene.setRoot(FXMLLoader.load(url));
+        setRoot("login.fxml");
     }
 
     /**
@@ -90,9 +70,7 @@ public class InitialController extends Application {
      */
     @FXML
     public void registerClicked(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("signup.fxml");
-        assert url != null;
-        scene.setRoot(FXMLLoader.load(url));
+        setRoot("signup.fxml");
     }
 
     /**
@@ -101,9 +79,7 @@ public class InitialController extends Application {
      */
     @FXML
     public void guestClicked(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("pane1.fxml");
-        assert url != null;
-        scene.setRoot(FXMLLoader.load(url));
+        setRoot("pane1.fxml");
     }
 
     /**

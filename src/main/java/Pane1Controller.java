@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * handles pane switching
  *
  * @author Burhan Tekcan K21013451
- * @version 1.0
+ * @version 1.2
  */
 public class Pane1Controller extends Application {
 
@@ -51,8 +51,6 @@ public class Pane1Controller extends Application {
     private Label priceRange;
     @FXML // the central pane where content is displayed
     private BorderPane centrePane;
-    @FXML // the root pane
-    private BorderPane mainPane;
 
     // the first pane; stored to show again if user goes back to pane 1
     private Node pane1;
@@ -64,8 +62,7 @@ public class Pane1Controller extends Application {
     public static final ObservableList<Integer> AVAILABLE_PRICES = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
     // object of the current users account
     private static Account currentUser;
-
-    //TEST
+    // Statistics combobox
     ComboBox combobox;
 
 
@@ -78,25 +75,8 @@ public class Pane1Controller extends Application {
     }
 
     /**
-     * Simple getter method to return the current users account as object
-     * @return the users account
-     */
-    public static Account getCurrentUser() {
-        return currentUser;
-    }
-
-    /**
-     * A setter method to set the current users Username as the argument string
-     * @param username the current users username
-     */
-    public static void setCurrentUser(String username){
-        currentUser.setUsername(username);
-    }
-
-
-    /**
      * Initialise the settings for the scene
-     * sets the available prices and initial conditions for pane 1
+     * sets the available prices and initial conditions for the welcome pane
      */
     @FXML
     private void initialize()
@@ -118,11 +98,10 @@ public class Pane1Controller extends Application {
     public Pane1Controller() throws IOException
     {
         Node pane2 = FXMLLoader.load(getClass().getResource("map.fxml"));
-        Node pane3 = FXMLLoader.load(getClass().getResource("login.fxml"));
         Node pane4 = FXMLLoader.load(getClass().getResource("pane4.fxml"));
-        sceneNodes.add(null);
+        sceneNodes.add(null); // it is already created and in scene.
         sceneNodes.add(pane2);
-        sceneNodes.add(pane3);
+        sceneNodes.add(null); // uses separate method to create scene
         sceneNodes.add(pane4);
         pointer = 0;
     }
@@ -223,16 +202,19 @@ public class Pane1Controller extends Application {
             case 0:
                 centrePane.getChildren().remove(centrePane.getCenter());
                 centrePane.setCenter(pane1);
+                togglePriceBoxes(false);
                 break;
             case 2:
 
                 centrePane.getChildren().remove(centrePane.getCenter());
                 changeToStats();
+                togglePriceBoxes(true);
                 break;
 
             default:
                 centrePane.getChildren().remove(centrePane.getCenter());
                 centrePane.setCenter(sceneNodes.get(pointer));
+                togglePriceBoxes(true);
         }
         setPaneLabelText();
     }
@@ -250,28 +232,28 @@ public class Pane1Controller extends Application {
             case 0:
                 centrePane.getChildren().remove(centrePane.getCenter());
                 centrePane.setCenter(pane1);
+                togglePriceBoxes(false);
                 break;
             case 2:
 
                 centrePane.getChildren().remove(centrePane.getCenter());
                 changeToStats();
+                togglePriceBoxes(true);
                 break;
 
             default:
                 centrePane.getChildren().remove(centrePane.getCenter());
                 centrePane.setCenter(sceneNodes.get(pointer));
+                togglePriceBoxes(true);
         }
         setPaneLabelText();
     }
 
     /**
-     * Confirms the entered prices
-     * if the prices are valid,
-     * flag set true, prices set in RuntimeDetails
-     * selected prices are outputted
-     * if the prices are invalid,
-     * appropriate error created, values set null and flag set false
-     * @param event ActionEvent of confirm prices button being pressed
+     * Confirms the entered prices; if the prices are valid:
+     * the flag is set true, prices are set in RuntimeDetails, and the selected prices are outputted.
+     * If the prices are invalid: appropriate errors are created, values are set to null and flag is set false.
+     * @param event ActionEvent of confirm prices button being pressed.
      */
     @FXML
     public void confirmPrices(ActionEvent event)
@@ -295,7 +277,7 @@ public class Pane1Controller extends Application {
         else {
             RuntimeDetails.setMinimumPrice(minPriceInput);
             RuntimeDetails.setMaximumPrice(maxPriceInput);
-            priceRange.textProperty().set(minPriceInput + " to " + maxPriceInput);
+            priceRange.textProperty().set(RuntimeDetails.getPriceRange());
             RuntimeDetails.setValidPrices(true);
             checkValidDetails();
         }
@@ -367,32 +349,11 @@ public class Pane1Controller extends Application {
         }
     }
 
-    //TEST
-
-    private boolean isSelectedDefault() {
-        return combobox.getSelectionModel().getSelectedItem().equals("default");
-    }
-
-    private boolean isSelectedReviews() {
-        return combobox.getSelectionModel().getSelectedItem().equals("reviews");
-    }
-
-    private boolean isSelectedBorough() {
-        return combobox.getSelectionModel().getSelectedItem().equals("borough");
-    }
-
-    public void getCatergoryStartStats(Scene scene) {
-        Text stat11 = (Text) scene.lookup("#stat1");
-        Text stat22 = (Text) scene.lookup("#stat2");
-        Text stat33 = (Text) scene.lookup("#stat3");
-        Text stat44 = (Text) scene.lookup("#stat4");
-
-        stat11.setText(Statistics.getNextStat());
-        stat22.setText(Statistics.getNextStat());
-        stat33.setText(Statistics.getNextStat());
-        stat44.setText(Statistics.getNextStat());
-    }
-
+    /**
+     * Gets the fxml file, adding the pane to the center of the scene,
+     * setting the initial values for the statistics and prompts
+     * and defining the choice-box actions.
+     */
     private void changeToStats() throws IOException {
         URL url = getClass().getResource("Statistics.fxml");
         assert url != null;
@@ -410,7 +371,6 @@ public class Pane1Controller extends Application {
 
                 getCatergoryStartStats(scene);
             }
-
             else if (isSelectedReviews()) {
                 Statistics.createReviewStats();
 
@@ -427,5 +387,77 @@ public class Pane1Controller extends Application {
                 getCatergoryStartStats(scene);
             }
         });
+    }
+
+    /**
+     * Gets the selected value from the Statistics selection box,
+     * returns true if the value is equal to 'default'
+     * @return true if 'default' is selected in Statistics choicebox
+     */
+    private boolean isSelectedDefault() {
+        return combobox.getSelectionModel().getSelectedItem().equals("default");
+    }
+
+
+    /**
+     * Gets the selected value from the Statistics selection box,
+     * returns true if the value is equal to 'reviews'
+     * @return true if 'reviews' 'is selected in Statistics choicebox
+     */
+    private boolean isSelectedReviews() {
+        return combobox.getSelectionModel().getSelectedItem().equals("reviews");
+    }
+
+    /**
+     * Gets the selected value from the Statistics selection box,
+     * returns true if the value is equal to 'borough'
+     * @return true if 'borough' is selected in Statistics choicebox
+     */
+    private boolean isSelectedBorough() {
+        return combobox.getSelectionModel().getSelectedItem().equals("borough");
+    }
+
+    /**
+     * Assigns the text areas to variables from the scene
+     * setting the contents to Statistics values
+     * @param scene the Statistics panel scene
+     */
+    public void getCatergoryStartStats(Scene scene) {
+        Text stat11 = (Text) scene.lookup("#stat1");
+        Text stat22 = (Text) scene.lookup("#stat2");
+        Text stat33 = (Text) scene.lookup("#stat3");
+        Text stat44 = (Text) scene.lookup("#stat4");
+
+        stat11.setText(Statistics.getNextStat());
+        stat22.setText(Statistics.getNextStat());
+        stat33.setText(Statistics.getNextStat());
+        stat44.setText(Statistics.getNextStat());
+    }
+
+    /**
+     * Simple getter method to return the current users account as object
+     * @return the users account
+     */
+    public static Account getCurrentUser() {
+        return currentUser;
+    }
+
+    /**
+     * A setter method to set the current users Username as the argument string
+     * @param username the current users username
+     */
+    public static void setCurrentUser(String username){
+        currentUser.setUsername(username);
+    }
+
+    /**
+     * Enables or Disables price boxes and confirm button depending on boolean input
+     * @param toggle true to disable price boxes and confirm button
+     */
+    private void togglePriceBoxes(boolean toggle)
+    {
+        minimumPriceBox.setDisable(toggle);
+        maximumPriceBox.setDisable(toggle);
+        confirmPrice.setDisable(toggle);
     }
 }
