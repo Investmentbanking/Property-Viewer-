@@ -3,32 +3,42 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 /**
- * Initialises and sorts the boroughs with their listings.
+ * Initialises and sorts the boroughs with their listings and makes hem accessible if needed.
  * @author Cosmo Colman (K21090628)
  * @version 26.03.2022
  */
 public class BoroughMap {
 
-    private static ArrayList<Borough> boroughs;
+    private static final ArrayList<Borough> BOROUGHS;
     private static HashMap<Borough, ArrayList<NewAirbnbListing>> boroughListings;
 
     static{
         ArrayList<NewAirbnbListing> listings = RuntimeDetails.getNewAirbnbListings();
-
-        boroughs = initialiseBoroughs(listings);
-        boroughListings = initialiseBoroughArrayList(listings, boroughs);
+        BOROUGHS = initialiseBoroughs(listings);
+        boroughListings = initialiseBoroughArrayList(listings);
     }
 
+    /**
+     * Constructor, no values needing to be initialised.
+     */
     public BoroughMap() {
 
     }
 
+    /**
+     * Get the HashMap of boroughs to their listings.
+     * @return The HashMap of boroughs to their listings.
+     */
     public static HashMap<Borough, ArrayList<NewAirbnbListing>> getBoroughListings() {
         return boroughListings;
     }
 
+    /**
+     * Get the list of all boroughs.
+     * @return The list of all boroughs.
+     */
     public static ArrayList<Borough> getBoroughs() {
-        return boroughs;
+        return BOROUGHS;
     }
 
     /**
@@ -81,14 +91,13 @@ public class BoroughMap {
     /**
      * Initialised which listings belong to what Borough.
      * @param allListings The list of all properties.
-     * @param allBoroughs The list of all Boroughs.
      * @return The HashMap which connects the list of properties in a borough to the Borough.
      */
-    private static HashMap<Borough, ArrayList<NewAirbnbListing>> initialiseBoroughArrayList(ArrayList<NewAirbnbListing> allListings, ArrayList<Borough> allBoroughs) {
+    private static HashMap<Borough, ArrayList<NewAirbnbListing>> initialiseBoroughArrayList(ArrayList<NewAirbnbListing> allListings) {
         HashMap<Borough, ArrayList<NewAirbnbListing>> boroughAirbnbs = new HashMap<>();
         HashMap<String,Borough> boroughLookUp = new HashMap<>();
 
-        for (Borough borough : allBoroughs){
+        for (Borough borough : BoroughMap.BOROUGHS){
             boroughAirbnbs.put(borough, new ArrayList<>());
             boroughLookUp.put(borough.getName(), borough);
         }
