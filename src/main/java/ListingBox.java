@@ -4,35 +4,28 @@ import javafx.animation.ScaleTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * A pane class which is a box representing a specific listing. The box will display the image of the
  * property when called, and the colour represents the rating value.
  *
  * @author Cosmo Colman (K21090628)
- * @version 23.03.2022
+ * @version 26.03.2022
  */
 public class ListingBox extends StackPane {
 
-    private NewAirbnbListing listing;
+    private final NewAirbnbListing listing;
 
-    private Rectangle clip;         // Clips rating
-    private Image image = null;     // Put in imageView
-
+    private Image image = null;
     private boolean isImageLoaded;
 
     // Visible components
-    private Rectangle rating;
-    private ImageView imageView;
+    private final Rectangle rating;
+    private final ImageView imageView;
 
     private Color ratingColour, boxColour;
 
@@ -66,7 +59,8 @@ public class ListingBox extends StackPane {
         ratingColour = calculateRatingColour(listing.getReviewScoresRating());
         boxColour = ratingColour;
 
-        clip = new Rectangle();//20, 20, boxColour);
+        // Clips rating.
+        Rectangle clip = new Rectangle();
         clip.widthProperty().bind(widthProperty());
         clip.heightProperty().bind(heightProperty());
 
@@ -78,7 +72,7 @@ public class ListingBox extends StackPane {
         imageView.fitWidthProperty().bind(clip.heightProperty());
         imageView.setClip(clip);
 
-        // Full cover colour
+        // Full cover colour.
         rating = new Rectangle(20, 20, boxColour);
         rating.widthProperty().bind(widthProperty());
         rating.heightProperty().bind(heightProperty());
@@ -89,11 +83,12 @@ public class ListingBox extends StackPane {
         maxWidthProperty().bind(minWidthProperty());
         minHeightProperty().bind(minWidthProperty());
 
-        getChildren().addAll(imageView, rating);//, text);
+        getChildren().addAll(imageView, rating);
 
         setOnMouseEntered(this::highlight);
         setOnMouseExited(this::unhighlight);
 
+        // Hover Transitions and Aesthetics.
         filltRatingIn = new FillTransition(Duration.millis(100), rating, boxColour, boxColour.darker());
         filltRatingOut = new FillTransition(Duration.millis(100), rating, boxColour.darker(), boxColour);
 
@@ -155,13 +150,6 @@ public class ListingBox extends StackPane {
             image.cancel();
             imageView.setImage(DEFAULT_IMAGE);
         }
-    }
-
-    /**
-     * Cancel the loading of the image.
-     */
-    public void cancelLoad(){
-        image.cancel();
     }
 
     /**
