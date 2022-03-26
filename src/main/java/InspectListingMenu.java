@@ -179,9 +179,6 @@ public class InspectListingMenu extends ListView<HBox> {
                 }
             }
         }
-        else{
-            System.err.println("Unaccepted range for updating Images");
-        }
     }
 
     /**
