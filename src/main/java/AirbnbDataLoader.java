@@ -104,7 +104,7 @@ public class AirbnbDataLoader {
             int review_scores_checkin = convertInt(line[24]);
             int review_scores_communication = convertInt(line[25]);
             int review_scores_location = convertInt(line[26]);
-            double review_scores_value = convertDouble(line[27]);
+            int review_scores_value = convertInt(line[27]);
 
             NewAirbnbListing listing = new NewAirbnbListing(id, name, neighborhood_overview,
                     picture_url, host_id, host_name, host_response_time, host_picture_url,

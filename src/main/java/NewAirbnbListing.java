@@ -23,11 +23,11 @@ public class NewAirbnbListing {
     private final double longitude;                 // the longitude of the property
     private final String propertyType;              // The type of property, either "Private room" or "Entire Home/apt".
     private final int accommodates;                 // the number of people allowed in the property
-    private final double bathrooms;                    // the number of bathrooms
+    private final double bathrooms;                 // the number of bathrooms
     private final int bedrooms;                     // the number of bedrooms
     private final int beds;                         // the number of beds
     private final ArrayList<String> amenities;      // A list of all the amenities in the property
-    private final double price;                        // The price per night's stay
+    private final double price;                     // The price per night's stay
     private final int minimumNights;                // The minimum number of nights the listed property must be booked for
     private final int maximumNights;                // the maximum number of nights the listed property can be booked for
     private final int availability365;              // The total number of days in the year that the property is available for
@@ -36,7 +36,7 @@ public class NewAirbnbListing {
     private final int reviewScoresCheckin;          // The checkin score
     private final int reviewScoresCommunication;    // The communication score
     private final int reviewScoresLocation;         // the location score
-    private final double reviewScoresValue;         // the value score
+    private final int reviewScoresValue;            // the value score
 
     public NewAirbnbListing(String id, String name){
         this.id = id;
@@ -50,9 +50,9 @@ public class NewAirbnbListing {
         neighbourhoodCleansed = null;
         propertyType = null;
         amenities = null;
-        latitude = longitude = reviewScoresValue = bathrooms = bedrooms = beds = 0;
-        price = minimumNights = maximumNights = accommodates = hostListings = reviewScoresLocation = 0;
-        availability365 = reviewScoresRating = reviewScoresCleanliness = reviewScoresCheckin = reviewScoresCommunication = 0;
+        latitude = longitude = bathrooms = bedrooms = beds = 0;
+        price = minimumNights = maximumNights = accommodates = hostListings = availability365 = 0;
+        reviewScoresRating = reviewScoresCleanliness = reviewScoresCheckin = reviewScoresCommunication = reviewScoresValue = reviewScoresLocation = 0;
     }
 
     public NewAirbnbListing(String id, String name, String neighborhood_overview,
@@ -60,7 +60,7 @@ public class NewAirbnbListing {
                          int host_listings, String neighbourhood_cleansed, double latitude, double longitude, String property_type,
                          int accommodates, double bathrooms, int bedrooms, int beds, ArrayList<String> amenities, double price, int minimumNights,
                          int maximumNights, int availability365, int review_scores_rating, int review_scores_cleanliness, int review_scores_checkin,
-                         int review_scores_communication, int review_scores_location, double review_scores_value) {
+                         int review_scores_communication, int review_scores_location, int review_scores_value) {
         this.id = id;
         this.name = name;
         this.neighbourhoodOverview = neighborhood_overview;
@@ -199,7 +199,7 @@ public class NewAirbnbListing {
         return reviewScoresLocation;
     }
 
-    public double getReviewScoresValue() {
+    public int getReviewScoresValue() {
         return reviewScoresValue;
     }
 
