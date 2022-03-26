@@ -24,7 +24,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 
 /**
- * A ListView which displays all the listings in the form of ListingBox's.
+ * A ListView which displays all the listings in the form of ListingBoxes.
  * This is a list which the user can scroll to view all af the Boxes.
  *
  * @author Cosmo Colman (K21090628)
@@ -43,7 +43,7 @@ public class InspectListingMenu extends ListView<HBox> {
     private final int ROW_MAX = 6;          // How many boxes per row.
     private final DoubleProperty SIZE_PROPERTY = new SimpleDoubleProperty();    // Property for resize of boxes.
 
-    // Events on scroll
+    // Events on scroll // Assisted with help from https://stackoverflow.com/a/71573766/11245518
     private static final int SCROLLEVENT_DELAY = 250; // In milliseconds
     public static final EventType<Event> SCROLL_TICK = new EventType<>(InspectListingMenu.class.getName() + ".SCROLL_TICK");
     private long lastScroll = 0;
@@ -76,13 +76,8 @@ public class InspectListingMenu extends ListView<HBox> {
         generate(currentListings);
 
         // Events related to scrolling.
-        addEventHandler(SCROLL_TICK, e -> {
-            updateOnScreenImages(unloadOffscreen);
-        });
-
-        addEventFilter(ScrollEvent.ANY, (e) -> {
-            lastScroll = System.currentTimeMillis();
-        });
+        addEventHandler(SCROLL_TICK, e -> updateOnScreenImages(unloadOffscreen));
+        addEventFilter(ScrollEvent.ANY, (e) -> lastScroll = System.currentTimeMillis());
 
         Timeline notifyLoop = new Timeline(new KeyFrame(Duration.millis(100), e -> {
             if (lastScroll == 0)
@@ -98,9 +93,17 @@ public class InspectListingMenu extends ListView<HBox> {
         notifyLoop.setCycleCount(Timeline.INDEFINITE);
         notifyLoop.play();
 
-        Platform.runLater(() -> {
+        Platform.runLater(() -> updateOnScreenImages(false));
+    }
+
+    /**
+     * Relists the currently displayed boxes. Suitable if the list order properties have changed.
+     */
+    public void reList(){
+        generate(currentListings);
+        if (getItems().size() != 0) {
             updateOnScreenImages(false);
-        });
+        }
     }
 
     /**
@@ -119,35 +122,6 @@ public class InspectListingMenu extends ListView<HBox> {
         if (unloadOffscreen) {
             updateImages(0, first, false);
             updateImages(last + 1, getItems().size(), false);
-        }
-    }
-
-    /**
-     * Load or unload the images in all cells within a range.
-     * @param start The starting index.
-     * @param end The ending index.
-     * @param load If true then image will load, if false then image will unload.
-     */
-    public void updateImages(int start, int end, boolean load){
-        if ((start >= 0 && end <= getItems().size() && start < end)){
-            for (int index = start; index < end; index++) {
-                for (Node node : getItems().get(index).getChildrenUnmodifiable()) {
-                    ListingBox box = (ListingBox) node;
-                    if (load) { // Load the image
-                        if (!box.isImageLoaded()) {
-                            box.loadImage();
-                        }
-                    }
-                    if (!load) { // Unload the image
-                        if (box.isImageLoaded()) {
-                            box.unloadImage();
-                        }
-                    }
-                }
-            }
-        }
-        else{
-            System.err.println("Unaccepted range for updating Images");
         }
     }
 
@@ -182,6 +156,35 @@ public class InspectListingMenu extends ListView<HBox> {
     }
 
     /**
+     * Load or unload the images in all cells within a range.
+     * @param start The starting index.
+     * @param end The ending index.
+     * @param load If true then image will load, if false then image will unload.
+     */
+    public void updateImages(int start, int end, boolean load){
+        if ((start >= 0 && end <= getItems().size() && start < end)){
+            for (int index = start; index < end; index++) {
+                for (Node node : getItems().get(index).getChildrenUnmodifiable()) {
+                    ListingBox box = (ListingBox) node;
+                    if (load) { // Load the image
+                        if (!box.isImageLoaded()) {
+                            box.loadImage();
+                        }
+                    }
+                    if (!load) { // Unload the image
+                        if (box.isImageLoaded()) {
+                            box.unloadImage();
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            System.err.println("Unaccepted range for updating Images");
+        }
+    }
+
+    /**
      * Updates the first and last index value of the visual rows in the window.
      */
     private void setVisualIndex(){
@@ -189,16 +192,6 @@ public class InspectListingMenu extends ListView<HBox> {
         VirtualFlow<?> virtualFlow = (VirtualFlow<?>) listViewSkin.getChildren().get(0);
         first = virtualFlow.getFirstVisibleCell().getIndex();
         last = virtualFlow.getLastVisibleCell().getIndex();
-    }
-
-    /**
-     * Relists the currently displayed boxes. Suitable if the list order properties have changed.
-     */
-    public void reList(){
-        generate(currentListings);
-        if (getItems().size() != 0) {
-            updateOnScreenImages(false);
-        }
     }
 
     /**
