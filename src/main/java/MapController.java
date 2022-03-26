@@ -2,7 +2,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -20,14 +19,14 @@ import java.util.ResourceBundle;
  * The user can click a circle representing a borough to open a window that displays all the properties of that borough.
  *
  * @author Cosmo Colman (K21090628)
- * @version 23.03.2022
+ * @version 26.03.2022
  */
 public class MapController implements Initializable {
 
-    @FXML private ScrollPane pane;
+    @FXML private BorderPane pane;
 
     @FXML private Button toggle_map;
-    private final ArrayList<String> SWITCH_LABEL = new ArrayList<>(Arrays.asList("Show Geographical", "Show Bubbles"));
+    private final ArrayList<String> SWITCH_LABEL = new ArrayList<>(Arrays.asList("Show Bubbles", "Show Geographical"));
 
     @FXML private GridPane key;
     @FXML private Rectangle low_to_high;
@@ -51,7 +50,7 @@ public class MapController implements Initializable {
     private void switchMap(){
         int currentIndex = SWITCH_LABEL.indexOf(toggle_map.getText());
         toggle_map.setText(SWITCH_LABEL.get(1 - currentIndex));
-        pane.setContent(mapsPanes.get(1 - currentIndex));
+        pane.setCenter(mapsPanes.get(1 - currentIndex));
     }
 
     /**
@@ -72,14 +71,14 @@ public class MapController implements Initializable {
 
         listings = RuntimeDetails.getNewAirbnbListings();
 
-        CircleMap circleMap = new CircleMap(listings);
-        GeoMap geoMap = new GeoMap(listings);
+        GeoMap geoMap = new GeoMap();
+        CircleMap circleMap = new CircleMap();
 
         mapsPanes = new ArrayList<>();
-        mapsPanes.add(circleMap);
         mapsPanes.add(geoMap);
+        mapsPanes.add(circleMap);
 
         toggle_map.setText(SWITCH_LABEL.get(0));
-        pane.setContent(mapsPanes.get(0));
+        pane.setCenter(mapsPanes.get(0));
     }
 }

@@ -97,19 +97,12 @@
     -fx-background-color: rgba(0,0,0,0.5);
     -fx-background-radius: 20;
     -fx-padding: 15;
+    -fx-font-family: Arial;
 }
-
-/*Doesn't work when MouseTransparent*/
-/*#key:hover {*/
-/*    -fx-opacity: 0;*/
-
-/*}*/
 
 .split-pane:horizontal > .split-pane-divider {
     -fx-background-color: #202225;
 }
-
-
 
 /*Credit to https://stackoverflow.com/a/48050208/11245518*/
 .scroll-bar:horizontal .track,

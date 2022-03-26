@@ -28,7 +28,7 @@ import java.util.HashMap;
  * This is a list which the user can scroll to view all af the Boxes.
  *
  * @author Cosmo Colman (K21090628)
- * @version 23.03.2022
+ * @version 26.03.2022
  */
 public class InspectListingMenu extends ListView<HBox> {
 
@@ -194,6 +194,7 @@ public class InspectListingMenu extends ListView<HBox> {
      */
     public void reList(){
         generate(currentListings);
+        updateOnScreenImages(false);
     }
 
     /**
