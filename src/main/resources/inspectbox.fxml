@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,7 +21,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="400.0" prefWidth="600.0" spacing="20.0" stylesheets="@inspectbox.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InspectBoxController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="400.0" prefWidth="600.0" spacing="20.0" stylesheets="@/inspectbox.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InspectBoxController">
    <children>
       <BorderPane>
          <center>
@@ -49,7 +48,7 @@
             <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
                   <Label fx:id="id" styleClass="id" text="id" />
-                  <Label fx:id="name" styleClass="title" text="name" />
+                  <Label fx:id="name" styleClass="title" text="name" wrapText="true" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -67,7 +66,7 @@
          <children>
             <ImageView fx:id="picture_url" fitHeight="372.0" fitWidth="446.0" pickOnBounds="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@imagePlaceholderDark.jpg" />
+                  <Image url="@/imagePlaceholderDark.jpg" />
                </image>
             </ImageView>
             <Label fx:id="property_type" text="property_type" StackPane.alignment="BOTTOM_RIGHT">
@@ -98,7 +97,7 @@
                         <Circle fill="#202225" radius="33.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                         <ImageView fx:id="host_picture_url" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true">
                            <image>
-                              <Image url="@imagePlaceholderDark.jpg" />
+                              <Image url="@/imagePlaceholderDark.jpg" />
                            </image>
                         </ImageView>
                         <ProgressIndicator fx:id="host_picture_url_loading" minHeight="-Infinity" minWidth="-Infinity" />
@@ -238,11 +237,7 @@
                   </Label>
                </children>
             </GridPane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <content>
-                  <ListView fx:id="amenities" />
-               </content>
-            </ScrollPane>
+            <ListView fx:id="amenities" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label id="big_title" styleClass="dark_title_border" text="Listing Info">
                <font>
                   <Font name="System Bold" size="20.0" />
