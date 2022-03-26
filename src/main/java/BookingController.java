@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 
 public class BookingController {
-    public static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();
+    private static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();
 
     @FXML
     ListView listOfProperties;
@@ -55,6 +55,10 @@ public class BookingController {
     public void loadProperties(){
         listings.clear();
         listOfProperties.setItems(listings);
+    }
+
+    public static void addListing(NewAirbnbListing property){
+        listings.add(property);
     }
 
     public void handleSelectionByTheUser(MouseEvent mouseEvent) {

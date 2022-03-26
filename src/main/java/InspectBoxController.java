@@ -61,12 +61,12 @@ public class InspectBoxController implements Initializable {
      * Adds the listing to Booking.
      */
     @FXML
-    private void addToBooking() throws IOException {
+    private void addToBooking() {
         if(Pane1Controller.getCurrentUser().getUsername() == null){
             new Alerts(Alert.AlertType.ERROR,"Error", null, "You need to have an account to be able to book a property :(");
         }else{
             // actually booking
-            BookingController.listings.add(listing);
+            BookingController.addListing(listing);
             new Alerts(Alert.AlertType.INFORMATION,"Success", null, listing.getId() + " has been added to your bookings, you could either continue browsing or go to the booking page to confirm booking");
         }
     }
