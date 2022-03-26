@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
  * in the form of a visual panel of information.
  *
  * @author Cosmo Colman (K21090628)
- * @version 23.03.2022
+ * @version 26.03.2022
  */
 public class InspectBoxController implements Initializable {
 
@@ -54,7 +54,6 @@ public class InspectBoxController implements Initializable {
     @FXML private ProgressBar review_scores_cleanliness, review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value;
 
     private static NewAirbnbListing listing;
-
     private static final Image DEFAULT_IMAGE = new Image("imagePlaceholderDark.jpg");
 
     /**
@@ -72,7 +71,8 @@ public class InspectBoxController implements Initializable {
     }
 
     /**
-     * Opens a GoogleMaps link in the default browser of the location of the current property.  */
+     * Opens a GoogleMaps link in the default browser of the location of the current property.
+     */
     @FXML
     private void openGoogleMaps(){
         double latitude = listing.getLatitude();
@@ -223,22 +223,6 @@ public class InspectBoxController implements Initializable {
 
         picture_url.fitWidthProperty().bind(image_holder.widthProperty());
         picture_url.fitHeightProperty().bind(image_holder.heightProperty());
-    }
-
-    /**
-     * Returns an image loaded from a URL and if the URL is invalid a placeholder image is loaded instead.
-     * @param url URL of the image.
-     * @param backgroundLoading True if you want the image to be leaded in a background thread.
-     * @return The Image class of the URL or placeholder image.
-     */
-    private Image loadImage(URL url, boolean backgroundLoading){
-        if (url != null) {
-            Image image = new Image(url.toString(), backgroundLoading);
-            if (!image.isError()) {
-                return image;
-            }
-        }
-        return DEFAULT_IMAGE;
     }
 
     /**
