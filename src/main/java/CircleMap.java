@@ -15,7 +15,7 @@ import java.util.Comparator;
  */
 public class CircleMap extends Pane {
 
-    private final double GAP = 1.0;
+    private final double GAP = 1.0; // Don't make below 1.0.
     private final int ANGLE_OFFSET = 0;
 
     private final ArrayList<MenuCircle> menuCircles;
