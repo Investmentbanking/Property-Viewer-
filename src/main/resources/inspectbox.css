@@ -16,6 +16,7 @@
 }
 .list-cell:odd{
     -fx-background-color: #36393f;
+    -fx-background-radius: 20;
 }
 .list-cell:even{
     -fx-background-color: #2f3136;
