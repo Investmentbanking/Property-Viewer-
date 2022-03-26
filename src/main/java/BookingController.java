@@ -35,7 +35,7 @@ public class BookingController {
                     // actually book in the property
                     currentUser.reserveProperty(currentItem);
                     new Alerts(Alert.AlertType.CONFIRMATION,"Success", null, currentUser.getUsername() + " has reserved property with property ID: " + currentItem.getId());
-                    initialize();
+                    listings.remove(currentItem);
                     reset();
                 }else {
                     new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry someone else booked this property!");
@@ -53,7 +53,6 @@ public class BookingController {
     }
 
     public void loadProperties(){
-        listings.clear();
         listOfProperties.setItems(listings);
     }
 
