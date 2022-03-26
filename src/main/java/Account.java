@@ -53,14 +53,13 @@ public class Account {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        bookProperty(property);
 
+        bookProperty(property);
         return false;
     }
 
     private void bookProperty(NewAirbnbListing property){
         try {
-            CSVReader reader = new CSVReader(new FileReader(file));
             FileWriter writer = new FileWriter(file, true);
             String newBooking = (property.getId()) + "," + Pane1Controller.getCurrentUser().getUsername() + '\n';
             writer.write(newBooking);

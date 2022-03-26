@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 
 public class BookingController {
-    public static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();
+    private static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();
 
     @FXML
     ListView listOfProperties;
@@ -35,7 +35,7 @@ public class BookingController {
                     // actually book in the property
                     currentUser.reserveProperty(currentItem);
                     new Alerts(Alert.AlertType.CONFIRMATION,"Success", null, currentUser.getUsername() + " has reserved property with property ID: " + currentItem.getId());
-                    initialize();
+                    listings.remove(currentItem);
                     reset();
                 }else {
                     new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry someone else booked this property!");
@@ -53,8 +53,11 @@ public class BookingController {
     }
 
     public void loadProperties(){
-        listings.clear();
         listOfProperties.setItems(listings);
+    }
+
+    public static void addListing(NewAirbnbListing property){
+        listings.add(property);
     }
 
     public void handleSelectionByTheUser(MouseEvent mouseEvent) {
