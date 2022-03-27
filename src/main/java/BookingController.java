@@ -95,6 +95,15 @@ public class BookingController {
         to.setText("-");
     }
 
+    public static boolean checkProperty(NewAirbnbListing listing){
+        for(NewAirbnbListing property : listings){
+            if(property.getId().equals(listing.getId())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns an image loaded from a URL and if the URL is invalid a placeholder image is loaded instead.
      * @param url URL of the image.
