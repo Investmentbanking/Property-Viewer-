@@ -31,11 +31,13 @@ public abstract class MenuShape extends StackPane {
 
     protected int fontSize;
 
-    protected static double shapeSizeScale = 1.1;
-    protected static double textSizeScale = 1.4;
+    protected double shapeSizeScale = 1.1;
+    protected double textSizeScale = 1.4;
 
     private FillTransition filltShapeIn, filltShapeOut;
     private ScaleTransition stShapeIn, stCircleOut, stTextIn, stTextOut;
+
+    private DropShadow textDropShadow;
 
     /**
      * Constructor for a Menu-Shape which represents a specific borough and contains the listing of all properties in that borough. Clicking this object will open the pane specific to that borough.
@@ -52,13 +54,14 @@ public abstract class MenuShape extends StackPane {
         this.shape.setOnMouseClicked(this::openInspectionWindow);
         this.shape.setFill(colour);
 
+        text = new Text(this.borough.getName());
+        text.setMouseTransparent(true);
+
+        // Transitions and Aesthetics
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(200);
         dropShadow.setColor(Color.color(0,0,0, 0.5));
         this.shape.setEffect(dropShadow);
-
-        text = new Text(this.borough.getName());
-        text.setMouseTransparent(true);
 
         filltShapeIn = new FillTransition(Duration.millis(100), this.shape, colour, colour.darker());
         filltShapeOut = new FillTransition(Duration.millis(100), this.shape, colour.darker(), colour);
@@ -77,6 +80,7 @@ public abstract class MenuShape extends StackPane {
         stTextOut.setToX(1);
         stTextOut.setToY(1);
 
+
         this.shape.setOnMouseEntered(this::mouseEnter);
         this.shape.setOnMouseExited(this::mouseLeave);
         getChildren().addAll(this.shape);
@@ -85,6 +89,26 @@ public abstract class MenuShape extends StackPane {
 
         getChildren().add(text);
         setPickOnBounds(false); // Lets you click through the StackPane to the components below.
+    }
+
+    /**
+     * Set the multiplier for the shape's scale on mouse hover.
+     * @param multiplier The multiplier for the shape's scale on mouse hover.
+     */
+    protected void setShapeScaleTransitionMultiplier(double multiplier){
+        stShapeIn = new ScaleTransition(Duration.millis(100), this.shape);
+        stShapeIn.setToX(multiplier);
+        stShapeIn.setToY(multiplier);
+    }
+
+    /**
+     * Set the multiplier for the text's scale on mouse hover.
+     * @param multiplier The multiplier for the text's scale on mouse hover.
+     */
+    protected void setTextScaleTransitionMultiplier(double multiplier){
+        stTextIn = new ScaleTransition(Duration.millis(100), text);
+        stTextIn.setToX(multiplier);
+        stTextIn.setToY(multiplier);
     }
 
     /**
@@ -129,6 +153,7 @@ public abstract class MenuShape extends StackPane {
         toFront();
 
         setCursor(Cursor.HAND);
+        text.setEffect(textDropShadow);
         filltShapeIn.play();
         stShapeIn.play();
         stTextIn.play();
@@ -140,6 +165,7 @@ public abstract class MenuShape extends StackPane {
      */
     private void mouseLeave(MouseEvent event){
         setCursor(Cursor.DEFAULT);
+        text.setEffect(null);
         filltShapeOut.play();
         stCircleOut.play();
         stTextOut.play();

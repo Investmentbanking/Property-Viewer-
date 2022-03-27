@@ -1,8 +1,3 @@
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -65,18 +60,16 @@ public class MenuPolygon extends MenuShape {
     public MenuPolygon(Borough borough, ArrayList<NewAirbnbListing> listings) {
         super(borough, listings, getBoroughPolygon(borough.getName()));
 
-        shapeSizeScale = 1.2;
-        textSizeScale = 1.5;
-
-//        shape.setStroke(circleColor.brighter().brighter());
-//        shape.setStrokeWidth(3);
-//        shape.setStrokeType(StrokeType.INSIDE);
-
         fontSize = 15;
         do {
             Font newFont = Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, fontSize--);
             text.setFont(newFont);
-        }while (text.getLayoutBounds().getWidth() > shape.getLayoutBounds().getWidth());
+        } while (text.getLayoutBounds().getWidth() > shape.getLayoutBounds().getWidth());
+
+        setShapeScaleTransitionMultiplier(1.2);
+
+        double zoomedFontSize = Math.max(12, (double) fontSize * 1.5);        // If normal font size is bigger, choose that * 1.4
+        setTextScaleTransitionMultiplier(zoomedFontSize / (double) fontSize);
     }
 
     /**

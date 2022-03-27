@@ -15,8 +15,8 @@ public class MenuCircle extends MenuShape {
 
     private final double circleSize;
 
-    private static final int MIN_CIRCLE_SIZE = 35;
-    private static final int MAX_CIRCLE_SIZE = 150;
+    private static final int MIN_CIRCLE_SIZE = 28;
+    private static final int MAX_CIRCLE_SIZE = 120;
 
     private static final int MAX_FONT_SIZE = 35;
     private static final int MIN_FONT_SIZE = 10;
@@ -29,9 +29,6 @@ public class MenuCircle extends MenuShape {
     public MenuCircle(Borough borough, ArrayList<NewAirbnbListing> listings) {
         super(borough, listings, new Circle());
 
-        shapeSizeScale = 1.1;
-        textSizeScale = 1.4;
-
         circleSize = calculateSize();
         getBoroughShape().setRadius(circleSize);
 
@@ -42,6 +39,11 @@ public class MenuCircle extends MenuShape {
             Font newFont = Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, fontSize--);
             text.setFont(newFont);
         }while (text.getLayoutBounds().getWidth() > circleSize*2);
+
+        setShapeScaleTransitionMultiplier(1.1);
+
+        double zoomedFontSize = Math.max(12, (double)fontSize * 1.4);        // If normal font size is bigger, choose that * 1.4
+        setTextScaleTransitionMultiplier(zoomedFontSize/(double)fontSize);
     }
 
     /**
