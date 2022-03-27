@@ -7,6 +7,15 @@
 public class AmenitiesStatisticsCollector {
 
 
+    public static int getTotalAmenities(){
+        int count = 0;
+        for(NewAirbnbListing listing : Statistics.getNewListings()) {
+            if(listing.getAmenities() != null) {
+                count += listing.getAmenities().size();
+            }
+        }
+        return count;
+    }
 
     public static int getGardenOrBackyardProperties(){
         int count = 0;

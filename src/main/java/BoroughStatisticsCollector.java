@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
  */
 public class BoroughStatisticsCollector {
 
-
     /**
      * Returns the number of boroughs equal to Croydon and increments the count each time.
      * @return count The total number of Croydon listings.
@@ -53,7 +52,6 @@ public class BoroughStatisticsCollector {
                 }
             }
         }
-
         return list;
     }
 
@@ -147,7 +145,6 @@ public class BoroughStatisticsCollector {
                 if(!list.contains(borough)){
                     list.add(borough);
                 }
-                //list.add(borough);
             }
         }
         List<String> first10Elements = list.stream().limit(10).collect(Collectors.toList());
@@ -201,9 +198,12 @@ public class BoroughStatisticsCollector {
      *
      * @return
      */
-    public static String getBoroughHighestReviewScoreRating(){
+    public static Collection<String> getBoroughHighestReviewScoreRating(){
         int highest = 0;
         String borough = "";
+        List<String> list = null;
+        list = new ArrayList<>();
+
         for(NewAirbnbListing listing : Statistics.getNewListings()) {
             int listingRating = listing.getReviewScoresRating();
             if(listingRating > highest){
@@ -212,6 +212,16 @@ public class BoroughStatisticsCollector {
             }
 
         }
-        return borough;
+        for(NewAirbnbListing listing : Statistics.getNewListings()) {
+            double listingBathrooms = listing.getReviewScoresRating();
+            if(listingBathrooms == highest) {
+                borough = listing.getNeighbourhoodCleansed();
+                if(!list.contains(borough)){
+                    list.add(borough);
+                }
+            }
+        }
+        List<String> first10Elements = list.stream().limit(10).collect(Collectors.toList());
+        return first10Elements;
     }
 }

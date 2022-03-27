@@ -23,7 +23,6 @@ public class Statistics {
 
     private static ArrayList<OldAirbnbListing> oldListings = loadOldRange();
     private static ArrayList<NewAirbnbListing> newListings = loadNewRange();
-
     //private static ArrayList<OldAirbnbListing> OldListings = RuntimeDetails.getOldAirbnbListings();
     //private static ArrayList<NewAirbnbListing> NewListings = RuntimeDetails.getNewAirbnbListings();
     private static final ArrayList<String> stats = new ArrayList<>();
@@ -47,10 +46,9 @@ public class Statistics {
      */
     public static ArrayList<OldAirbnbListing> loadOldRange(){
         ArrayList<OldAirbnbListing> oldListingsInBound = (ArrayList<OldAirbnbListing>) RuntimeDetails.getOldAirbnbListings().clone();
-        oldListingsInBound.removeIf(listing ->(listing.getPrice() <RuntimeDetails.getMinimumPrice() ||listing.getPrice()>RuntimeDetails.getMaximumPrice()));
+        oldListingsInBound.removeIf(listing -> (listing.getPrice() <RuntimeDetails.getMinimumPrice() ||listing.getPrice()>RuntimeDetails.getMaximumPrice()));
         return oldListingsInBound;
     }
-
 
     /**
      * Clears all previous stats added.
@@ -94,14 +92,14 @@ public class Statistics {
      */
     public static void createBoroughStats(){
         stats.clear();
-        stats.add("A Borough with highest review score rating:" +"\n\n"  + BoroughStatisticsCollector.getBoroughHighestReviewScoreRating());
+        stats.add("Borough(s) with highest review score ratings:" +"\n\n"  + BoroughStatisticsCollector.getBoroughHighestReviewScoreRating());
         stats.add("Borough with most listings:" + "\n\n" + BoroughStatisticsCollector.getBoroughMostListings());
-        stats.add("Number of Boroughs with 365 day availability:" + "\n\n" + BoroughStatisticsCollector.getBorough365Availability());
-        stats.add("Boroughs which accommodates highest number of people:" + "\n\n" + BoroughStatisticsCollector.getBoroughHighestAccommodates());
+        stats.add("No. of Boroughs with 365 day availability:" + "\n\n" + BoroughStatisticsCollector.getBorough365Availability());
+        stats.add("Borough(s) with highest accommodation values:" + "\n\n" + BoroughStatisticsCollector.getBoroughHighestAccommodates());
 
         stats.add("Borough(s) with the the most bathrooms: " + "\n\n" + BoroughStatisticsCollector.getBoroughsMostBathrooms());
         stats.add("Borough(s) with the most bedrooms:" + "\n\n" + BoroughStatisticsCollector.getBoroughsMostBedrooms());
-        stats.add("Number of boroughs in Croydon (if any):" + "\n\n" + BoroughStatisticsCollector.getCroydonBoroughs());
+        stats.add("Number of listings in Croydon (if any):" + "\n\n" + BoroughStatisticsCollector.getCroydonBoroughs());
         stats.add("Borough(s) with the most beds:" + "\n\n" + BoroughStatisticsCollector.getBoroughsMostBeds());
 
     }
@@ -115,7 +113,7 @@ public class Statistics {
         stats.add("Average number of amenities:" + "\n\n" + AmenitiesStatisticsCollector.averageNumberOfAmenities());
         stats.add("Number of properties containing more than 2 bathrooms:" + "\n\n" + AmenitiesStatisticsCollector.getMoreThan2Bathrooms());
         stats.add("Number of properties with a Garden or backyard:" + "\n\n" + AmenitiesStatisticsCollector.getGardenOrBackyardProperties());
-        stats.add("amenities 4");
+        stats.add("Total number of amenities" + "\n\n" + AmenitiesStatisticsCollector.getTotalAmenities());
 
         stats.add("Number of properties that contain an oven:" + "\n\n" + AmenitiesStatisticsCollector.getPropertiesContainingOven());
         stats.add("Number of properties containing more than 1 bedroom:" + "\n\n" + AmenitiesStatisticsCollector.getMoreThan3BedroomProperties());
