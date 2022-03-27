@@ -92,7 +92,7 @@
                         <HBox>
                            <children>
                               <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                              <Label text="Selected price range:" textFill="WHITE">
+                              <Label id="priceText" text="Selected price range:" textFill="WHITE">
                                  <padding>
                                     <Insets right="5.0" />
                                  </padding>
@@ -100,7 +100,7 @@
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="priceRange" text="None Selected" textFill="WHITE">
+                              <Label id="priceRange" fx:id="priceRange" text="None Selected" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -133,7 +133,7 @@
                            </VBox.margin>
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <Label alignment="CENTER" text="Settings" textAlignment="CENTER" textFill="WHITE">
+                              <Label id="settingsLabel" alignment="CENTER" text="Settings" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="18.0" />
                                  </font>
@@ -155,7 +155,7 @@
                         <HBox VBox.vgrow="ALWAYS">
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <GridPane hgap="10.0" maxHeight="150.0" style="-fx-background-color: #2f3136; -fx-font-family: Arial;" vgap="10.0" HBox.hgrow="ALWAYS">
+                              <GridPane id="calendarArea" hgap="10.0" maxHeight="150.0" style="-fx-background-color: #2f3136; -fx-font-family: Arial;" vgap="10.0" HBox.hgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

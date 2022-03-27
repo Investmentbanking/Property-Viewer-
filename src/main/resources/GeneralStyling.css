@@ -21,8 +21,23 @@
     -fx-background-radius: 0;
 }
 
-#settingsBox {
+#settingsBox, #calendarArea {
     -fx-font-size: 1.1em;
+    -fx-font-family: Arial;
+    -fx-text-fill: white;
+    -fx-background-color:  #2f3136;
+    -fx-font-scale: true;
+    -fx-background-radius: 1.0em;
+    -fx-padding: 10 10 10 10;
+}
+
+#priceRange, #priceText {
+    -fx-font-size: 1.1em;
+    -fx-font-family: Arial;
+    -fx-text-fill: white;
+}
+
+#leftArrow, #rightArrow {
     -fx-font-family: Arial;
     -fx-text-fill: white;
 }
