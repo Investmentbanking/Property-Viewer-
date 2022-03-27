@@ -21,8 +21,8 @@ public class Statistics {
         return newListings;
     }
 
-    private static ArrayList<OldAirbnbListing> oldListings = inRangeOldListings();
-    private static ArrayList<NewAirbnbListing> newListings = inRangeNewListings();
+    private static ArrayList<OldAirbnbListing> oldListings = loadOldRange();
+    private static ArrayList<NewAirbnbListing> newListings = loadNewRange();
 
     //private static ArrayList<OldAirbnbListing> OldListings = RuntimeDetails.getOldAirbnbListings();
     //private static ArrayList<NewAirbnbListing> NewListings = RuntimeDetails.getNewAirbnbListings();
@@ -32,24 +32,27 @@ public class Statistics {
     //private static final ArrayList<String> amenitiesStats = new ArrayList<>();
 
     /**
-     * Filters the properties from the original CAV file within the given price range.
-     * @return the new ArrayList with the specific AirbnbListings.
-     */
-    private static ArrayList<OldAirbnbListing> inRangeOldListings() {
-        ArrayList<OldAirbnbListing> oldListingsInBound = (ArrayList<OldAirbnbListing>) RuntimeDetails.getOldAirbnbListings().clone();
-        oldListingsInBound.removeIf(listing ->(listing.getPrice() <RuntimeDetails.getMinimumPrice() ||listing.getPrice()>RuntimeDetails.getMaximumPrice()));
-        return oldListingsInBound;
-    }
-
-    /**
      * Filters the properties from the new CSV file within the given price range.
      * @return the new ArrayList with the specific AirbnbListings.
      */
-    private static ArrayList<NewAirbnbListing> inRangeNewListings() {
-        ArrayList<NewAirbnbListing> newListingsInBound = (ArrayList<NewAirbnbListing>) RuntimeDetails.getNewAirbnbListings().clone();
-        newListingsInBound.removeIf(listing -> (listing.getPrice() < RuntimeDetails.getMinimumPrice() || listing.getPrice() > RuntimeDetails.getMaximumPrice()));
-        return newListingsInBound;
+    public static ArrayList<NewAirbnbListing> loadNewRange() {
+        ArrayList<NewAirbnbListing> list = AirbnbDataLoader.loadNewDataSet();
+        list.removeIf(n -> (n.getPrice() < RuntimeDetails.getMinimumPrice()));
+        list.removeIf(n -> (n.getPrice() > RuntimeDetails.getMaximumPrice()));
+        return list;
     }
+
+    /**
+     * Filters the properties from the original CAV file within the given price range.
+     * @return the new ArrayList with the specific AirbnbListings.
+     */
+    public static ArrayList<OldAirbnbListing> loadOldRange(){
+        ArrayList<OldAirbnbListing> list = AirbnbDataLoader.loadOldDataSet();
+        list.removeIf(n -> (n.getPrice() < RuntimeDetails.getMinimumPrice()));
+        list.removeIf(n -> (n.getPrice() > RuntimeDetails.getMaximumPrice()));
+        return list;
+    }
+
 
     /**
      * Clears all previous stats added.
@@ -82,7 +85,7 @@ public class Statistics {
         stats.add("Average review score on cleanliness" + "\n\n" + ReviewStatisticsCollector.getAverageCleanlinessScore());
 
         stats.add("Average review score on checkin" + "\n\n" + ReviewStatisticsCollector.getAverageCheckinScore());
-        stats.add("Number of listings with '10' communication review scores: " + "\n\n" + ReviewStatisticsCollector.get10RatedCommunicationReviewScore());
+        stats.add("No. of listings with communication review scores of '10':" + "\n\n" + ReviewStatisticsCollector.get10RatedCommunicationReviewScore());
         stats.add("Average value review score: " + "\n\n" + ReviewStatisticsCollector.getAverageReviewValueScore());
         stats.add("Lowest review score rating: " + "\n\n" + ReviewStatisticsCollector.getLowestReviewScoreRating());
     }
