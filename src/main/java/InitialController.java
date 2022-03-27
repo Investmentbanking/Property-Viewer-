@@ -50,7 +50,8 @@ public class InitialController extends Application {
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);
         stage.setTitle("Scene Viewer 1.0");
-        stage.setResizable(false);
+        stage.setMinHeight(520);
+        stage.setMinWidth(720);
         stage.setScene(scene);
         stage.show();
     }
