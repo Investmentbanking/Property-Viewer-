@@ -28,10 +28,10 @@ public class BoroughStatisticsCollector {
     }
 
     /**
-     * Returns the boroughs which contains the highest number of beds.
-     * @return
+     * Returns the boroughs which contains the most beds.
+     * @return list
      */
-    public static Collection<String> getBoroughMostBeds(){
+    public static Collection<String> getBoroughsMostBeds(){
         String borough = "";
         int highest = 0;
         List<String> list = null;
@@ -61,9 +61,12 @@ public class BoroughStatisticsCollector {
      *
      * @return
      */
-    public static String getBoroughMostBedrooms(){
+    public static Collection<String> getBoroughsMostBedrooms(){
         String borough = "";
         int highest = 0;
+        List<String> list = null;
+        list = new ArrayList<>();
+
         for(NewAirbnbListing listing : Statistics.getNewListings()) {
             int listingBedrooms = listing.getBedrooms();
             if(listingBedrooms > highest) {
@@ -71,7 +74,16 @@ public class BoroughStatisticsCollector {
                 borough = listing.getNeighbourhoodCleansed();
             }
         }
-        return borough;
+        for(NewAirbnbListing listing : Statistics.getNewListings()) {
+            double listingBedrooms = listing.getBedrooms();
+            if(listingBedrooms == highest) {
+                borough = listing.getNeighbourhoodCleansed();
+                if(!list.contains(borough)){
+                    list.add(borough);
+                }
+            }
+        }
+        return list;
     }
 
     /**
@@ -145,7 +157,7 @@ public class BoroughStatisticsCollector {
     /**
      * Returns the number of boroughs which contain listings that are available
      * 365 days a year.
-     * @return list.size() The size of the list that contains the boroughs.
+     * @return The size of the list that contains the boroughs.
      */
     public static int getBorough365Availability(){
         int count = 0;
@@ -165,8 +177,9 @@ public class BoroughStatisticsCollector {
     }
 
     /**
-     *
-     * @return
+     * Returns the borough which has the most listings using a
+     * HashMap to store the number of listings for each borough.
+     * @return the borough with the most listings.
      */
     public static String getBoroughMostListings(){
         HashMap<String, Integer> boroughFrequency = new HashMap<>();

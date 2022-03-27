@@ -27,8 +27,8 @@ public class Statistics {
         return NewListings;
     }
 
-    private static ArrayList<OldAirbnbListing> OldListings = RuntimeDetails.getOldAirbnbListings();
-    private static ArrayList<NewAirbnbListing> NewListings = RuntimeDetails.getNewAirbnbListings();
+    private static ArrayList<OldAirbnbListing> OldListings = AirbnbDataLoader.loadOldRange();
+    private static ArrayList<NewAirbnbListing> NewListings = AirbnbDataLoader.loadNewRange();
     //private static ArrayList<OldAirbnbListing> OldListings = RuntimeDetails.getOldAirbnbListings();
     //private static ArrayList<NewAirbnbListing> NewListings = RuntimeDetails.getNewAirbnbListings();
     private static final ArrayList<String> stats = new ArrayList<>();
@@ -44,7 +44,7 @@ public class Statistics {
         stats.clear();
         stats.add("Average number of reviews per property:" +"\n\n"  + DefaultStatisticsCollector.getAverageReviewsPerProperty());
         stats.add("Total number of available properties:" + "\n\n" + DefaultStatisticsCollector.getTotalAvailableProperties());
-        stats.add("Number of non-private rooms:" + "\n\n" + DefaultStatisticsCollector.getNumberOfNonPrivateRooms());
+        stats.add("Number of non-private rooms:" + "\n\n" + DefaultStatisticsCollector.getNonPrivateProperties());
         stats.add("The most expensive borough:" + "\n\n" + DefaultStatisticsCollector.getMostExpensiveBorough());
 
         stats.add("The average number of listings per host:" + "\n\n" + DefaultStatisticsCollector.getAverageListings());
@@ -62,12 +62,12 @@ public class Statistics {
         stats.clear();
 
         stats.add("Average location review score: " + "\n\n"  + ReviewStatisticsCollector.getAverageReviewLocationScore());
-        stats.add("Number of listings with '100' \n review score ratings: " + "\n\n" + ReviewStatisticsCollector.get100ReviewRating());
+        stats.add("Number of listings with '100' review score ratings: " + "\n\n" + ReviewStatisticsCollector.get100ReviewRating());
         stats.add("Average review score rating: " + "\n\n" + ReviewStatisticsCollector.getAverageReviewScoreRating());
         stats.add("Average review score on cleanliness" + "\n\n" + ReviewStatisticsCollector.getAverageCleanlinessScore());
 
         stats.add("Average review score on checkin" + "\n\n" + ReviewStatisticsCollector.getAverageCheckinScore());
-        stats.add("Number of listings with '10'\n communication review scores: " + "\n\n" + ReviewStatisticsCollector.get10RatedCommunicationReviewScore());
+        stats.add("Number of listings with '10' communication review scores: " + "\n\n" + ReviewStatisticsCollector.get10RatedCommunicationReviewScore());
         stats.add("Average value review score: " + "\n\n" + ReviewStatisticsCollector.getAverageReviewValueScore());
         stats.add("Lowest review score rating: " + "\n\n" + ReviewStatisticsCollector.getLowestReviewScoreRating());
     }
@@ -81,12 +81,12 @@ public class Statistics {
         stats.add("A Borough with highest review score rating:" +"\n\n"  + BoroughStatisticsCollector.getBoroughHighestReviewScoreRating());
         stats.add("Borough with most listings:" + "\n\n" + BoroughStatisticsCollector.getBoroughMostListings());
         stats.add("Number of Boroughs with 365 day availability:" + "\n\n" + BoroughStatisticsCollector.getBorough365Availability());
-        stats.add("Boroughs which accommodates highest\n number of people:" + "\n\n" + BoroughStatisticsCollector.getBoroughHighestAccommodates());
+        stats.add("Boroughs which accommodates highest number of people:" + "\n\n" + BoroughStatisticsCollector.getBoroughHighestAccommodates());
 
-        stats.add("A Borough in which a listing exists that\n has one of the most bathrooms:" + "\n\n" + BoroughStatisticsCollector.getBoroughsMostBathrooms());
-        stats.add("A Borough in which a listing exists that\n has one of the most bedrooms:" + "\n\n" + BoroughStatisticsCollector.getBoroughMostBedrooms());
+        stats.add("Borough(s) with the the most bathrooms: " + "\n\n" + BoroughStatisticsCollector.getBoroughsMostBathrooms());
+        stats.add("Borough(s) with the most bedrooms:" + "\n\n" + BoroughStatisticsCollector.getBoroughsMostBedrooms());
         stats.add("Number of boroughs in Croydon (if any):" + "\n\n" + BoroughStatisticsCollector.getCroydonBoroughs());
-        stats.add("A Borough in which a listing exists that\n has one of the most beds:" + "\n\n" + BoroughStatisticsCollector.getBoroughMostBeds());
+        stats.add("Borough(s) with the most beds:" + "\n\n" + BoroughStatisticsCollector.getBoroughsMostBeds());
 
     }
 
@@ -96,15 +96,15 @@ public class Statistics {
      */
     public static void createAmenitiesStats(){
         stats.clear();
-        stats.add("amenities 1");
-        stats.add("amenities 2");
-        stats.add("amenities 3");
+        stats.add("Average number of amenities:" + "\n\n" + AmenitiesStatisticsCollector.averageNumberOfAmenities());
+        stats.add("Number of properties containing more than 2 bathrooms:" + "\n\n" + AmenitiesStatisticsCollector.getMoreThan2Bathrooms());
+        stats.add("Number of properties with a Garden or backyard:" + "\n\n" + AmenitiesStatisticsCollector.getGardenOrBackyardProperties());
         stats.add("amenities 4");
 
         stats.add("Number of properties that contain an oven:" + "\n\n" + AmenitiesStatisticsCollector.getPropertiesContainingOven());
-        stats.add("Number of properties containing \n more than 1 bedroom:" + "\n\n" + AmenitiesStatisticsCollector.getBedroomProperties());
+        stats.add("Number of properties containing more than 1 bedroom:" + "\n\n" + AmenitiesStatisticsCollector.getMoreThan3BedroomProperties());
         stats.add("ID of apartment with most amenities " + "\n\n" + AmenitiesStatisticsCollector.mostAmenitiesID());
-        stats.add("amenities d");
+        stats.add("Number of properties containing more than 2 beds" + "\n\n" + AmenitiesStatisticsCollector.getMoreThan1BedProperties());
     }
 
     /**
