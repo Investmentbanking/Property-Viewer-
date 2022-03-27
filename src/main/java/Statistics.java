@@ -36,10 +36,9 @@ public class Statistics {
      * @return the new ArrayList with the specific AirbnbListings.
      */
     public static ArrayList<NewAirbnbListing> loadNewRange() {
-        ArrayList<NewAirbnbListing> list = AirbnbDataLoader.loadNewDataSet();
-        list.removeIf(n -> (n.getPrice() < RuntimeDetails.getMinimumPrice()));
-        list.removeIf(n -> (n.getPrice() > RuntimeDetails.getMaximumPrice()));
-        return list;
+        ArrayList<NewAirbnbListing> newListingsInBound = (ArrayList<NewAirbnbListing>) RuntimeDetails.getNewAirbnbListings().clone();
+        newListingsInBound.removeIf(listing -> (listing.getPrice() < RuntimeDetails.getMinimumPrice() || listing.getPrice() > RuntimeDetails.getMaximumPrice()));
+        return newListingsInBound;
     }
 
     /**
@@ -47,10 +46,9 @@ public class Statistics {
      * @return the new ArrayList with the specific AirbnbListings.
      */
     public static ArrayList<OldAirbnbListing> loadOldRange(){
-        ArrayList<OldAirbnbListing> list = AirbnbDataLoader.loadOldDataSet();
-        list.removeIf(n -> (n.getPrice() < RuntimeDetails.getMinimumPrice()));
-        list.removeIf(n -> (n.getPrice() > RuntimeDetails.getMaximumPrice()));
-        return list;
+        ArrayList<OldAirbnbListing> oldListingsInBound = (ArrayList<OldAirbnbListing>) RuntimeDetails.getOldAirbnbListings().clone();
+        oldListingsInBound.removeIf(listing ->(listing.getPrice() <RuntimeDetails.getMinimumPrice() ||listing.getPrice()>RuntimeDetails.getMaximumPrice()));
+        return oldListingsInBound;
     }
 
 
