@@ -65,8 +65,12 @@ public class InspectBoxController implements Initializable {
             new Alerts(Alert.AlertType.ERROR,"Error", null, "You need to have an account to be able to book a property :(");
         }else{
             // actually booking
-            BookingController.addListing(listing);
-            new Alerts(Alert.AlertType.INFORMATION,"Success", null, listing.getId() + " has been added to your bookings, you could either continue browsing or go to the booking page to confirm booking");
+            if(!BookingController.checkProperty(listing)){
+                BookingController.addListing(listing);
+                new Alerts(Alert.AlertType.INFORMATION,"Success", null, listing.getId() + " has been added to your bookings, you could either continue browsing or go to the booking page to confirm booking");
+            }else{
+                new Alerts(Alert.AlertType.ERROR,"Error", null," you can add properties only once!");
+            }
         }
     }
 
