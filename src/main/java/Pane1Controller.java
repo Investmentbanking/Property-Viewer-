@@ -279,6 +279,7 @@ public class Pane1Controller extends Application {
             RuntimeDetails.setMaximumPrice(maxPriceInput);
             priceRange.textProperty().set(RuntimeDetails.getPriceRange());
             RuntimeDetails.setValidPrices(true);
+            Statistics.reloadListings();
             checkValidDetails();
         }
     }
