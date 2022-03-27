@@ -1,12 +1,7 @@
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
-import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -20,21 +15,41 @@ import java.util.ArrayList;
 public class Statistics {
 
     public static ArrayList<OldAirbnbListing> getOldListings() {
-        return OldListings;
+        return oldListings;
     }
-
     public static ArrayList<NewAirbnbListing> getNewListings() {
-        return NewListings;
+        return newListings;
     }
 
-    private static ArrayList<OldAirbnbListing> OldListings = AirbnbDataLoader.loadOldRange();
-    private static ArrayList<NewAirbnbListing> NewListings = AirbnbDataLoader.loadNewRange();
+    private static ArrayList<OldAirbnbListing> oldListings = inRangeOldListings();
+    private static ArrayList<NewAirbnbListing> newListings = inRangeNewListings();
+
     //private static ArrayList<OldAirbnbListing> OldListings = RuntimeDetails.getOldAirbnbListings();
     //private static ArrayList<NewAirbnbListing> NewListings = RuntimeDetails.getNewAirbnbListings();
     private static final ArrayList<String> stats = new ArrayList<>();
     //private static final ArrayList<String> reviewStats = new ArrayList<>();
     //private static final ArrayList<String> boroughStats = new ArrayList<>();
     //private static final ArrayList<String> amenitiesStats = new ArrayList<>();
+
+    /**
+     * Filters the properties from the original CAV file within the given price range.
+     * @return the new ArrayList with the specific AirbnbListings.
+     */
+    private static ArrayList<OldAirbnbListing> inRangeOldListings() {
+        ArrayList<OldAirbnbListing> oldListingsInBound = (ArrayList<OldAirbnbListing>) RuntimeDetails.getOldAirbnbListings().clone();
+        oldListingsInBound.removeIf(listing ->(listing.getPrice() <RuntimeDetails.getMinimumPrice() ||listing.getPrice()>RuntimeDetails.getMaximumPrice()));
+        return oldListingsInBound;
+    }
+
+    /**
+     * Filters the properties from the new CSV file within the given price range.
+     * @return the new ArrayList with the specific AirbnbListings.
+     */
+    private static ArrayList<NewAirbnbListing> inRangeNewListings() {
+        ArrayList<NewAirbnbListing> newListingsInBound = (ArrayList<NewAirbnbListing>) RuntimeDetails.getNewAirbnbListings().clone();
+        newListingsInBound.removeIf(listing -> (listing.getPrice() < RuntimeDetails.getMinimumPrice() || listing.getPrice() > RuntimeDetails.getMaximumPrice()));
+        return newListingsInBound;
+    }
 
     /**
      * Clears all previous stats added.

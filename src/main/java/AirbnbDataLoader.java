@@ -9,35 +9,7 @@ import java.util.Arrays;
 
 public class AirbnbDataLoader {
 
-    private static final ArrayList<NewAirbnbListing> NewListings = new ArrayList<>();
-    private static final ArrayList<OldAirbnbListing> OldListings = new ArrayList<>();
-
-    private static double minPrice = RuntimeDetails.getMinimumPrice();
-    private static double maxPrice = RuntimeDetails.getMaximumPrice();
-
     public AirbnbDataLoader() {
-    }
-
-    /**
-     * Filters the properties from the new CSV file within the given price range.
-     * @return the new ArrayList with the specific AirbnbListings.
-     */
-    public static ArrayList<NewAirbnbListing> loadNewRange() {
-        ArrayList<NewAirbnbListing> list = loadNewDataSet();
-        list.removeIf(n -> (n.getPrice() < minPrice));
-        list.removeIf(n -> (n.getPrice() > maxPrice));
-        return list;
-    }
-
-    /**
-     * Filters the properties from the original CAV file within the given price range.
-     * @return the new ArrayList with the specific AirbnbListings.
-     */
-    public static ArrayList<OldAirbnbListing> loadOldRange(){
-        ArrayList<OldAirbnbListing> list = loadOldDataSet();
-        list.removeIf(n -> (n.getPrice() < minPrice));
-        list.removeIf(n -> (n.getPrice() > maxPrice));
-        return list;
     }
 
     /**
@@ -113,7 +85,6 @@ public class AirbnbDataLoader {
                     availability365, review_scores_rating, review_scores_cleanliness, review_scores_checkin,
                     review_scores_communication, review_scores_location, review_scores_value
             );
-        NewListings.add(listing);
             return listing;
     }
 
@@ -172,29 +143,6 @@ public class AirbnbDataLoader {
     }
 
     /**
-     * @return The ArrayList containing the new listings.
-     */
-    public ArrayList<NewAirbnbListing> getNewListings() {
-        return NewListings;
-    }
-
-    /**
-     * @return The ArrayList containing the old listings.
-     */
-    public ArrayList<OldAirbnbListing> getOldListings() {
-        return OldListings;
-    }
-
-    public String getListingById(String id){
-        for(NewAirbnbListing listing : NewListings){
-            if(id.equals(listing.getId())){
-                return listing.toString();
-            }
-        }
-        return "this listing was not found";
-    }
-
-    /**
      *
      * @param doubleString the string to be converted to Double type
      * @return the Double value of the string, or -1.0 if the string is 
@@ -241,13 +189,5 @@ public class AirbnbDataLoader {
             return new ArrayList<>(Arrays.asList(amenitiesArray));
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        AirbnbDataLoader a = new AirbnbDataLoader();
-        a.loadNewDataSet();
-        System.out.println(a.getNewListings().size());
-        System.out.println(a.getListingById("13712199"));
-        System.out.println("test works");
     }
 }
