@@ -50,7 +50,7 @@ public class BookingController {
      * This method is responsible for booking the selected property. If there is no
      * property selected then an appropriate message will be shown.
      *
-     * @param event this param is ignored in the computation
+     * @param event the confirm booking button is clicked
      */
     @FXML
     public void confirmBooking(ActionEvent event) {
@@ -79,7 +79,7 @@ public class BookingController {
      * The method will update all the fields displayed to reflect the correct changes that will occur after
      * the selection of a property.
      *
-     * @param mouseEvent this parameter is ignored in the computation
+     * @param mouseEvent a given property is clicked by the user
      */
     @FXML
     public void handleSelectionByTheUser(MouseEvent mouseEvent) {

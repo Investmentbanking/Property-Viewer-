@@ -10,14 +10,20 @@ import java.net.URISyntaxException;
 public class SignupController {
 
     @FXML
-    TextField username;
+    TextField username;                                   // the username field
     @FXML
-    PasswordField password;
-    @FXML
-    PasswordField repeatedPassword;
+    PasswordField password, repeatedPassword;             // the password and the repeated password fields
 
+    /**
+     * This method is responsible for signing up a user.
+     * If for any reason the user can't sign up a message will be displayed with the reason.
+     * If there was a successful signup the user will be directed to the login page to login and a success message will show
+     *
+     * @param event the signup button is clicked
+     * @return true if the signup action was complete, false otherwise
+     */
     @FXML
-    public boolean signup(ActionEvent event) throws IOException {
+    public boolean signup(ActionEvent event) {
         if(username.getText().equals("") || password.getText().equals("") || repeatedPassword.getText().equals("")){
             new Alerts(Alert.AlertType.ERROR,"Error", null, "Please enter all details");
             return false;
@@ -34,7 +40,7 @@ public class SignupController {
                     InitialController.setRoot("login.fxml");
                     return true;
                 }
-            } catch (URISyntaxException e) {
+            } catch (URISyntaxException | IOException e) {
                 e.printStackTrace();
             }
         }else {
@@ -44,11 +50,23 @@ public class SignupController {
         return false;
     }
 
+    /**
+     * A simple method to change the current fxml file with another (login page)
+     *
+     * @param event main page button clicked
+     * @throws IOException if the corresponding fxml file isn't found
+     */
     @FXML
     public void loginPage(ActionEvent event) throws IOException {
         InitialController.setRoot("login.fxml");
     }
 
+    /**
+     * A simple method to change the current fxml file with another (main page)
+     *
+     * @param event main page button clicked
+     * @throws IOException if the corresponding fxml file isn't found
+     */
     @FXML
     public void startPage(ActionEvent event) throws IOException {
         InitialController.setRoot("optionsPane.fxml");
