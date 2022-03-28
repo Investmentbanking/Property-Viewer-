@@ -12,19 +12,46 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 
 public class BookingController {
-    private static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();
-
-    private TableColumn propertyNameCol;
-
-    @FXML
-    TableView listOfProperties;
+    private static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();         // this is the list that will be observed automatically by the system
+    private TableColumn listingName;                                                                        // the column that shows the name of the bookings
 
     @FXML
-    Label totalNights, price, name, beds, baths, area, from, to;
+    TableView listOfProperties;                                                                             // The main table that holds the list of all bookings to show
 
     @FXML
-    ImageView picture;
+    Label totalNights, price, name, beds, baths, area, from, to;                                            // simple fields that are manipulated to display stats about the property
 
+    @FXML
+    ImageView picture;                                                                                      // the main picture of the property
+
+
+    /**
+     * The main method of this class
+     */
+    public void initialize() {
+        loadProperties();
+    }
+
+    /**
+     * This method is responsible for setting up the table and telling the table to start observing the observable list "listings"
+     */
+    public void loadProperties(){
+        listingName = new TableColumn("Name");
+        listingName.setMinWidth(300);
+        listingName.setMaxWidth(300);
+        listingName.setCellFactory(TextFieldTableCell.forTableColumn());
+        listingName.setCellValueFactory(new PropertyValueFactory<NewAirbnbListing, String>("name"));
+        listOfProperties.getColumns().clear();
+        listOfProperties.getColumns().addAll(listingName);
+        listOfProperties.setItems(listings);
+    }
+
+    /**
+     * This method is responsible for booking the selected property. If there is no
+     * property selected then an appropriate message will be shown.
+     *
+     * @param event this param is ignored in the computation
+     */
     @FXML
     public void confirmBooking(ActionEvent event) {
         Account currentUser = MainController.getCurrentUser();
@@ -33,6 +60,7 @@ public class BookingController {
         }else{
             if(listOfProperties.getSelectionModel().getSelectedItem() != null) {
                 NewAirbnbListing currentItem = (NewAirbnbListing) listOfProperties.getSelectionModel().getSelectedItem();
+                // checking that this property isn't registered to another user or the current user
                 if(!currentUser.isPropertyTaken(currentItem)){
                     // actually book in the property
                     currentUser.reserveProperty(currentItem);
@@ -43,31 +71,17 @@ public class BookingController {
             }else {
                 new Alerts(Alert.AlertType.WARNING,"Error", null, "Please select/book a property first before confirming");
             }
-                // check that this property isn't registered to another user
-
         }
     }
 
-
-    public void initialize() {
-        loadProperties();
-    }
-
-    public void loadProperties(){
-        propertyNameCol = new TableColumn("Name");
-        propertyNameCol.setMinWidth(300);
-        propertyNameCol.setMaxWidth(300);
-        propertyNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        propertyNameCol.setCellValueFactory(new PropertyValueFactory<NewAirbnbListing, String>("name"));
-        listOfProperties.getColumns().clear();
-        listOfProperties.getColumns().addAll(propertyNameCol);
-        listOfProperties.setItems(listings);
-    }
-
-    public static void addListing(NewAirbnbListing property){
-        listings.add(property);
-    }
-
+    /**
+     * This method is responsible for handling the selected item by the user.
+     * The method will update all the fields displayed to reflect the correct changes that will occur after
+     * the selection of a property.
+     *
+     * @param mouseEvent this parameter is ignored in the computation
+     */
+    @FXML
     public void handleSelectionByTheUser(MouseEvent mouseEvent) {
         if(listOfProperties.getSelectionModel().getSelectedItem() != null){
             NewAirbnbListing currentItem = (NewAirbnbListing) listOfProperties.getSelectionModel().getSelectedItem();
@@ -86,11 +100,12 @@ public class BookingController {
             baths.setText(String.valueOf(currentItem.getBathrooms()));
             area.setText(currentItem.getNeighbourhoodCleansed());
         }
-        System.out.println(listings.size());
-        System.out.println("clicked on " + listOfProperties.getSelectionModel().getSelectedItem());
     }
 
-
+    /**
+     * This method is only responsible for resetting the fields displayed on the screen
+     * to their original text in addition to displaying a “Thank You” message to the user.
+     */
     private void reset(){
         name.setText("Thanks for booking :)");
         picture.setImage(loadImage(null, false));
@@ -103,6 +118,12 @@ public class BookingController {
         to.setText("-");
     }
 
+    /**
+     * This method is responsible for checking if a property is taken by the current user or another user.
+     *
+     * @param listing the listing we wish to check for
+     * @return true if the listing is indeed taken in any way shape or form, false otherwise
+     */
     public static boolean checkProperty(NewAirbnbListing listing){
         for(NewAirbnbListing property : listings){
             if(property.getId().equals(listing.getId())){
@@ -112,6 +133,16 @@ public class BookingController {
         }
         return MainController.getCurrentUser().isPropertyTaken(listing);
     }
+
+    /**
+     * This method is responsible for adding to the observable list
+     *
+     * @param property the property we wish to add
+     */
+    public static void addListing(NewAirbnbListing property){
+        listings.add(property);
+    }
+
 
     /**
      * Returns an image loaded from a URL and if the URL is invalid a placeholder image is loaded instead.
