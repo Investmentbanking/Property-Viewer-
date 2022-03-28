@@ -67,7 +67,7 @@ public class InspectBoxController implements Initializable {
             // actually booking
             if(!BookingController.checkProperty(listing)){
                 BookingController.addListing(listing);
-                new Alerts(Alert.AlertType.INFORMATION,"Success", null, listing.getId() + " has been added to your bookings, you could either continue browsing or go to the booking page to confirm booking");
+                new Alerts(Alert.AlertType.INFORMATION,"Success", null, "Listing with listing id: " + listing.getId() + " has been added to your bookings, you could either continue browsing or go to the booking page to confirm booking");
             }
         }
     }

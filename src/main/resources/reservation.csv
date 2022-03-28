@@ -1,2 +1,2 @@
-propertyID,propertyBookedBy
-11551,guest
+propertyID,propertyBookedBy,startDate,endDate
+11551,guest,2022-03-28T23:00:00Z,2022-03-28T23:00:00Z

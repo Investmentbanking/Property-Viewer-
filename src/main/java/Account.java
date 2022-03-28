@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Account {
     private String username;                                                        // the username
@@ -38,25 +39,51 @@ public class Account {
             CSVReader reader = new CSVReader(new FileReader(file));
             String[] line;
 
+            // actual dates set by the user
+            Date preferredStartDate = new Date(RuntimeDetails.getStartDate().getYear() - 1900, RuntimeDetails.getStartDate().getMonthValue() - 1, RuntimeDetails.getStartDate().getDayOfMonth()+1);
+            Date preferredEndDate   = new Date(RuntimeDetails.getEndDate().getYear() - 1900, RuntimeDetails.getEndDate().getMonthValue() - 1, RuntimeDetails.getEndDate().getDayOfMonth()+1);
+
             //skip the first row (column headers)
             reader.readNext();
             while ((line = reader.readNext()) != null) {
                 String propertyID = line[0];
-                String propertyBookedBy = line[1];
+                Date startDate = convertDate(line[2]);
+                Date endDate = convertDate(line[3]);
 
                 if(property.getId().equals(propertyID)){
-                    if(propertyBookedBy.equals(MainController.getCurrentUser().getUsername())){
-                        new Alerts(Alert.AlertType.WARNING,"Warning", null, "this property is already reserved by you!");
-                    }else {
-                        new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry :( \n this property is already reserved by another user");
+                    System.out.println(preferredStartDate.toInstant());
+                    System.out.println(preferredEndDate.toInstant());
+                    System.out.println(startDate.toInstant());
+                    System.out.println(endDate.toInstant());
+
+                    // check there isn't a date clash
+                    // if these are true we don't book they can't be simplified.
+                    if ((preferredStartDate.before(startDate) && preferredEndDate.after(startDate)) || (preferredStartDate.before(endDate) && preferredEndDate.after(endDate)) || (preferredStartDate.after(startDate) && preferredEndDate.before(endDate)) || (preferredStartDate.equals(startDate) || preferredEndDate.equals(endDate))){
+                        // then book
+                        new Alerts(Alert.AlertType.WARNING,"Warning", null, "this property is already reserved in this time");
+                        return true;
                     }
-                    return true;
+                    break;
                 }
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         return false;
+    }
+
+    public boolean noTimeLimitViolation(NewAirbnbListing property){
+        if(RuntimeDetails.getTotalNights() < property.getMinimumNights() || RuntimeDetails.getTotalNights() > property.getMaximumNights()){
+            new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry :( \nthe dates you have chosen aren't suitable for this property. \nPlease try to change the dates to be able to book this property");
+            return true;
+        }
+        return false;
+    }
+
+    private Date convertDate(String dateString){
+        // date should be the same as date we have when we write
+//        String dateWeHave = String.valueOf(new Date(2020 - 1900, 1 - 1, 7).toInstant());
+        return new Date(Integer.valueOf(dateString.substring(0, 4)) - 1900, Integer.valueOf(dateString.substring(5, 7))-1, Integer.valueOf(dateString.substring(8, 10)) + 1);
     }
 
     /**
@@ -67,7 +94,9 @@ public class Account {
     private void bookProperty(NewAirbnbListing property){
         try {
             FileWriter writer = new FileWriter(file, true);
-            String newBooking = (property.getId()) + "," + MainController.getCurrentUser().getUsername() + '\n';
+            Date preferredStartDate = new Date(RuntimeDetails.getStartDate().getYear() - 1900, RuntimeDetails.getStartDate().getMonthValue() - 1, RuntimeDetails.getStartDate().getDayOfMonth()+1);
+            Date preferredEndDate   = new Date(RuntimeDetails.getEndDate().getYear() - 1900, RuntimeDetails.getEndDate().getMonthValue() - 1, RuntimeDetails.getEndDate().getDayOfMonth()+1);
+            String newBooking = (property.getId()) + "," + MainController.getCurrentUser().getUsername() + "," + preferredStartDate.toInstant() + ","  + preferredEndDate.toInstant() + '\n';
             writer.write(newBooking);
             writer.close();
         }catch (Exception e){
@@ -112,5 +141,4 @@ public class Account {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }

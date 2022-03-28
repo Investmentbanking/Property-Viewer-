@@ -41,9 +41,8 @@ public class Login {
             reader.readNext();
             while ((line = reader.readNext()) != null) {
                 String username = line[1];
-                String password = line[2];
 
-                if(username.equals(this.username) && password.equals(hash(this.password))){
+                if(username.equals(this.username)){
                     return true;
                 }
             }

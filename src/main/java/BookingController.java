@@ -61,12 +61,15 @@ public class BookingController {
             if(listOfProperties.getSelectionModel().getSelectedItem() != null) {
                 NewAirbnbListing currentItem = (NewAirbnbListing) listOfProperties.getSelectionModel().getSelectedItem();
                 // checking that this property isn't registered to another user or the current user
-                if(!currentUser.isPropertyTaken(currentItem)){
+                if(!currentUser.isPropertyTaken(currentItem) && !currentUser.noTimeLimitViolation(currentItem)){
                     // actually book in the property
                     currentUser.reserveProperty(currentItem);
                     new Alerts(Alert.AlertType.CONFIRMATION,"Success", null, currentUser.getUsername() + " has reserved property with property ID: " + currentItem.getId());
                     listings.remove(currentItem);
                     reset();
+                }else{
+                    reset();
+                    name.setText("Property Name");
                 }
             }else {
                 new Alerts(Alert.AlertType.WARNING,"Error", null, "Please select/book a property first before confirming");
