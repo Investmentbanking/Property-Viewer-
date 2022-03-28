@@ -22,7 +22,6 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane stylesheets="@inspectmenu.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InspectMenuController">
    <children>
       <BorderPane>
@@ -37,7 +36,7 @@
                                  <top>
                                     <HBox alignment="CENTER" prefHeight="40.0" spacing="10.0" styleClass="select_options_title" BorderPane.alignment="CENTER">
                                        <children>
-                                          <ComboBox fx:id="min" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="min">
+                                          <ComboBox fx:id="min" maxHeight="1.7976931348623157E308" minWidth="-Infinity" onAction="#changeMin" promptText="min">
                                              <tooltip>
                                                 <Tooltip text="Minimum" />
                                              </tooltip>
@@ -45,7 +44,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </ComboBox>
-                                          <ComboBox fx:id="max" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="max">
+                                          <ComboBox fx:id="max" maxHeight="1.7976931348623157E308" minWidth="-Infinity" onAction="#changeMax" promptText="max">
                                              <tooltip>
                                                 <Tooltip text="Maximum" />
                                              </tooltip>
@@ -53,13 +52,13 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </ComboBox>
-                                          <RadioButton fx:id="show_invalid" minWidth="-Infinity" mnemonicParsing="false" selected="true" text="Show Invalid" textFill="WHITE">
+                                          <RadioButton fx:id="show_invalid" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeShowInvalid" selected="true" text="Show Invalid" textFill="WHITE">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </RadioButton>
                                           <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                          <ComboBox fx:id="sortby" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="sort_order">
+                                          <ComboBox fx:id="sortby" maxHeight="1.7976931348623157E308" minWidth="-Infinity" onAction="#changeSortBy" promptText="sort_order">
                                              <tooltip>
                                                 <Tooltip text="Sort By" />
                                              </tooltip>
@@ -67,7 +66,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </ComboBox>
-                                          <ComboBox fx:id="order" maxHeight="1.7976931348623157E308" minWidth="-Infinity" promptText="order">
+                                          <ComboBox fx:id="order" maxHeight="1.7976931348623157E308" minWidth="-Infinity" onAction="#changeOrderBy" promptText="order">
                                              <tooltip>
                                                 <Tooltip text="Order By" />
                                              </tooltip>
@@ -75,11 +74,6 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </ComboBox>
-                                          <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#callRelist" text="Relist">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
                                        </children>
                                        <padding>
                                           <Insets left="10.0" right="10.0" />

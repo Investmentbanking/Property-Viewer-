@@ -55,17 +55,47 @@ public class InspectMenuController implements Initializable {
     private static double widthOffset, heightOffset;
 
     /**
-     * Assigns new list order parameters and then calls a relist for the inspect-listing menu.
+     * Action preformed when min-value ComboBox is changed. Relists the selection when changes.
      */
     @FXML
-    private void callRelist(){
-        InspectListingMenu.setSortSelected(sortby.getValue());
-        InspectListingMenu.setOrderSelected(order.getValue());
-        InspectListingMenu.setShowOutOfRange(show_invalid.isSelected());
-
+    private void changeMin(){
         RuntimeDetails.setMinimumPrice(min.getValue());
-        RuntimeDetails.setMaximumPrice(max.getValue());
+        inspectMenu.reList();
+    }
 
+    /**
+     * Action preformed when max-value ComboBox is changed. Relists the selection when changes.
+     */
+    @FXML
+    private void changeMax(){
+        RuntimeDetails.setMaximumPrice(max.getValue());
+        inspectMenu.reList();
+    }
+
+    /**
+     * Action preformed when show-invalid RadioButton is changed. Relists the selection when changes.
+     */
+    @FXML
+    private void changeShowInvalid(){
+        InspectListingMenu.setShowOutOfRange(show_invalid.isSelected());
+        inspectMenu.reList();
+    }
+
+    /**
+     * Action preformed when sort-by ComboBox is changed. Relists the selection when changes.
+     */
+    @FXML
+    private void changeSortBy(){
+        InspectListingMenu.setSortSelected(sortby.getValue());
+        inspectMenu.reList();
+    }
+
+    /**
+     * Action preformed when order-by ComboBox is changed. Relists the selection when changes.
+     */
+    @FXML
+    private void changeOrderBy(){
+        InspectListingMenu.setOrderSelected(order.getValue());
         inspectMenu.reList();
     }
 
