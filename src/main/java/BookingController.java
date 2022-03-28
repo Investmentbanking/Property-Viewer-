@@ -2,9 +2,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,8 +14,10 @@ import java.net.URL;
 public class BookingController {
     private static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();
 
+    private TableColumn propertyNameCol;
+
     @FXML
-    ListView listOfProperties;
+    TableView listOfProperties;
 
     @FXML
     Label totalNights, price, name, beds, baths, area, from, to;
@@ -37,10 +39,9 @@ public class BookingController {
                     new Alerts(Alert.AlertType.CONFIRMATION,"Success", null, currentUser.getUsername() + " has reserved property with property ID: " + currentItem.getId());
                     listings.remove(currentItem);
                     reset();
-                }else {
-                    new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry someone else booked this property!");
                 }
-
+            }else {
+                new Alerts(Alert.AlertType.WARNING,"Error", null, "Please select/book a property first before confirming");
             }
                 // check that this property isn't registered to another user
 
@@ -53,6 +54,13 @@ public class BookingController {
     }
 
     public void loadProperties(){
+        propertyNameCol = new TableColumn("Name");
+        propertyNameCol.setMinWidth(300);
+        propertyNameCol.setMaxWidth(300);
+        propertyNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        propertyNameCol.setCellValueFactory(new PropertyValueFactory<NewAirbnbListing, String>("name"));
+        listOfProperties.getColumns().clear();
+        listOfProperties.getColumns().addAll(propertyNameCol);
         listOfProperties.setItems(listings);
     }
 
@@ -98,10 +106,11 @@ public class BookingController {
     public static boolean checkProperty(NewAirbnbListing listing){
         for(NewAirbnbListing property : listings){
             if(property.getId().equals(listing.getId())){
+                new Alerts(Alert.AlertType.ERROR,"Error", null," you can add properties only once!");
                 return true;
             }
         }
-        return false;
+        return MainController.getCurrentUser().isPropertyTaken(listing);
     }
 
     /**

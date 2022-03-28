@@ -45,15 +45,17 @@ public class Account {
                 String propertyBookedBy = line[1];
 
                 if(property.getId().equals(propertyID)){
-                    new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry :( \n this property is already reserved by a user with the ID: " + propertyBookedBy);
+                    if(propertyBookedBy.equals(MainController.getCurrentUser().getUsername())){
+                        new Alerts(Alert.AlertType.WARNING,"Warning", null, "this property is already reserved by you!");
+                    }else {
+                        new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry :( \n this property is already reserved by another user");
+                    }
                     return true;
                 }
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        bookProperty(property);
         return false;
     }
 
@@ -70,5 +72,6 @@ public class Account {
 
     public void reserveProperty(NewAirbnbListing property){
         bookings.add(property);
+        bookProperty(property);
     }
 }
