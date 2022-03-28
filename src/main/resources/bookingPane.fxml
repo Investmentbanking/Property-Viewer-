@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BookingController">
+<BorderPane minWidth="720.0" style="-fx-background-color: #36393f; -fx-font-family: SFNS-Regular;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BookingController">
    <center>
       <HBox BorderPane.alignment="CENTER">
          <children>
