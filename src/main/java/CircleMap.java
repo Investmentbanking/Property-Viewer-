@@ -29,7 +29,7 @@ public class CircleMap extends Pane {
             MenuCircle newCircle = new MenuCircle(borough, BoroughMap.getBoroughListings().get(borough));
             menuCircles.add(newCircle);
         }
-        menuCircles.sort(Comparator.comparing(MenuCircle::getSizeValue)); // Sorts by circle size
+        menuCircles.sort(Comparator.comparing(MenuCircle::getColourValue)); // Sorts by circle colour
         Collections.reverse(menuCircles);
         getChildren().addAll(menuCircles);
 

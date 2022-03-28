@@ -1,3 +1,4 @@
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -55,15 +56,15 @@ public class MenuCircle extends MenuShape {
     }
 
     /**
-     * Calculates what the size of the circle should be based on how many available listings there are.
+     * Calculates what the size of the circle should be based on the average price of the listings.
      * @return the calculated size of the circle.
      */
     private int calculateSize(){
-        double min = Borough.availableStorage.min();
-        double max = Borough.availableStorage.max();
+        double min = Borough.avgPriceStorage.min();
+        double max = Borough.avgPriceStorage.max();
 
         double calc;
-        calc = (borough.getAvailable() - min) / (max - min);
+        calc = (borough.getAvgPrice() - min) / (max - min);
         calc *= MAX_CIRCLE_SIZE - MIN_CIRCLE_SIZE;
         calc += MIN_CIRCLE_SIZE;
 
@@ -79,11 +80,11 @@ public class MenuCircle extends MenuShape {
     }
 
     /**
-     * Get the value that represents the size of the circle. (The average price in the borough)
-     * @return the value that represents the size of the circle. (The average price in the borough)
+     * Get the value that represents the colour of the circle. (The availability of listings in the borough)
+     * @return the value that represents the size of the circle. (The availability of listings in the borough)
      */
-    public int getSizeValue(){
-        return borough.getAvgPrice();
+    public int getColourValue(){
+        return borough.getAvailable();
     }
 
     /**

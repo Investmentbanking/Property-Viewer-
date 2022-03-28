@@ -27,7 +27,7 @@
             <BorderPane fx:id="pane" prefHeight="200.0" prefWidth="200.0" />
          </content>
       </ScrollPane>
-      <GridPane id="key" fx:id="key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">
+      <GridPane id="key_circle" fx:id="circle_key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" styleClass="key" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
             <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
@@ -43,7 +43,7 @@
          <children>
             <Circle fill="TRANSPARENT" radius="5.0" stroke="#dcddde" strokeType="INSIDE" strokeWidth="2.0" />
             <Circle fill="TRANSPARENT" radius="10.0" stroke="#dcddde" strokeType="INSIDE" strokeWidth="2.0" GridPane.rowIndex="1" />
-            <Rectangle fx:id="low_to_high" arcHeight="5.0" arcWidth="5.0" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="2" GridPane.rowSpan="2">
+            <Rectangle fx:id="low_to_high_circle" arcHeight="5.0" arcWidth="5.0" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowIndex="2" GridPane.rowSpan="2">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0" startX="1.0">
                      <stops>
@@ -71,18 +71,67 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Label text="Low Availability" GridPane.columnIndex="1" />
-            <Label text="High Availability" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Low Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="High Average Cost" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Low Average Cost" GridPane.columnIndex="1" />
+            <Label text="High Average Cost" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Low Availability" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="High Availability" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <StackPane.margin>
             <Insets bottom="20.0" left="10.0" />
          </StackPane.margin>
       </GridPane>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" StackPane.alignment="TOP_LEFT">
+      <GridPane id="key_geo" fx:id="geo_key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" styleClass="key" vgap="5.0" visible="false" StackPane.alignment="BOTTOM_LEFT">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
+         </rowConstraints>
+         <children>
+            <Rectangle fx:id="low_to_high_geo" arcHeight="5.0" arcWidth="5.0" height="45.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="20.0" GridPane.rowSpan="2">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.23333333432674408" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.007727073637252244">
+                           <color>
+                              <Color red="0.23333333432674408" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.9999999551294803">
+                           <color>
+                              <Color red="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Label text="Low Availability" textAlignment="JUSTIFY" GridPane.columnIndex="1" />
+            <Label text="High Availability" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
          <StackPane.margin>
-            <Insets left="10.0" top="10.0" />
+            <Insets bottom="20.0" left="10.0" />
+         </StackPane.margin>
+      </GridPane>
+      <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" StackPane.alignment="TOP_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
          </StackPane.margin>
          <children>
             <Label mouseTransparent="true" styleClass="help_text" text="Click and drag to pan" />

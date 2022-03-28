@@ -26,8 +26,8 @@ public abstract class MenuShape extends StackPane {
     protected Text text;
     protected Color colour;
 
-    protected static final Color CHEAP_COLOR = Color.rgb(46, 50, 177);
-    public static final Color EXPENSIVE_COLOR = Color.rgb(242, 63, 63);
+    public static final Color LOW_COLOR = Color.rgb(46, 50, 177);
+    public static final Color HIGH_COLOR = Color.rgb(242, 63, 63);
 
     protected int fontSize;
 
@@ -129,18 +129,18 @@ public abstract class MenuShape extends StackPane {
      * @return the calculated colour of the circle.
      */
     private Color calculateColor(){
-        double min = Borough.avgPriceStorage.min();
-        double max = Borough.avgPriceStorage.max();
+        double min = Borough.availableStorage.min();
+        double max = Borough.availableStorage.max();
 
-        double calc = (borough.getAvgPrice() - min) / (max - min);
+        double calc = (borough.getAvailable() - min) / (max - min);
 
-        double r = EXPENSIVE_COLOR.getRed() - CHEAP_COLOR.getRed();
-        double g = EXPENSIVE_COLOR.getGreen() - CHEAP_COLOR.getGreen();
-        double b = EXPENSIVE_COLOR.getBlue() - CHEAP_COLOR.getBlue();
+        double r = HIGH_COLOR.getRed() - LOW_COLOR.getRed();
+        double g = HIGH_COLOR.getGreen() - LOW_COLOR.getGreen();
+        double b = HIGH_COLOR.getBlue() - LOW_COLOR.getBlue();
 
-        r = (r * calc) + CHEAP_COLOR.getRed();
-        g = (g * calc) + CHEAP_COLOR.getGreen();
-        b = (b * calc) + CHEAP_COLOR.getBlue();
+        r = (r * calc) + LOW_COLOR.getRed();
+        g = (g * calc) + LOW_COLOR.getGreen();
+        b = (b * calc) + LOW_COLOR.getBlue();
 
         return new Color(r, g, b, 1.0);
     }
