@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class InspectListingMenu extends ListView<HBox> {
 
     // List sort options
-    public static final ObservableList<String> SORT_OPTIONS = FXCollections.observableArrayList( "Listing Name", "Host Name", "Review Score", "Price");
+    public static final ObservableList<String> SORT_OPTIONS = FXCollections.observableArrayList( "Listing Name", "Host Name", "Review Count", "Review Score", "Price");
     public static final ObservableList<String> ORDER_OPTIONS = FXCollections.observableArrayList("Ascending", "Descending");
     private static String sortSelected = SORT_OPTIONS.get(0);
     private static String orderSelected = ORDER_OPTIONS.get(0);
@@ -248,10 +248,13 @@ public class InspectListingMenu extends ListView<HBox> {
             case 1: // Host Name
                 listings.sort(Comparator.comparing(NewAirbnbListing::getHostName));             // Ascending Order
                 break;
-            case 2: // Review Score
+            case 2: // Review Count
+                listings.sort(Comparator.comparing(NewAirbnbListing::getNumberOfReviews));      // Ascending Order
+                break;
+            case 3: // Review Score
                 listings.sort(Comparator.comparing(NewAirbnbListing::getReviewScoresRating));   // Ascending Order
                 break;
-            case 3: // Price
+            case 4: // Price
                 listings.sort(Comparator.comparing(NewAirbnbListing::getPrice));                // Ascending Order
                 break;
         }

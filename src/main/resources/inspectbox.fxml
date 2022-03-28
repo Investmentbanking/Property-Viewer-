@@ -255,11 +255,15 @@
       </GridPane>
       <VBox alignment="CENTER" spacing="10.0" styleClass="light_border" VBox.vgrow="ALWAYS">
          <children>
-            <Label id="big_title" styleClass="dark_title_border" text="Reviews">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label id="big_title" fx:id="numberOfReviews" styleClass="dark_title_border" text="Reviews">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label id="bold_medium" text="Cleanliness">

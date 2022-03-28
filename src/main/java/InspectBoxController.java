@@ -51,6 +51,7 @@ public class InspectBoxController implements Initializable {
     @FXML private ListView<String> amenities;
 
     // 7th Section Nodes
+    @FXML private Label numberOfReviews;
     @FXML private ProgressBar review_scores_cleanliness, review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value;
 
     private static NewAirbnbListing listing;
@@ -188,6 +189,10 @@ public class InspectBoxController implements Initializable {
         }
 
         // 7th Section Nodes
+        int reviewCount = listing.getNumberOfReviews();
+        if (reviewCount == 1){numberOfReviews.setText(reviewCount + " Review");}
+        else{numberOfReviews.setText(reviewCount + " Reviews");}
+
         double cleanliness = ((double)listing.getReviewScoresCleanliness())/10;
         review_scores_cleanliness.setProgress(cleanliness);
         review_scores_cleanliness.setId(calcReviewID(cleanliness));
