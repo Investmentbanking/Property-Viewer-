@@ -70,20 +70,21 @@ public class AirbnbDataLoader {
             double price = convertMoney(line[18]);
             int minimumNights = convertInt(line[19]);
             int maximumNights = convertInt(line[20]);
-            int availability365 = convertInt(line[21]);
-            int review_scores_rating = convertInt(line[22]);
-            int review_scores_cleanliness = convertInt(line[23]);
-            int review_scores_checkin = convertInt(line[24]);
-            int review_scores_communication = convertInt(line[25]);
-            int review_scores_location = convertInt(line[26]);
-            int review_scores_value = convertInt(line[27]);
+            int number_of_reviews = convertInt(line[21]);
+            int availability365 = convertInt(line[22]);
+            int review_scores_rating = convertInt(line[23]);
+            int review_scores_cleanliness = convertInt(line[24]);
+            int review_scores_checkin = convertInt(line[25]);
+            int review_scores_communication = convertInt(line[26]);
+            int review_scores_location = convertInt(line[27]);
+            int review_scores_value = convertInt(line[28]);
 
             NewAirbnbListing listing = new NewAirbnbListing(id, name, neighborhood_overview,
                     picture_url, host_id, host_name, host_response_time, host_picture_url,
                     host_listings, neighbourhood_cleansed, latitude, longitude, property_type,
                     accommodates, bathrooms, bedrooms, beds, amenities, price, minimumNights, maximumNights,
-                    availability365, review_scores_rating, review_scores_cleanliness, review_scores_checkin,
-                    review_scores_communication, review_scores_location, review_scores_value
+                    number_of_reviews, availability365, review_scores_rating, review_scores_cleanliness,
+                    review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value
             );
             return listing;
     }
