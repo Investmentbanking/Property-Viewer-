@@ -61,7 +61,7 @@ public class InspectBoxController implements Initializable {
      */
     @FXML
     private void addToBooking() {
-        if(Pane1Controller.getCurrentUser().getUsername() == null){
+        if(MainController.getCurrentUser().getUsername() == null){
             new Alerts(Alert.AlertType.ERROR,"Error", null, "You need to have an account to be able to book a property :(");
         }else{
             // actually booking

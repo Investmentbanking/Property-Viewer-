@@ -38,14 +38,14 @@ public class InitialController extends Application {
     }
     /**
      * sets the root scene to stage
-     * with pane0.fxml and shows the stage
+     * with optionsPane.fxml and shows the stage
      * @param stage stage of application
      */
     @Override
     public void start(Stage stage) throws IOException {
         RuntimeDetails.setNewAirbnbListings(AirbnbDataLoader.loadNewDataSet());     // Loads the new dataset being used for this project.
         RuntimeDetails.setOldAirbnbListings(AirbnbDataLoader.loadOldDataSet());     // Loads the old dataset being used for this project.
-        URL url = getClass().getResource("pane0.fxml");
+        URL url = getClass().getResource("optionsPane.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);
@@ -80,7 +80,7 @@ public class InitialController extends Application {
      */
     @FXML
     public void guestClicked(ActionEvent event) throws IOException {
-        setRoot("pane1.fxml");
+        setRoot("welcomePane.fxml");
     }
 
     /**

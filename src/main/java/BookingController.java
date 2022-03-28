@@ -25,7 +25,7 @@ public class BookingController {
 
     @FXML
     public void confirmBooking(ActionEvent event) {
-        Account currentUser = Pane1Controller.getCurrentUser();
+        Account currentUser = MainController.getCurrentUser();
         if(currentUser.getUsername() == null){
             new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry you need an account to be able to book a property!");
         }else{

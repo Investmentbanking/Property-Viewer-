@@ -51,6 +51,6 @@ public class SignupController {
 
     @FXML
     public void startPage(ActionEvent event) throws IOException {
-        InitialController.setRoot("pane0.fxml");
+        InitialController.setRoot("optionsPane.fxml");
     }
 }

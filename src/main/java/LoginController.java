@@ -1,7 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -27,8 +26,8 @@ public class LoginController {
         try {
             Login log = new Login(username.getText(), password.getText());
             if (log.checkLogin()){
-                Pane1Controller.setCurrentUser(username.getText());
-                InitialController.setRoot("pane1.fxml");
+                MainController.setCurrentUser(username.getText());
+                InitialController.setRoot("welcomePane.fxml");
                 return true;
             }
         } catch (URISyntaxException | IOException e) {
@@ -45,7 +44,7 @@ public class LoginController {
 
     @FXML
     public void startPage(ActionEvent event) throws IOException {
-        InitialController.setRoot("pane0.fxml");
+        InitialController.setRoot("optionsPane.fxml");
     }
 
     public void change(javafx.scene.input.MouseEvent mouseEvent) {

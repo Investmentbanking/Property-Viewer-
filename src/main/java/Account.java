@@ -1,6 +1,5 @@
 import com.opencsv.CSVReader;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.Pane;
 
 import java.io.File;
 import java.io.FileReader;
@@ -61,7 +60,7 @@ public class Account {
     private void bookProperty(NewAirbnbListing property){
         try {
             FileWriter writer = new FileWriter(file, true);
-            String newBooking = (property.getId()) + "," + Pane1Controller.getCurrentUser().getUsername() + '\n';
+            String newBooking = (property.getId()) + "," + MainController.getCurrentUser().getUsername() + '\n';
             writer.write(newBooking);
             writer.close();
         }catch (Exception e){

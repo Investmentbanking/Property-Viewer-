@@ -197,8 +197,8 @@ public class InspectMenuController implements Initializable {
         });
 
         // Assigning the ComboBoxes.
-        min.setItems(Pane1Controller.AVAILABLE_PRICES);
-        max.setItems(Pane1Controller.AVAILABLE_PRICES);
+        min.setItems(MainController.AVAILABLE_PRICES);
+        max.setItems(MainController.AVAILABLE_PRICES);
         min.setValue(RuntimeDetails.getMinimumPrice());
         max.setValue(RuntimeDetails.getMaximumPrice());
 

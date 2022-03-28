@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * @author Burhan Tekcan K21013451
  * @version 1.2
  */
-public class Pane1Controller extends Application {
+public class MainController extends Application {
 
     @FXML // minimum price selection
     private ChoiceBox<Integer> minimumPriceBox;
@@ -95,10 +95,10 @@ public class Pane1Controller extends Application {
      * Sets pointer to 0 (which is pane 1)
      * adds all panes to arraylist to be accessed
      */
-    public Pane1Controller() throws IOException
+    public MainController() throws IOException
     {
         Node pane2 = FXMLLoader.load(getClass().getResource("map.fxml"));
-        Node pane4 = FXMLLoader.load(getClass().getResource("pane4.fxml"));
+        Node pane4 = FXMLLoader.load(getClass().getResource("bookingPane.fxml"));
         sceneNodes.add(null); // it is already created and in scene.
         sceneNodes.add(pane2);
         sceneNodes.add(null); // uses separate method to create scene
@@ -114,7 +114,7 @@ public class Pane1Controller extends Application {
     @Override
     public void start(Stage stage) throws IOException
     {
-        URL url = getClass().getResource("pane1.fxml");
+        URL url = getClass().getResource("welcomePane.fxml");
         assert url != null;
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
