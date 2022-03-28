@@ -59,7 +59,7 @@ public class Pane1Controller extends Application {
     // pointer to the current pane
     private int pointer;
     // the prices available to choose from
-    public static final ObservableList<Integer> AVAILABLE_PRICES = FXCollections.observableArrayList(0,100,200,300,400,500,600,700,800,900,1000);
+    public static final ObservableList<Integer> AVAILABLE_PRICES = FXCollections.observableArrayList(0,50,100,150,200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,3000,4000,5000,10000);
     // object of the current users account
     private static Account currentUser;
     // Statistics combobox
@@ -279,6 +279,7 @@ public class Pane1Controller extends Application {
             RuntimeDetails.setMaximumPrice(maxPriceInput);
             priceRange.textProperty().set(RuntimeDetails.getPriceRange());
             RuntimeDetails.setValidPrices(true);
+            Statistics.reloadListings();
             checkValidDetails();
         }
     }

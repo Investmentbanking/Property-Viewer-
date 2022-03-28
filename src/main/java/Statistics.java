@@ -153,4 +153,12 @@ public class Statistics {
         stats.remove(0);
         return stat;
     }
+
+    /**
+     * reloads the listings based on newly inputted ranges
+     */
+    public static void reloadListings() {
+        oldListings = loadOldRange();
+        newListings = loadNewRange();
+    }
 }
