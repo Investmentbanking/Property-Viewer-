@@ -8,6 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -210,6 +211,7 @@ public class InspectMenuController implements Initializable {
         Scene scene = new Scene(root, 1400, 800);
         stage.setScene(scene);
         stage.setTitle(title);
+        stage.getIcons().add(new Image("airbnb-icon-dark.png"));
         stage.show();
     }
 

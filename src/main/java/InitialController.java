@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -53,6 +54,7 @@ public class InitialController extends Application {
         stage.setMinHeight(520);
         stage.setMinWidth(720);
         stage.setScene(scene);
+        stage.getIcons().add(new Image("airbnb-icon.png"));
         stage.show();
     }
 
