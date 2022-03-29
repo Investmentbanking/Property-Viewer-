@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,6 +18,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Main controller for pane 1
@@ -65,6 +67,8 @@ public class MainController extends Application {
     // Statistics combobox
     ComboBox combobox;
 
+    private final MapController mapController; // Controller for map pane.
+
 
     static {
         try {
@@ -97,10 +101,19 @@ public class MainController extends Application {
      */
     public MainController() throws IOException
     {
-        Node pane2 = FXMLLoader.load(getClass().getResource("map.fxml"));
+        FXMLLoader boroughMapLoader = new FXMLLoader();
+        Node boroughMap = null;
+        try {
+            boroughMap = boroughMapLoader.load((Objects.requireNonNull(getClass().getResource("map.fxml"))).openStream());
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        mapController = boroughMapLoader.getController();
+
+
         Node pane4 = FXMLLoader.load(getClass().getResource("bookingPane.fxml"));
         sceneNodes.add(null); // it is already created and in scene.
-        sceneNodes.add(pane2);
+        sceneNodes.add(boroughMap);
         sceneNodes.add(null); // uses separate method to create scene
         sceneNodes.add(pane4);
         pointer = 0;
@@ -204,6 +217,11 @@ public class MainController extends Application {
                 centrePane.setCenter(pane1);
                 togglePriceBoxes(false);
                 break;
+            case 1:
+                centrePane.getChildren().remove(centrePane.getCenter());
+                centrePane.setCenter(sceneNodes.get(pointer));
+                togglePriceBoxes(false);
+                break;
             case 2:
 
                 centrePane.getChildren().remove(centrePane.getCenter());
@@ -234,8 +252,12 @@ public class MainController extends Application {
                 centrePane.setCenter(pane1);
                 togglePriceBoxes(false);
                 break;
+            case 1:
+                centrePane.getChildren().remove(centrePane.getCenter());
+                centrePane.setCenter(sceneNodes.get(pointer));
+                togglePriceBoxes(false);
+                break;
             case 2:
-
                 centrePane.getChildren().remove(centrePane.getCenter());
                 changeToStats();
                 togglePriceBoxes(true);
@@ -281,6 +303,8 @@ public class MainController extends Application {
             RuntimeDetails.setValidPrices(true);
             Statistics.reloadListings();
             checkValidDetails();
+
+            mapController.rangeChanged(); // Reloads the structure of the map.
         }
     }
 
