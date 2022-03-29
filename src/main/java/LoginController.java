@@ -8,15 +8,21 @@ import java.net.URISyntaxException;
 public class LoginController {
 
     @FXML
-    TextField username;
-    @FXML
-    PasswordField password;
-    @FXML
-    Button submit;
+    TextField username;             // the username field
 
     @FXML
-    Label loadingLabel;
+    PasswordField password;         // the password field
 
+    @FXML
+    Label loadingLabel;             // the loading label
+
+    /**
+     * This method is responsible for handling input from the user and allowing them to log in.
+     * In all cases an appropriate message will be shown to indicate if a certain operation failed/succeeded
+     *
+     * @param event login button clicked
+     * @return true if the user is allowed to log in, false otherwise
+     */
     @FXML
     public boolean checkDetails(ActionEvent event) {
         if(username.getText().equals("") || password.getText().equals("")){
@@ -37,16 +43,12 @@ public class LoginController {
         return false;
     }
 
+    /**
+     * This method is responsible for displaying a "Loading please wait" message to the user.
+     *
+     * @param mouseEvent login button pressed and details are correct
+     */
     @FXML
-    public void signupPage(ActionEvent event) throws IOException {
-        InitialController.setRoot("signup.fxml");
-    }
-
-    @FXML
-    public void startPage(ActionEvent event) throws IOException {
-        InitialController.setRoot("optionsPane.fxml");
-    }
-
     public void change(javafx.scene.input.MouseEvent mouseEvent) {
         try {
             Login log = new Login(username.getText(), password.getText());
@@ -56,5 +58,27 @@ public class LoginController {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * A simple method to change the current fxml file with another (sign up page)
+     *
+     * @param event signup button clicked
+     * @throws IOException if the corresponding fxml file isn't found
+     */
+    @FXML
+    public void signupPage(ActionEvent event) throws IOException {
+        InitialController.setRoot("signup.fxml");
+    }
+
+    /**
+     * A simple method to change the current fxml file with another (main page)
+     *
+     * @param event main page button clicked
+     * @throws IOException if the corresponding fxml file isn't found
+     */
+    @FXML
+    public void startPage(ActionEvent event) throws IOException {
+        InitialController.setRoot("optionsPane.fxml");
     }
 }

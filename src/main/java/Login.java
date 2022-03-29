@@ -9,16 +9,30 @@ import java.io.File;
 import java.io.FileReader;
 
 public class Login {
-    private String username;
-    private String password;
-    private final URL url = this.getClass().getResource("users.csv");
-    private final String file = new File(url.toURI()).getAbsolutePath();
+    private String username;                                                            // The username of the user
+    private String password;                                                            // The password of the user
+    private final URL url = this.getClass().getResource("users.csv");             // The file that stores the usernames acts as a database
+    private final String file = new File(url.toURI()).getAbsolutePath();                // The actual path to the file, done like this to avoid repetition
 
+    /**
+     * The main constructor of the Login class. Sets the username and password fields to
+     * their corresponding values
+     *
+     * @param username the username
+     * @param password the password
+     * @throws URISyntaxException when the file can't be found, this is when the file doesn't exist
+     */
     public Login(String username, String password) throws URISyntaxException {
         this.username = username;
         this.password = password;
     }
 
+    /**
+     * A simple method to check if a user has already been saved and therefore
+     * can be considered an "existing user"
+     *
+     * @return true if this user exists, false otherwise
+     */
     public boolean checkLogin(){
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
@@ -27,9 +41,8 @@ public class Login {
             reader.readNext();
             while ((line = reader.readNext()) != null) {
                 String username = line[1];
-                String password = line[2];
 
-                if(username.equals(this.username) && password.equals(hash(this.password))){
+                if(username.equals(this.username)){
                     return true;
                 }
             }
@@ -40,6 +53,13 @@ public class Login {
         }
     }
 
+    /**
+     * A simple method to save the user to the file. When saving a user, an automatic id will be
+     * assigned to the user so that we can distinguish users with specific ids.
+     * Additionally, no two users with the same name are allowed.
+     *
+     * @return true when a new user is saved to the file, false otherwise.
+     */
     public boolean makeLogin(){
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
@@ -69,6 +89,12 @@ public class Login {
         }
     }
 
+    /**
+     * A simple method to convert an id  string representation to a numeric one.
+     *
+     * @param id the string representation of the id
+     * @return a numeric representation of the id
+     */
     private int convertID(String id){
         if(id != null && !id.trim().equals("")){
             return Integer.parseInt(id);
@@ -77,37 +103,25 @@ public class Login {
     }
 
     /**
-     * https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
-     * @param password
-     * @return
+     * A simple method to hash a given password by first adding a string to it for security.
+     * The hashing algorithm used is SHA-256
+     *
+     * @param password the password we wish to hash
+     * @return the hashed password
      */
     private String hash(String password) throws NoSuchAlgorithmException {
-        // first salt the password
-        password = password + "cYM!HAhJ7T@ETTS8CT&5PgG6ye8TBYFEjs!efr7P";
+        password = password + "cYM!HAhJ7T@ETTS8CT&5PgG6ye8TBYFEjs!efr7P";     // first salt the password
+        MessageDigest hash = MessageDigest.getInstance("SHA-256");            // Create MessageDigest instance for SHA-256
+        hash.update(password.getBytes());                                     // Add password bytes to digest
+        byte[] bytes = hash.digest();                                         // Get the hash's bytes
 
-        // Create MessageDigest instance for MD5
-        MessageDigest md = MessageDigest.getInstance("MD5");
-
-        // Add password bytes to digest
-        md.update(password.getBytes());
-
-        // Get the hash's bytes
-        byte[] bytes = md.digest();
-
-        // This bytes[] has bytes in decimal format. Convert it to hexadecimal format
-        StringBuilder sb = new StringBuilder();
+        // bytes[] has bytes in decimal format. Convert it to hexadecimal format
+        StringBuilder string = new StringBuilder();
         for (byte aByte : bytes) {
-            sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
+            string.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
         }
 
         // Get complete hashed password in hex format
-        return sb.toString();
-    }
-
-    public static void main(String[] args) throws URISyntaxException, NoSuchAlgorithmException {
-        Login log = new Login("mac", "passwor");
-        System.out.println(log.makeLogin());
-        System.out.println(log.checkLogin());
-        System.out.println(log.hash("root"));
+        return string.toString();
     }
 }
