@@ -40,6 +40,7 @@
 
 .view_all_button:hover, .toggle_map_button:hover, .reorder_circles_button:hover{
     -fx-background-color: red;
+    -fx-background-radius: 20;
     -fx-text-fill: #dcddde;
 }
 
