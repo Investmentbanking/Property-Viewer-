@@ -20,14 +20,14 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Main controller for pane 1
+ * Main controller for welcome pane
  * allows for selection of prices, dates
  * welcomes and shows instructions on how to use program
  * controls top bar and arrows
  * handles pane switching
  *
  * @author Burhan Tekcan K21013451
- * @version 1.2
+ * @version 1.5
  */
 public class MainController extends Application {
 
@@ -87,7 +87,7 @@ public class MainController extends Application {
         minimumPriceBox.setItems(AVAILABLE_PRICES);
         maximumPriceBox.setItems(AVAILABLE_PRICES);
         minimumPriceBox.setValue(0);
-        maximumPriceBox.setValue(1000);
+        maximumPriceBox.setValue(10000);
         priceRange.textProperty().set(RuntimeDetails.getPriceRange());
         startDate.setValue(RuntimeDetails.getStartDate());
         endDate.setValue(RuntimeDetails.getEndDate());
@@ -96,7 +96,7 @@ public class MainController extends Application {
 
     /**
      * Sets pointer to 0 (which is pane 1)
-     * adds all panes to arraylist to be accessed
+     * adds all panes to arraylist to be accessed when changing pane
      */
     public MainController() throws IOException
     {
@@ -108,7 +108,6 @@ public class MainController extends Application {
             e.printStackTrace();
         }
         mapController = boroughMapLoader.getController();
-
 
         Node pane4 = FXMLLoader.load(getClass().getResource("bookingPane.fxml"));
         sceneNodes.add(null); // it is already created and in scene.
@@ -155,7 +154,7 @@ public class MainController extends Application {
             checkValidDetails();
         }
         else if(sDate != null && (sDate.isBefore(LocalDate.now()) || sDate.isEqual(LocalDate.now()))) {
-            new Alerts(Alert.AlertType.ERROR, "Time Error", null, "The start date cannot be before the current date");
+            new Alerts(Alert.AlertType.ERROR, "Date Error", null, "The start date cannot be before the current date");
             startDate.setValue(null);
             RuntimeDetails.setValidDates(false);
             checkValidDetails();

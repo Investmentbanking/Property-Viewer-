@@ -35,7 +35,7 @@ public class RuntimeDetails {
     // and set valid prices flag to true
     static{
         minimumPrice = 0;
-        maximumPrice = 1000;
+        maximumPrice = 10000;
         validPrices = true;
     }
 

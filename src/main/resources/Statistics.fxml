@@ -38,10 +38,10 @@
                <children>
                   <BorderPane id="borderpane1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;">
                      <left>
-                        <Button id="11" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Button id="11" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </left>
                      <right>
-                        <Button id="10" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
+                        <Button id="10" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
                      </right>
                      <center>
                         <Text id="stat1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="179.67384338378906" BorderPane.alignment="CENTER">
@@ -53,10 +53,10 @@
                   </BorderPane>
                   <BorderPane id="borderpane2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;" GridPane.columnIndex="1">
                      <left>
-                        <Button id="21" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Button id="21" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </left>
                      <right>
-                        <Button id="20" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
+                        <Button id="20" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
                      </right>
                      <center>
                         <Text id="stat2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="156.67381286621094" BorderPane.alignment="CENTER">
@@ -68,10 +68,10 @@
                   </BorderPane>
                   <BorderPane id="borderpane3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;" GridPane.rowIndex="1">
                      <left>
-                        <Button id="31" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Button id="31" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </left>
                      <right>
-                        <Button id="30" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
+                        <Button id="30" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
                      </right>
                      <center>
                         <Text id="stat3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="189.67384338378906" BorderPane.alignment="CENTER">
@@ -83,10 +83,10 @@
                   </BorderPane>
                   <BorderPane id="borderpane4" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #202225;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <left>
-                        <Button id="41" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
+                        <Button id="41" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&lt;" textFill="WHITE" BorderPane.alignment="CENTER" />
                      </left>
                      <right>
-                        <Button id="40" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
+                        <Button id="40" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#handle" text="&gt;" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT" />
                      </right>
                      <center>
                         <Text id="stat4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="191.67381286621094" BorderPane.alignment="CENTER">

@@ -22,7 +22,7 @@
    <bottom>
       <HBox style="-fx-background-color: #202225;" BorderPane.alignment="CENTER">
          <children>
-            <Button id="leftArrow" fx:id="leftArrow" mnemonicParsing="false" onAction="#leftArrowClicked" style="-fx-background-color: #40444b;" text="&lt;" textFill="WHITE">
+            <Button id="leftArrow" fx:id="leftArrow" mnemonicParsing="false" onAction="#leftArrowClicked" text="&lt;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="2.0" right="2.0" top="2.0" />
                </HBox.margin>
@@ -40,7 +40,7 @@
                </padding>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <Button id="rightArrow" fx:id="rightArrow" mnemonicParsing="false" onAction="#rightArrowClicked" style="-fx-background-color: #40444b;" text="&gt;" textFill="WHITE">
+            <Button id="rightArrow" fx:id="rightArrow" mnemonicParsing="false" onAction="#rightArrowClicked" text="&gt;" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="2.0" left="2.0" top="2.0" />
                </HBox.margin>
@@ -75,7 +75,7 @@
                            </VBox.margin>
                            <children>
                               <Region minWidth="17.0" HBox.hgrow="NEVER" />
-                              <TextArea id="useBox" cacheShape="false" editable="false" prefColumnCount="35" prefWidth="357.0" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="How to use:&#10;1. Select valid minimum and maximum prices at the top and press confirm.&#10;2. Select the start and end dates of the period you are looking for&#10;3. View properties in different boroughs, selecting from the map.&#10;4. Sort through from price, reviews, cost, view properties &#10;and add to bookings&#10;4. View statistics on the boroughs on pane 3, within three different&#10;categories&#10;5. If you are logged in, add properties to bookings list on pane 2,&#10; and confirm booking on pane 4&#10;" HBox.hgrow="ALWAYS">
+                              <TextArea id="useBox" cacheShape="false" editable="false" prefColumnCount="35" prefWidth="357.0" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="How to use:&#10;1. Select valid minimum and maximum prices at the top and press confirm.&#10;2. Select the start and end dates of the period you are looking for&#10;3. View properties in different boroughs, selecting from the map.&#10;4. Sort through from price, reviews, cost, view properties &#10;and add to bookings&#10;4. View statistics on the properties and boroughs on pane 3, &#10;within four different categories&#10;5. If you are logged in, add properties to bookings list on pane 2,&#10; and confirm booking on pane 4&#10;" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
@@ -144,7 +144,7 @@
                         <HBox>
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <TextArea id="settingsBox" editable="false" prefColumnCount="20" prefRowCount="5" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below">
+                              <TextArea id="settingsBox" editable="false" prefColumnCount="20" prefRowCount="5" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below.">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
