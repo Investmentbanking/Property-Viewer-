@@ -107,7 +107,7 @@ public class BookingController {
 
     /**
      * This method is only responsible for resetting the fields displayed on the screen
-     * to their original text in addition to displaying a “Thank You” message to the user.
+     * to their original text in addition to displaying a "Thank You" message to the user.
      */
     private void reset(){
         name.setText("Thanks for booking :)");
