@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class BookingController {
@@ -133,6 +134,17 @@ public class BookingController {
             }
         }
         return MainController.getCurrentUser().isPropertyTaken(listing);
+    }
+
+    /**
+     * A simple method to change the current fxml file with another (sign up page)
+     *
+     * @param event signup button clicked
+     * @throws IOException if the corresponding fxml file isn't found
+     */
+    @FXML
+    public void signup(ActionEvent event) throws IOException {
+        InitialController.setRoot("signup.fxml");
     }
 
     /**
