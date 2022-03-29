@@ -50,9 +50,9 @@ public class InitialController extends Application {
         assert url != null;
         Parent root = FXMLLoader.load(url);
         scene = new Scene(root);
-        stage.setTitle("Scene Viewer 1.0");
-        stage.setMinHeight(520);
-        stage.setMinWidth(720);
+        stage.setTitle("Property Viewer by FABSPointerException");
+        stage.setMinHeight(480);
+        stage.setMinWidth(760);
         stage.setScene(scene);
         stage.getIcons().add(new Image("airbnb-icon.png"));
         stage.show();

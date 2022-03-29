@@ -29,7 +29,7 @@ import java.util.Objects;
  * @author Burhan Tekcan K21013451
  * @version 1.5
  */
-public class MainController extends Application {
+public class MainController {
 
     @FXML // minimum price selection
     private ChoiceBox<Integer> minimumPriceBox;
@@ -122,7 +122,6 @@ public class MainController extends Application {
      * adds the scene to the stage
      * @param stage for the scene to be placed in
      */
-    @Override
     public void start(Stage stage) throws IOException
     {
         URL url = getClass().getResource("welcomePane.fxml");
