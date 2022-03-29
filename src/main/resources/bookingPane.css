@@ -1,0 +1,83 @@
+.root {
+    -fx-font-family: Arial;
+    -fx-background-color: #36393f;
+}
+
+.table-cell{
+    -fx-text-fill: #dcddde;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: #dcddde;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #2f3136;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-background-radius: 20;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #36393f;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-background-radius: 20;
+}
+
+.table-view{
+    -fx-background-color: #36393f;
+    -fx-border-color: #36393f;
+    -fx-border-width: 0;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(to top, #36393f, rgba(255, 255, 255, 0.16));
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-padding: 0 0 5px 0;
+}
+
+.table-view .column-header {
+    -fx-text-fill: #dcddde;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: linear-gradient(to top, #36393f, rgba(255, 255, 255, 0.16));
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: linear-gradient(to right, #36393f, rgba(255, 255, 255, 0.16));
+}

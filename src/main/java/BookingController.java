@@ -37,8 +37,6 @@ public class BookingController {
      */
     public void loadProperties(){
         listingName = new TableColumn("Name");
-        listingName.setMinWidth(300);
-        listingName.setMaxWidth(300);
         listingName.setCellFactory(TextFieldTableCell.forTableColumn());
         listingName.setCellValueFactory(new PropertyValueFactory<NewAirbnbListing, String>("name"));
         listOfProperties.getColumns().clear();
