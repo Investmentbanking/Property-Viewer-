@@ -232,10 +232,12 @@ public class InspectMenuController implements Initializable {
         min.setValue(RuntimeDetails.getMinimumPrice());
         max.setValue(RuntimeDetails.getMaximumPrice());
 
+        show_invalid.setSelected(InspectListingMenu.isShowOutOfRange());
+
         sortby.setItems(InspectListingMenu.SORT_OPTIONS);
         order.setItems(InspectListingMenu.ORDER_OPTIONS);
-        sortby.getSelectionModel().selectFirst();
-        order.getSelectionModel().selectFirst();
+        sortby.getSelectionModel().select(InspectListingMenu.getSortSelected());
+        order.getSelectionModel().select(InspectListingMenu.getOrderSelected());
 
         // Assigning the colours of the key with the correct colours determined by the ListingBox constants.
         very_high.setFill(ListingBox.VERY_HIGH_REVIEW_COLOUR);

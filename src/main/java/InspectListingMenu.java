@@ -18,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -37,6 +38,19 @@ public class InspectListingMenu extends ListView<HBox> {
     public static final ObservableList<String> ORDER_OPTIONS = FXCollections.observableArrayList("Ascending", "Descending");
     private static String sortSelected = SORT_OPTIONS.get(0);
     private static String orderSelected = ORDER_OPTIONS.get(0);
+
+    public static String getSortSelected() {
+        return sortSelected;
+    }
+
+    public static String getOrderSelected() {
+        return orderSelected;
+    }
+
+    public static boolean isShowOutOfRange() {
+        return showOutOfRange;
+    }
+
     private static boolean showOutOfRange = true;
 
     private final int SPACING = 10;         // Spacing between boxes.
@@ -185,10 +199,13 @@ public class InspectListingMenu extends ListView<HBox> {
      * Updates the first and last index value of the visual rows in the window.
      */
     private void setVisualIndex(){
-        ListViewSkin<?> listViewSkin = (ListViewSkin<?>) getSkin();
-        VirtualFlow<?> virtualFlow = (VirtualFlow<?>) listViewSkin.getChildren().get(0);
-        first = virtualFlow.getFirstVisibleCell().getIndex();
-        last = virtualFlow.getLastVisibleCell().getIndex();
+        try {
+            ListViewSkin<?> listViewSkin = (ListViewSkin<?>) getSkin();
+            VirtualFlow<?> virtualFlow = (VirtualFlow<?>) listViewSkin.getChildren().get(0);
+            first = virtualFlow.getFirstVisibleCell().getIndex();
+            last = virtualFlow.getLastVisibleCell().getIndex();
+        }
+        catch (Exception ignore){ }
     }
 
     /**
