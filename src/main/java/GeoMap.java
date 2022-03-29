@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * The pane which creates and holds the polygons which represent a Borough, and launch the window to inspect the listings of that borough.
  *
  * @author Cosmo Colman (K21090628)
- * @version 26.03.2022
+ * @version 29.03.2022
  */
 public class GeoMap extends Pane {
 
@@ -36,6 +36,8 @@ public class GeoMap extends Pane {
         arrangePolygons(menuPolygons);
         fixAlignment(menuPolygons);
 
+        mapReload();
+
         setBackground(new Background(new BackgroundFill(Color.TRANSPARENT, CornerRadii.EMPTY, Insets.EMPTY)));
         setPrefHeight(Region.USE_COMPUTED_SIZE);
         setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -43,6 +45,19 @@ public class GeoMap extends Pane {
         setMinWidth(Region.USE_PREF_SIZE);
         setMaxHeight(Region.USE_PREF_SIZE);
         setMaxWidth(Region.USE_PREF_SIZE);
+    }
+
+    /**
+     * Reloads the colour values of the elements.
+     */
+    public void mapReload(){
+        MenuShape.resetMinMax();
+        for (MenuPolygon polygon : menuPolygons){
+            polygon.reloadMinMax();
+        }
+        for (MenuPolygon polygon : menuPolygons){
+            polygon.reloadColour();
+        }
     }
 
     /**
