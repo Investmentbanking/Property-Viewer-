@@ -1,6 +1,7 @@
 import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
 import javafx.animation.ScaleTransition;
+import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -157,6 +158,8 @@ public class ListingBox extends StackPane {
      * @param event MouseEvent call.
      */
     private void highlight(MouseEvent event){
+        setCursor(Cursor.HAND);
+
         filltRatingIn.play();
         stImageIn.play();
         stRatingIn.play();
@@ -168,6 +171,8 @@ public class ListingBox extends StackPane {
      * @param event MouseEvent call.
      */
     private void unhighlight(MouseEvent event){
+        setCursor(Cursor.DEFAULT);
+
         filltRatingOut.play();
         stImageOut.play();
         stRatingOut.play();
