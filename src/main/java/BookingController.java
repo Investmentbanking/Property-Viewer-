@@ -19,7 +19,10 @@ public class BookingController {
     TableView listOfProperties;                                                                             // The main table that holds the list of all bookings to show
 
     @FXML
-    Label totalNights, price, name, beds, baths, area, from, to;                                            // simple fields that are manipulated to display stats about the property
+    Label totalNights, price, name, beds, baths, area, from, to, visibleText;                                            // simple fields that are manipulated to display stats about the property
+
+    @FXML
+    Button visibleButton;
 
     @FXML
     ImageView picture;                                                                                      // the main picture of the property
@@ -30,6 +33,10 @@ public class BookingController {
      */
     public void initialize() {
         loadProperties();
+        if(MainController.getCurrentUser().getUsername() != null){
+            visibleButton.setVisible(false);
+            visibleText.setVisible(false);
+        }
     }
 
     /**
