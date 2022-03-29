@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class BookingController {
-    private static ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();         // this is the list that will be observed automatically by the system
-    private TableColumn listingName;                                                                        // the column that shows the name of the bookings
+    private static final ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();         // this is the list that will be observed automatically by the system
 
     @FXML
     TableView listOfProperties;                                                                             // The main table that holds the list of all bookings to show
@@ -37,7 +36,8 @@ public class BookingController {
      * This method is responsible for setting up the table and telling the table to start observing the observable list "listings"
      */
     public void loadProperties(){
-        listingName = new TableColumn("Name");
+        // the column that shows the name of the bookings
+        TableColumn listingName = new TableColumn("Name");
         listingName.setCellFactory(TextFieldTableCell.forTableColumn());
         listingName.setCellValueFactory(new PropertyValueFactory<NewAirbnbListing, String>("name"));
         listOfProperties.getColumns().clear();
@@ -89,7 +89,7 @@ public class BookingController {
             NewAirbnbListing currentItem = (NewAirbnbListing) listOfProperties.getSelectionModel().getSelectedItem();
             totalNights.setText(String.valueOf(RuntimeDetails.getTotalNights()));
             double calculatedPrice = RuntimeDetails.getTotalNights() * currentItem.getPrice();
-            price.setText(String.valueOf(calculatedPrice));
+            price.setText("$" + calculatedPrice);
 
             Image pictureImage = loadImage(currentItem.getPictureURL(), false);
             picture.setImage(pictureImage);
