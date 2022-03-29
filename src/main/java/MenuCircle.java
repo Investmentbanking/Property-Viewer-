@@ -1,4 +1,3 @@
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
  * A pane of a circle that represents a borough. The size represents the amount of available listings and the colour represents the average price.
  *
  * @author Cosmo Colman (K21090628)
- * @version 23.03.2022
+ * @version 29.03.2022
  */
 public class MenuCircle extends MenuShape {
 
@@ -84,7 +83,7 @@ public class MenuCircle extends MenuShape {
      * @return the value that represents the size of the circle. (The availability of listings in the borough)
      */
     public int getColourValue(){
-        return borough.getAvailable();
+        return inRangeListingCount;
     }
 
     /**

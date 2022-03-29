@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Abstract class for a pane of a shape that represents a borough. The size represents the amount of available listings and the colour represents the average price.
  *
  * @author Cosmo Colman (K21090628)
- * @version 23.03.2022
+ * @version 29.03.2022
  */
 public abstract class MenuShape extends StackPane {
 
@@ -28,6 +28,7 @@ public abstract class MenuShape extends StackPane {
 
     public static final Color LOW_COLOR = Color.rgb(46, 50, 177);
     public static final Color HIGH_COLOR = Color.rgb(242, 63, 63);
+    public static final Color OUT_OF_RANGE_COLOUR = Color.GRAY;
 
     protected int fontSize;
 
@@ -37,7 +38,9 @@ public abstract class MenuShape extends StackPane {
     private FillTransition filltShapeIn, filltShapeOut;
     private ScaleTransition stShapeIn, stCircleOut, stTextIn, stTextOut;
 
-    private DropShadow textDropShadow;
+    protected int inRangeListingCount;
+    private static int minInRangeListings = Integer.MAX_VALUE;
+    private static int maxInRangeListings = 0;
 
     /**
      * Constructor for a Menu-Shape which represents a specific borough and contains the listing of all properties in that borough. Clicking this object will open the pane specific to that borough.
@@ -49,7 +52,7 @@ public abstract class MenuShape extends StackPane {
         this.listings = listings;
         this.shape = shape;
 
-        colour = calculateColor();
+        colour = OUT_OF_RANGE_COLOUR;   // Placeholder Colour
 
         this.shape.setOnMouseClicked(this::openInspectionWindow);
         this.shape.setFill(colour);
@@ -92,6 +95,50 @@ public abstract class MenuShape extends StackPane {
     }
 
     /**
+     * Get the number of listings within the price range.
+     */
+    private int inRangeListings(){
+        ArrayList<NewAirbnbListing> newList = (ArrayList<NewAirbnbListing>) listings.clone();
+        newList.removeIf(listing -> listing.getAvailability365() == 0);     // Remove 0 availability.
+        newList.removeIf(listing -> (listing.getPrice() < RuntimeDetails.getMinimumPrice() || listing.getPrice() > RuntimeDetails.getMaximumPrice()));      // Remove out of range.
+        return newList.size();
+    }
+
+    /**
+     * Resets the min and max values to default so they can be reassigned.
+     */
+    public static void resetMinMax(){
+        minInRangeListings = Integer.MAX_VALUE;
+        maxInRangeListings = 0;
+    }
+
+    /**
+     * Reloads the min and max values which determine the colour of the shape.
+     */
+    public void reloadMinMax(){
+        inRangeListingCount = inRangeListings();
+        if(inRangeListingCount != 0) {
+            minInRangeListings = Math.min(minInRangeListings, inRangeListingCount);
+            maxInRangeListings = Math.max(maxInRangeListings, inRangeListingCount);
+        }
+    }
+
+    /**
+     * Reloads the colour of the shape.
+     */
+    public void reloadColour(){
+        if (inRangeListingCount == 0){
+            colour = OUT_OF_RANGE_COLOUR;
+        }
+        else {
+            colour = calculateColor();
+        }
+        shape.setFill(colour);
+        filltShapeIn = new FillTransition(Duration.millis(100), this.shape, colour, colour.darker());
+        filltShapeOut = new FillTransition(Duration.millis(100), this.shape, colour.darker(), colour);
+    }
+
+    /**
      * Set the multiplier for the shape's scale on mouse hover.
      * @param multiplier The multiplier for the shape's scale on mouse hover.
      */
@@ -129,10 +176,10 @@ public abstract class MenuShape extends StackPane {
      * @return the calculated colour of the circle.
      */
     private Color calculateColor(){
-        double min = Borough.availableStorage.min();
-        double max = Borough.availableStorage.max();
+        double min = minInRangeListings;
+        double max = maxInRangeListings;
 
-        double calc = (borough.getAvailable() - min) / (max - min);
+        double calc = (inRangeListingCount - min) / (max - min);
 
         double r = HIGH_COLOR.getRed() - LOW_COLOR.getRed();
         double g = HIGH_COLOR.getGreen() - LOW_COLOR.getGreen();
@@ -153,7 +200,6 @@ public abstract class MenuShape extends StackPane {
         toFront();
 
         setCursor(Cursor.HAND);
-        text.setEffect(textDropShadow);
         filltShapeIn.play();
         stShapeIn.play();
         stTextIn.play();
@@ -165,7 +211,6 @@ public abstract class MenuShape extends StackPane {
      */
     private void mouseLeave(MouseEvent event){
         setCursor(Cursor.DEFAULT);
-        text.setEffect(null);
         filltShapeOut.play();
         stCircleOut.play();
         stTextOut.play();
