@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,7 +53,7 @@ public class MainController {
     private BorderPane centrePane;
 
     // the first pane; stored to show again if user goes back to pane 1
-    private Node pane1;
+    private static Node pane1;
     // all available panes for the main scene
     private final ArrayList<Node> sceneNodes = new ArrayList<>();
     // pointer to the current pane
@@ -115,22 +114,6 @@ public class MainController {
         sceneNodes.add(null); // uses separate method to create scene
         sceneNodes.add(pane4);
         pointer = 0;
-    }
-
-    /**
-     * creates scene with pane 1
-     * adds the scene to the stage
-     * @param stage for the scene to be placed in
-     */
-    public void start(Stage stage) throws IOException
-    {
-        URL url = getClass().getResource("welcomePane.fxml");
-        assert url != null;
-        Parent root = FXMLLoader.load(url);
-        Scene scene = new Scene(root);
-        stage.setTitle("Scene Viewer 1.0");
-        stage.setScene(scene);
-        stage.show();
     }
 
     /**
