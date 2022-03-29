@@ -38,19 +38,6 @@ public class InspectListingMenu extends ListView<HBox> {
     public static final ObservableList<String> ORDER_OPTIONS = FXCollections.observableArrayList("Ascending", "Descending");
     private static String sortSelected = SORT_OPTIONS.get(0);
     private static String orderSelected = ORDER_OPTIONS.get(0);
-
-    public static String getSortSelected() {
-        return sortSelected;
-    }
-
-    public static String getOrderSelected() {
-        return orderSelected;
-    }
-
-    public static boolean isShowOutOfRange() {
-        return showOutOfRange;
-    }
-
     private static boolean showOutOfRange = true;
 
     private final int SPACING = 10;         // Spacing between boxes.
@@ -230,6 +217,30 @@ public class InspectListingMenu extends ListView<HBox> {
      */
     public static void setShowOutOfRange(boolean showOutOfRange) {
         InspectListingMenu.showOutOfRange = showOutOfRange;
+    }
+
+    /**
+     * Get the sort-by type of the properties.
+     * @return The sort-by type of the properties.
+     */
+    public static String getSortSelected() {
+        return sortSelected;
+    }
+
+    /**
+     * Get the order-by type of the properties.
+     * @return The order-by type of the properties.
+     */
+    public static String getOrderSelected() {
+        return orderSelected;
+    }
+
+    /**
+     * Get if the out-of-range properties are being shows.
+     * @return True if the out-of-range properties are being shows.
+     */
+    public static boolean isShowOutOfRange() {
+        return showOutOfRange;
     }
 
     /**
