@@ -2,12 +2,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -81,13 +83,27 @@ public class InspectBoxController implements Initializable {
         double latitude = listing.getLatitude();
         double longitude = listing.getLongitude();
 
-        URI uri;
-        try {
-            uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
-            java.awt.Desktop.getDesktop().browse(uri);
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
+        if (Desktop.isDesktopSupported()) {
+            System.out.println("Desktop IS supported on this platform ");
+
+            if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                System.out.println("Action BROWSE  IS supported on this platform ");
+            }
+            else {
+                System.out.println("Action BROWSE  ISN'T supported on this platform ");
+            }
         }
+        else {
+            System.out.println("Desktop ISN'T supported on this platform ");
+        }
+
+//        URI uri;
+//        try {
+//            uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
+//            java.awt.Desktop.getDesktop().browse(uri);
+//        } catch (URISyntaxException | IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
