@@ -1,12 +1,17 @@
+import java.util.HashMap;
 
 /*
- * Creates the default statistics for the statistics panel.
- * @author Ayesha Dorani
+ * Creates the default statistics using the old data set for the statistics panel.
+ *
+ * @author Ayesha Dorani (K2036136)
+ * @version 30.02.2022
  */
 public class DefaultStatisticsCollector {
 
     /**
-     * @return The total number of reviews divided by the number of listings in old CSV file.
+     * Adds up all the reviews for each property then gets the average.
+     *
+     * @return The total number of reviews divided by the number of listings.
      */
     public static int getAverageReviewsPerProperty() {
         int total = 0;
@@ -17,34 +22,19 @@ public class DefaultStatisticsCollector {
     }
 
     /**
-     * Returns the total number of available properties,
-     * based off the price range.
-     * @return The size of the listings in the old CSV file.
+     * Returns the total number of available properties.
+     *
+     * @return The size of the listings.
      */
-    public static int getTotalAvailableProperties(){
+    public static int getTotalAvailableProperties() {
         return Statistics.getOldListings().size();
     }
 
     /**
-     * Returns the borough with the most expensive listing,
-     * based off the listing price * minimum price.
-     * @return borough The borough with the most expensive property.
-     */
-    public static String getMostExpensiveBorough() {
-        int highestPrice = 0; // highest price = price * min number of nights
-        String borough = "";
-        for (OldAirbnbListing listing : Statistics.getOldListings()) {
-            int listingPrice = listing.getPrice() * listing.getMinimumNights();
-            if (listingPrice > highestPrice) {
-                highestPrice = listingPrice;
-                borough = listing.getNeighbourhood();
-            }
-        }
-        return borough;
-    }
-
-    /**
-     * @return count The total number of non-private rooms.
+     * Checks which listings are not a 'Private Room'.
+     * Increments count each time listing is not a 'Private Room'.
+     *
+     * @return The total number of non-private rooms.
      */
     public static int getNonPrivateProperties() {
         int count = 0;
@@ -57,60 +47,124 @@ public class DefaultStatisticsCollector {
     }
 
     /**
-     * Returns the average number of listings.
-     * @return
+     * Checks if number of reviews for each listing is bigger than 0.
+     * Increments count each time.
+     *
+     * @return the total number of listings with reviews.
      */
-    public static int getAverageListings(){
+    public static int getListingsWithReviews() {
         int count = 0;
         for(OldAirbnbListing listing : Statistics.getOldListings()) {
-            count += listing.getCalculatedHostListingsCount();
+            if(listing.getNumberOfReviews() > 0) {
+                count++;
+            }
         }
-        return count/Statistics.getOldListings().size();
+        return count;
     }
 
     /**
-     * Returns the borough with the cheapest listing,
-     * based off the listing price * minimum nights.
-     * @return borough The cheapest borough.
+     * Creates two HashMaps, one stores the number of listings in each borough,
+     * the other stores the total price of listings in a borough. Finds the highest
+     * average and checks if this value is higher than the previous value, if so,
+     * gets the listing borough and returns this.
+     *
+     * @return the most expensive borough based on the highest average.
+     */
+    public static String getMostExpensiveBorough() {
+        int highestPrice = 0;
+        String borough = "";
+        HashMap<String, Integer> listingsBorough = new HashMap<>(); // stores the number of listings for each borough
+        HashMap<String, Integer> listingsPrice = new HashMap<>(); // stores the total price for all listings in each borough
+
+        for (OldAirbnbListing listing : Statistics.getOldListings()) {
+            int listingPrice = listing.getPrice() * listing.getMinimumNights(); // price = price * minimum nights
+
+            int count  = listingsBorough.getOrDefault(listing.getNeighbourhood(), 0) + 1;
+            listingsBorough.put(listing.getNeighbourhood(), count);
+
+            int total = listingsPrice.getOrDefault(listing.getNeighbourhood(), 0) + listingPrice;
+            listingsPrice.put(listing.getNeighbourhood(), total);
+        }
+        double sum = 0;
+
+        for (String key : listingsPrice.keySet()) {
+
+            double value1 = listingsBorough.get(key);
+            double value2 = listingsPrice.get(key);
+            double division = value2 / value1;
+            if (division > sum) {
+                sum = division;
+                borough = key;
+        }
+        }
+        return borough;
+    }
+
+    /**
+     * Creates two HashMaps, one stores the number of listings in each borough,
+     * the other stores the total price of listings in a borough. Finds the smallest
+     * average and checks if this value is smaller than the previous value, if so,
+     * gets the listing borough and returns this.
+     *
+     * @return the cheapest borough based off the smaller average.
      */
     public static String getCheapestBorough() {
-        int lowestPrice = Statistics.getOldListings().get(0).getPrice() * Statistics.getOldListings().get(0).getMinimumNights(); // use first property as initial price
-        String borough = Statistics.getOldListings().get(0).getNeighbourhood();
-        for (OldAirbnbListing listing : Statistics.getOldListings()) {
+
+        double finalAverage = Double.POSITIVE_INFINITY; // holding the positive infinity of type double.
+        String borough = "";
+        HashMap<String, Integer> listingsBorough = new HashMap<>();
+        HashMap<String, Integer> listingsPrice = new HashMap<>();
+
+        for(OldAirbnbListing listing : Statistics.getOldListings()) {
             int listingPrice = listing.getPrice() * listing.getMinimumNights();
-            if (listingPrice < lowestPrice) {
-                lowestPrice = listingPrice;
-                borough = listing.getNeighbourhood();
+            int count  = listingsBorough.getOrDefault(listing.getNeighbourhood(), 0) + 1;
+            listingsBorough.put(listing.getNeighbourhood(), count);
+
+            int counts = listingsPrice.getOrDefault(listing.getNeighbourhood(), 0) + listingPrice;
+            listingsPrice.put(listing.getNeighbourhood(), counts);
+        }
+
+        for (String key : listingsPrice.keySet()) {
+            double value1 = listingsBorough.get(key);
+            double value2 = listingsPrice.get(key);
+            double division = value2 / value1;
+            if (division < finalAverage) {
+                finalAverage = division;
+                borough = key;
             }
         }
         return borough;
     }
 
     /**
+     * Adds up the availability for each listing to variable count,
+     * then finds the average.
      *
-     * @return
+     * @return the total availability divided by the size of listings.
      */
-    public static int getAverageAvailability(){
+    public static int getAverageAvailability() {
         int count = 0;
-        for(NewAirbnbListing listing  : Statistics.getNewListings()){
+        for(OldAirbnbListing listing  : Statistics.getOldListings()){
             count += listing.getAvailability365();
         }
-        return count/Statistics.getNewListings().size();
+        return count/Statistics.getOldListings().size();
     }
 
     /**
-     * 
-     * @return
+     * Gets the reviews per month for each listing and checks
+     * if value is higher than the previous value, if so, assigns
+     * this value to highest.
+     *
+     * @return the highest number of reviews per month.
      */
     public static double getHighestReviewsPerMonth() {
         double highest = 0;
-        for(OldAirbnbListing listing : Statistics.getOldListings()) {
+        for (OldAirbnbListing listing : Statistics.getOldListings()) {
             double listingReviews = listing.getReviewsPerMonth();
-            if(listingReviews > highest) {
+            if (listingReviews > highest) {
                 highest = listingReviews;
             }
         }
         return highest;
     }
-    
 }

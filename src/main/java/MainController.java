@@ -368,7 +368,7 @@ public class MainController {
         Statistics.createStats();
         getCatergoryStartStats(scene);
         combobox = (ComboBox) scene.lookup("#box");
-        combobox.getItems().addAll("default", "reviews", "borough", "amenities and property interior");
+        combobox.getItems().addAll("default", "reviews", "borough and listings", "amenities and property interior");
         combobox.setPromptText("Please select what you want your stats to be tailored towards: ");
         combobox.setOnAction((event) -> {
             if(isSelectedDefault()) {
@@ -382,7 +382,7 @@ public class MainController {
                 getCatergoryStartStats(scene);
             }
             else if (isSelectedBorough()){
-                Statistics.createBoroughStats();
+                Statistics.createBoroughAndListingsStats();
 
                 getCatergoryStartStats(scene);
             }
@@ -419,7 +419,7 @@ public class MainController {
      * @return true if 'borough' is selected in Statistics choicebox
      */
     private boolean isSelectedBorough() {
-        return combobox.getSelectionModel().getSelectedItem().equals("borough");
+        return combobox.getSelectionModel().getSelectedItem().equals("borough and listings");
     }
 
     /**
