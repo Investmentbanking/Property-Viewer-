@@ -63,7 +63,7 @@ public class Account {
                     // if these are true we don't book they can't be simplified.
                     if ((preferredStartDate.isBefore(startDate) && preferredEndDate.isAfter(startDate)) || (preferredStartDate.isBefore(endDate) && preferredEndDate.isAfter(endDate)) || (preferredStartDate.isAfter(startDate) && preferredEndDate.isBefore(endDate)) || (preferredStartDate.equals(startDate) || preferredEndDate.equals(endDate))){
                         // then book
-                        new Alerts(Alert.AlertType.WARNING,"Warning", null, "this property is already reserved in this time");
+                        new Alerts(Alert.AlertType.WARNING,"Warning", null, "This property is already reserved in this time");
                         return true;
                     }
                     break;

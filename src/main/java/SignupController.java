@@ -45,7 +45,7 @@ public class SignupController {
             try {
                 Login log = new Login(username.getText(), password.getText());
                 if(log.checkLoginNewUser()){
-                    new Alerts(Alert.AlertType.ERROR,"Error", null, "sorry this username already exists! please pick another one.");
+                    new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry this username already exists! please pick another one.");
                     return false;
                 }else{
                     log.makeLogin();

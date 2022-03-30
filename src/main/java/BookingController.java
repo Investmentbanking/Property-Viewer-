@@ -149,7 +149,7 @@ public class BookingController {
     public static boolean checkProperty(NewAirbnbListing listing){
         for(NewAirbnbListing property : listings){
             if(property.getId().equals(listing.getId())){
-                new Alerts(Alert.AlertType.ERROR,"Error", null," you can add properties only once!");
+                new Alerts(Alert.AlertType.ERROR,"Error", null," You can add properties only once!");
                 return true;
             }
         }

@@ -78,7 +78,7 @@ public class LoginController {
         }
     }
 
-    /**
+    /**fu
      * A simple method to change the current fxml file with another (sign up page)
      *
      * @param event signup button clicked
