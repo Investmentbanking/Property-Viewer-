@@ -47,3 +47,26 @@
     -fx-background-color: #1c1c1c;
 
 }
+
+.choice-box .context-menu {
+    -fx-background-color: #40444b;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #1c1c1c;
+}
+
+.choice-box .menu-item > .label , .choice-box > .label{
+    -fx-text-fill: white;
+}
+
+.choice-box {
+    -fx-background-color: #40444b;
+}
+
+#optionsBackgroundVBox {
+    -fx-background-image: url("cityBackground.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: stretch;
+}
