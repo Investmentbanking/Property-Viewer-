@@ -23,6 +23,10 @@
     -fx-background-color: #40444b;
 }
 
+#box {
+    -fx-background-color: #40444b;
+    -fx-text-fill: white;
+}
 
 
 
