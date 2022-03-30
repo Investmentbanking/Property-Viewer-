@@ -1,5 +1,5 @@
 .button:hover {
-    -fx-background-color: #1c1c1c;
+    -fx-background-color: #5e5e5e;
     -fx-background-radius: 0;
 }
 
@@ -16,7 +16,7 @@
 }
 
 #confirmButton:hover {
-    -fx-background-color: #1c1c1c;
+    -fx-background-color: #5e5e5e;
     -fx-font-family: Arial;
     -fx-background-radius: 0;
 }
@@ -44,7 +44,7 @@
 }
 
 #leftArrow:hover, #rightArrow:hover {
-    -fx-background-color: #1c1c1c;
+    -fx-background-color: #5e5e5e;
 
 }
 
@@ -53,7 +53,7 @@
 }
 
 .choice-box .menu-item:focused {
-    -fx-background-color: #1c1c1c;
+    -fx-background-color: #5e5e5e;
 }
 
 .choice-box .menu-item > .label , .choice-box > .label{

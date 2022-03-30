@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  * the MainController class, alerting and not setting invalid values
  *
  * @author Burhan Tekcan k21013451
- * @version 1.0
+ * @version 1.1
  */
 public class DefaultStatisticsCollectorTest {
 
