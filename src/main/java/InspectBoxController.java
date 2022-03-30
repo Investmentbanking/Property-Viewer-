@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.apache.commons.lang3.SystemUtils;
 
 import java.awt.*;
 import java.io.IOException;
@@ -83,21 +84,31 @@ public class InspectBoxController implements Initializable {
         double latitude = listing.getLatitude();
         double longitude = listing.getLongitude();
 
-        if (Desktop.isDesktopSupported()) {
-            System.out.println("Desktop IS supported on this platform ");
-
-            if (Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                System.out.println("Action BROWSE  IS supported on this platform ");
+        URI uri;
+        try {
+            uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
+            if (SystemUtils.IS_OS_LINUX) {
+                // Workaround for Linux because "Desktop.getDesktop().browse()" doesn't work on some Linux implementations
+                if (Runtime.getRuntime().exec(new String[] { "which", "xdg-open" }).getInputStream().read() != -1) {
+                    Runtime.getRuntime().exec(new String[] { "xdg-open", uri.toString() });
+                } else {
+                    new Alerts(Alert.AlertType.ERROR,"Error", null, "xdg-open not supported!");
+                    throw new IOException();
+                }
+            } else {
+                if (Desktop.isDesktopSupported())
+                {
+                    Desktop.getDesktop().browse(uri);
+                } else {
+                    new Alerts(Alert.AlertType.ERROR,"Browse URL", null, "Desktop command not supported!");
+                    throw new IOException();
+                }
             }
-            else {
-                System.out.println("Action BROWSE  ISN'T supported on this platform ");
-            }
-        }
-        else {
-            System.out.println("Desktop ISN'T supported on this platform ");
+
+        } catch (IOException | URISyntaxException e) {
+            new Alerts(Alert.AlertType.ERROR,"Browse URL", null, "Failed to open URL");
         }
 
-//        URI uri;
 //        try {
 //            uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
 //            java.awt.Desktop.getDesktop().browse(uri);
