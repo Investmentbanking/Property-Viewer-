@@ -1,19 +1,21 @@
 # Property Marketplace Coursework
 
 ## Project title
-AirBnB London Data Set Loader
+Property Viewer
 
 ## Purpose of project
 Property Viewer by FABSPointerException is a GUI for exploring properties in London that are available for temporary rental.
+
+## Authors
+Cosmo Colman (21090628),  Syraj Alkhalil (21007329),
+Ayesha Dorani (1907316) & Burhan Tekcan (21013451)
+
 
 ## How to start his project
 1. Run in a terminal from the same directory as the project directory `./gradlew run` on GNU/Linux and Mac, or `gradlew run` on Windows.
 2. Alternatively, in IntelliJ IDEA, open the Gradle tab on the right and execute `run` under `Tasks` → `application`.
 
 (Taken and modified from the FabricMC discord: https://discord.gg/v6v4pMv)
-
-## Authors
-KCL Informatics, PPA
 
 ## How to import this project in IntelliJ IDEA
 1. In the IDEA main menu, select `Import Project` (or `File` → `Open…` if you already have a project open).
