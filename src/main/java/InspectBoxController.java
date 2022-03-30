@@ -2,12 +2,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.apache.commons.lang3.SystemUtils;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -75,6 +78,7 @@ public class InspectBoxController implements Initializable {
 
     /**
      * Opens a GoogleMaps link in the default browser of the location of the current property.
+     * Credits to OlivierGrenoble https://stackoverflow.com/questions/27879854/desktop-getdesktop-browse-hangs
      */
     @FXML
     private void openGoogleMaps(){
@@ -84,14 +88,29 @@ public class InspectBoxController implements Initializable {
         URI uri;
         try {
             uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
-            java.awt.Desktop.getDesktop().browse(uri);
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
+            if (SystemUtils.IS_OS_LINUX) {
+                // Workaround for Linux because "Desktop.getDesktop().browse()" doesn't work on some Linux implementations
+                if (Runtime.getRuntime().exec(new String[] { "which", "xdg-open" }).getInputStream().read() != -1) {
+                    Runtime.getRuntime().exec(new String[] { "xdg-open", uri.toString() });
+                } else {
+                    new Alerts(Alert.AlertType.ERROR,"Error", null, "xdg-open not supported! Can't open this on linux!");
+                }
+            } else {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().browse(uri);
+                } else {
+                    new Alerts(Alert.AlertType.ERROR,"Browse URL", null, "Desktop command not supported!");
+                }
+            }
+
+        } catch (IOException | URISyntaxException e) {
+            new Alerts(Alert.AlertType.ERROR,"Browse URL", null, "Failed to open URL");
         }
     }
 
     /**
      * Initialises the FXML component.
+     *
      * @param location FXML placeholder location.
      * @param resources FXML placeholder resources.
      */
@@ -102,6 +121,7 @@ public class InspectBoxController implements Initializable {
 
     /**
      * Assigns a new listing and reassigns values.
+     *
      * @param newListing Listing you want to set the values of.
      */
     public void setListing(NewAirbnbListing newListing){
@@ -113,7 +133,7 @@ public class InspectBoxController implements Initializable {
     /**
      * Assigns all the values to the panel.
      */
-    private void assign(){
+    private void assign() {
         // 1st Section Nodes
         int ratingValue = listing.getReviewScoresRating();
         if (ratingValue == -1){rating.setText("?");}
@@ -213,7 +233,8 @@ public class InspectBoxController implements Initializable {
     }
 
     /**
-     * Binds the size of the Image to the ImageView for the picture_url
+     * Binds the size of the Image to the ImageView for the picture_url.
+     *
      * @param newImage The image to bind to picture_url.
      */
     private void bindImageProperties(Image newImage) {
@@ -234,6 +255,7 @@ public class InspectBoxController implements Initializable {
 
     /**
      * Calculates what the colour of the progress bar should be and returns the CSS ID of the colour.
+     *
      * @param review The progress bar value. Max 1.0.
      * @return The ID of the colour.
      */

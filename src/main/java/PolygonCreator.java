@@ -85,6 +85,7 @@ public class PolygonCreator extends Pane {
      * When you Left-Click the scene, you place a circle. This circle represents coordinates that you want to be the corner of a polygon.
      * When you Middle-Click the scene, the program will compile all the green circle you have previously selected and then turns them
      * into a polygon shame. It also deselects the circles.
+     *
      * @param e MouseEvent on scene click.
      */
     private void sceneClick(MouseEvent e){
@@ -126,6 +127,7 @@ public class PolygonCreator extends Pane {
 
     /**
      * Selects a circle. When a circle is selected with Right-Click it adds its coordinates to a list.
+     *
      * @param e MouseEvent on circle click.
      */
     private void circleClick(MouseEvent e){

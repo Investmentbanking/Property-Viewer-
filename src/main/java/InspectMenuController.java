@@ -184,6 +184,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Sets position of mouse on the stage. Used for recreating how window tile bars work and window resizing.
+     *
      * @param event MouseEvent call.
      */
     @FXML
@@ -197,6 +198,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Moves window to mouse. Used for recreating how window tile bars work.
+     *
      * @param event MouseEvent call.
      */
     @FXML
@@ -207,6 +209,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Implements a west corner stage resize functionality which isn't native to undecorated stages.
+     *
      * @param event MouseEvent call.
      */
     @FXML
@@ -219,6 +222,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Implements a south corner stage resize functionality which isn't native to undecorated stages.
+     *
      * @param event MouseEvent call.
      */
     @FXML
@@ -231,6 +235,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Implements a south-west corner stage resize functionality which isn't native to undecorated stages.
+     *
      * @param event MouseEvent call.
      */
     @FXML
@@ -241,6 +246,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Sets a new listing to display in the Inspect-Menu and also refreshed the content.
+     *
      * @param newListing The new listing you wish to set the Inspect-Menu to.
      */
     public static void setInspectBoxListing(NewAirbnbListing newListing){
@@ -250,6 +256,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Creates and shows the new stage for the Inspect-Menu.
+     *
      * @param listings The listings you want to display in the menu.
      * @param title The title of the window displayed at the top.
      */
@@ -284,6 +291,7 @@ public class InspectMenuController implements Initializable {
 
     /**
      * Initialises the FXML component.
+     *
      * @param location FXML placeholder location.
      * @param resources FXML placeholder resources.
      */

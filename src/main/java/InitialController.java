@@ -38,9 +38,10 @@ public class InitialController extends Application {
         loadingLabel.setVisible(false);
     }
     /**
-     * sets the root scene to stage
-     * with optionsPane.fxml and shows the stage
-     * @param stage stage of application
+     * Sets the root scene to stage
+     * with optionsPane.fxml and shows the stage.
+     *
+     * @param stage stage of application.
      */
     @Override
     public void start(Stage stage) throws IOException {
@@ -59,8 +60,9 @@ public class InitialController extends Application {
     }
 
     /**
-     * directs user to login scene
-     * @param event ActionEvent login button pressed
+     * Directs user to login scene.
+     *
+     * @param event ActionEvent login button pressed.
      */
     @FXML
     public void loginClicked(ActionEvent event) throws IOException {
@@ -68,8 +70,9 @@ public class InitialController extends Application {
     }
 
     /**
-     * directs user to register scene
-     * @param event  ActionEvent register button pressed
+     * Directs user to register scene.
+     *
+     * @param event  ActionEvent register button pressed.
      */
     @FXML
     public void registerClicked(ActionEvent event) throws IOException {
@@ -77,8 +80,9 @@ public class InitialController extends Application {
     }
 
     /**
-     * directs user as guest to pane 1
-     * @param event  ActionEvent guest button pressed
+     * Directs user as guest to pane 1.
+     *
+     * @param event  ActionEvent guest button pressed.
      */
     @FXML
     public void guestClicked(ActionEvent event) throws IOException {
@@ -87,8 +91,9 @@ public class InitialController extends Application {
 
     /**
      * Sets the loading label to be visible on the pane,
-     * allowing the user to read it
-     * @param event on click of a button
+     * allowing the user to read it.
+     *
+     * @param event on click of a button.
      */
     @FXML
     public void loadingLabelVisible(MouseEvent event)
@@ -97,8 +102,9 @@ public class InitialController extends Application {
     }
 
     /**
-     * directs user to entered fxml file
-     * gets fxml url, sets root to loaded file
+     * Directs user to entered fxml file.
+     *
+     * Gets fxml url, sets root to loaded file.
      */
     static void setRoot(String fxml) throws IOException {
         URL url = LoginController.class.getResource(fxml);

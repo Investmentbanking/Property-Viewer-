@@ -41,120 +41,120 @@ public class RuntimeDetails {
 
 
     /**
-     * A simple getter method to return the arraylist of new listings
-     * @return the new arraylist of listings
+     * A simple getter method to return the arraylist of new listings.
+     * @return the new arraylist of listings.
      */
     public static ArrayList<NewAirbnbListing> getNewAirbnbListings() {
         return newAirbnbListings;
     }
 
     /**
-     * A simple getter method to return the arraylist of old listings
-     * @return the old arraylist of listings
+     * A simple getter method to return the arraylist of old listings.
+     * @return the old arraylist of listings.
      */
     public static ArrayList<OldAirbnbListing> getOldAirbnbListings() {
         return oldAirbnbListings;
     }
 
     /**
-     * A simple getter method to return the startDate field
-     * @return selected start date
+     * A simple getter method to return the startDate field.
+     * @return selected start date.
      */
     public static LocalDate getStartDate(){
         return startDate;
     }
 
     /**
-     * A simple getter method to return the date the users selected end date
-     * @return selected end date
+     * A simple getter method to return the date the users selected end date.
+     * @return selected end date.
      */
     public static LocalDate getEndDate() {
         return endDate;
     }
 
     /**
-     * A simple getter method to return the validity flag for dates
-     * @return true if dates are valid
+     * A simple getter method to return the validity flag for dates.
+     * @return true if dates are valid.
      */
     public static boolean isValidDates() {
         return validDates;
     }
 
     /**
-     * A simple getter method to return the validity flag for prices
-     * @return true if prices are valid
+     * A simple getter method to return the validity flag for prices.
+     * @return true if prices are valid.
      */
     public static boolean isValidPrices() {
         return validPrices;
     }
 
     /**
-     * A simple getter method to return the maximum price selected by the user
-     * @return the maximum price selected
+     * A simple getter method to return the maximum price selected by the user.
+     * @return the maximum price selected.
      */
     public static int getMaximumPrice() {
         return maximumPrice;
     }
 
     /**
-     * A simple getter method to return the minimum price selected by the user
-     * @return the minimum price selected
+     * A simple getter method to return the minimum price selected by the user.
+     * @return the minimum price selected.
      */
     public static int getMinimumPrice() {
         return minimumPrice;
     }
 
     /**
-     * A simple getter method to return the total nights from start to end dates
-     * @return the amount of nights
+     * A simple getter method to return the total nights from start to end dates.
+     * @return the amount of nights.
      */
     public static long getTotalNights() {
         return totalNights;
     }
 
     /**
-     * A simple setter method to set the input to the new airbnb listings to the arraylist
-     * @param newAirbnbListings The new arraylist of listings
+     * A simple setter method to set the input to the new airbnb listings to the arraylist.
+     * @param newAirbnbListings The new arraylist of listings.
      */
     public static void setNewAirbnbListings(ArrayList<NewAirbnbListing> newAirbnbListings) {
         RuntimeDetails.newAirbnbListings = newAirbnbListings;
     }
 
     /**
-     * A simple setter method to set the input to the old airbnb listings arraylist
-     * @param oldAirbnbListings The old arraylist of listings
+     * A simple setter method to set the input to the old airbnb listings arraylist.
+     * @param oldAirbnbListings The old arraylist of listings.
      */
     public static void setOldAirbnbListings(ArrayList<OldAirbnbListing> oldAirbnbListings) {
         RuntimeDetails.oldAirbnbListings = oldAirbnbListings;
     }
 
     /**
-     * A simple setter method to set the end date selected by the user as a localDate
-     * @param endDate the end date selected by the user for bookings
+     * A simple setter method to set the end date selected by the user as a localDate.
+     * @param endDate the end date selected by the user for bookings.
      */
     public static void setEndDate(LocalDate endDate) {
         RuntimeDetails.endDate = endDate;
     }
 
     /**
-     * A simple setter method to set the maximum price selected by the user as an integer
-     * @param maximumPrice the maximum price of properties shown to the user
+     * A simple setter method to set the maximum price selected by the user as an integer.
+     * @param maximumPrice the maximum price of properties shown to the user.
      */
     public static void setMaximumPrice(int maximumPrice) {
         RuntimeDetails.maximumPrice = maximumPrice;
     }
 
     /**
-     * A simple setter method to set the minimum price selected by the user as an integer
-     * @param minimumPrice the minimum price of properties shown to the user
+     * A simple setter method to set the minimum price selected by the user as an integer.
+     * @param minimumPrice the minimum price of properties shown to the user.
      */
     public static void setMinimumPrice(int minimumPrice) {
         RuntimeDetails.minimumPrice = minimumPrice;
     }
 
     /**
-     * A simple setter method to set the start date for booking a property
-     * @param startDate start date for bookings
+     * A simple setter method to set the start date for booking a property.
+     * @param startDate start date for bookings.
      */
     public static void setStartDate(LocalDate startDate) {
         RuntimeDetails.startDate = startDate;
@@ -163,40 +163,40 @@ public class RuntimeDetails {
     /**
      * A simple setter method to set the total nights the user will stay,
      * calculated from the selected start dates and end dates.
-     * @param totalNights total nights the user wants to stay
+     * @param totalNights total nights the user wants to stay.
      */
     public static void setTotalNights(long totalNights) {
         RuntimeDetails.totalNights = totalNights;
     }
 
     /**
-     * A simple setter method for the boolean flag representing the dates' validity
-     * @param validDates true if dates are valid
+     * A simple setter method for the boolean flag representing the dates' validity.
+     * @param validDates true if dates are valid.
      */
     public static void setValidDates(boolean validDates) {
         RuntimeDetails.validDates = validDates;
     }
 
     /**
-     * A simple setter method for the boolean flag representing the prices' validity
-     * @param validPrices sets flag true if prices are valid
+     * A simple setter method for the boolean flag representing the prices' validity.
+     * @param validPrices sets flag true if prices are valid.
      */
     public static void setValidPrices(boolean validPrices) {
         RuntimeDetails.validPrices = validPrices;
     }
 
     /**
-     * A simple setter method for the boolean flag representing if both prices and dates are valid
-     * @return true if both dates and prices are valid
+     * A simple setter method for the boolean flag representing if both prices and dates are valid.
+     * @return true if both dates and prices are valid.
      */
     public static boolean isValidDetails() {
         return (validDates && validPrices);
     }
 
     /**
-     * sets the total nights if both the start date and end date are not null
-     * calculates how many days from start to end and stores in total nights
-     * sets validDates to true
+     * Sets the total nights if both the start date and end date are not null.
+     * Calculates how many days from start to end and stores in total nights
+     * Sets validDates to true.
      */
     public static void setTotalNights()
     {
@@ -209,8 +209,8 @@ public class RuntimeDetails {
 
     /**
      * A string used to output the selected price range inputted by the user,
-     * in the form "'min price' to 'max price'"
-     * @return the price range as string
+     * in the form "'min price' to 'max price'".
+     * @return the price range as string.
      */
     public static String getPriceRange()
     {

@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 
 /**
  * This class is responsible for login in. It acts as the main controller behind the login.fxml file.
- * It handles all the input by the user + any button clicked
+ * It handles all the input by the user + any button clicked.
  *
  * @author Syraj Alkhalil k21007329
  * @version 1.0
@@ -31,10 +31,10 @@ public class LoginController {
 
     /**
      * This method is responsible for handling input from the user and allowing them to log in.
-     * In all cases an appropriate message will be shown to indicate if a certain operation failed/succeeded
+     * In all cases an appropriate message will be shown to indicate if a certain operation failed/succeeded.
      *
-     * @param event login button clicked
-     * @return true if the user is allowed to log in, false otherwise
+     * @param event login button clicked.
+     * @return true if the user is allowed to log in, false otherwise.
      */
     @FXML
     public boolean checkDetails(ActionEvent event) {
@@ -59,7 +59,7 @@ public class LoginController {
     /**
      * This method is responsible for displaying a "Loading please wait" message to the user.
      *
-     * @param mouseEvent login button pressed and details are correct
+     * @param mouseEvent login button pressed and details are correct.
      */
     @FXML
     public void change(javafx.scene.input.MouseEvent mouseEvent) {
@@ -78,11 +78,11 @@ public class LoginController {
         }
     }
 
-    /**
-     * A simple method to change the current fxml file with another (sign up page)
+    /**fu
+     * A simple method to change the current fxml file with another (sign up page).
      *
-     * @param event signup button clicked
-     * @throws IOException if the corresponding fxml file isn't found
+     * @param event signup button clicked.
+     * @throws IOException if the corresponding fxml file isn't found.
      */
     @FXML
     public void signupPage(ActionEvent event) throws IOException {
@@ -90,10 +90,10 @@ public class LoginController {
     }
 
     /**
-     * A simple method to change the current fxml file with another (main page)
+     * A simple method to change the current fxml file with another (main page).
      *
-     * @param event main page button clicked
-     * @throws IOException if the corresponding fxml file isn't found
+     * @param event main page button clicked.
+     * @throws IOException if the corresponding fxml file isn't found.
      */
     @FXML
     public void startPage(ActionEvent event) throws IOException {
@@ -101,9 +101,9 @@ public class LoginController {
     }
 
     /**
-     * This method is responsible for activating the submit button if the enter key is pressed
+     * This method is responsible for activating the submit button if the enter key is pressed.
      *
-     * @param keyEvent the key pressed
+     * @param keyEvent the key pressed.
      */
     @FXML
     public void enter(KeyEvent keyEvent) {

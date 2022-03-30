@@ -7,13 +7,25 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This class is responsible for loading the data from a csv file.
+ * Given this team is using two csv files then this class is responsible for
+ * loading the data from both sets. Both sets have some shared characteristics.
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class AirbnbDataLoader {
 
+    /**
+     * Constructor for class.
+     */
     public AirbnbDataLoader() {
     }
 
     /**
      * Converts string Array from old csv reader to airbnb listing.
+     *
      * @param line String array which contains the listing data.
      * @return the AirbnbListing object.
      */
@@ -34,19 +46,19 @@ public class AirbnbDataLoader {
         int calculatedHostListingsCount = convertInt(line[13]);
         int availability365 = convertInt(line[14]);
 
-        OldAirbnbListing listing = new OldAirbnbListing(id, name, host_id,
+        return new OldAirbnbListing(id, name, host_id,
                 host_name, neighbourhood, latitude, longitude, room_type,
                 price, minimumNights, numberOfReviews, lastReview,
                 reviewsPerMonth, calculatedHostListingsCount, availability365
         );
-        return listing;
     }
 
     /**
      * Converts string Array from new csv reader to airbnb listing.
+     *
      * @param line String array which contains the listing data.
      * @return the AirbnbListing object.
-     * @throws MalformedURLException
+     * @throws MalformedURLException if the csv file isn't found
      */
     private static NewAirbnbListing createNewListing(String[] line) throws MalformedURLException {
             String id = line[0];
@@ -79,14 +91,13 @@ public class AirbnbDataLoader {
             int review_scores_location = convertInt(line[27]);
             int review_scores_value = convertInt(line[28]);
 
-            NewAirbnbListing listing = new NewAirbnbListing(id, name, neighborhood_overview,
-                    picture_url, host_id, host_name, host_response_time, host_picture_url,
-                    host_listings, neighbourhood_cleansed, latitude, longitude, property_type,
-                    accommodates, bathrooms, bedrooms, beds, amenities, price, minimumNights, maximumNights,
-                    number_of_reviews, availability365, review_scores_rating, review_scores_cleanliness,
-                    review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value
-            );
-            return listing;
+        return new NewAirbnbListing(id, name, neighborhood_overview,
+                picture_url, host_id, host_name, host_response_time, host_picture_url,
+                host_listings, neighbourhood_cleansed, latitude, longitude, property_type,
+                accommodates, bathrooms, bedrooms, beds, amenities, price, minimumNights, maximumNights,
+                number_of_reviews, availability365, review_scores_rating, review_scores_cleanliness,
+                review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value
+        );
     }
 
     /** 
@@ -125,7 +136,6 @@ public class AirbnbDataLoader {
             //skip the first row (column headers)
             reader.readNext();
 
-            // CODE GOES HERE TO MAKE THE OLD DATA SET
             while ((line = reader.readNext()) != null)
             {listings.add(createOldListing(line));}
         } catch(IOException | URISyntaxException e){
@@ -149,10 +159,11 @@ public class AirbnbDataLoader {
     }
 
     /**
+     * Convert a string to a double.
      *
-     * @param doubleString the string to be converted to Double type
+     * @param doubleString the string to be converted to Double type.
      * @return the Double value of the string, or -1.0 if the string is 
-     * either empty or just whitespace
+     * either empty or just whitespace.
      */
     private static Double convertDouble(String doubleString){
         if(doubleString != null && !doubleString.trim().equals("")){
@@ -162,10 +173,11 @@ public class AirbnbDataLoader {
     }
 
     /**
+     * Convert a string to an int.
      *
-     * @param intString the string to be converted to Integer type
+     * @param intString the string to be converted to Integer type.
      * @return the Integer value of the string, or -1 if the string is 
-     * either empty or just whitespace
+     * either empty or just whitespace.
      */
     private static Integer convertInt(String intString){
         if(intString != null && !intString.trim().equals("")){
@@ -175,10 +187,11 @@ public class AirbnbDataLoader {
     }
 
     /**
-     * Convert a string into an url
-     * @param urlString The string to be converted into an url
+     * Convert a string into an url.
+     *
+     * @param urlString The string to be converted into an url.
      * @return The url or null if the link is invalid.
-     * @throws MalformedURLException if the link is invalid
+     * @throws MalformedURLException if the link is invalid.
      */
     private static URL convertURL(String urlString) throws MalformedURLException {
         if (urlString != null && !urlString.trim().equals("")) {
@@ -188,9 +201,9 @@ public class AirbnbDataLoader {
     }
 
     /**
-     * This method is responsible for converting a string into an arrayList of type string
+     * This method is responsible for converting a string into an arrayList of type string.
      *
-     * @param amenities the String we wish to convert
+     * @param amenities the String we wish to convert.
      * @return an ArrayList object representing the string.
      */
     private static ArrayList<String> convertArrayListOfString(String amenities) {

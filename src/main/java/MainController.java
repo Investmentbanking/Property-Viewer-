@@ -75,8 +75,8 @@ public class MainController {
     }
 
     /**
-     * Initialise the settings for the scene
-     * sets the available prices and initial conditions for the welcome pane
+     * Initialise the settings for the scene.
+     * Sets the available prices and initial conditions for the welcome pane.
      */
     @FXML
     private void initialize()
@@ -92,8 +92,8 @@ public class MainController {
     }
 
     /**
-     * Sets pointer to 0 (which is pane 1)
-     * adds all panes to arraylist to be accessed when changing pane
+     * Sets pointer to 0 (which is pane 1).
+     * Adds all panes to arraylist to be accessed when changing pane.
      */
     public MainController() throws IOException
     {
@@ -115,11 +115,12 @@ public class MainController {
     }
 
     /**
-     * takes in start date, checks if valid
-     * if not it produces an appropriate error
-     * if both dates are valid, flag is set to true
-     * total nights are set
-     * @param event ActionEvent selection of start date
+     * Takes in start date, checks if valid,
+     * if not, it produces an appropriate error.
+     * If both dates are valid, flag is set to true
+     * and total nights are set.
+     *
+     * @param event ActionEvent selection of start date.
      */
     @FXML
     public void selectStartDate(ActionEvent event)
@@ -146,11 +147,12 @@ public class MainController {
     }
 
     /**
-     * takes in end date, checks if valid
-     * if not it produces an appropriate error
-     * if both dates are valid, flag is set to true
-     * total nights are set
-     * @param event ActionEvent selection of end date
+     * takes in end date, checks if valid,
+     * if not, it produces an appropriate error.
+     * If both dates are valid, flag is set to true
+     * and total nights are set.
+     *
+     * @param event ActionEvent selection of end date.
      */
     @FXML
     public void selectEndDate(ActionEvent event)
@@ -182,10 +184,10 @@ public class MainController {
     }
 
     /**
-     * Goes back one pane
-     * decrements pointer, removes current centre
-     * adds pane from arraylist sceneNodes with index pointer
-     * @param event ActionEvent of left arrow being clicked
+     * Goes back one pane, decrements pointer, removes current centre
+     * and adds pane from arraylist sceneNodes with index pointer.
+     *
+     * @param event ActionEvent of left arrow being clicked.
      */
     @FXML
     public void leftArrowClicked(ActionEvent event) throws IOException
@@ -203,12 +205,10 @@ public class MainController {
                 togglePriceBoxes(false);
                 break;
             case 2:
-
                 centrePane.getChildren().remove(centrePane.getCenter());
                 changeToStats();
                 togglePriceBoxes(true);
                 break;
-
             default:
                 centrePane.getChildren().remove(centrePane.getCenter());
                 centrePane.setCenter(sceneNodes.get(pointer));
@@ -218,10 +218,10 @@ public class MainController {
     }
 
     /**
-     * Goes forward one pane
-     * increments pointer, removes centre
-     * adds pane from arraylist sceneNodes with index pointer
-     * @param event ActionEvent of right arrow being clicked
+     * Goes forward one pane, increments pointer, removes centre
+     * and adds pane from arraylist sceneNodes with index pointer.
+     *
+     * @param event ActionEvent of right arrow being clicked.
      */
     @FXML
     public void rightArrowClicked(ActionEvent event) throws IOException {
@@ -255,6 +255,7 @@ public class MainController {
      * Confirms the entered prices; if the prices are valid:
      * the flag is set true, prices are set in RuntimeDetails, and the selected prices are outputted.
      * If the prices are invalid: appropriate errors are created, values are set to null and flag is set false.
+     *
      * @param event ActionEvent of confirm prices button being pressed.
      */
     @FXML
@@ -289,8 +290,8 @@ public class MainController {
     }
 
     /**
-     * Sets the label for the pane number
-     * used when the pane is changed
+     * Sets the label for the pane number used when
+     * the pane is changed.
      */
     private void setPaneLabelText()
     {
@@ -299,7 +300,8 @@ public class MainController {
     }
 
     /**
-     * Sets the total nights, if the dates are valid
+     * Sets the total nights.
+     * Calls the method to check if dates are valid.
      */
     private void setTotalNights()
     {
@@ -311,8 +313,8 @@ public class MainController {
     }
 
     /**
-     * checks if all details are valid
-     * arrows are enabled if details are valid
+     * Checks if all details are valid.
+     * Arrows are enabled if details are valid.
      */
     private void checkValidDetails()
     {
@@ -329,8 +331,8 @@ public class MainController {
     }
 
     /**
-     * increments the pointer up to size of sceneNodes
-     * sets to pointer to 0 if it reaches arraylist size
+     * Increments the pointer up to size of sceneNodes.
+     * Sets to pointer to 0 if it reaches arraylist size.
      */
     private void pointerIncrement()
     {
@@ -342,8 +344,8 @@ public class MainController {
     }
 
     /**
-     * decrements the pointer
-     * sets to pointer to arraylist size - 1 if it reaches 0
+     * Decrements the pointer.
+     * Sets the pointer to arraylist size - 1 if it reaches 0.
      */
     private void pointerDecrement()
     {
@@ -357,7 +359,7 @@ public class MainController {
     /**
      * Gets the fxml file, adding the pane to the center of the scene,
      * setting the initial values for the statistics and prompts
-     * and defining the choice-box actions.
+     * and defines the combo box actions.
      */
     private void changeToStats() throws IOException {
         URL url = getClass().getResource("Statistics.fxml");
@@ -366,7 +368,7 @@ public class MainController {
         centrePane.setCenter(root);
         Scene scene = centrePane.getScene();
         Statistics.createStats();
-        getCatergoryStartStats(scene);
+        getCategoryStartStats(scene);
         combobox = (ComboBox) scene.lookup("#box");
         combobox.getItems().addAll("default", "reviews", "borough and listings", "amenities and property interior");
         combobox.setPromptText("Please select what you want your stats to be tailored towards: ");
@@ -374,30 +376,31 @@ public class MainController {
             if(isSelectedDefault()) {
                 Statistics.createStats();
 
-                getCatergoryStartStats(scene);
+                getCategoryStartStats(scene);
             }
             else if (isSelectedReviews()) {
                 Statistics.createReviewStats();
 
-                getCatergoryStartStats(scene);
+                getCategoryStartStats(scene);
             }
             else if (isSelectedBorough()){
                 Statistics.createBoroughAndListingsStats();
 
-                getCatergoryStartStats(scene);
+                getCategoryStartStats(scene);
             }
             else {
                 Statistics.createAmenitiesStats();
 
-                getCatergoryStartStats(scene);
+                getCategoryStartStats(scene);
             }
         });
     }
 
     /**
      * Gets the selected value from the Statistics selection box,
-     * returns true if the value is equal to 'default'
-     * @return true if 'default' is selected in Statistics combobox
+     * returns true if the value is equal to 'default'.
+     *
+     * @return true if 'default' is selected in Statistics combobox.
      */
     private boolean isSelectedDefault() {
         return combobox.getSelectionModel().getSelectedItem().equals("default");
@@ -406,8 +409,9 @@ public class MainController {
 
     /**
      * Gets the selected value from the Statistics selection box,
-     * returns true if the value is equal to 'reviews'
-     * @return true if 'reviews' 'is selected in Statistics combobox
+     * returns true if the value is equal to 'reviews'.
+     *
+     * @return true if 'reviews' 'is selected in Statistics combobox.
      */
     private boolean isSelectedReviews() {
         return combobox.getSelectionModel().getSelectedItem().equals("reviews");
@@ -415,49 +419,54 @@ public class MainController {
 
     /**
      * Gets the selected value from the Statistics selection box,
-     * returns true if the value is equal to 'borough and listings'
-     * @return true if 'borough and listings' is selected in Statistics combobox
+     * returns true if the value is equal to 'borough and listings'.
+     *
+     * @return true if 'borough and listings' is selected in Statistics combobox.
      */
     private boolean isSelectedBorough() {
         return combobox.getSelectionModel().getSelectedItem().equals("borough and listings");
     }
 
     /**
-     * Assigns the text areas to variables from the scene
-     * setting the contents to Statistics values
-     * @param scene the Statistics panel scene
+     * Assigns the text areas to variables from the scene.
+     * Setting the contents to Statistics values.
+     *
+     * @param scene the Statistics panel scene.
      */
-    public void getCatergoryStartStats(Scene scene) {
-        Text stat11 = (Text) scene.lookup("#stat1");
-        Text stat22 = (Text) scene.lookup("#stat2");
-        Text stat33 = (Text) scene.lookup("#stat3");
-        Text stat44 = (Text) scene.lookup("#stat4");
+    public void getCategoryStartStats(Scene scene) {
+        Text stat1 = (Text) scene.lookup("#stat1");
+        Text stat2 = (Text) scene.lookup("#stat2");
+        Text stat3 = (Text) scene.lookup("#stat3");
+        Text stat4 = (Text) scene.lookup("#stat4");
 
-        stat11.setText(Statistics.getNextStat());
-        stat22.setText(Statistics.getNextStat());
-        stat33.setText(Statistics.getNextStat());
-        stat44.setText(Statistics.getNextStat());
+        stat1.setText(Statistics.getNextStat());
+        stat2.setText(Statistics.getNextStat());
+        stat3.setText(Statistics.getNextStat());
+        stat4.setText(Statistics.getNextStat());
     }
 
     /**
-     * Simple getter method to return the current users account as object
-     * @return the users account
+     * Simple getter method to return the current users account as object.
+     *
+     * @return the users account.
      */
     public static Account getCurrentUser() {
         return currentUser;
     }
 
     /**
-     * A setter method to set the current users Username as the argument string
-     * @param username the current users username
+     * A setter method to set the current users Username as the argument string.
+     *
+     * @param username the current users' username.
      */
     public static void setCurrentUser(String username){
         currentUser.setUsername(username);
     }
 
     /**
-     * Enables or Disables price boxes and confirm button depending on boolean input
-     * @param toggle true to disable price boxes and confirm button
+     * Enables or Disables price boxes and confirm button depending on boolean input.
+     *
+     * @param toggle true to disable price boxes and confirm button.
      */
     private void togglePriceBoxes(boolean toggle)
     {

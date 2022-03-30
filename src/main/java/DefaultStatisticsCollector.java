@@ -4,7 +4,7 @@ import java.util.HashMap;
  * Creates the default statistics using the old data set for the statistics panel.
  *
  * @author Ayesha Dorani (K2036136)
- * @version 30.02.2022
+ * @version 30.03.2022
  */
 public class DefaultStatisticsCollector {
 

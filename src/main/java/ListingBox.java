@@ -50,6 +50,7 @@ public class ListingBox extends StackPane {
 
     /**
      * Constructor for a listing box for a specific listing, it will display the property image and be the colour of the rating.
+     *
      * @param listing The listing to be represented by the object.
      */
     public ListingBox(NewAirbnbListing listing) {
@@ -117,6 +118,7 @@ public class ListingBox extends StackPane {
 
     /**
      * Get the listing representing the box.
+     *
      * @return the listing representing the box.
      */
     public NewAirbnbListing getListing() {
@@ -125,6 +127,7 @@ public class ListingBox extends StackPane {
 
     /**
      * Get if the image is loaded or is currently loading.
+     *
      * @return True if image has been set to load.
      */
     public boolean isImageLoaded() {
@@ -155,6 +158,7 @@ public class ListingBox extends StackPane {
 
     /**
      * Highlight the box on mouse enter.
+     *
      * @param event MouseEvent call.
      */
     private void highlight(MouseEvent event){
@@ -168,6 +172,7 @@ public class ListingBox extends StackPane {
 
     /**
      * Remove highlight of the box on mouse exit.
+     *
      * @param event MouseEvent call.
      */
     private void unhighlight(MouseEvent event){
@@ -181,6 +186,7 @@ public class ListingBox extends StackPane {
 
     /**
      * Set if the box should have an invalid out-of-bound colour.
+     *
      * @param isInvalid True if the box should have an invalid colour.
      */
     public void setInvalidColour(boolean isInvalid){
@@ -198,6 +204,7 @@ public class ListingBox extends StackPane {
 
     /**
      * Calculate the colour that should be representing the rating of the listing.
+     *
      * @param rating The rating of the listing.
      * @return The colour of the box from the rating.
      */
