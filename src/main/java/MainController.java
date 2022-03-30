@@ -175,7 +175,9 @@ public class MainController {
         else if(eDate != null && sDate != null) {
             RuntimeDetails.setValidDates(true);
             setTotalNights();
-            pane1 = centrePane.getCenter();
+            if(pointer == 0) {
+                pane1 = centrePane.getCenter();
+            }
         }
     }
 
