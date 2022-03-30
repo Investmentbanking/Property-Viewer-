@@ -12,20 +12,33 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 
+
+/**
+ * This class is responsible for Booking. It acts as the main controller behind the bookingPane.fxml file.
+ * It handles all the input by the user + any button clicked
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class BookingController {
-    private static final ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();         // this is the list that will be observed automatically by the system
+    // this is the list that will be observed automatically by the system
+    private static final ObservableList<NewAirbnbListing> listings = FXCollections.observableArrayList();
 
+    // The main table that holds the list of all bookings to show
     @FXML
-    TableView listOfProperties;                                                                             // The main table that holds the list of all bookings to show
+    TableView listOfProperties;
 
+    // Simple fields that are manipulated to display stats about the property
     @FXML
-    Label totalNights, price, name, beds, baths, area, from, to, visibleText;                                            // simple fields that are manipulated to display stats about the property
+    Label totalNights, price, name, beds, baths, area, from, to, visibleText;
 
+    // The button which is made visible depending on a certain condition.
     @FXML
     Button visibleButton;
 
+    // The main picture of the property
     @FXML
-    ImageView picture;                                                                                      // the main picture of the property
+    ImageView picture;
 
 
     /**

@@ -10,14 +10,22 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+
+/**
+ * This class is responsible for the signing up. It acts as the main controller behind the singup.fxml file.
+ * It handles all the input by the user + any button clicked
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class SignupController {
 
     @FXML
-    TextField username;                                   // the username field
+    TextField username;                                   // The username field
     @FXML
-    PasswordField password, repeatedPassword;             // the password and the repeated password fields
+    PasswordField password, repeatedPassword;             // The password and the repeated password fields
     @FXML
-    Button submit;
+    Button submit;                                        // Submit button
 
     /**
      * This method is responsible for signing up a user.
@@ -77,6 +85,11 @@ public class SignupController {
         InitialController.setRoot("optionsPane.fxml");
     }
 
+    /**
+     * This method is responsible for activating the submit button if the enter key is pressed
+     *
+     * @param keyEvent the key pressed
+     */
     @FXML
     public void enter(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){

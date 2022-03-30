@@ -8,6 +8,14 @@ import java.security.NoSuchAlgorithmException;
 import java.io.File;
 import java.io.FileReader;
 
+/**
+ * This class is responsible for allowing an account holder to log in. It's main purpose is to check if an existing user
+ * already exists, in this case it will not allow this user to make a new account. Additionally, this class allows for the
+ * retrieval and writing of data (aka the username and password) and hashing the password so that it is more secure.
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class Login {
     private String username;                                                            // The username of the user
     private String password;                                                            // The password of the user

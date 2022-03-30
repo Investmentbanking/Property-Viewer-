@@ -136,7 +136,12 @@ public class AirbnbDataLoader {
         return listings;
     }
 
-
+    /**
+     * This method is responsible for converting a string to money
+     *
+     * @param money the string we wish to convert
+     * @return a double representation of the string
+     */
     private static double convertMoney(String money) {
         money = money.substring(1, money.indexOf("."));
         money = money.replace(",", "");
@@ -182,7 +187,12 @@ public class AirbnbDataLoader {
         return null;
     }
 
-
+    /**
+     * This method is responsible for converting a string into an arrayList of type string
+     *
+     * @param amenities the String we wish to convert
+     * @return an ArrayList object representing the string.
+     */
     private static ArrayList<String> convertArrayListOfString(String amenities) {
         if(amenities != null && !amenities.trim().equals("")) {
             amenities = amenities.replace("\"", ""); // Remove the double quotes

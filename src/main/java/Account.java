@@ -9,11 +9,20 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
+/**
+ * This class is responsible for holding an account. It allows the user to be modelled as an object
+ * which in turn will allow the programmer to do whatever they want with the user, from allowing them to login, signup
+ * or even continuing as a guest.
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class Account {
-    private String username;                                                        // the username
-    private ArrayList<NewAirbnbListing> bookings;                                   // the actual bookings of this person
-    private final URL url = this.getClass().getResource("reservation.csv");   // the overall url used like this to reduce repetition
-    private final String file = new File(url.toURI()).getAbsolutePath();            // the location of the file used like this to reduce repetition
+    private String username;                                                        // The username
+    private ArrayList<NewAirbnbListing> bookings;                                   // The actual bookings of this person
+    private final URL url = this.getClass().getResource("reservation.csv");   // The overall url used like this to reduce repetition
+    private final String file = new File(url.toURI()).getAbsolutePath();            // The location of the file used like this to reduce repetition
 
 
     /**
@@ -66,6 +75,14 @@ public class Account {
         return false;
     }
 
+    /**
+     * This method is responsible for checking if a time violation exists when booking
+     * a property. A time violation is defined as attempting to book a property for too long
+     * or too short.
+     *
+     * @param property the property we wish to check
+     * @return true if there exists a time violation. explained above.
+     */
     public boolean noTimeLimitViolation(NewAirbnbListing property){
         if(RuntimeDetails.getTotalNights() < property.getMinimumNights() || RuntimeDetails.getTotalNights() > property.getMaximumNights()){
             new Alerts(Alert.AlertType.ERROR,"Error", null, "Sorry :( \nthe dates you have chosen aren't suitable for this property. \nPlease try to change the dates to be able to book this property");
@@ -74,6 +91,12 @@ public class Account {
         return false;
     }
 
+    /**
+     * This method is responsible for converting a given string to LocalDate
+     *
+     * @param dateString the string we wish to convert
+     * @return LocalDate object of the string we passed in.
+     */
     private LocalDate convertDate(String dateString){
         // date should be the same as date we have when we write
         return LocalDate.of(Integer.parseInt(dateString.substring(0, 4)), Integer.parseInt(dateString.substring(5, 7)), Integer.parseInt(dateString.substring(8, 10)));

@@ -3,24 +3,31 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+
+/**
+ * This class is responsible for login in. It acts as the main controller behind the login.fxml file.
+ * It handles all the input by the user + any button clicked
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class LoginController {
 
     @FXML
-    TextField username;             // the username field
+    TextField username;             // The username field
 
     @FXML
-    PasswordField password;         // the password field
+    PasswordField password;         // The password field
 
     @FXML
-    Label loadingLabel;             // the loading label
+    Label loadingLabel;             // The loading label
 
     @FXML
-    Button submit;
+    Button submit;                  // The submit button
 
     /**
      * This method is responsible for handling input from the user and allowing them to log in.
@@ -95,6 +102,11 @@ public class LoginController {
         InitialController.setRoot("optionsPane.fxml");
     }
 
+    /**
+     * This method is responsible for activating the submit button if the enter key is pressed
+     *
+     * @param keyEvent the key pressed
+     */
     @FXML
     public void enter(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){

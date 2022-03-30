@@ -39,23 +39,6 @@ public class NewAirbnbListing {
     private final int reviewScoresLocation;         // the location score
     private final int reviewScoresValue;            // the value score
 
-    public NewAirbnbListing(String id, String name){
-        this.id = id;
-        this.name = name;
-        neighbourhoodOverview = null;
-        pictureURL = null;
-        hostID = null;
-        hostName = null;
-        hostResponseTime = null;
-        hostPictureURL = null;
-        neighbourhoodCleansed = null;
-        propertyType = null;
-        amenities = null;
-        latitude = longitude = bathrooms = bedrooms = beds = 0;
-        price = minimumNights = maximumNights = accommodates = hostListings = availability365 = numberOfReviews = 0;
-        reviewScoresRating = reviewScoresCleanliness = reviewScoresCheckin = reviewScoresCommunication = reviewScoresValue = reviewScoresLocation = 0;
-    }
-
     /**
      * The main constructor of the airbnb listing
      *
