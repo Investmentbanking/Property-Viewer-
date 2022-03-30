@@ -1,6 +1,9 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -15,6 +18,9 @@ public class LoginController {
 
     @FXML
     Label loadingLabel;             // the loading label
+
+    @FXML
+    Button submit;
 
     /**
      * This method is responsible for handling input from the user and allowing them to log in.
@@ -50,10 +56,17 @@ public class LoginController {
      */
     @FXML
     public void change(javafx.scene.input.MouseEvent mouseEvent) {
+        displayingText();
+    }
+
+    private void displayingText(){
         try {
             Login log = new Login(username.getText(), password.getText());
+            System.out.println(username.getText());
+            System.out.println(password.getText());
             if (log.checkLogin()){
                 loadingLabel.setText("Loading... Please Wait");
+                loadingLabel.setVisible(true);
             }
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -80,5 +93,13 @@ public class LoginController {
     @FXML
     public void startPage(ActionEvent event) throws IOException {
         InitialController.setRoot("optionsPane.fxml");
+    }
+
+    @FXML
+    public void enter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            displayingText();
+            submit.fire();
+        }
     }
 }

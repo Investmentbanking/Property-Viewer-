@@ -1,8 +1,11 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -13,6 +16,8 @@ public class SignupController {
     TextField username;                                   // the username field
     @FXML
     PasswordField password, repeatedPassword;             // the password and the repeated password fields
+    @FXML
+    Button submit;
 
     /**
      * This method is responsible for signing up a user.
@@ -31,7 +36,7 @@ public class SignupController {
         if(password.getText().equals(repeatedPassword.getText())){
             try {
                 Login log = new Login(username.getText(), password.getText());
-                if(log.checkLogin()){
+                if(log.checkLoginNewUser()){
                     new Alerts(Alert.AlertType.ERROR,"Error", null, "sorry this username already exists! please pick another one.");
                     return false;
                 }else{
@@ -70,5 +75,12 @@ public class SignupController {
     @FXML
     public void startPage(ActionEvent event) throws IOException {
         InitialController.setRoot("optionsPane.fxml");
+    }
+
+    @FXML
+    public void enter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            submit.fire();
+        }
     }
 }

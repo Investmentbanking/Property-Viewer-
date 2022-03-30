@@ -29,11 +29,38 @@ public class Login {
 
     /**
      * A simple method to check if a user has already been saved and therefore
-     * can be considered an "existing user"
+     * can be considered an "existing user", this method is used when logging in.
      *
      * @return true if this user exists, false otherwise
      */
     public boolean checkLogin(){
+        try {
+            CSVReader reader = new CSVReader(new FileReader(file));
+            String[] line;
+            //skip the first row (column headers)
+            reader.readNext();
+            while ((line = reader.readNext()) != null) {
+                String username = line[1];
+                String password = line[2];
+
+                if(username.equals(this.username) && password.equals(hash(this.password))){
+                    return true;
+                }
+            }
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * A simple method to check if a user has already been saved and therefore
+     * can be considered an "existing user", this method is used when signing up.
+     *
+     * @return true if this user exists, false otherwise
+     */
+    public boolean checkLoginNewUser(){
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
             String[] line;
@@ -52,6 +79,7 @@ public class Login {
             return false;
         }
     }
+
 
     /**
      * A simple method to save the user to the file. When saving a user, an automatic id will be

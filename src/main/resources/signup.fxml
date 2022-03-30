@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #36393f; -fx-font-family: Arial;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignupController">
+<VBox alignment="CENTER" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#enter" spacing="10.0" style="-fx-background-color: #36393f; -fx-font-family: Arial;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignupController">
    <children>
       <HBox>
          <children>
@@ -18,7 +18,7 @@
       <TextField fx:id="username" promptText="username" style="-fx-background-radius: 10;" />
       <PasswordField fx:id="password" promptText="password" style="-fx-background-radius: 10;" />
       <PasswordField fx:id="repeatedPassword" promptText="re-enter password" style="-fx-background-radius: 10;" />
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signup" style="-fx-background-radius: 6;" text="sign up" />
+      <Button fx:id="submit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#signup" style="-fx-background-radius: 6;" text="sign up" />
       <HBox alignment="CENTER">
          <children>
             <Label text="Already have an account? try to " textFill="#cdcaca" />
