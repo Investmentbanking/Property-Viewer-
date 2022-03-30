@@ -94,7 +94,19 @@
                               </RadioButton>
                            </children>
                         </StackPane>
-                        <ScrollPane fx:id="right" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" minWidth="410.0" style="-fx-background-color: Transparent;" vbarPolicy="ALWAYS" />
+                        <StackPane>
+                           <children>
+                              <ScrollPane fx:id="right" fitToWidth="true" hbarPolicy="NEVER" maxWidth="1.7976931348623157E308" minWidth="410.0" style="-fx-background-color: Transparent;" vbarPolicy="ALWAYS" />
+                              <Button fx:id="popout_button" mnemonicParsing="false" onAction="#popoutBox" prefHeight="57.0" prefWidth="53.0" styleClass="popout_button" StackPane.alignment="TOP_LEFT">
+                                 <StackPane.margin>
+                                    <Insets left="5.0" top="5.0" />
+                                 </StackPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </StackPane>
                     </items>
                   </SplitPane>
                   <GridPane id="key" alignment="BOTTOM_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" vgap="5.0" StackPane.alignment="BOTTOM_LEFT">

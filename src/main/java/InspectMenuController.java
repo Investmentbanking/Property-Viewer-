@@ -4,14 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
@@ -36,6 +35,7 @@ public class InspectMenuController implements Initializable {
 
     @FXML private Label title;
 
+    @FXML private Button popout_button;
     @FXML private RadioButton unload_radio;
 
     @FXML private ComboBox<Integer> min, max;
@@ -49,11 +49,74 @@ public class InspectMenuController implements Initializable {
 
     private static InspectBoxController inspectBoxController;
     private static InspectListingMenu inspectMenu;
+    private static boolean firstListingClicked = false;
+    private Pane inspectBox;
 
     private static ArrayList<NewAirbnbListing> currentListings;
     private static Stage stage = null;
     private static double xOffset, yOffset;
     private static double widthOffset, heightOffset;
+
+    private static Stage popoutStage = null;
+    private static boolean isPoppedOut = false;
+
+    /**
+     * Called when the popout button is pressed and opens the inspect-box to a new window.
+     * Pressing it again will close the popout and put the box back.
+     */
+    @FXML
+    private void popoutBox(){
+        if(firstListingClicked) {
+            if (isPoppedOut) {
+                isPoppedOut = false;
+
+                popout_button.setStyle(null);
+
+                popoutStage.close();
+                right.setContent(inspectBox);
+            }
+            else {
+                isPoppedOut = true;
+
+                popout_button.setStyle("-fx-background-color: green");
+
+                if (popoutStage == null) {
+                    popoutStage = new Stage();
+                }
+
+                right.setContent(null);
+                Pane ok = inspectBox;
+                ScrollPane scrollPane = new ScrollPane(ok);
+                scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+                scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+                scrollPane.setFitToWidth(true);
+                scrollPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                scrollPane.setPrefHeight(800);
+
+                inspectBox.setStyle("-fx-background-color: #36393f");
+                scrollPane.setStyle("-fx-background-color: #36393f");
+                scrollPane.getStylesheets().add("inspectbox.css");
+
+                popoutStage.setOnCloseRequest(event -> {
+                    right.setContent(inspectBox);
+                    popout_button.setStyle(null);
+                    isPoppedOut = false;
+                });
+
+                popoutStage.setMinWidth(410);
+                popoutStage.setMinHeight(200);
+
+                Scene scene = new Scene(scrollPane);
+                scene.setFill(Color.RED);
+                popoutStage.setScene(scene);
+                popoutStage.setTitle("Popout Box");
+                popoutStage.getIcons().add(new Image("airbnb-icon-dark.png"));
+                popoutStage.show();
+
+                Platform.runLater(() -> scrollPane.setVvalue(0.001));   // Fixed JavaFX refresh bug
+            }
+        }
+    }
 
     /**
      * Action preformed when min-value ComboBox is changed. Relists the selection when changes.
@@ -109,10 +172,13 @@ public class InspectMenuController implements Initializable {
     }
 
     /**
-     * Closes the window.
+     * Closes the window and popout window if open.
      */
     @FXML
     private void closeWindow(){
+        if (popoutStage != null) {
+            popoutStage.close();
+        }
         stage.close();
     }
 
@@ -179,6 +245,7 @@ public class InspectMenuController implements Initializable {
      */
     public static void setInspectBoxListing(NewAirbnbListing newListing){
         inspectBoxController.setListing(newListing);
+        firstListingClicked = true;
     }
 
     /**
@@ -222,6 +289,11 @@ public class InspectMenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (popoutStage != null) {
+            popoutStage.close();
+        }
+        firstListingClicked = false;
+
         // Since state is currently null, runLater is preformed for when it is visible.
         Platform.runLater(() -> {
             Stage stage = (Stage)title.getScene().getWindow();
@@ -262,7 +334,7 @@ public class InspectMenuController implements Initializable {
         left.setCenter(inspectMenu);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Pane inspectBox = null;
+        inspectBox = null;
         try {
             inspectBox = fxmlLoader.load((Objects.requireNonNull(getClass().getResource("inspectbox.fxml"))).openStream());
         } catch (IOException e){
