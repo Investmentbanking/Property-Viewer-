@@ -4,7 +4,7 @@
 AirBnB London Data Set Loader
 
 ## Purpose of project
-To load the AirBnB London data set from the provided csv file into a Java data structure
+Property Viewer by FABSPointerException is a GUI for exploring properties in London that are available for temporary rental.
 
 ## How to start his project
 1. Run in a terminal from the same directory as the project directory `./gradlew run` on GNU/Linux and Mac, or `gradlew run` on Windows.
