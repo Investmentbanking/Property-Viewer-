@@ -11,8 +11,8 @@
 }
 
 
-  #11:hover, #10:hover, #20:hover, #21:hover, #30:hover, #31:hover, #40:hover, #41:hover {
-    -fx-background-color: #1c1c1c;;
+  #11:hover, #10:hover, #20:hover, #21:hover, #30:hover, #31:hover, #40:hover, #41:hover{
+    -fx-background-color: #1c1c1c;
 }
 
   #stat1, #stat2, #stat3, #stat4 {
@@ -25,9 +25,14 @@
 
 #box {
     -fx-background-color: #40444b;
-    -fx-text-fill: white;
 }
 
+.list-cell, .list-view {
+    -fx-text-fill: white;
+    -fx-background-color: #40444b;
+    -fx-border-width: 0;
+}
 
-
-
+.list-cell:hover {
+    -fx-background-color: #1c1c1c
+}

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  * Only valid prices are tested, as checking if inputs are valid are handled by
  * the MainController class, alerting and not setting invalid values
  *
- * @Author Burhan Tekcan k21013451
+ * @author Burhan Tekcan k21013451
  * @version 1.0
  */
 public class DefaultStatisticsCollectorTest {
