@@ -12,15 +12,30 @@
 
 
   #11:hover, #10:hover, #20:hover, #21:hover, #30:hover, #31:hover, #40:hover, #41:hover {
-    -fx-padding: 15 15 15 15;
-    -fx-background-color: #5e5e5e;
+    -fx-background-color: #1c1c1c;
 }
 
   #stat1, #stat2, #stat3, #stat4 {
       -fx-font-weight: bold;
   }
 
+#11, #10, #20, #21, #30, #31, #40, #41 {
+    -fx-background-color: #40444b;
+}
 
+#box {
+    -fx-background-color: #40444b;
+}
+
+.list-cell, .list-view {
+    -fx-text-fill: white;
+    -fx-background-color: #40444b;
+    -fx-border-width: 0;
+}
+
+.list-cell:hover {
+    -fx-background-color: #1c1c1c;
+}
 
 
 
