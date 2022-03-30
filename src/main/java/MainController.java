@@ -397,7 +397,7 @@ public class MainController {
     /**
      * Gets the selected value from the Statistics selection box,
      * returns true if the value is equal to 'default'
-     * @return true if 'default' is selected in Statistics choicebox
+     * @return true if 'default' is selected in Statistics combobox
      */
     private boolean isSelectedDefault() {
         return combobox.getSelectionModel().getSelectedItem().equals("default");
@@ -407,7 +407,7 @@ public class MainController {
     /**
      * Gets the selected value from the Statistics selection box,
      * returns true if the value is equal to 'reviews'
-     * @return true if 'reviews' 'is selected in Statistics choicebox
+     * @return true if 'reviews' 'is selected in Statistics combobox
      */
     private boolean isSelectedReviews() {
         return combobox.getSelectionModel().getSelectedItem().equals("reviews");
@@ -415,8 +415,8 @@ public class MainController {
 
     /**
      * Gets the selected value from the Statistics selection box,
-     * returns true if the value is equal to 'borough'
-     * @return true if 'borough' is selected in Statistics choicebox
+     * returns true if the value is equal to 'borough and listings'
+     * @return true if 'borough and listings' is selected in Statistics combobox
      */
     private boolean isSelectedBorough() {
         return combobox.getSelectionModel().getSelectedItem().equals("borough and listings");
