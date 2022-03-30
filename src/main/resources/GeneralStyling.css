@@ -22,7 +22,6 @@
 }
 
 #settingsBox, #calendarArea {
-    -fx-font-size: 1.1em;
     -fx-font-family: Arial;
     -fx-text-fill: white;
     -fx-background-color:  #2f3136;
@@ -31,8 +30,12 @@
     -fx-padding: 10 10 10 10;
 }
 
+#settingsBox .scroll-pane {
+    -fx-hbar-policy : never;
+    -fx-vbar-policy : never;
+}
+
 #priceRange, #priceText {
-    -fx-font-size: 1.1em;
     -fx-font-family: Arial;
     -fx-text-fill: white;
 }

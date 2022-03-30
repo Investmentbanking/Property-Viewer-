@@ -144,7 +144,7 @@
                         <HBox>
                            <children>
                               <Region HBox.hgrow="ALWAYS" />
-                              <TextArea id="settingsBox" editable="false" prefColumnCount="20" prefRowCount="5" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below.">
+                              <TextArea id="settingsBox" editable="false" minHeight="90.0" minWidth="280.0" prefColumnCount="20" prefRowCount="5" style="-fx-background-color: #2f3136; -fx-control-inner-background: #2f3136;" text="Select the minimum and maximum price&#10;in the toolbar.&#10;Enter the date range for the properties&#10;you are looking for below." HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
