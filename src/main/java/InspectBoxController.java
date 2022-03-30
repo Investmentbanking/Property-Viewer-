@@ -182,7 +182,7 @@ public class InspectBoxController implements Initializable {
         maximum_nights.setText(listing.getMaximumNights() + "");
         availability_365.setText(listing.getAvailability365() + "/365");
         amenities.getItems().clear();
-        if(listing.getAmenities().size() != 0) {
+        if(listing.getAmenities() == null) {
             amenities.getItems().addAll(listing.getAmenities());
         }
 
