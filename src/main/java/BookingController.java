@@ -42,7 +42,7 @@ public class BookingController {
 
 
     /**
-     * The main method of this class
+     * The main method of this class.
      */
     public void initialize() {
         loadProperties();
@@ -53,7 +53,7 @@ public class BookingController {
     }
 
     /**
-     * This method is responsible for setting up the table and telling the table to start observing the observable list "listings"
+     * This method is responsible for setting up the table and telling the table to start observing the observable list "listings".
      */
     public void loadProperties(){
         // the column that shows the name of the bookings
@@ -69,7 +69,7 @@ public class BookingController {
      * This method is responsible for booking the selected property. If there is no
      * property selected then an appropriate message will be shown.
      *
-     * @param event the confirm booking button is clicked
+     * @param event the confirm booking button is clicked.
      */
     @FXML
     public void confirmBooking(ActionEvent event) {
@@ -101,7 +101,7 @@ public class BookingController {
      * The method will update all the fields displayed to reflect the correct changes that will occur after
      * the selection of a property.
      *
-     * @param mouseEvent a given property is clicked by the user
+     * @param mouseEvent a given property is clicked by the user.
      */
     @FXML
     public void handleSelectionByTheUser(MouseEvent mouseEvent) {
@@ -143,8 +143,8 @@ public class BookingController {
     /**
      * This method is responsible for checking if a property is taken by the current user or another user.
      *
-     * @param listing the listing we wish to check for
-     * @return true if the listing is indeed taken in any way shape or form, false otherwise
+     * @param listing the listing we wish to check for.
+     * @return true if the listing is indeed taken in any way shape or form, false otherwise.
      */
     public static boolean checkProperty(NewAirbnbListing listing){
         for(NewAirbnbListing property : listings){
@@ -157,10 +157,10 @@ public class BookingController {
     }
 
     /**
-     * A simple method to change the current fxml file with another (sign up page)
+     * A simple method to change the current fxml file with another (sign up page).
      *
-     * @param event signup button clicked
-     * @throws IOException if the corresponding fxml file isn't found
+     * @param event signup button clicked.
+     * @throws IOException if the corresponding fxml file isn't found.
      */
     @FXML
     public void signup(ActionEvent event) throws IOException {
@@ -168,9 +168,9 @@ public class BookingController {
     }
 
     /**
-     * This method is responsible for adding to the observable list
+     * This method is responsible for adding to the observable list.
      *
-     * @param property the property we wish to add
+     * @param property the property we wish to add.
      */
     public static void addListing(NewAirbnbListing property){
         listings.add(property);
@@ -179,6 +179,7 @@ public class BookingController {
 
     /**
      * Returns an image loaded from a URL and if the URL is invalid a placeholder image is loaded instead.
+     *
      * @param url URL of the image.
      * @return The Image class of the URL or placeholder image.
      */

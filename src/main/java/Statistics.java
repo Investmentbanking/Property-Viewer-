@@ -29,7 +29,7 @@ public class Statistics {
     /**
      * Returns the new listings within the price range.
      *
-     * @return the new listings
+     * @return the new listings.
      */
     public static ArrayList<NewAirbnbListing> getNewListings() {
         return newListings;
@@ -49,7 +49,7 @@ public class Statistics {
     }
 
     /**
-     * Clones the OldAirbnbListing ArrayList and filters the properties within,
+     * Clones the OldAirbnbListing ArrayList and filters the properties within
      * the price range.
      *
      * @return the new ArrayList with the specific AirbnbListings.
@@ -137,6 +137,7 @@ public class Statistics {
     /**
      * Changes which stat is displayed when a mouse event is received from
      * a button in the statistics panel.
+     *
      * @param node The node (button) that was pressed.
      */
     public static void changeStats(Node node) {

@@ -6,7 +6,7 @@
 public class OldAirbnbListing {
 
     /**
-     * The id and name of the individual property
+     * The id and name of the individual property.
      */
     private final String id;
     private final String name;

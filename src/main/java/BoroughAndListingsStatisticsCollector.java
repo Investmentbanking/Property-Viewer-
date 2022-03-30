@@ -71,7 +71,7 @@ public class BoroughAndListingsStatisticsCollector {
     public static int getListingsCentralLondon() {
         int count = 0;
         for(NewAirbnbListing listing : Statistics.getNewListings()) {
-            if(listing.getNeighbourhoodCleansed().matches("Camden|Islington|Kensington and Chelsea|Lambeth|Southwark|Westminster")) {
+            if(listing.getNeighbourhoodCleansed().matches("Camden|Islington|Kensington and Chelsea|Lambeth|Southwark|Westminster|City of London")) {
                 count++;
             }
         }

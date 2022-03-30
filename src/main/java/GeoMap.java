@@ -62,6 +62,7 @@ public class GeoMap extends Pane {
 
     /**
      * Removes empty space on the top and left of the pane.
+     *
      * @param polygons All the polygon on the menu.
      */
     private void fixAlignment(ArrayList<MenuPolygon> polygons){
@@ -84,6 +85,7 @@ public class GeoMap extends Pane {
 
     /**
      * Arranges the polygons in the formation of London.
+     *
      * @param polygons All the polygons to be arranged
      */
     private void arrangePolygons(ArrayList<MenuPolygon> polygons) {

@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * The price values tested are 3 different ranges.
  *
  * Only valid prices are tested, as checking if inputs are valid are handled by
- * the MainController class, alerting and not setting invalid values
+ * the MainController class, alerting and not setting invalid values.
  *
  * @author Burhan Tekcan k21013451
  * @version 1.1
@@ -21,8 +21,8 @@ public class DefaultStatisticsCollectorTest {
 
     /**
      * Runs before any tests are done.
-     * Sets the initial runtime details needed to create statistics
-     * Sets listings needed to create Statistics
+     * Sets the initial runtime details needed to create statistics.
+     * Sets listings needed to create Statistics.
      */
     @BeforeClass
     public static void setUp() throws Exception {
@@ -31,7 +31,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests the average reviews for the properties with three ranges
+     * Tests the average reviews for the properties with three ranges.
      */
     @Test
     public void getAverageReviewsPerProperty() {
@@ -58,7 +58,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests the number of available properties
+     * Tests the number of available properties.
      */
     @Test
     public void getTotalAvailableProperties() {
@@ -85,7 +85,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests if the range changes the most expensive borough correctly
+     * Tests if the range changes the most expensive borough correctly.
      */
     @Test
     public void getMostExpensiveBorough() {
@@ -112,7 +112,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests if the number of private properties are calculated correctly
+     * Tests if the number of private properties are calculated correctly.
      */
     @Test
     public void getNonPrivateProperties() {
@@ -139,7 +139,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests the collection of properties in the price range with reviews
+     * Tests the collection of properties in the price range with reviews.
      */
     @Test
     public void getListingsWithReviews() {
@@ -166,7 +166,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests the cheapest borough for a given price range
+     * Tests the cheapest borough for a given price range.
      */
     @Test
     public void getCheapestBorough() {
@@ -193,7 +193,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests the average availability of properties in a given price range
+     * Tests the average availability of properties in a given price range.
      */
     @Test
     public void getAverageAvailability() {
@@ -220,7 +220,7 @@ public class DefaultStatisticsCollectorTest {
     }
 
     /**
-     * Tests the highest number of reviews per month for the price ranges
+     * Tests the highest number of reviews per month for the price ranges.
      */
     @Test
     public void getHighestReviewsPerMonth() {

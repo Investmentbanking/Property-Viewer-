@@ -10,11 +10,12 @@ import javafx.scene.control.Alert;
 public class Alerts {
 
     /**
-     * Creates an alert to show and wait
-     * @param alertType The type of alert
-     * @param title Title of the alert
-     * @param headerText Capital Header of alert
-     * @param contentText Text of an alert
+     * Creates an alert to show to the user.
+     *
+     * @param alertType the type of alert.
+     * @param title title of the alert.
+     * @param headerText capital Header of alert.
+     * @param contentText text of an alert.
      */
     public Alerts(Alert.AlertType alertType, String title, String headerText, String contentText) {
         Alert alert = new Alert(alertType);

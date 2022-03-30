@@ -26,7 +26,7 @@ public class Account {
 
 
     /**
-     * The main constructor of the Account class, initialises the current user with an empty list of bookings
+     * The main constructor of the Account class, initialises the current user with an empty list of bookings.
      *
      * @throws URISyntaxException when the CSV isn't found.
      */
@@ -39,8 +39,8 @@ public class Account {
      * if the property is already reserved by the current user a message will be displayed
      * accordingly.
      *
-     * @param property the property we are checking
-     * @return true if the property is taken, false otherwise
+     * @param property the property we are checking.
+     * @return true if the property is taken, false otherwise.
      */
     public boolean isPropertyTaken(NewAirbnbListing property) {
         try {
@@ -80,7 +80,7 @@ public class Account {
      * a property. A time violation is defined as attempting to book a property for too long
      * or too short.
      *
-     * @param property the property we wish to check
+     * @param property the property we wish to check.
      * @return true if there exists a time violation. explained above.
      */
     public boolean noTimeLimitViolation(NewAirbnbListing property){
@@ -92,9 +92,9 @@ public class Account {
     }
 
     /**
-     * This method is responsible for converting a given string to LocalDate
+     * This method is responsible for converting a given string to LocalDate.
      *
-     * @param dateString the string we wish to convert
+     * @param dateString the string we wish to convert.
      * @return LocalDate object of the string we passed in.
      */
     private LocalDate convertDate(String dateString){
@@ -103,7 +103,7 @@ public class Account {
     }
 
     /**
-     * A simple method to book the property permanently
+     * A simple method to book the property permanently.
      *
      * @param property the property we wish to book.
      */
@@ -132,7 +132,7 @@ public class Account {
     }
 
     /**
-     * A simple getter method to retrieve the username field
+     * A simple getter method to retrieve the username field.
      *
      * @return the String representation of the username field.
      */
@@ -141,7 +141,7 @@ public class Account {
     }
 
     /**
-     * A simple setter method to set the username field
+     * A simple setter method to set the username field.
      *
      * @param username the username we wish to set the field username to.
      */

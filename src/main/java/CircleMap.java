@@ -78,6 +78,7 @@ public class CircleMap extends Pane {
 
     /**
      * Removes empty space on the top and left of the pane.
+     *
      * @param circles All the circles on the menu.
      */
     private void fixAlignment(ArrayList<MenuCircle> circles){
@@ -97,6 +98,7 @@ public class CircleMap extends Pane {
 
     /**
      * Arranges the circles in a collective formation.
+     *
      * @param circles the circles to be arranged.
      */
     private void arrangeCircles(ArrayList<MenuCircle> circles) {
@@ -119,6 +121,7 @@ public class CircleMap extends Pane {
      * Recursive method to be called by arrangeCircles(). The algorithm will place a circle around
      * a pivot circle and when there's an available location to place the circle it will place it
      * and move on to another. if there are no free spots then another pivot is selected.
+     *
      * @param allCircles All the circles to arrange.
      * @param pivot The circle that will act as a pivot where circles are places around it.
      * @param toPlace The circle to place around the pivot circle.
@@ -166,6 +169,7 @@ public class CircleMap extends Pane {
 
     /**
      * Sets a circles from another circle ar a specific angle.
+     *
      * @param circle1 Circle to act as the pivot.
      * @param circle2 Circle you want to set from the first.
      * @param angle The angle at which you want the circle to be placed from.
@@ -185,6 +189,7 @@ public class CircleMap extends Pane {
 
     /**
      * Checks if a circle is intersecting any other circle.
+     *
      * @param collideCheck Circle to check if intersecting.
      * @param collidingWith Circles to check if intersecting.
      * @return True if circle is intersecting another.

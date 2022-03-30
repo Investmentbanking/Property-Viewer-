@@ -110,7 +110,6 @@ public class AmenitiesStatisticsCollector {
     }
 
     /**
-     * CHECK
      * Checks if cell amenities for listing is not blank,
      * if not, checks the size of amenities for listing.
      * If this value is higher than previous value, get the id

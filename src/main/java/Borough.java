@@ -44,6 +44,7 @@ public class Borough {
 
     /**
      * The constructor for a Borough which stores certain values of it based off input and calculation of the inputs.
+     *
      * @param name Name of the Borough.
      * @param avgPrice The average price for all the properties in the Borough.
      * @param count The total amount of properties in the Borough.
@@ -68,6 +69,7 @@ public class Borough {
 
     /**
      * Get the name of the Borough.
+     *
      * @return The name of the Borough.
      */
     public String getName() {
@@ -76,6 +78,7 @@ public class Borough {
 
     /**
      * Get the average price of the Borough.
+     *
      * @return The average price of the Borough.
      */
     public int getAvgPrice() {
@@ -84,6 +87,7 @@ public class Borough {
 
     /**
      * Get the total count of properties in the Borough.
+     *
      * @return The total count of properties in the Borough
      */
     public int getCount() {
@@ -92,6 +96,7 @@ public class Borough {
 
     /**
      * Get the total amount of available properties in the Borough.
+     *
      * @return the total amount of available properties in the Borough.
      */
     public int getAvailable() {
@@ -100,6 +105,7 @@ public class Borough {
 
     /**
      * Get the total of available days from all the properties in the Borough.
+     *
      * @return The total of available days from all the properties in the Borough.
      */
     public int getAvailableDays() {

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * Initialises and sorts the boroughs with their listings and makes hem accessible if needed.
+ *
  * @author Cosmo Colman (K21090628)
  * @version 26.03.2022
  */
@@ -43,6 +44,7 @@ public class BoroughMap {
 
     /**
      * Initialise the Boroughs from all listings. The values in the borough objects are calculated from the properties of the listing.
+     *
      * @param allListings The list of all properties.
      * @return The list of all the created Borough objects.
      */
@@ -90,6 +92,7 @@ public class BoroughMap {
 
     /**
      * Initialised which listings belong to what Borough.
+     *
      * @param allListings The list of all properties.
      * @return The HashMap which connects the list of properties in a borough to the Borough.
      */

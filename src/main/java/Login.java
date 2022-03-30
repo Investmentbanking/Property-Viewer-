@@ -39,7 +39,7 @@ public class Login {
      * A simple method to check if a user has already been saved and therefore
      * can be considered an "existing user", this method is used when logging in.
      *
-     * @return true if this user exists, false otherwise
+     * @return true if this user exists, false otherwise.
      */
     public boolean checkLogin(){
         try {
@@ -66,7 +66,7 @@ public class Login {
      * A simple method to check if a user has already been saved and therefore
      * can be considered an "existing user", this method is used when signing up.
      *
-     * @return true if this user exists, false otherwise
+     * @return true if this user exists, false otherwise.
      */
     public boolean checkLoginNewUser(){
         try {
@@ -93,7 +93,6 @@ public class Login {
      * A simple method to save the user to the file. When saving a user, an automatic id will be
      * assigned to the user so that we can distinguish users with specific ids.
      * Additionally, no two users with the same name are allowed.
-     *
      */
     public void makeLogin(){
         try {
@@ -125,8 +124,8 @@ public class Login {
     /**
      * A simple method to convert an id  string representation to a numeric one.
      *
-     * @param id the string representation of the id
-     * @return a numeric representation of the id
+     * @param id the string representation of the id.
+     * @return a numeric representation of the id.
      */
     private int convertID(String id){
         if(id != null && !id.trim().equals("")){
@@ -137,10 +136,10 @@ public class Login {
 
     /**
      * A simple method to hash a given password by first adding a string to it for security.
-     * The hashing algorithm used is SHA-256
+     * The hashing algorithm used is SHA-256.
      *
-     * @param password the password we wish to hash
-     * @return the hashed password
+     * @param password the password we wish to hash.
+     * @return the hashed password.
      */
     private String hash(String password) throws NoSuchAlgorithmException {
         password = password + "cYM!HAhJ7T@ETTS8CT&5PgG6ye8TBYFEjs!efr7P";     // first salt the password

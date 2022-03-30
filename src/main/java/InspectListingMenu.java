@@ -58,6 +58,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Constructor for a listing menu of boxes displaying properties.
+     *
      * @param listings The listings you want to display in the boxes.
      */
     public InspectListingMenu(ArrayList<NewAirbnbListing> listings) {
@@ -109,6 +110,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Get if the unload-offscreen setting is enabled.
+     *
      * @return True if the unload-offscreen setting is enabled.
      */
     public static boolean isUnloadOffscreen() {
@@ -128,6 +130,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Loads all time images of the boxes currently on screen.
+     *
      * @param unloadPrev If this is set to true, then the previous images will be unloaded.
      */
     private void updateOnScreenImages(boolean unloadPrev){
@@ -158,6 +161,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Load or unload the images in all cells within a range.
+     *
      * @param start The starting index.
      * @param end The ending index.
      * @param load If true then image will load, if false then image will unload.
@@ -197,6 +201,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Sets the sort-by type of the properties.
+     *
      * @param sortSelected The sort-by type to set.
      */
     public static void setSortSelected(String sortSelected) {
@@ -205,6 +210,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Sets the order type of the properties.
+     *
      * @param orderSelected The order type to set.
      */
     public static void setOrderSelected(String orderSelected) {
@@ -212,7 +218,8 @@ public class InspectListingMenu extends ListView<HBox> {
     }
 
     /**
-     * Sets if the out-of-range listings should be shown
+     * Sets if the out-of-range listings should be shown.
+     *
      * @param showOutOfRange True if you want to show the out-of-range listings.
      */
     public static void setShowOutOfRange(boolean showOutOfRange) {
@@ -221,6 +228,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Get the sort-by type of the properties.
+     *
      * @return The sort-by type of the properties.
      */
     public static String getSortSelected() {
@@ -229,6 +237,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Get the order-by type of the properties.
+     *
      * @return The order-by type of the properties.
      */
     public static String getOrderSelected() {
@@ -237,6 +246,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Get if the out-of-range properties are being shows.
+     *
      * @return True if the out-of-range properties are being shows.
      */
     public static boolean isShowOutOfRange() {
@@ -245,6 +255,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Generates all the components and properties of the list.
+     *
      * @param listings The listing in the order to be generated.
      */
     private void generate(ArrayList<NewAirbnbListing> listings){
@@ -266,6 +277,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Sorts the list depending on the selected sort and order options.
+     *
      * @param listings The list to be sorted.
      */
     private void sortList(ArrayList<NewAirbnbListing> listings){
@@ -294,6 +306,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Initialise the in-range/out-of-range lists. Note that if the showOutOfRange variable is vale, the outOfRange list will be empty.
+     *
      * @param listings The list of all properties.
      * @param inRange The modified list of all in-range properties.
      * @param outOfRange The modified list of all out-of-range properties. (If enabled)
@@ -312,6 +325,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Initialises the listing boxes in their pane.
+     *
      * @param inRange The listings within the selected range.
      * @param outOfRange The listings out of the selected range.
      */
@@ -351,6 +365,7 @@ public class InspectListingMenu extends ListView<HBox> {
 
     /**
      * Opens the inspect-menu relative to the selected listing.
+     *
      * @param event MouseEvent call
      */
     private void openInspectMenu(MouseEvent event) {

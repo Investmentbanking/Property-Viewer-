@@ -17,11 +17,15 @@ import java.util.Arrays;
  */
 public class AirbnbDataLoader {
 
+    /**
+     * Constructor for class.
+     */
     public AirbnbDataLoader() {
     }
 
     /**
      * Converts string Array from old csv reader to airbnb listing.
+     *
      * @param line String array which contains the listing data.
      * @return the AirbnbListing object.
      */
@@ -51,6 +55,7 @@ public class AirbnbDataLoader {
 
     /**
      * Converts string Array from new csv reader to airbnb listing.
+     *
      * @param line String array which contains the listing data.
      * @return the AirbnbListing object.
      * @throws MalformedURLException if the csv file isn't found
@@ -131,7 +136,6 @@ public class AirbnbDataLoader {
             //skip the first row (column headers)
             reader.readNext();
 
-            // CODE GOES HERE TO MAKE THE OLD DATA SET
             while ((line = reader.readNext()) != null)
             {listings.add(createOldListing(line));}
         } catch(IOException | URISyntaxException e){
@@ -155,10 +159,11 @@ public class AirbnbDataLoader {
     }
 
     /**
-     * Convert a string to a double
-     * @param doubleString the string to be converted to Double type
+     * Convert a string to a double.
+     *
+     * @param doubleString the string to be converted to Double type.
      * @return the Double value of the string, or -1.0 if the string is 
-     * either empty or just whitespace
+     * either empty or just whitespace.
      */
     private static Double convertDouble(String doubleString){
         if(doubleString != null && !doubleString.trim().equals("")){
@@ -168,10 +173,11 @@ public class AirbnbDataLoader {
     }
 
     /**
-     * Convert a string to an int
-     * @param intString the string to be converted to Integer type
+     * Convert a string to an int.
+     *
+     * @param intString the string to be converted to Integer type.
      * @return the Integer value of the string, or -1 if the string is 
-     * either empty or just whitespace
+     * either empty or just whitespace.
      */
     private static Integer convertInt(String intString){
         if(intString != null && !intString.trim().equals("")){
@@ -181,10 +187,11 @@ public class AirbnbDataLoader {
     }
 
     /**
-     * Convert a string into an url
-     * @param urlString The string to be converted into an url
+     * Convert a string into an url.
+     *
+     * @param urlString The string to be converted into an url.
      * @return The url or null if the link is invalid.
-     * @throws MalformedURLException if the link is invalid
+     * @throws MalformedURLException if the link is invalid.
      */
     private static URL convertURL(String urlString) throws MalformedURLException {
         if (urlString != null && !urlString.trim().equals("")) {
@@ -194,9 +201,9 @@ public class AirbnbDataLoader {
     }
 
     /**
-     * This method is responsible for converting a string into an arrayList of type string
+     * This method is responsible for converting a string into an arrayList of type string.
      *
-     * @param amenities the String we wish to convert
+     * @param amenities the String we wish to convert.
      * @return an ArrayList object representing the string.
      */
     private static ArrayList<String> convertArrayListOfString(String amenities) {
