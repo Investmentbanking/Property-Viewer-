@@ -78,6 +78,7 @@ public class InspectBoxController implements Initializable {
 
     /**
      * Opens a GoogleMaps link in the default browser of the location of the current property.
+     * Credits to OlivierGrenoble https://stackoverflow.com/questions/27879854/desktop-getdesktop-browse-hangs
      */
     @FXML
     private void openGoogleMaps(){
@@ -92,29 +93,19 @@ public class InspectBoxController implements Initializable {
                 if (Runtime.getRuntime().exec(new String[] { "which", "xdg-open" }).getInputStream().read() != -1) {
                     Runtime.getRuntime().exec(new String[] { "xdg-open", uri.toString() });
                 } else {
-                    new Alerts(Alert.AlertType.ERROR,"Error", null, "xdg-open not supported!");
-                    throw new IOException();
+                    new Alerts(Alert.AlertType.ERROR,"Error", null, "xdg-open not supported! Can't open this on linux!");
                 }
             } else {
-                if (Desktop.isDesktopSupported())
-                {
+                if (Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().browse(uri);
                 } else {
                     new Alerts(Alert.AlertType.ERROR,"Browse URL", null, "Desktop command not supported!");
-                    throw new IOException();
                 }
             }
 
         } catch (IOException | URISyntaxException e) {
             new Alerts(Alert.AlertType.ERROR,"Browse URL", null, "Failed to open URL");
         }
-
-//        try {
-//            uri = new URI("https://www.google.com/maps/place/" + latitude + "," + longitude);
-//            java.awt.Desktop.getDesktop().browse(uri);
-//        } catch (URISyntaxException | IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     /**

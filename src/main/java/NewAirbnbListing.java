@@ -5,8 +5,10 @@ import java.util.ArrayList;
  * Represents one listing of a property for rental on Airbnb for the new CSV file.
  * This is essentially one row in the data table. Each column
  * has a corresponding field.
- */ 
-
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class NewAirbnbListing {
 
     private final String id;                        // the id of the property
@@ -311,6 +313,11 @@ public class NewAirbnbListing {
         return numberOfReviews;
     }
 
+    /**
+     * A simple getter method to get the field reviewScoresRating
+     *
+     * @return the int representation of the reviews ratings
+     */
     public int getReviewScoresRating() {
         return reviewScoresRating;
     }
