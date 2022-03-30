@@ -17,8 +17,8 @@ import java.io.FileReader;
  * @version 1.0
  */
 public class Login {
-    private String username;                                                            // The username of the user
-    private String password;                                                            // The password of the user
+    private final String username;                                                            // The username of the user
+    private final String password;                                                            // The password of the user
     private final URL url = this.getClass().getResource("users.csv");             // The file that stores the usernames acts as a database
     private final String file = new File(url.toURI()).getAbsolutePath();                // The actual path to the file, done like this to avoid repetition
 
@@ -94,9 +94,8 @@ public class Login {
      * assigned to the user so that we can distinguish users with specific ids.
      * Additionally, no two users with the same name are allowed.
      *
-     * @return true when a new user is saved to the file, false otherwise.
      */
-    public boolean makeLogin(){
+    public void makeLogin(){
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
             FileWriter writer = new FileWriter(file, true);
@@ -109,7 +108,7 @@ public class Login {
                 lastID = convertID(line[0]);
                 String usernameInDB = line[1];
                 if(usernameInDB.equals(this.username)){
-                    return false;
+                    return;
                 }
             }
 
@@ -117,11 +116,9 @@ public class Login {
 
             writer.write(newUser);
             writer.close();
-            return true;
 
         }catch (Exception e){
             e.printStackTrace();
-            return false;
         }
     }
 

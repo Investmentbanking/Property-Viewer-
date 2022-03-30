@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class Account {
     private String username;                                                        // The username
-    private ArrayList<NewAirbnbListing> bookings;                                   // The actual bookings of this person
+    private final ArrayList<NewAirbnbListing> bookings;                             // The actual bookings of this person
     private final URL url = this.getClass().getResource("reservation.csv");   // The overall url used like this to reduce repetition
     private final String file = new File(url.toURI()).getAbsolutePath();            // The location of the file used like this to reduce repetition
 
@@ -138,15 +138,6 @@ public class Account {
      */
     public String getUsername() {
         return username;
-    }
-
-    /**
-     * A simple getter method to retrieve the bookings field
-     *
-     * @return the ArrayList representation of the field bookings.
-     */
-    public ArrayList<NewAirbnbListing> getBookings() {
-        return bookings;
     }
 
     /**

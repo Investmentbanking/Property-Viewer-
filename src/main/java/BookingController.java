@@ -111,7 +111,7 @@ public class BookingController {
             double calculatedPrice = RuntimeDetails.getTotalNights() * currentItem.getPrice();
             price.setText("$" + calculatedPrice);
 
-            Image pictureImage = loadImage(currentItem.getPictureURL(), false);
+            Image pictureImage = loadImage(currentItem.getPictureURL());
             picture.setImage(pictureImage);
 
             from.setText(String.valueOf(RuntimeDetails.getStartDate()));
@@ -130,7 +130,7 @@ public class BookingController {
      */
     private void reset(){
         name.setText("Thanks for booking :)");
-        picture.setImage(loadImage(null, false));
+        picture.setImage(loadImage(null));
         beds.setText("-");
         baths.setText("-");
         area.setText("-");
@@ -180,12 +180,11 @@ public class BookingController {
     /**
      * Returns an image loaded from a URL and if the URL is invalid a placeholder image is loaded instead.
      * @param url URL of the image.
-     * @param backgroundLoading True if you want the image to be leaded in a background thread.
      * @return The Image class of the URL or placeholder image.
      */
-    private Image loadImage(URL url, boolean backgroundLoading){
+    private Image loadImage(URL url){
         if (url != null) {
-            Image image = new Image(url.toString(), backgroundLoading);
+            Image image = new Image(url.toString(), false);
             if (!image.isError()) {
                 return image;
             }

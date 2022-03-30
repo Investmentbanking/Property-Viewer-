@@ -7,6 +7,14 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This class is responsible for loading the data from a csv file.
+ * Given this team is using two csv files then this class is responsible for
+ * loading the data from both sets. Both sets have some shared characteristics.
+ *
+ * @author Syraj Alkhalil k21007329
+ * @version 1.0
+ */
 public class AirbnbDataLoader {
 
     public AirbnbDataLoader() {
@@ -34,19 +42,18 @@ public class AirbnbDataLoader {
         int calculatedHostListingsCount = convertInt(line[13]);
         int availability365 = convertInt(line[14]);
 
-        OldAirbnbListing listing = new OldAirbnbListing(id, name, host_id,
+        return new OldAirbnbListing(id, name, host_id,
                 host_name, neighbourhood, latitude, longitude, room_type,
                 price, minimumNights, numberOfReviews, lastReview,
                 reviewsPerMonth, calculatedHostListingsCount, availability365
         );
-        return listing;
     }
 
     /**
      * Converts string Array from new csv reader to airbnb listing.
      * @param line String array which contains the listing data.
      * @return the AirbnbListing object.
-     * @throws MalformedURLException
+     * @throws MalformedURLException if the csv file isn't found
      */
     private static NewAirbnbListing createNewListing(String[] line) throws MalformedURLException {
             String id = line[0];
@@ -79,14 +86,13 @@ public class AirbnbDataLoader {
             int review_scores_location = convertInt(line[27]);
             int review_scores_value = convertInt(line[28]);
 
-            NewAirbnbListing listing = new NewAirbnbListing(id, name, neighborhood_overview,
-                    picture_url, host_id, host_name, host_response_time, host_picture_url,
-                    host_listings, neighbourhood_cleansed, latitude, longitude, property_type,
-                    accommodates, bathrooms, bedrooms, beds, amenities, price, minimumNights, maximumNights,
-                    number_of_reviews, availability365, review_scores_rating, review_scores_cleanliness,
-                    review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value
-            );
-            return listing;
+        return new NewAirbnbListing(id, name, neighborhood_overview,
+                picture_url, host_id, host_name, host_response_time, host_picture_url,
+                host_listings, neighbourhood_cleansed, latitude, longitude, property_type,
+                accommodates, bathrooms, bedrooms, beds, amenities, price, minimumNights, maximumNights,
+                number_of_reviews, availability365, review_scores_rating, review_scores_cleanliness,
+                review_scores_checkin, review_scores_communication, review_scores_location, review_scores_value
+        );
     }
 
     /** 
@@ -149,7 +155,7 @@ public class AirbnbDataLoader {
     }
 
     /**
-     *
+     * Convert a string to a double
      * @param doubleString the string to be converted to Double type
      * @return the Double value of the string, or -1.0 if the string is 
      * either empty or just whitespace
@@ -162,7 +168,7 @@ public class AirbnbDataLoader {
     }
 
     /**
-     *
+     * Convert a string to an int
      * @param intString the string to be converted to Integer type
      * @return the Integer value of the string, or -1 if the string is 
      * either empty or just whitespace
