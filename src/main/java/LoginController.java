@@ -69,8 +69,6 @@ public class LoginController {
     private void displayingText(){
         try {
             Login log = new Login(username.getText(), password.getText());
-            System.out.println(username.getText());
-            System.out.println(password.getText());
             if (log.checkLogin()){
                 loadingLabel.setText("Loading... Please Wait");
                 loadingLabel.setVisible(true);
